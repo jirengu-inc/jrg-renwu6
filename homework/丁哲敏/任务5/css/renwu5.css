@@ -1,0 +1,11 @@
+body{
+    font-family: "微软雅黑"；
+    fong-size:16px;
+    line-height: 1.5em;
+    color: #333;
+}
+p{
+    color: #000;
+    line-height: 1.5em;
+    text-indent: 2em;
+}
