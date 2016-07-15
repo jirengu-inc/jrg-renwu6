@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task7</title>
+</head>
+
+<body>
+    <form name="form-data" action="http://baidu.com" method="post">
+        姓名：
+        <input type="text" name="name" placeholder="用户名" maxlength="10">
+        <br>密码：
+        <input type="password" name="passwords" value="12345678">
+        <br>性别：
+        <input type="radio" name="sex" value="male" checked/>男
+        <input type="radio" name="sex" value="female">女
+        <br>取向：
+        <input type="radio" name="love" value="male">男
+        <input type="radio" name="love" value="male" checked/>女
+        <br>爱好：
+        <input type="checkbox" name="hobby" value="dota">dota
+        <input type="checkbox" name="hobby" value="pets" checked/>宠物
+        <input type="checkbox" name="hobby" value="travel" checked/>旅游
+        <br>评论：
+        <textarea name="comment" rows="10" cols="30" placeholder="ddd" maxlength="1000"></textarea>
+        <br> 我的car:
+        <select name="cars">
+            <option value="bmw">宝马</option>
+            <option value="toyota">日产</option>
+            <option value="sabo" selected/>萨博</option>
+            <option value="audi">奥迪</option>
+        </select>
+        <input type="submit" name="submit" value="提交">
+    </form>
+</body>
+
+</html>
