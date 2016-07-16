@@ -1,0 +1,43 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font:625% "微软雅黑","宋体";
+}
+.wrapper{
+	width: 80%;
+	height: 400px;
+	margin:auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+table{
+	width: 100%;
+	min-width: 700px;
+	height: 300px;
+	border-collapse: collapse;/*border-spacing: 0;也是可以的*/
+	text-align: center;
+}
+table caption{
+	font-size: 0.24rem;
+	padding: 20px;
+}
+table tbody tr:hover{
+	background: pink;
+	color: white;
+}
+table th{
+	font-size: 0.16rem;
+	border: 1px solid #ccc;
+	background: #22aaaa;
+	padding: 10px;
+}
+table td{
+	font-size: 0.14rem;
+	border: 1px solid #ccc;
+}
+

@@ -1,0 +1,24 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font:625% "微软雅黑","宋体";
+}
+div{
+	width: 200px;
+	height: 80px;
+	line-height: 80px;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin:auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+p{
+	font-size: 0.14rem;
+	color: #f0f;
+}
