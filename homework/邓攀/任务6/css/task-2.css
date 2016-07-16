@@ -1,0 +1,64 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font: 625% "微软雅黑", "宋体";
+}
+
+.dialog {
+	width: 90%;
+	min-width: 900px;
+	margin: 0 auto;
+	margin-top: 100px;
+	border: 1px solid #ccc;
+	font-size: 0.16rem;
+}
+
+.header {
+	height: 60px;
+	text-align: left;
+	padding-left: 10px;
+	color: #FF00FF;
+	border-bottom: 1px dashed #FF00FF;
+}
+
+.content {
+	height: 100px;
+}
+
+.content a {
+	text-decoration: none;
+	color: blue;
+}
+
+.content a:hover {
+	color: red;
+}
+
+.footer {
+	height: 50px;
+	text-align: center;
+}
+
+.btn {
+	border: 1px solid #CCCCCC;
+	border-radius: 3px;
+	padding: 4px 3px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.btn:hover {
+	background: pink;
+	color: white;
+}
+.statement{
+	width: 90%;
+	min-width: 900px;
+	margin: 0 auto;
+	font-size: 0.2rem;
+	margin-top: 30px;
+	color: orangered;
+}

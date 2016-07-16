@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 625%;
+}
+body{
+    font: 0.16rem/1.5 "微软雅黑";
+    color: #333;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 80%;
+    min-width: 980px;
+}
+h1{
+    text-align: center;
+    padding: 10px;
+}
+p{
+    color: #000;
+    font-size: 0.14rem;
+    text-indent: 2em;
+}
