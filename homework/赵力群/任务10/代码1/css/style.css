@@ -21,7 +21,6 @@ a {
 .container {
     width: 900px;
     margin: 0 auto;
-    position: relative;
 }
 img {
     height: 40px;
@@ -29,18 +28,12 @@ img {
     margin-left: -10px;
 }
 #header li {
-    color: #fff;
     display: block;
     list-style: none;
     margin-right: 15px;
     line-height: 50px;
     float: right;
 }
-/*#header li:hover {
-    color: #333;
-    background: #fff;
-    cursor: pointer;
-}*/
 #content {
     clear: both;
     height: 500px;
@@ -68,7 +61,6 @@ p {
 }
 #footer {
     clear: both;
-    color: #fff;
     height: 41px;
 }
 #footer li {
