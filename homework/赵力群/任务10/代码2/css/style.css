@@ -1,0 +1,50 @@
+.triangle {
+    width: 0;
+    height: 0;
+}
+.cat-1, .cat-2, .cat-3 {
+    position: relative;
+}
+.box {
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    border: 1px solid #ccc;
+}
+.triangle-1 {
+    border-top: 10px solid #fff;
+    border-left: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid #ccc;
+    position: absolute;
+    top: -19px;
+    left: 30px;
+    z-index: -1;
+}
+.triangle-2 {
+    border-top: 10px solid red;
+    border-right: 10px solid red;
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid #fff;
+    position: absolute;
+    left: 202px;
+}
+.triangle-3 {
+    border-top: 10px solid #fff;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid #ccc;
+    border-left: 10px solid #fff;
+    position: absolute;
+    top: -19px;
+    left: 30px;
+    z-index: -1;
+}
+.triangle-4 {
+    border-top: 10px solid rgba(255, 255, 255, 0);
+    border-right: 10px solid rgba(255, 255, 255, 0);
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid rgba(255, 255, 255, 0);
+    position: absolute;
+    top: -17px;
+    left: 30px;
+}

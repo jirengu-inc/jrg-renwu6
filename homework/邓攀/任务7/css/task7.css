@@ -1,0 +1,60 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font: 625% "微软雅黑";
+}
+body{
+		background: #dedede;
+}
+h3{
+	font-size: 0.24rem;
+	font-weight: normal;
+	padding: 20px;
+	text-align: center;
+}
+form{
+	display: table;
+	width: 80%;
+	min-width: 1000px;
+	margin: 0 auto;
+	font-size: 0.16rem;
+	padding: 10px;
+	background: white;
+	box-shadow: 2px 2px 2px 1px darkgray;
+}
+.tablerow{
+	display: table-row;
+}
+.tablerow .tablecell{
+	display: table-cell;
+	vertical-align: top;
+	padding: 3px;
+}
+.tablerow .tablecell:first-child{
+	text-align: right;
+}
+.tablerow input,.tablerow textarea{
+	padding: 5px;
+	font: 0.12rem  "微软雅黑";
+}
+.tablerow textarea{
+	width: 500px;
+	height: 250px;
+}
+.tablerow select{
+	font: 0.12rem  "微软雅黑";
+}
+.tablerow:last-child button{
+	width: 250px;
+	font: 0.18rem "微软雅黑";
+	padding: 2px;
+	cursor: pointer;
+	border-radius: 5px;
+	background: ghostwhite;
+	box-shadow: none;
+}
+.tablerow:last-child button:hover{
+	background: gainsboro;
+}
