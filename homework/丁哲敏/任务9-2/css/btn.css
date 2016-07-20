@@ -1,0 +1,14 @@
+.btn {
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+    color: #000;
+    text-decoration: none;
+    line-height: 28px;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: "黑体", "sans-serif";
+}
+.btn:hover {
+    color: #9900ff;
+}
