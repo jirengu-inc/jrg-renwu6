@@ -1,0 +1,29 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.center{
+	width: 80%;
+	min-width: 1000px;
+	margin: 0 auto;
+	padding: 20%;
+}
+.btn{
+	display: inline-block;
+	width: 200px;
+	height: 100px;
+	background:#f26f43;
+	color: white;
+	font:20px/100px "微软雅黑";
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	border-radius: 10px;
+	text-decoration: none;
+}
+.btn:hover{
+	background: #c14d21;
+}
+.btn:active{
+	background:#e25f31 ;
+}
