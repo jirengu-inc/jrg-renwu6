@@ -1,0 +1,80 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>任务10-2</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+   .triangle{
+      width: 0;
+      height: 0;
+    }
+    .triangle1{
+      border-top: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #ccc;
+      border-left: 10px solid transparent;
+      margin-left: 40px;
+    }
+    .border{
+      border: 1px solid #ccc;
+      width: 200px;
+      height: 100px;
+      margin: 20px;
+    }
+    .border1{
+      margin-top: 0;
+    }
+    .triangle2{
+      border-top: 10px solid red;
+      border-right: 10px solid red;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid transparent;
+      margin-left: 20px;
+      float:right;
+    }
+    .triangle3{
+      border-top: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #ccc;
+      border-left: 10px solid transparent;
+      margin-left: 40px;
+      margin-top: -20px;
+    }
+    .triangle4{
+      float: left;
+      position: absolute;
+      left: 41px;
+      top: 247px;
+      border-top: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-bottom: 9px solid #fff;
+      border-left: 9px solid transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="items1">
+    <div class=" triangle triangle1">
+    </div>
+    <div class="border border1">
+    </div>
+  </div>
+  <div class="items2">
+    <div class="border border1">
+      <div class="triangle triangle2">
+      </div>
+    </div>
+    <div class="items3">
+      <div class="triangle triangle3">
+        <div class="triangle4">
+        </div>
+      </div>
+      <div class="border border1">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
