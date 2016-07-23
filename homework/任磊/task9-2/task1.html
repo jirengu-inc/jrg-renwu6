@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sprite</title>
+		<style type="text/css">
+		     *{
+		     	margin: 0px;
+		     	padding: 0px;
+		     }
+			.icon{
+				display: inline-block;
+				width: 40px;
+				height: 40px;
+				background: url(img/sprite.png) 0 0 no-repeat;
+				padding-left: 45px;
+				font-size: 20px;
+				font-family: "微软雅黑";
+				cursor: pointer;
+			}
+			.icon:hover{
+				color: #A766BF;
+			}
+			.s1{
+			    background-position: 11px -3px;
+			}
+			.s2{
+				background-position: 11px -46px;
+			}
+			.s3{
+				background-position: 11px -93px;
+			}
+			.s1:hover{
+				background-position: 10px -138px;
+			}
+			.s2:hover{
+				background-position: 6px -187px;
+			}
+			.s3:hover{
+				background-position: 15px -231px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="icon s1">前进</div>
+		<div class="icon s2">开始</div>
+		<div class="icon s3">后退</div>
+	</body>
+</html>
