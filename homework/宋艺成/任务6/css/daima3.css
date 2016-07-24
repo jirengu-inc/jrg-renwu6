@@ -1,0 +1,15 @@
+.table{
+    border-collapse: collapse;
+}
+.th{
+    background-color: #22AAAA;
+    height: 50px;
+    width: 530px;
+    border: 1px solid #ccc;
+}
+.td{
+    height: 50px;
+    width: 530px;
+    text-align: center;
+    border: 1px solid #cccccc;
+}

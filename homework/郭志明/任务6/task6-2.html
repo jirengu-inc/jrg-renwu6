@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.dialog{
+		border: 1px solid #ccc;
+	}
+	.header{
+		height: 40px;
+		text-align: center;
+		font-size: 16px;
+		color: #f00;
+		border-bottom: 1px solid #ccc;
+	}
+	.close{
+		text-decoration: none;
+		padding: 1px 20px;
+		float: right;
+	}
+	.close:hover{
+		color: #fff;
+		background-color: red;
+		border: 1px solid ;
+		border-radius:1em;
+	}
+	.content{
+		height: 100px;
+		padding-left: 15px;
+
+	}
+	.content a{
+		text-decoration: none;
+		color: blue;
+		transition: color 0.2s;
+	}
+	.content a:hover{
+		color: red;
+	}
+	.footer{
+		height: 50px;
+		text-align: right;
+		padding-right: 50px;
+	}
+	.footer .btn{
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		padding: 4px 3px;
+		display: inline-block;
+	}
+	.footer a{
+		text-decoration: none;
+	}
+	.footer a:hover{
+		background-color: #ccc;
+	}
+</style>
+<body>
+	<div class="dialog">
+		<div class="header">
+			<h3>我是标题</h3>
+			<a class="close" title="关闭" href="#" onclick="window.close()">X</a>
+		</div>
+		<div class="content">
+			<h3>欢迎来到 <a href="http://jirengu.com" target="_block">饥人谷</a></h3>
+			<p>在这个大家庭你能快乐的学到更多前端技能</p>
+		</div>
+		<div class="footer">
+			<a class="btn btn-confirm" href="">确认</a>
+			<a class="btn btn-cancel" href="">取消</a>
+			
+		</div>
+	</div>
+</body>
+</html>

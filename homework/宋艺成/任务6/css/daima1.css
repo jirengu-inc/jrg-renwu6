@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding:0;
+}
+div{
+    border:1px solid #ccc;
+    height:80px;
+    width:200px;
+    font-size: 14px;
+    color:#f0f;
+    line-height:80px;
+    text-align: center;
+}

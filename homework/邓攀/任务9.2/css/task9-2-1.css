@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+span{
+	display: inline-block;
+	width: 70px;
+	text-align: right;
+	font-size: 18px;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+.pic1{
+    background: url(../img/result.png) 0 -6px no-repeat;
+}
+.pic2{
+    background: url(../img/result.png) 0 -48px no-repeat;
+}
+.pic3{
+    background: url(../img/result.png) 0 -94px no-repeat;
+}
+.pic1:hover{
+	background: url(../img/result.png) -1px -141px no-repeat;
+	color: #A663BE;
+}
+.pic2:hover{
+	background: url(../img/result.png) -5px -189px no-repeat;
+	color: #A663BE;
+}
+.pic3:hover{
+	background: url(../img/result.png) 4px -232px no-repeat;
+	color: #A663BE;
+}
