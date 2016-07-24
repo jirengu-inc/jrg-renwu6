@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片按钮</title>
+    <style>
+     *{
+         margin:0;
+         padding: 0;
+     }
+        .go{
+            background: url('img/result_1.png');
+            width: 30px;
+            height: 30px;
+            border:none;
+            background-position: 0px -2px ;
+            cursor: pointer;
+
+        }
+
+        .start{
+            background: url("img/result_1.png");
+            width: 30px;
+            height: 30px;
+            border: none;
+            background-position: 0px -91px;
+            cursor: pointer;
+
+        }
+
+        .stop{
+            background: url("img/result_1.png");
+            width: 30px;
+            height: 30px;
+            background-position: -6px -52px;
+            border: none;
+            cursor: pointer;
+
+        }
+
+
+        .go:hover{
+            background: url("img/result_2.png");
+            background-position: 0px -3px;
+        }
+        .start:hover{
+            background: url("img/result_2.png");
+            background-position: -3px -93px;
+        }
+        .stop:hover{
+            background: url("img/result_2.png");
+            background-position: -3px -52px;
+        }
+    </style>
+</head>
+<body>
+                 <div><input type="button" class="go">前进</div>
+                 <div><input type="button" class="start">开始</div>
+                 <div><input type="button" class="stop">停止</div>
+</body>
+</html>
