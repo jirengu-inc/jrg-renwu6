@@ -1,0 +1,58 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.icon1{
+	width: 200px;
+	height: 100px;
+	border: 1px solid #ccc;
+	margin: 100px auto 100px auto;
+	position: relative;	
+}
+.triangle1{
+	width: 0;
+	height: 0;
+	border: 10px solid;
+	border-color: transparent transparent #ccc transparent; 
+	position: absolute;
+	top: -21px;
+	left: 10px;
+}
+.triangle2{
+	width: 0;
+	height: 0;
+	border: 10px solid;
+	border-color: red red transparent transparent;
+	position: absolute;
+	top: -1px;
+	right: -1px;
+}
+.triangle3{
+	width: 0;
+	height: 0;
+	border: 10px solid;
+	border-color: transparent transparent #ccc transparent; 
+	position: absolute;
+	top: -21px;
+	left: 10px;
+}
+.triangle4{
+	width: 0;
+	height: 0;
+	border: 10px solid;
+    border-color:transparent  transparent #fff transparent;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+}
+
+/*或者这种方法
+ * .triangle3:after{
+	content: '';
+    display: block;
+    border: 10px solid;
+    border-color:transparent  transparent #fff transparent;
+    position: absolute;
+    top: -9px;
+    left: -10px;
+}*/
