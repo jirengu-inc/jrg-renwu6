@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task07</title>
+    <style>
+        .left {
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+        }
+
+        label[for="comments"] {
+            vertical-align: top;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        <label for="name" class="left">姓名：</label>
+        <input type="text" id="name" name="name" placeholder="用户名"><br>
+        <label for="password" class="left">密码：</label>
+        <input type="password" id="password" name="password" value="123456"><br>
+        <span class="left">性别：</span>
+        <input type="radio" id="gender-male" name="gender" checked="">
+        <label for="gender-male">男</label>
+        <input type="radio" id="gender-female" name="gender">
+        <label for="gender-female">女</label><br>
+        <span class="left">取向：</span>
+        <input type="radio" id="o-male" name="orientation">
+        <label for="o-male">男</label>
+        <input type="radio" id="o-female" name="orientation" checked="">
+        <label for="o-female">女</label><br>
+        <span class="left">爱好：</span>
+        <input type="checkbox" id="dota" name="hobby-dota">
+        <label for="dota">dota</label>
+        <input type="checkbox" id="travel" name="hobby-travel" checked="">
+        <label for="travel">旅游</label>
+        <input type="checkbox" id="pet" name="hobby-pet" checked="">
+        <label for="pet">宠物</label><br>
+        <label for="comments" class="left">评论：</label>
+        <textarea name="comments" id="comments" cols="30" rows="10" placeholder="ddd"></textarea><br>
+        <label for="car" class="left">我的car：</label>
+        <select name="car" id="car">
+            <option value="shabo">萨博</option>
+        </select>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
