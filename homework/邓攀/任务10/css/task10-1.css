@@ -4,7 +4,7 @@
 	padding: 0;
 }
 body{
-	font: 16px/1.5 "Microsoft YaHei","微软雅黑",sans-serif;
+	font: 14px/1.5 "Microsoft YaHei","微软雅黑",sans-serif;
 }
 a{
 	text-decoration: none;
@@ -67,7 +67,7 @@ header .nav a:hover,header .nav li:first-child a{
 	float: right;
 	width: 670px;
 	margin-left: 10px;
-	padding: 10px;
+	padding: 20px;
 	background: #eee;
 	color: #656565;
 }
