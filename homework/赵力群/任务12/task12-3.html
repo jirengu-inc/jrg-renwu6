@@ -18,7 +18,7 @@
         }
 
         #container .content {
-            padding: 0 200px;
+            padding-left: 200px;
             *zoom: 1;
         }
 
@@ -31,7 +31,8 @@
         #container .main {
             width: 100%;
             min-height: 450px;
-            background: url("./img/main.png") 10px 0 no-repeat;
+            background: #d02710 url("./img/main.png") 10px 0 no-repeat;
+            background-size: 100% 100%;
             float: left;
         }
 
@@ -42,16 +43,6 @@
             height: 315px;
             margin-left: -100%;
             background: url("./img/side-L.jpg") 0 0 no-repeat;
-            float: left;
-        }
-
-        #container .side-R {
-            position: relative;
-            left: 200px;
-            width: 200px;
-            height: 327px;
-            margin-left: -200px;
-            background: url("./img/side-R.jpg") 0 0 no-repeat;
             float: left;
         }
     </style>
@@ -65,7 +56,6 @@
         <div class="content">
             <div class="main"></div>
             <div class="side-L"></div>
-            <div class="side-R"></div>
         </div>
     </div>
     <div id="footer">
