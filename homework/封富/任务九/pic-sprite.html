@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>雪碧图</title>
+	<style>
+	html,body,ul,li {
+		margin:0;
+		padding: 0;
+	}
+		ul {
+			list-style-type: none;
+			font-size: 16px;
+			font-family: "微软雅黑";
+		}
+		ul>li {
+			float: left;
+			height: 35px;
+			width: 60px;
+			padding-left: 40px;
+			line-height: 35px;
+			cursor: pointer;
+			background: url(image/result.png) 0px 0px no-repeat;
+		}
+		ul>li:hover {
+			color: #A766BF;
+		}
+		.advance {
+			background-position: 4px -49px;
+		}
+		.advance:hover {
+			background-position: 3px -1px;
+		}
+		.start {
+			background-position: 5px -137px;
+		}
+		.start:hover {
+			background-position: 0px -183px;
+		}
+		.stop {
+			background-position: 0px -96px;
+		}
+		.stop:hover {
+			background-position: 4px -228px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="advance">前进</li>
+		<li class="start">开始</li>
+		<li class="stop">停止</li>
+	</ul>
+</html>
