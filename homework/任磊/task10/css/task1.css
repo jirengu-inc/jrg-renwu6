@@ -1,0 +1,102 @@
+/*全局设置,清除浏览器的内外边距默认设置*/
+* {
+	margin: 0;
+	padding: 0;
+}
+/*设置全局的字体*/
+body{
+	font: 16px "microsoft yahei";
+}
+/*清除a链接默认样式*/
+a{
+	text-decoration: none;
+}
+/*页面内容居中,宽度900px*/
+.wrap {
+	width: 900px;
+	margin: 0 auto;
+}
+/*设置头部样式*/
+#header {
+	background: #333;
+	height: 50px;
+}
+
+#logo img {
+	height: 45px;
+	float: left;
+}
+
+.nav {
+	float: right;
+}
+
+.nav li {
+	float: left;
+	list-style-type: none;
+	margin-right: 15px;
+}
+
+.nav li a {
+	color: #fff;
+	display: block;
+	line-height: 50px;
+	padding: 0px 10px;
+}
+
+.nav a:hover {
+	background-color: #fff;
+	color: #333333;
+}
+
+#header .wrap:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+/*设置侧边栏*/
+.aside {
+	width: 200px;
+	float: left;
+	height: 500px;
+	background-color: #EEEEEE;
+	margin-top: 10px;
+}
+/*设置主区域*/
+.main {
+	width: 650px;
+	height: 300px;
+	float: left;
+	background: #EEEEEE;
+	margin: 10px;
+	color: #333;
+}
+
+.main h2 {
+	margin: 40px 8px;
+}
+
+.main p {
+	margin: 8px;
+}
+
+#content .wrap:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+/*设置页尾*/
+#footer {
+	background: #333;
+	height: 50px;
+}
+
+#footer li {
+	list-style-type: none;
+	display: inline;
+}
+
+#footer li a {
+	color: #fff;
+	line-height: 50px;
+}
