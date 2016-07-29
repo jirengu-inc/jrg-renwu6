@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>按钮</title>
+	<style type="text/css">
+	.line,a,span {				
+		display: inline-block;	
+	}/*如果不设置a,span为块级元素他们的大小就会不一样*/
+	.btn{
+		font-size: 25px;
+		font-weight: bold;
+		color: #ffffff;
+		border: 1px solid orange;
+		padding: 6px 8px;
+		background-color: orange;
+		border-radius: 15%;
+		text-decoration: none;
+		cursor: pointer;
+	}	
+	.btn:hover {
+		background-color: #c14d21;
+	}
+	.btn:active {
+		background-color: #e25f31;
+	}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="line"><a class="btn" href="#">确定</a></li>
+		<li class="line"><span class="btn">取消</span></li>
+		<li class="line"><div class="btn line">提交</div></li>
+		<li class="line"><button class="btn">发送</button></li>
+	</ul>
+</body>
+</html>
