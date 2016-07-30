@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>triangle</title>
+	<style>
+		div {
+			width: 0px;
+			height: 0px;
+			margin-top: 30px;
+			border:50px solid;
+		}
+		.triangle-all {
+			border-color: blue yellow green red;
+		}
+		.triangle-up {
+			border-color: blue transparent transparent transparent;
+		}
+		.triangle-left {
+			border-color: transparent transparent transparent red;
+		}
+		.triangle-right {
+			border-color: transparent yellow transparent transparent;
+		}
+		.triangle-down{
+			border-color: transparent transparent green transparent;
+		}
+		.triangle-lb {
+			border-color: transparent transparent red red;
+		}
+		.triangle-rb {
+			border-color: transparent green green transparent;
+		}
+		.echelon {
+			border-color: transparent transparent green transparent;
+			position: relative;
+		}
+		.echelon:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: -20px;
+			width: 20px;
+			display: block;
+			border: 10px solid #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="triangle-all"></div>
+	<div class="triangle-up"></div>
+	<div class="triangle-left"></div>
+	<div class="triangle-right"></div>
+	<div class="triangle-down"></div>
+	<div class="triangle-lb"></div>
+	<div class="triangle-rb"></div>
+	<div class="echelon"></div>
+</body>
+</html>

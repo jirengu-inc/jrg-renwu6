@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task12-3</title>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #header,
+        #footer .content {
+            height: 50px;
+            background: rgb(213, 39, 14) url("./img/header.jpg") 50% no-repeat;
+        }
+
+        #container .content {
+            padding-left: 200px;
+            *zoom: 1;
+        }
+
+        #container .content:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        #container .main {
+            width: 100%;
+            min-height: 450px;
+            background: #d02710 url("./img/main.png") 10px 0 no-repeat;
+            background-size: 100% 100%;
+            float: left;
+        }
+
+        #container .side-L {
+            position: relative;
+            left: -200px;
+            width: 200px;
+            height: 315px;
+            margin-left: -100%;
+            background: url("./img/side-L.jpg") 0 0 no-repeat;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div class="content"></div>
+    </div>
+    <div id="container">
+        <div class="content">
+            <div class="main"></div>
+            <div class="side-L"></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="content"></div>
+    </div>
+</body>
+
+</html>
