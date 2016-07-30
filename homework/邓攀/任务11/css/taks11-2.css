@@ -1,0 +1,39 @@
+/*通用*/
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-size: 24px;
+	font-family: "微软雅黑";
+}
+.center{
+	width: 80%;
+	margin: 0 auto;
+}
+
+header{
+	height: 50px;
+	line-height: 50px;
+	background-color: pink;
+}
+
+#content aside{
+	float: left;
+	width: 20%;
+	height: 500px;
+	background: olive;
+}
+#content .main{
+	overflow: auto;
+	margin-left: 22%;
+	padding: 20px;
+	background-color: orange;
+}
+
+footer{
+	height: 40px;
+	line-height: 40px;
+	background: peachpuff;
+	clear: both;
+}
