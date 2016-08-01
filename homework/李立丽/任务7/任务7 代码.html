@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Form表单</title>
+</head>
+<body>
+<form name="Form表单" method="post">
+   姓名：<input type="text" name="username" placeholder="用户名"/> <br/>
+   密码：<input type="psw" name="password" placeholder="密码"/><br/>
+   性别：<input type="radio" name="gender" value="male"/>男
+         <input type="radio" name="gender" value="female"/>女<br/>
+   取向：<input type="radio" name="target" value="male"/>男
+         <input type="radio" name="target" value="female"/>女<br/>
+   爱好：<input type="checkbox" name="like[]" value="dota"/>dota
+         <input type="checkbox" name="like[]" value="旅游"/>旅游
+         <input type="checkbox" name="like[]" value="宠物"/>宠物<br/>
+
+   评论：<textarea rows="10" cols="30" placeholder="ddd"></textarea><br/>
+   我的Car:<select name="car">
+              <option value="Volvo"> 沃尔沃</option>
+              <option value="Saab"> 萨博</option>
+              <option value="opel"> 欧宝</option>
+   	        </select>
+   	    <input type="submit" value="提交"/> 
+
+</form>
+</body>
+</html>

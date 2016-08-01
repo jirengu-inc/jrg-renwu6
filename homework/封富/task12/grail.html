@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>圣杯布局</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.clearfix {
+			*zoom: 1;
+		}
+/*		.ct {
+			width: 100%;
+		}*/
+		.contain {
+			/*width: 100%;*/
+			padding: 0 200px;
+			background-color: #ccc;
+		}
+		.main {
+			width: 100%;
+			background-color: #aaa;
+			float: left;
+			min-height: 200px;
+		}
+		.lside {
+			float: left;
+			width: 200px;
+			height: 200px;
+			background-color: #060;
+			margin-left: -100%;
+			position: relative;
+			top: 0;
+			left: -200px;
+		}
+		.rside {
+			float: left;
+			width: 200px;
+			height: 200px;
+			background-color: #060;
+			margin-left: -200px;
+			position: relative;
+			top: 0;
+			left: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<div class="contain clearfix">
+			<div class="main">外边距合并指的是，两个在普通文档流中的“相邻”元素外边距相遇的时候
+			发生合并的情况。这个所谓的“相邻”可
+			以是父子关系相邻，兄弟关系相邻，甚至如果一</div>
+			<div class="lside">左侧边栏</div>
+			<div class="rside">右侧边栏</div>
+		</div>
+	</div>
+</body>
+</html>
