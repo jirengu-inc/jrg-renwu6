@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>双飞翼两栏布局</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.clearfix {
+			*zoom: 1;
+		}
+
+		#header,#footer {
+			width: 100%;
+			height: 100px;
+			background-color: #060;
+		}
+		
+		.main {
+			width: 100%;
+			float: left;
+		}
+		.aside {
+			width: 200px;
+			height: 200px;
+			background-color: #555;
+			float: left;
+			margin-left: -100%;
+		}
+		.main-text {
+			min-height: 200px;
+			margin-left: 200px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div class="ct clearfix">
+		<div class="main">
+			<div class="main-text">main-text</div>
+		</div>
+		<div class="aside">aside</div>
+	</div>
+
+	<div id="footer">footer</div>
+</body>
+</html>
