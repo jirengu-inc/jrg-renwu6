@@ -1,0 +1,80 @@
+@charset"utf-8";
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+.wrap{
+	width: 900px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+header{
+	background-color: rgba(0,0,0,0.8);
+}
+a{
+	text-decoration: none;
+	color: #fff;
+	padding: 0 10px;
+	display: block;
+}
+header ul a:hover{
+		color: #000;
+		background-color: #fff;
+}
+.logo{
+	float: left;
+}
+header .logo img{
+	width: 160px;
+}
+.nav{
+	float: right;
+	line-height: 44px;
+}
+ul li{
+	float: left;
+	font-size: 18px;
+	padding: 0px 10px;
+	list-style: none;
+}
+/*内容*/
+#content{
+	width: 900px;
+	margin: 0 auto;
+	overflow: hidden;
+
+}
+.main{
+	width: 660px;
+	margin-top: 10px;
+	color: #656565;
+	background-color: #eee;
+	float: right;
+	padding: 20px;
+}
+.main h2{
+	margin-bottom: 20px;
+}
+.aside{
+	background-color: #eee;
+	width: 190px;
+	height: 500px;
+	margin-right: 10px;
+	float: left;
+	/*display: inline;*/
+}
+
+.clear{
+	clear: both;
+}
+/*页脚*/
+footer{
+	line-height: 44px;
+	background-color: #333;
+}
+footer a{
+	font-size: 14px;
+}
+
+
