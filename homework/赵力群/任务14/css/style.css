@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
 }
-html, body {
+html,
+body {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
@@ -74,14 +75,18 @@ p { margin: 14px 0; }                       /* 以上为标签定义CSS */
   display: inline-block;
   padding-bottom: 20px;
 }
-#content .aboutme a, #footer .contact-information a, #footer .contact-icon a {
+#content .aboutme a,
+#footer .contact-information a,
+#footer .contact-icon a {
   color: #337ab7;
 }                                              /* 为指定链接设置样式 */
-#content .aboutme a:hover, #footer .contact-information a:hover {
+#content .aboutme a:hover,
+#footer .contact-information a:hover {
   color: #23527c;
   text-decoration: underline;
 }
-#content .skills, #content .extra {
+#content .skills,
+#content .extra {
   background: #337ab7;
   color: #fff;
   padding: 50px;
