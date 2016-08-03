@@ -1,0 +1,180 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family:  "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+	text-align: center;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.clearfix {
+	*zoom: 1;
+}
+li{
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+@font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:30px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+#icon-bfb>li {
+	display: inline-block;
+	padding: 5px 5px;
+}
+#icon-bfb>li>a {
+	font-size: 30px;
+}
+html,body {
+	height: 100%;
+	width: 100%;
+}
+#header {
+	width: 100%;
+	height: 100%;
+	background: url(../image/bg.jpg);
+	background-size: cover;
+}
+.table {
+	display: table;
+	height: 100%
+}
+.vertical {
+	display: table-cell;
+	vertical-align: middle;
+}
+#header h1 {
+	font-size: 40px;
+	padding: 10px 0;
+}
+#header h3 {
+	font-size: 24px;
+	margin: 20px 0;
+}
+.b-btn {
+	color: #fff;
+	display: inline-block;
+	padding: 15px 30px;
+	/*border: 1px solid;*/
+	background-color: #222;
+}
+#describle {
+	margin:50px 0;
+	text-align: center;
+}
+#describle h1 {
+	margin: 20px 0;
+}
+#service {
+	width: 100%;
+	background-color: #66f;
+}
+#service .ct {
+	width: 960px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+#service h1 {
+	color:#fff;
+}
+#service hr {
+	width: 200px;
+	margin: 50px auto;
+}
+#service .ct .nav {
+	margin: 0 -20px 0 -20px;
+}
+#service .ct .nav li {
+	width: 210px;
+	float: left;
+	margin: 10px 20px;
+}
+.icon-logo {
+	font-size: 80px;
+	color: #fff;
+}
+.l-btn {
+	display: inline-block;
+	padding: 10px;
+	color: #000;
+	background-color: #fff;
+	margin-top: 20px;
+}
+#vertically {
+	background-image: url(../image/callout.jpg);
+	background-size: cover;
+	/*height: 1000px;*/
+}
+#vertically h1 {
+	padding: 200px;
+	font-size: 60px;
+	color: #fff;
+}
+#our-work .ct {
+	width: 960px;
+	margin: 0 auto;
+}
+#our-work .ct h3 {
+	margin: 50px auto 0px;
+	font-size: 30px;
+}
+#our-work .ct li {
+	float: left;
+	margin:20px 10px;
+}
+#contact {
+	width: 100%;
+	margin: 50px 0;
+	background-color: #88f;
+}
+#contact .ct {
+	width: 960px;
+	margin: 0 auto;
+}
+#contact .ct h4 {
+	font-size: 24px;
+	color: #fff;
+	margin-bottom: 50px;
+}
+.click-me {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	background-color: #fff;
+	line-height: 40px;
+	color: #000;
+	margin: 0 20px 0 20px;
+}
+#share {
+	width: 100%;
+	margin:100px 0;
+}
+#share .ct {
+	width: 960px;
+	margin: 0 auto;
+}
+#share .ct h3 {
+	margin: 10px 0;
+}
+#share .ct .tel {
+	color: #000;
+}
+.icon-bfb {
+	margin: 20px 0;
+}

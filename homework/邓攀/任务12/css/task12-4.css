@@ -1,0 +1,53 @@
+html,body,header,div,footer{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-size: 24px;
+	font-family: "微软雅黑";
+	color: white;
+}
+.clearfix::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+header{
+	height: 50px;
+	background-color: olive;
+	text-align: center;
+}
+.content{
+	margin: 15px 0;
+	text-align: center;
+}
+.content .main{
+	width: 100%;
+	height: 500px;
+	float: left;
+}
+.content .main .wrapper{
+	height: 500px;
+	background-color: powderblue;
+	margin-left: 210px;
+	margin-right: 210px;
+}
+.content .left_aside{
+	width: 200px;
+	height: 300px;
+	background-color: orchid;
+	float: left;
+	margin-left: -100%;
+}
+.content .right_aside{
+	width: 200px;
+	height: 300px;
+	background-color: orchid;
+	float: left;
+	margin-left: -200px;
+}
+footer{
+	height: 50px;
+	background-color: olive;
+	text-align: center;
+}

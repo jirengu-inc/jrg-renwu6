@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #header,#footer {
+            height: 50px;
+            background-color: gray;
+        }
+
+        #content {
+            min-width: 600px;
+            overflow: hidden;
+        }
+
+        .main,.extra {
+            height: 600px;
+            float: left;
+        }
+
+        .main {
+            width: 100%;
+            background-color: green;
+        }
+
+        .extra {
+            width: 200px;
+            background-color: yellow;
+            margin-left: -200px;
+
+        }
+
+        .main-content {
+            margin-right: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">头部</div>
+    <div id="content">
+        <div class="main">
+            <div class="main-content">双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以先渲染
+            </div>
+        </div>
+        <div class="extra"></div>
+    </div>
+    <div id="footer">尾部</div>
+</body>
+</html>
