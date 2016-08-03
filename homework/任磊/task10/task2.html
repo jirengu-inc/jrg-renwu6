@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Task2</title>
+		<style type="text/css">
+			.box1,.box2,.box3{
+				margin: 20px;
+				width: 200px;
+				height: 100px;
+				border: 1px solid #CCC;
+				position: relative;
+			}
+			
+			.box1:after {
+				content: "";
+				border: 10px solid transparent;
+				border-bottom-color: #ccc;
+				position: absolute;
+				left: 10px;
+				top: -20px;
+			}
+	
+			.box2:after {
+				content: "";
+				border: 10px solid transparent;
+				border-top-color: red;
+				border-right-color: red;
+				position: absolute;
+				top: 0px;
+				right: 0px
+			}
+			
+	
+			.triangle {
+				border: 10px solid transparent;
+				border-bottom-color: #ccc;
+				position: absolute;
+				top: -20px;
+				left: 10px;
+			}
+			
+			.triangle:after {
+				content: "";
+				border: 10px solid transparent;
+				border-bottom-color: white;
+				position: absolute;
+				top: -9px;
+				left: -10px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="box3">
+			<div class="triangle"></div>
+		</div>
+
+	</body>
+
+</html>

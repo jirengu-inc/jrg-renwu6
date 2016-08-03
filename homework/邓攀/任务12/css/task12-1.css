@@ -1,0 +1,43 @@
+html,body,ul,li{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+body{
+	background: #f7f7f7;
+	font-size: 24px;
+	font-family: "微软雅黑";
+	color: white;
+}
+.clearfix::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.content{
+	width: 80%;
+	margin: 50px auto;
+}
+.content .center{
+	width: 790px;
+	background-color: #ccc;
+	margin: 0 auto;
+	padding: 15px 0;
+}
+.content .ct{
+	margin-left: -20px;
+}
+.content .ct li{
+	width: 250px;
+	height: 100px;
+	line-height: 100px;
+	background-color: olivedrab;
+	text-align: center;
+	margin-left: 20px;
+	float: left;
+}
+.content .ct li:nth-of-type(n+4){
+	margin-top: 20px;
+}

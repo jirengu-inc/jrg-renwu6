@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>实战2</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.clearfix {
+			*zoom: 1;
+		}
+		body{
+  			font: 14px/1.5 normal;
+  			font-family:  "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  			color: #333;
+}
+		li {
+			list-style: none;
+		}
+		.nav {
+			width: 1000px;
+			margin: 0 auto;
+		}
+		.nav>li {
+			float: left;
+			position: relative;
+		}
+		a {
+			display: block;
+			color: #000;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #333;
+		}
+		.nav>li>a {
+			line-height: 50px;
+			padding: 0 10px;
+		}
+		.nav>li>ul {
+			background-color: #fff;
+		}
+		.nav>li>ul li {
+			border-bottom: 1px dotted;
+			padding: 5px 5px;
+		}
+		.nav>li>ul li:last-child {
+			border: none;
+		}
+		.nav>li>ul {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+		.nav>li:hover ul {
+			display: block;
+		}
+		.nav>li>ul li:hover {
+			background-color: #ccc;
+		}
+		#intro {
+			color: #fff;
+			background-color: #b84d45;
+		}
+		#intro .describle {
+			width: 1000px;
+			padding: 30px;
+			margin: 0 auto;
+		}
+		#show {
+			width: 1000px;
+			margin: 0 auto;
+		}
+		#show>.index {
+			background-color: #ccc;
+			margin-top: 40px;
+			padding: 10px;
+		}
+		#show>.index>li {
+			float: left;
+		}
+		#show>.index>li>a {
+			color: #b84d45;
+		}
+		#show>.opus {
+			margin-left: -45px;
+		}
+		#show>.opus>li {
+			float: left;
+			width: 300px;
+			height: 315px;
+			border: 1px solid #ccc;
+			text-align: center;
+			margin: 20px 0 0 46px;
+		}
+		#show>.opus>li img {
+			width: 300px;
+		}
+		#show>.opus>li .check {
+			display: inline-block;
+			color: #333;
+			padding: 5px 8px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		#show>.opus>li>h3,#show>.opus>li>p {
+			text-align: left;
+			padding: 5px 10px;
+		}
+		#show>.opus>li .check:hover {
+			color:#000;
+		}
+		#contact {
+			background-color: #b84d45;
+			margin-top: 30px;
+		}
+		#contact .ct {
+			width: 1000px;
+			margin: 0px auto;
+			padding: 30px;
+			text-align: center;
+			color: #fff;
+		}
+		#contact .ct a {
+			display: inline-block;
+			border: 1px solid #fff;
+			border-radius: 5px;
+			color: #fff;
+			padding: 5px;
+			margin-top: 5px;
+		}
+		#footer {
+			text-align: center;
+		}
+		#footer p {
+			line-height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<ul class="nav clearfix">
+			<li><a href="#">博客</a></li>
+			<li><a href="#">项目</a></li>
+			<li><a href="#">简历</a></li>
+			<li><a href="#">更多</a>
+				<ul>
+					<li><a href="#">GitHub</a></li>
+					<li><a href="#">知乎</a></li>
+					<li><a href="#">微博</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div id="intro">
+		<div class="describle">
+			<h1>我的简介</h1>
+			<p>你以为我只是想做个前端</p>
+			<p>其实我想做个全栈</p>
+		</div>
+	</div>
+	<div id="show">
+		<ul class="index clearfix">
+			<li><a href="#">首页</a></li>
+			<li>/</li>
+			<li>作品展示</li>
+		</ul>
+		<ul class="opus clearfix">
+			<li>
+				<a href="#"><img src="1.jpg" alt=""></a>
+				<h3>作品标题</h3>
+				<p>作品介绍</p>
+				<a class="check" href="">查看</a>
+			</li>
+			<li>
+				<a href="#"><img src="1.jpg" alt=""></a>
+				<h3>作品标题</h3>
+				<p>作品介绍</p>
+				<a class="check" href="">查看</a>
+			</li>
+			<li>
+				<a href="#"><img src="1.jpg" alt=""></a>
+				<h3>作品标题</h3>
+				<p>作品介绍</p>
+				<a class="check" href="">查看</a>
+			</li>
+			<li>
+				<a href="#"><img src="1.jpg" alt=""></a>
+				<h3>作品标题</h3>
+				<p>作品介绍</p>
+				<a class="check" href="">查看</a>
+			</li>
+			<li>
+				<a href="#"><img src="1.jpg" alt=""></a>
+				<h3>作品标题</h3>
+				<p>作品介绍</p>
+				<a class="check" href="">查看</a>
+			</li>
+			<li>
+				<a href="#"><img src="1.jpg" alt=""></a>
+				<h3>作品标题</h3>
+				<p>作品介绍</p>
+				<a class="check" href="">查看</a>
+			</li>
+		</ul>
+	</div>
+	<div id="contact">
+		<div class="ct">
+			<h1>想更详细了解我？</h1>
+			<p>下载我的简历吧</p>
+			<a href="#">下载</a>
+		</div>
+	</div>
+	<div id="footer">
+		<p class="author">来自@多彩</p>
+	</div>
+</body>
+</html>
