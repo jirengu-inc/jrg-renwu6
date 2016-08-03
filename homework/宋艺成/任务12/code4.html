@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>双飞翼布局</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #header{
+            background: #cccccc;
+            height: 50px;
+        }
+        #content{
+
+        }
+        #content:after{
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        #footer{
+            background:#cccccc;
+            height: 50px;
+        }
+        #content .ct{
+             width:100%;
+            float: left;
+        }
+        #content .main{
+            background: #00ff00;
+            height: 150px;
+            margin:0 200px;
+        }
+        #content .left{
+            width:200px;
+            height:150px;
+            margin-left:-100%;
+            position: relative;
+            background: #f00;
+            float: left;
+        }
+        #content .right{
+            width:200px;
+            height:150px;
+            margin-left:-200px;
+            position: relative;
+            background: #ff0;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="header">头部</div>
+<div id="content">
+    <div class="ct"><div class="main">双飞翼布局是指两边固定宽度中间自适应的三栏布局，中间栏要放在文档流前面优先渲染</div></div>
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+<div id="footer">底部</div>
+</body>
+</html>

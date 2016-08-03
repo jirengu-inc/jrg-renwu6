@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Task1</title>
+		<style type="text/css">
+				*{
+					margin: 0;
+					padding: 0;
+				}
+				.content li{
+					list-style-type: none;
+				}
+				.content{
+					width: 900px;
+					height: 200px;
+					margin: 0px auto;
+					margin-top: 20px;
+					background: #CCCCCC;
+				}
+				.wrap{
+					padding-top:20px;
+					margin-right: -20px;/*ul宽度向右扩大20px,使li子元素能上来*/
+				}
+				
+				.wrap>li{
+					float: left;
+					width: 286px;/*（900-40)/3*/
+					height: 80px;
+					background: green;
+					margin-right: 20px;
+					margin-bottom: 10px;
+				}
+				.wrap:after{
+					content: "";
+					display: block;
+					clear: both;
+				}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<ul class="wrap">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+		</div>
+	</body>
+</html>
