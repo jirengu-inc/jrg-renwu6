@@ -77,7 +77,7 @@ h2,h3,h4 {
   color: #fff;
 }
 #main .content-skl ul li:first-child {
-  margin: 0px;
+  margin: 0;
 }
 #main .content-skl li {
   float: left;
