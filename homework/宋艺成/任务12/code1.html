@@ -2,9 +2,51 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>code1</title>
+    <style>
+        html,body,ul,li{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        .content{
+            background: #ccc;
+            margin:0 auto;
+            width:900px;
+            margin-top:30px;
+            padding:10px 0;
+        }
+        .paneles{
+            margin-left:-20px;
+        }
+        .paneles:after{
+            display: block;
+            clear: both;
+            content: " ";
+        }
+        .paneles>li{
+            float:left;
+            width:286px;
+            height:80px;
+            background: #004210;
+            margin:10px 0 0 20px;
+        }
+
+
+    </style>
 </head>
 <body>
-
+<div class="content">
+    <ul class="paneles">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</div>
 </body>
 </html>

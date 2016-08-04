@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 14px/1.5 normal;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #333;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+a:hover { color: #333; }
+li { list-style: none; }
+.layout {
+  width: 1000px;
+  margin: 0 auto;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#header .fa-rocket {
+  float: left;
+  line-height: 50px;
+  margin-right: 20px;
+}
+#header .nav > li {
+  float: left;
+  padding: 0 10px;
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+}
+#header .nav > li:hover .child-list { display: block; }
+#header .child-list {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: none;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+#header .child-list li {
+  line-height: 1;
+  padding: 10px;
+  border-bottom: 1px dashed #ccc;
+}
+#header .child-list li:hover { background: #eee; }
+#content .intro {
+  padding: 30px;
+  color: #fff;
+  background: #b84d45;
+}
+#content .breadcrumb {
+  margin-top: 40px;
+  border-radius: 3px;
+  background: #eee;
+}
+#content .breadcrumb li {
+  float: left;
+  padding: 10px;
+}
+#content .breadcrumb a {
+  color: #b84d45;
+}
+#content .works {
+  margin-top: 10px;
+  text-align: center;
+}
+#content .works ul { margin-left: -32px; }
+#content .works li {
+  float: left;
+  margin: 20px 0 0 32px;         /* 32=(1000-(300+2+5*2)*3)/2 */
+  padding-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#content .works li img {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+#content .works li a {
+  margin: 10px 0 25px 0;
+}
+#content .works h3,
+#content .works p { padding: 5px 10px; }
+.btn {
+  display: inline-block;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#content .aboutme {
+  margin-top: 30px;
+  padding: 20px 0;
+  text-align: center;
+  color: #fff;
+  background: #b84d45;
+}
+#content .aboutme .btn {
+  margin-top: 10px;
+  color: #fff;
+}
+#footer p {
+  margin: 30px 0;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  text-align: center;
+}

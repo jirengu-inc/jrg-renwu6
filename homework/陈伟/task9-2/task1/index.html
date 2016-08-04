@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task1</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sprite {
+            background-image: url(spritesheet.png);
+            background-repeat: no-repeat;
+            display: inline-block;
+            width: 65px;
+            height: 35px;
+            line-height: 35px;
+            text-align: right;
+            cursor: pointer;
+        }
+
+        .sprite-forward {
+            background-position: -60px -62px;
+        }
+
+        .sprite-start {
+            background-position: -365px -60px;
+        }
+
+        .sprite-stop {
+            background-position: -368px -217px;
+        }
+
+        .sprite-forward:hover {
+            background-position: -213px -63px;
+            color: #A663BE;
+        }
+
+        .sprite-start:hover {
+            background-position: -65px -222px;
+            color: #A663BE;
+        }
+
+        .sprite-stop:hover {
+            background-position: -214px -219px;
+            color: #A663BE;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sprite sprite-start">播放</div>
+    <div class="sprite sprite-forward">快进</div>
+    <div class="sprite sprite-stop">停止</div>
+
+
+</body>
+
+</html>
