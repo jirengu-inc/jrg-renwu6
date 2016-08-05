@@ -38,7 +38,8 @@ ul,li {
 #header .logo {
   font-size: 30px;
   line-height: 50px;
-  float:left;
+  position: relative;
+  left: -20px;
 }
 #header .triangle {
   width: 0px;
