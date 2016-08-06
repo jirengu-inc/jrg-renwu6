@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>示例</title>
+	<style type="text/css">
+	body,ul,li{
+		padding: 0;
+		margin: 0;
+		font-family: "微软雅黑";
+	}
+	.nav{
+		margin: 20px 30px;
+	}
+	ul{
+		list-style-type: none;
+	}
+	.nav>li{
+		width: 8em;		
+		background-color: #eee;
+		float: left;
+	}
+	li:hover{
+		background: #ccc;
+	}
+	.child{
+		display: none;
+		padding-left: 0;
+		border: 1px solid #bbb;
+	}
+	li:hover .child{
+		display: block;
+		background: #fff;
+	}
+	a{
+		display: block;
+		text-decoration: none;
+		padding: 0.5em;
+	}
+	</style>
+</head>
+<body>
+	<ul class="nav">
+		<li><a href="">前端</a>
+			<ul class="child">
+				<li><a href="">HTML</a></li>
+				<li><a href="">CSS</a></li>
+				<li><a href="">Javascript</a></li>
+			</ul>
+		</li>
+		<li><a href="">服务端</a>
+			<ul class="child">
+				<li><a href="">Node</a></li>
+				<li><a href="">PHP</a></li>
+				<li><a href="">Java</a></li>
+			</ul>
+		</li>
+		<li><a href="">前端工具</a>
+			<ul class="child">
+				<li><a href="">sublime</a></li>
+				<li><a href="">Webstrom</a></li>
+				<li><a href="">Git</a></li>
+			</ul>
+		</li>
+		<li><a href="">HTML</a></li>
+		<li><a href="">NODE</a></li>
+	</ul>
+</body>
+</html>
