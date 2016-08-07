@@ -1,0 +1,127 @@
+html,body,ul,li,h1,h2,h3,h4,h5,p {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 14px/1.5 normal;
+  font-family:  "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+.layout {
+  width: 1000px;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+ul,li {
+  list-style: none;
+}
+.btn {
+  display: inline-block;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#header {
+  border: 1px solid #ccc;
+}
+#header .nav-ul {
+  color: #ccc;
+}
+#header  .nav-ul > li{
+  float: left;
+  margin-left: 20px;
+  line-height: 50px;
+}
+#header .logo {
+  font-size: 30px;
+  line-height: 50px;
+  position: relative;
+  left: -20px;
+}
+#header .triangle {
+  width: 0px;
+  height: 0px;
+  border-top: 5px solid #000;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid  transparent;
+  position: absolute;
+  left: 428px;
+  top: 25px;
+}
+#header .menu {
+    display: none;
+    border: 1px solid #ccc;
+    float: left;
+}
+#header .nav-ul > li:hover .menu {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 380px;
+}
+#header .menu > li {
+  line-height: 2rem;
+  padding: 0 10px;
+}
+#header .navbar:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#header .intro {
+  border: 1px solid rgb(184,77,69);
+  background: rgb(184,77,69);
+  padding: 30px 0;
+  color: #fff;
+}
+#main .main-nav {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #ccc;
+}
+#main .main-nav a {
+  color: rgb(184,77,69);
+}
+#main .main-prod {
+}
+#main img {
+  width: 300px;
+  height: 200px;
+}
+#main ul > li {
+  float: left;
+  margin-left: 48px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+#main ul {
+  margin-left: -50px;
+}
+#main li h3,#main li p {
+  text-align: left;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+#main ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#footer .footer-bg {
+  background: rgb(184,77,69);
+}
+#footer .footer-intro {
+  text-align: center;
+  padding: 20px 0;
+  color: #fff;
+}
+#footer .footer-end,#footer .footer-end p {
+  text-align: center;
+  padding: 30px 0;
+}

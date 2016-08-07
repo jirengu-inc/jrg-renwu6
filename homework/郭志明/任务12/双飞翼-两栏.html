@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鸡翅——二</title>
+	<style type="text/css">
+	header,footer{
+		background-color: #ccc;
+	}
+	#ct{
+		width: 100%;
+	}
+	#ct:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.main{
+		width: 100%;
+		background: #fff;
+		float: left;
+	}
+	.main .wrap{	/*不要设置宽度*/
+		min-height: 100px;
+		background: green;
+		margin-right: 200px;
+	}
+	.aside{
+		width: 200px;
+		min-height: 100px;
+		background: yellow;
+		float: left;
+		margin-left: -200px;
+	}
+	</style>
+</head>
+<body>
+	<header>头部</header>
+	<div id="ct">
+		<div class="main">
+			<div class="wrap">
+			双飞翼布局指两边定宽，中间自适应的三栏布局（<a href="http://www.cnblogs.com/langzs/archive/2013/01/27/taobaoshuangfeiyi.html">参考</a>），中间栏要放在文档流前面以优先渲染
+			</div>
+		</div>
+		<div class="aside">右侧边栏，固定宽度</div>
+	</div>
+	<footer>尾部</footer>
+</body>
+</html>

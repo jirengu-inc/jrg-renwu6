@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动、负边距</title>
+	<style type="text/css">
+	body,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	.ct{
+		width: 900px;
+		background: #ccc;
+		margin: 0 auto;
+	}
+	ul{
+		list-style: none;
+		margin-top: 20px;
+		margin-left: -20px;
+	}
+	ul:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	ul li{
+		width: 286px;
+		height: 100px;
+		background: #0a0;
+		float: left;
+		margin-left: 20px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</div>
+</body>
+</html>
