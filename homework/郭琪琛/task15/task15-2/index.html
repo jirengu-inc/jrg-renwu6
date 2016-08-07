@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>task15-2</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/plus.css">
 </head>
 <body>
     <div id="header">
         <div class="hd-nav">
-            <div class="contain">
+            <div class="contain clearfix">
                 <a href="">Start Bootstrap</a>
-                <ul>
+                <ul class="clearfix">
                     <li><a href="">SERVICES</a></li>
                     <li><a href="">PORTFILIO</a></li>
                     <li><a href="">ABOUT</a></li>
@@ -19,33 +22,33 @@
             </div>
         </div>
 
-        <div class="hd-banner">
+        <div class="hd-banner text-center">
             <div class="contain">
                 <p>Welcome to our studio!</p>
                 <h1>IT'S NICE TO MEET YOU</h1>
-                <a href="">TELL ME MORE</a>
+                <a href="" class="btn">TELL ME MORE</a>
             </div>
         </div>
     </div>
 
     <div id="body">
-        <div class="bd-service">
+        <div class="bd-service text-center padding-style">
             <div class="contain">
-                <h2>SERVICE</h2>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <ul>
+                <h2 class="title-style">SERVICES</h2>
+                <p class="p-style">Lorem ipsum dolor sit amet consectetur.</p>
+                <ul class="clearfix">
                     <li class="bd-service-item">
-                        <span></span>
+                        <span class="iconfont icon-shopping"></span>
                         <h3>E-Commerce</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </li>
                     <li class="bd-service-item">
-                        <span></span>
+                        <span class="iconfont icon-bijibendiannao"></span>
                         <h3>Responsive Design</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </li>
                     <li class="bd-service-item">
-                        <span></span>
+                        <span class="iconfont icon-lock"></span>
                         <h3>Web Security</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </li>
@@ -53,49 +56,67 @@
             </div>
         </div>
 
-        <div class="bd-portfolio">
+        <div class="bd-portfolio text-center padding-style">
             <div class="contain">
-                <h2>PORTFOLIO</h2>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <ul>
+                <h2 class="title-style">PORTFOLIO</h2>
+                <p class="p-style">Lorem ipsum dolor sit amet consectetur.</p>
+                <ul class="clearfix">
                     <li class="bd-portfolio-item">
                         <div class="portfolio-img">
-                            <img src="" alt="">
+                            <div class="portfolio-plus-wrapper">
+                                <span class="plus plus-jiahao"></span>
+                            </div>
+                            <img src="image/bd-portfolio1.png" alt="">
                         </div>
                         <h4>Round Icons</h4>
                         <p>Graphic Design</p>
                     </li>
                     <li class="bd-portfolio-item">
                         <div class="portfolio-img">
-                            <img src="" alt="">
+                            <div class="portfolio-plus-wrapper">
+                                <span class="plus plus-jiahao"></span>
+                            </div>
+                            <img src="image/bd-portfolio2.png" alt="">
                         </div>
                         <h4>Startup Framework</h4>
                         <p>Website Design</p>
                     </li>
                     <li class="bd-portfolio-item">
                         <div class="portfolio-img">
-                            <img src="" alt="">
+                            <div class="portfolio-plus-wrapper">
+                                <span class="plus plus-jiahao"></span>
+                            </div>
+                            <img src="image/bd-portfolio3.png" alt="">
                         </div>
                         <h4>Treehouse</h4>
                         <p>Website Design</p>
                     </li>
                     <li class="bd-portfolio-item">
                         <div class="portfolio-img">
-                            <img src="" alt="">
+                            <div class="portfolio-plus-wrapper">
+                                <span class="plus plus-jiahao"></span>
+                            </div>
+                            <img src="image/bd-portfolio4.png" alt="">
                         </div>
                         <h4>Golden</h4>
                         <p>Website Design</p>
                     </li>
                     <li class="bd-portfolio-item">
                         <div class="portfolio-img">
-                            <img src="" alt="">
+                            <div class="portfolio-plus-wrapper">
+                                <span class="plus plus-jiahao"></span>
+                            </div>
+                            <img src="image/bd-portfolio5.png" alt="">
                         </div>
                         <h4>Escape</h4>
                         <p>Website Design</p>
                     </li>
                     <li class="bd-portfolio-item">
                         <div class="portfolio-img">
-                            <img src="" alt="">
+                            <div class="portfolio-plus-wrapper">
+                                <span class="plus plus-jiahao"></span>
+                            </div>
+                            <img src="image/bd-portfolio6.png" alt="">
                         </div>
                         <h4>Dreams</h4>
                         <p>Website Design</p>
@@ -104,91 +125,99 @@
             </div>
         </div>
 
-        <div class="bd-about">
+        <div class="bd-about padding-style">
             <div class="contain">
-                <h2>ABOUT</h2>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <ul>
+                <h2 class="title-style text-center">ABOUT</h2>
+                <p class="p-style text-center">Lorem ipsum dolor sit amet consectetur.</p>
+                <ul class="text-center">
                     <li class="bd-about-item">
-                        <div class="about-item-content">
+                        <div class="about-item-content text-right">
                             <h4>2009-2011</h4>
                             <h4>Our Humble Beginnings</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
                         </div>
                         <div class="about-item-img">
-                            <img src="" alt="">
+                            <img src="image/bd-about1.jpg" alt="">
                         </div>
+                        <div class="about-holder"></div>
                     </li>
                     <li class="bd-about-item">
-                        <div class="about-item-content">
+                        <div class="about-holder"></div>
+                        <div class="about-item-img">
+                            <img src="image/bd-about2.jpg" alt="">
+                        </div>
+                        <div class="about-item-content text-left">
                             <h4>MARCH 2011</h4>
                             <h4>An Agency is Born</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
                         </div>
-                        <div class="about-item-img">
-                            <img src="" alt="">
-                        </div>
                     </li>
                     <li class="bd-about-item">
-                        <div class="about-item-content">
+                        <div class="about-item-content text-right">
                             <h4>DECEMBER 2012</h4>
                             <h4>Transition to Full Service</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
                         </div>
                         <div class="about-item-img">
-                            <img src="" alt="">
+                            <img src="image/bd-about3.jpg" alt="">
                         </div>
+                        <div class="about-holder"></div>
                     </li>
                     <li class="bd-about-item">
-                        <div class="about-item-content">
+                        <div class="about-holder"></div>
+                        <div class="about-item-img">
+                            <img src="image/bd-about4.jpg" alt="">
+                        </div>
+                        <div class="about-item-content text-left">
                             <h4>JULY 2014</h4>
                             <h4>Phase Two Expansion</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
                         </div>
-                        <div class="about-item-img"><img src="" alt=""></div>
                     </li>
-                    <li class="bd-about-item">
-                        <div class="about-item-img">
-                            <img src="" alt="">
+                    <li class="bd-about-last-item">
+                        <div class="about-last-item-wrap">
+                            <h4>BE PORT</h4>
+                            <h4>OF OUR</h4>
+                            <h4>STORY!</h4>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <div class="bd-team">
+        <div class="bd-team padding-style text-center">
             <div class="contain">
-                <h2>OUR AMAZING TEAM</h2>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <ul>
+                <h2 class="title-style">OUR AMAZING TEAM</h2>
+                <p class="p-style">Lorem ipsum dolor sit amet consectetur.</p>
+                <ul class="clearfix">
                     <Li class="team-item">
-                        <img src="" alt="">
+                        <img src="image/bd-team1.jpg" alt="">
                         <h4>Kay Garland</h4>
                         <p>Lead Designer</p>
                         <div class="team-item-social">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span class="iconfont icon-twitter"></span>
+                            <span class="iconfont icon-facebook"></span>
+                            <span class="iconfont icon-in"></span>
                         </div>
                     </Li>
                     <Li class="team-item">
-                        <img src="" alt="">
+                        <img src="image/bd-team2.jpg" alt="">
                         <h4>Larry Parker</h4>
                         <p>Lead Marketer</p>
                         <div class="team-item-social">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span class="iconfont icon-twitter"></span>
+                            <span class="iconfont icon-facebook"></span>
+                            <span class="iconfont icon-in"></span>
                         </div>
                     </Li>
                     <Li class="team-item">
-                        <img src="" alt="">
+                        <img src="image/bd-team3.jpg" alt="">
                         <h4>Diana Pertersen</h4>
                         <p>Lead Developer</p>
                         <div class="team-item-social">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span class="iconfont icon-twitter"></span>
+                            <span class="iconfont icon-facebook"></span>
+                            <span class="iconfont icon-in"></span>
                         </div>
                     </Li>
                 </ul>
@@ -196,44 +225,46 @@
             </div>
         </div>
 
-        <div class="ft-brand">
+        <div class="bd-brand text-center">
             <div class="contain">
                 <ul>
-                    <li><a href=""><img src="" alt=""></a></li>
-                    <li><a href=""><img src="" alt=""></a></li>
-                    <li><a href=""><img src="" alt=""></a></li>
-                    <li><a href=""><img src="" alt=""></a></li>
+                    <li><a href=""><img src="image/ft-brand1.jpg" alt=""></a></li>
+                    <li><a href=""><img src="image/ft-brand2.jpg" alt=""></a></li>
+                    <li><a href=""><img src="image/ft-brand3.jpg" alt=""></a></li>
+                    <li><a href=""><img src="image/ft-brand4.jpg" alt=""></a></li>
                 </ul>
             </div>
         </div>
 
-        <div class="ft-contact">
+        <div class="bd-contact padding-style text-center">
             <div class="contain">
-                <h2>CONTACT US</h2>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <form action="" method="post">
+                <h2 class="title-style">CONTACT US</h2>
+                <p class="p-style">Lorem ipsum dolor sit amet consectetur.</p>
+                <form action="" method="post" class="clearfix">
+                    <textarea name="user-message" placeholder="YOUR MESSAGE"></textarea>
                     <input type="text" name="user-name" placeholder="YOUR NAME">
                     <input type="text" name="user-email" placeholder="YOUR EMAIL">
                     <input type="text" name="user-phone" placeholder="YOUR PHONE">
-                    <textarea name="user-message" placeholder="YOUR MESSAGE"></textarea>
-                    <button>SEND MESSAGE</button>
                 </form>
+                <button type="submit" class="btn">SEND MESSAGE</button>
             </div>
         </div>
     </div>
 
-    <div id="footer">
-        <div class="ft-copy">
-            <p>Copyright&copy;饥人谷_有爱</p>
-        </div>
-        <div class="ft-social">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="ft-privacy">
-            <a href="">Privacy Pollcy</a>
-            <a href="">Terms of Use</a>
+    <div id="footer" class="text-center">
+        <div class="contain">
+            <div class="ft-copy">
+                <p>Copyright&copy;饥人谷_有爱</p>
+            </div>
+            <div class="ft-social">
+                <span class="iconfont icon-twitter"></span>
+                <span class="iconfont icon-facebook"></span>
+                <span class="iconfont icon-in"></span>
+            </div>
+            <div class="ft-privacy">
+                <a href="">Privacy Pollcy</a>
+                <a href="">Terms of Use</a>
+            </div>
         </div>
     </div>
 </body>
