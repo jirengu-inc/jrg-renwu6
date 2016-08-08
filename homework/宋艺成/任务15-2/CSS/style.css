@@ -1,0 +1,32 @@
+html,body,ul,li{
+    margin:0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style:none;
+}
+.layout{
+    width:1000px;
+    margin:0 auto;
+}
+.clearfix:after{
+    display: block;
+    content: " ";
+    clear:both;
+}
+#header{
+    background: #444;
+}
+#header .logo{
+    float:left;
+}
+#header .nav{
+    float:right;
+}
+#header .nav li a{
+    float:left;
+    margin:30px 30px;
+}
