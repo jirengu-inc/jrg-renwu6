@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+html,
+body {
+    height: 100%;
+    font-size: 14px;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#hd,
+#bd,
+#ft {
+    min-width: 960px;
+}
+
+#hd {
+    position: relative;
+    height: 100%;
+    text-align: center;
+    background-image: url(../image/bg.jpg);
+    background-size: cover;
+}
+
+.hd-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.hd-wrapper>h2,
+.hd-wrapper>p {
+    padding-bottom: 15px;
+}
+
+.hd-btn {
+    width: 140px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 50px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.hd-btn:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.bd-intro {
+    position: relative;
+    height: 240px;
+    text-align: center;
+    font-size: 21px;
+}
+
+.bd-intro-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.bd-intro-wrapper>h2,
+.bd-intro-wrapper>p {
+    padding-bottom: 10px;
+}
+
+.bd-skill {
+    height: 465px;
+    color: #fff;
+    text-align: center;
+    background-color: #337ab7;
+}
+
+.bd-skill>h2 {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 82px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #fff;
+    font-size: 27px;
+}
+
+.bd-skill-content>div {
+    display: inline-block;
+    margin: 30px;
+}
+
+.bd-skill-content>div>i {
+    font-size: 110px;
+}
+
+.bd-skill-content>div>p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.bd-skill-content>div :nth-child(2) {
+    font-weight: bold;
+}
+
+.bd-skill-btn {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    color: #000;
+    line-height: 30px;
+    background-color: rgba(255,255,255,1);
+}
+
+.bd-skill-btn:hover {
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.bd-paragraph {
+    height: 560px;
+    line-height: 560px;
+    color: #fff;
+    font-size: 65px;
+    font-weight: bold;
+    text-align: center;
+    background-image: url(../image/callout.jpg);
+}
+
+.bd-works {
+    height: 910px;
+    text-align: center;
+}
+
+.bd-works>h2 {
+    width: 100px;
+    padding-top: 65px;
+    padding-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+    font-size: 25px;
+}
+
+.bd-works-item {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bd-works-item>div {
+    display: inline-block;
+    width: 450px;
+    margin: 10px;
+}
+
+.bd-works-item>div>img {
+    max-width: 100%;
+}
+
+.bd-works-btn {
+    width: 140px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    line-height: 30px;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.bd-works-btn:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.bd-aboutme {
+    height: 205px;
+    text-align: center;
+    background-color: #337ab7;
+}
+
+.bd-aboutme>p {
+    padding-top: 60px;
+    padding-bottom: 20px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.bd-aboutme>div {
+    display: inline-block;
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.bd-aboutme-btn1 {
+    color: #000;
+    background-color: rgba(255,255,255,1);
+}
+
+.bd-aboutme-btn1:hover {
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.bd-aboutme-btn2 {
+    color: #fff;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.bd-aboutme-btn2:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.6);
+}
+
+#ft {
+    height: 510px;
+    text-align: center;
+}
+
+
+#ft>:first-child {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+
+.ft-addr {
+    margin-bottom: 20px;
+}
+
+.ft-contact {
+    margin-bottom: 20px;
+}
+
+.ft-social>a>i {
+    color: #337ab7;
+    font-size: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ft-social>a>i:hover {
+    color: #23527c;
+}
+
+#ft>hr {
+    display: inline-block;
+    width: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+}
+
