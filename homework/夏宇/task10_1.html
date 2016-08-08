@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    *{
+      margin: 0;
+      padding:0;
+    }
+    ul,li{
+      list-style: none;
+    }
+    a{
+      text-decoration: none;
+    }
+    body{
+      font: 14px/1.5 "Microsoft YaHei","微软雅黑",sans-serif;
+  		color: #656565;
+    }
+    .wrapper{
+      width: 900px;
+      margin: 0 auto;
+    }
+    #header{
+      background: #333;
+      height: 50px;
+    }
+    #header img{
+      height:40px;
+    }
+    #header .nav{
+      float: right;
+    }
+    #header .nav>li{
+      float: left;
+      margin-right: 15px;
+    }
+    #header .nav a{
+  		display: block;
+  		font-size: 16px;
+  		height: 50px;
+  		line-height: 50px;
+  		padding: 0 10px;
+  		color: #fff;
+  	}
+    #header .nav a:hover{
+  		background-color: #fff;
+  		color: #333;
+  	}
+    #content{
+  		margin-top: 10px;
+  	}
+  	#content:after{
+  		content: '';
+  		display: block;
+  		clear: both;
+  	}
+
+  	#content .aside{
+  		float: left;
+  		width: 200px;
+  		min-height: 500px;
+  		background-color: #eee;
+  	}
+    #content .main{
+      margin-left: 210px;
+      padding: 20px 10px;
+      background-color: #eee;
+    }
+    #content .main h1{
+      margin: 20px 0;
+    }
+    #footer{
+  		background-color: #333;
+  		padding: 10px 0;
+  	}
+  	#footer:after{
+  		content: '';
+  		display: table;
+  		clear: both;
+  	}
+  	#footer li{
+  		float: left;
+  		margin-left: 10px;
+  	}
+  	#footer a{
+  		color: #fff;
+  	}
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div class="wrapper">
+            <img src="http://cdn.jirengu.com/public/logo-tiny.png" alt="" />
+            <ul class="nav">
+                <li><a href="#">技能</a></li>
+                <li><a href="#">经历</a></li>
+                <li><a href="#">作品</a></li>
+                <li><a href="#">关于</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <div id="content">
+    <div class="wrapper">
+        <div class="aside"></div>
+        <div class="main">
+            <h1>我的作品</h1>
+            <ul>
+                <li>生活很美好</li>
+                <li>心情不错</li>
+                <li>代码写的很漂亮</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div id="footer">
+        <div class="wrapper">
+            <ul>
+                <li><a href="#">饥人谷</a></li>
+                <li><a href="#">JSCODE</a></li>
+                <li><a href="#">JSBIN</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
