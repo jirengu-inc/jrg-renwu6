@@ -64,6 +64,9 @@ a {
     background-color: #fec503;
 }
 
+::selection {
+    background-color: #fed136;
+}
 /*头部导航条*/
 #header {
     background-image: url(../image/hd-banner.jpg);
