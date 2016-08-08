@@ -20,10 +20,10 @@
     table th{
     	background-color: #20B2AA;
     }
-    .base:hover{
-    	background-color: #eee;
+    tr:nth-child(2n):hover{
+     background-color: #eee;
     }
-    .even:hover{
+    tr:nth-child(2n+1):hover{
       background-color: transparent;
     }
     </style>
@@ -34,14 +34,14 @@
     	<th>姓名</th>
     	<th>性别</th>
     </tr>
-     <tr class="base">
+     <tr >
      	<td>小明</td>
      	<td>男</td>
      </tr>
-      <tr class="even">
-      	<td>小花</td>
-      	<td>女</td>
-      </tr>
+     <tr>
+       <td>小花</td>
+       <td>女</td>
+     </tr>
     </table>
 </body>
 </html>
