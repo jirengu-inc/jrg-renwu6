@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task6</title>
+	<style>
+	    /*代码题1*/
+	   .jrg{
+	   	width: 200px;
+	   	height: 80px;
+	   	border: 1px solid #ccc;
+	   	font-size: 14px;
+	   	color: #f0f;
+	   	text-align: center;
+	   	line-height: 80px;
+	   	margin: 0 auto;
+	   }
+
+	   /*代码题2*/
+	   .dialog{
+	   	border: 1px solid #ccc;
+	   }
+	   .header{
+	   	height: 40px;
+	   	text-align: left;
+	   	padding-left: 10px;
+	   	font-size: 16px;
+	   	color: #f00;
+	   	border-bottom: 1px solid #ccc;
+	   }
+	   .header>a{
+	   	color: #f00;
+	   }
+	   .content{
+	   	height: 100px;
+	   }
+	   .content a{
+	   	text-decoration: none;
+	   	color: blue;
+	   }
+	   .content a:hover{
+	   	color: red;
+	   }
+	   .footer{
+	   	height: 50px;
+	   	text-align: center;
+	   }
+	   .footer .btn{
+	   	border: 1px solid #ccc;
+	   	border-radius: 3px;
+	   	padding: 4px 3px;
+	   	display: inline-block;
+	   }
+
+	   /*代码题3*/
+	   table{
+	   	width: 500px;
+	   	text-align: center;
+	   	margin: 20px auto;
+	   	border-collapse: collapse;
+	   }
+	   th,td{
+	   	border: 1px solid #ccc;
+	   	padding: 5px;
+	   }
+	   table th{
+	   	background-color: #2aa;
+	   }
+	   table td{
+	   	background-color: #fff;
+	   }
+	   table td:hover{
+	   	background-color: #eee;
+	   }
+
+	   /*代码题4*/
+	   .wrap{
+	   	width: 900px; /*设置class名为.wrap的div宽度为900px*/
+	   	margin: 0 auto; /*调节外边距，上下为0，左右根据浏览器大小自动调整*/
+	   }
+	</style>
+</head>
+<body>
+     <!-- 代码题1 -->
+	 <div class="jrg">这里是饥人谷</div>
+	 <!-- 代码题2 -->
+	 <div class="dialog">
+	 	<div class="header">
+	 		<h3>我是标题</h3>
+	 		<a class="close" title="关闭" href="#">X</a>
+	 	</div>
+	 	<div class="content">
+	 		<h3>欢迎来到<a href="http://www.jirengu.com">饥人谷</a></h3>
+	 		<p>在这个大家庭你能快乐的学到更多前端技能</p>
+	 	</div>
+	 	<div class="footer">
+		 	<a class="btn btn-cancel" href="#">取消</a>
+		 	<a class="btn btn-confirm" href="#">确认</a>
+	 	</div>
+	 </div>
+	 <!-- 代码题3 -->
+	 <table>
+	 	<tr>
+	 		<th>姓名</th>
+	 		<th>性别</th>
+	 	</tr>
+	 	<tr>
+	 		<td>小明</td>
+	 		<td>男</td>
+	 	</tr>
+	 	<tr>
+	 		<td>小花</td>
+	 		<td>女</td>
+	 	</tr>
+	 </table>
+     <!-- 代码题4 -->
+     <div id='header'>
+     	<div class="wrap">这里是标题</div>
+     </div>
+     <div id='content'>
+     	<div class="wrap">这里是内容</div>
+     </div>
+     <div id='footer'>
+     	<div class="wrap">这里是footer</div>
+     </div>
+</body>
+</html>
