@@ -1,43 +1,47 @@
 @charset "UTF-8";
-       .t p{
+       div{
         height:0px;
         width:0px;
-       	margin:30px auto;
+       	margin:30px;
        }
        .t0{
-       	border-top: 100px solid blue; 
-       	border-left: 100px solid red; 
-       	border-right: 100px solid yellow; 
-       	border-bottom: 100px solid green; 
+       	border-top: 30px solid blue; 
+       	border-left: 30px solid red; 
+       	border-right: 30px solid yellow; 
+       	border-bottom: 30px solid green; 
        }
         .t1{
-       	border-top: 100px solid blue; 	
-       	border-left: 100px solid rgba(0,0,0,0); 
-        border-right: 100px solid rgba(0,0,0,0); 
+       	border-top: 30px solid blue; 	
+       	border-left: 30px solid rgba(0,0,0,0); 
+        border-right: 30px solid rgba(0,0,0,0);
+        border-bottom: 30px solid rgba(0,0,0,0);
        }
         .t2{
-       	border-top: 100px solid rgba(0,0,0,0); 
-       	border-left: 100px solid red; 
-       	border-bottom: 100px solid rgba(0,0,0,0); 
+       	border-top: 30px solid rgba(0,0,0,0); 
+       	border-left: 30px solid red; 
+        border-right: 30px solid rgba(0,0,0,0);
+       	border-bottom: 30px solid rgba(0,0,0,0); 
        }
         .t3{
-       	border-top: 100px solid rgba(0,0,0,0); 
-        border-right: 100px solid yellow; 
-        border-bottom:100px solid rgba(0,0,0,0);
+       	border-top: 30px solid rgba(0,0,0,0); 
+        border-left: 30px solid rgba(0,0,0,0); 
+        border-right: 30px solid yellow; 
+        border-bottom: 30px solid rgba(0,0,0,0);
        }
         .t4{
-       	border-left: 100px solid rgba(0,0,0,0); 
-        border-right: 100px solid rgba(0,0,0,0); 
-       	border-bottom: 100px solid green; 
+        border-top: 30px solid rgba(0,0,0,0); 
+       	border-left: 30px solid rgba(0,0,0,0); 
+        border-right: 30px solid rgba(0,0,0,0); 
+       	border-bottom: 30px solid green; 
        }
         .t5{
-       	border-top: 100px solid rgba(0,0,0,0); 
-       	border-left: 100px solid red; 
+       	border-top: 30px solid rgba(0,0,0,0); 
+       	border-left: 30px solid red;
        }
         .t6{ 
-        border-top: 100px solid rgba(0,0,0,0); 
-        border-left: 100px solid rgba(0,0,0,0); 
-        border-bottom: 100px solid green; 
+        border-top: 30px solid rgba(0,0,0,0); 
+        border-left: 30px solid rgba(0,0,0,0); 
+        border-bottom: 30px solid green; 
        }
 
     
