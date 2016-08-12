@@ -1,0 +1,295 @@
+html,body,ul,li{
+    margin:0;
+    padding: 0;
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style:none;
+}
+p{
+    font-size:16px;
+    color:#666;
+}
+.layout{
+    width:1000px;
+    margin:0 auto;
+}
+.clearfix:after{
+    display: block;
+    content: " ";
+    clear:both;
+}
+#header{
+    background: #444;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+}
+
+#header .logo{
+    float:left;
+}
+#header .logo a{
+    color:#fed136;
+    font-weight: bold;
+}
+#header .nav{
+    float:right;
+}
+#header .nav li{
+    float:left;
+    margin:30px 30px;
+}
+#header .nav li a{
+    color:#fff;
+}
+#header .nav li a:hover{
+    color:#fed136;
+    transition: .5s;
+}
+#content .intro{
+    text-align: center;
+    background: url("http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/header-bg.jpg");
+    background-size:cover;
+    padding: 400px 0;
+    color:#fff;
+}
+#content .title{
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color:#333;
+}
+#content .title2{
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color:#666;
+    font-style: italic;
+}
+
+#content .intro h2{
+    font-style: italic;
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 25px;
+}
+#content .intro h1{
+    font-size: 70px;
+    line-height: 40px;
+    margin-bottom: 25px;
+}
+#content .intro-btn a{
+    color:#fff;
+    background: #ff0;
+    width: 200px;
+    line-height: 70px;
+    display: block;
+    margin:0 auto;
+    font-size:20px;
+    border-radius:10px;
+    font-weight: bold;
+}
+#content .intro-btn a:hover{
+    background: #fed136;
+}
+#content .services{
+    text-align: center;
+    padding: 100px 0;
+}
+#content .services li{
+    float: left;
+    width:300px;
+    margin:0 15px;
+}
+#content .services p{
+    color:#666;
+}
+#content .portfolio{
+    text-align: center;
+    padding: 100px;
+}
+#content .portfolio p{
+    font-style:italic;
+}
+#content .portfolio img{
+    width:300px;
+    height: 195px;
+}
+#content .portfolio li {
+    float: left;
+    width: 300px;
+    height: 300px;
+    margin: 15px;
+}
+
+#content .portfolio-hover{
+    height: 200px;
+    position: relative;
+    margin-top:-200px ;
+    display:none;
+}
+#content .portfolio li:hover .portfolio-hover{
+    display: block;
+    opacity: 0.6;
+    background: #ffff00;
+    transition: .5s;
+}
+#content .about{
+    text-align: center;
+    padding:100px;
+}
+#content .about img{
+    border-radius:50%;
+}
+#content .about li{
+    padding: 80px 0;
+}
+#content .circle{
+    width: 100px;
+    padding: 50px;
+    border-radius: 50%;
+    background: #ff0;
+    margin: 0 auto;
+    color:#fff;
+}
+#content .about li:nth-child(2n+1) .about-text{
+    float: left;
+    width: 400px;
+    text-align: right;
+    position: relative;
+    left:-40px;
+}
+#content .about li:nth-child(2n) .about-text{
+    float: right;
+    width: 400px;
+    text-align: left;
+    position: relative;
+    right:-40px;
+}
+#content .about li:nth-child(2n+1) img{
+    position: relative;
+    left:-200px;
+    z-index: -1;
+}
+#content .about li:nth-child(2n) img{
+    position: relative;
+    right:-200px;
+    z-index: -1;
+}
+#content .team{
+    text-align: center;
+}
+#content .team li{
+    float: left;
+    width: 325px;
+}
+#content .team li img{
+    border-radius: 50%;
+}
+#content .team-endding{
+    padding:30px;
+}
+#content .social{
+    margin-left: 85px;
+    text-align: center;
+    width:325px;
+}
+#content .social li{
+    float: left;
+    width: 50px;
+}
+#content .social a{
+    color:#000;
+}
+#content .social a:hover{
+    color:#ff0;
+    transition: .5s;
+}
+#content .ad{
+    padding: 50px 0;
+}
+#content .ad img{
+    width:240px;
+    height: 50px;
+}
+#content .contact{
+    background: url("../IMG/map.png") 0 0 no-repeat;
+    background-color: #333;
+    background-position: center;
+    text-align: center;
+    padding: 100px;
+}
+#content .contact h3{
+    color:#fff;
+}
+#content .contact-text{
+    width:400px;
+    display: block;
+    padding: 20px;
+    margin: 20px;
+    color:#666;
+    border-radius: 4px;
+    border:1px #666 solid;
+}
+#content .textrea{
+    width:400px;
+    display: block;
+    padding: 20px;
+    height: 170px;
+    margin-top:4px;
+    color:#666;
+    border-radius: 4px;
+    border:1px #666 solid;
+    float: right;
+    font-size:16px;
+}
+#content .submit{
+    padding: 20px;
+    background:#ff0;
+    color:#fff;
+    border:1px #ff0 solid;
+    border-radius: 4px;
+    font-size:20px;
+    cursor: pointer;
+}
+#content .submit:hover{
+    opacity: 0.7;
+    transition: .5s;
+}
+#footer{
+    padding:30px;
+}
+#footer>ul>li{
+    float: left;
+    width: 330px;
+    text-align: center;
+}
+#footer .social li{
+    display: inline-block;
+    margin: 0 5px;
+}
+#footer .pnvacy li{
+    float: left;
+}
+#footer .social a{
+    color:#000;
+}
+#footer .social a:hover{
+    color:#ff0;
+    transition: .5s;
+}
+#footer .pnvacy{
+    vertical-align: middle;
+}
+#footer .pnvacy a{
+    margin: 10px;
+    display: inline-block;
+    color:#ff0;
+}
+#footer .pnvacy a:hover{
+    text-decoration: underline;
+}
