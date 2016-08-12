@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>add-delete</title>
+</head>
+<body>
+	<ul id="nav">
+		<li>这里是</li>
+		<li>饥人谷</li>
+		<li>任务6班</li>
+	</ul>
+	<input class="ipt-add-content" placeholder="添加内容"/>
+	<button id="btn-add-start">开头添加</button>
+	<button id="btn-add-end">结尾添加</button>
+	<script>
+		// *****方法一*****
+		// var lis = document.getElementById('nav').getElementsByTagName('li');
+		// for(var i = 0;i < lis.length;i++){
+		// 	lis[i].addEventListener('click',function(){
+		// 		console.log(this.innerText);
+		// 	})
+		// }
+		// *****方法二*****
+		var nav = document.getElementById('nav');
+		nav.addEventListener('click',function(e){
+			console.log(e.target.innerText);
+		})
+		var inputText = document.getElementsByClassName("ipt-add-content");
+		var startBtn = document.getElementById('btn-add-start');
+		var endBtn = document.getElementById('btn-add-end');
+		function create(inputText){
+			var tag = document.createElement('li');
+			tag.innerText = inputText.value;
+			return tag;
+		}
+		startBtn.addEventListener('click',function(){
+			var lis1 = nav.getElementsByTagName('li')
+			var tagNew = create(inputText[0]);
+			nav.insertBefore(tagNew,nav.firstChild);
+		})
+		endBtn.addEventListener('click',function(){
+			var tagNew = create(inputText[0]);
+			nav.appendChild(tagNew);
+		})
+	</script>
+</body>
+</html>

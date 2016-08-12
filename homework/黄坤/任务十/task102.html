@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+	    .rectangle{
+		    width: 200px;
+		    position:relative;
+		    margin-top: 20px;
+	      margin-left: 20px;
+	}
+      .triangle-up {
+    	  position: absolute;
+    	  top:-19px;left:20px;
+        height:0px;
+        width:0px;
+       	margin:0px;
+        border-top: 10px solid rgba(0,0,0,0); 
+       	border-left: 10px solid rgba(0,0,0,0); 
+        border-right: 10px solid rgba(0,0,0,0); 
+       	border-bottom: 10px solid #ccc; 
+       	background: transparent;   
+     }
+      .rectangle .mode{
+      	width: 200px;
+    	  height: 100px;
+    	  border:1px solid #ccc;
+    }
+      .boxb .triangle-right{
+     	  position:absolute;
+      	top:0px;right:-1px;
+        height:0px;
+        width:0px;
+        margin:0px;    
+       	border-bottom: 20px solid rgba(0,0,0,0); 
+       	border-right: 20px solid red;
+     }
+      .triangle-empty {
+    	  position: absolute;
+    	  top:-19px;left:20px;
+        height:0px;
+        width:0px;
+       	margin:0px;
+        border-top: 10px solid rgba(0,0,0,0); 
+       	border-left: 10px solid rgba(0,0,0,0); 
+        border-right: 10px solid rgba(0,0,0,0); 
+       	border-bottom: 10px solid #ccc;    
+     }
+      .triangle-empty:after{
+     	  position: absolute;
+      	content: "";
+    	  top:-8px;left:-10px;
+        height:0px;
+        width:0px;
+       	margin:0px;
+        border-top: 10px solid rgba(0,0,0,0); 
+       	border-left: 10px solid rgba(0,0,0,0); 
+        border-right: 10px solid rgba(0,0,0,0); 
+       	border-bottom: 10px solid white; 
+     }
+</style>
+</head>
+<body>
+    <div class="rectangle box">
+    	<div class="triangle-up"></div>
+    	<div class="mode"></div>
+     </div>
+    <div class="rectangle boxb">
+    	<div class="triangle-right"></div>
+    	<div class="mode"></div>
+    </div>
+   <div class="rectangle box">
+      <div class="triangle-empty"></div>
+    	<div class="mode"></div>
+    </div>
+</body>
+</html>
