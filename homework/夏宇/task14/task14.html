@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}
+
+		html,
+		body {
+			height: 100%;
+			font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		p {
+			margin: 1em 0;
+		}
+		hr {
+
+  border-top: 1px solid #eee;
+  max-width: 100px;
+	margin: 20px auto;
+}
+
+		@font-face {
+			font-family: "iconfont";
+			src: url('iconfont.eot?t=1470976201');
+			/* IE9*/
+			src: url('iconfont.eot?t=1470976201#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('iconfont.woff?t=1470976201') format('woff'), /* chrome, firefox */
+			url('iconfont.ttf?t=1470976201') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+			url('iconfont.svg?t=1470976201#iconfont') format('svg');
+			/* iOS 4.1- */
+		}
+
+		.iconfont {
+			font-family: "iconfont" !important;
+			font-size: 20px;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-stroke-width: 0.2px;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.icon-boke:before {
+			content: "\e61d";
+		}
+
+		.icon-html:before {
+			content: "\e694";
+		}
+
+		.icon-css:before {
+			content: "\e844";
+		}
+
+		.icon-jiangbei:before {
+			content: "\e608";
+		}
+
+		.icon {
+			font-size: 85px;
+			line-height: 100px;
+			margin: 10px 0;
+			color: #333;
+			-webkit-transition: font-size 0.25s ease-out 0s;
+			-moz-transition: font-size 0.25s ease-out 0s;
+			transition: font-size 0.25s ease-out 0s;
+		}
+
+		#header {
+			height: 100%;
+			background-image: url(bg.jpg);
+			background-size: cover;
+		}
+
+		#header .wrapper {
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		#header .wrapper1 {
+			width: 960px;
+			height: 100%;
+			margin: 0 auto;
+			display: table;
+		}
+
+		#header .btn {
+			display: inline-block;
+			width: 140px;
+			height: 50px;
+			line-height: 50px;
+			background: rgba(0, 0, 0, 0.4);
+			color: white;
+		}
+
+		#header h1 {
+			margin: 1em 0;
+		}
+
+		#header p {
+			margin: 1em 0;
+		}
+
+		#main .wrapper {
+			width: 960px;
+			margin: 0 auto;
+			padding: 50px 0;
+		}
+
+		#main .describe {
+			text-align: center;
+		}
+
+		#main .describe h2,
+		#main .describe p {
+			margin: 1em 0;
+		}
+
+		#main .describe p a {
+			color: #337ab7;
+		}
+
+		#main .describe p a:hover {
+			text-decoration: underline;
+		}
+
+		#main .service {
+			color: white;
+			background: #337AB7;
+			padding: 50px 0;
+		}
+
+		.container {
+			width: 960px;
+			margin: 0 auto;
+		}
+
+		.service-item {
+			float: left;
+			width: 240px;
+		}
+
+		.clearfix:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.service-item a {
+			display: inline-block;
+			background: white;
+			width: 95px;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		.service-item a:hover {
+			background: #eee;
+		}
+
+		.service-wrap {
+			margin: 20px 0;
+		}
+
+		.callout {
+			background-image: url(callout.jpg);
+			padding: 200px;
+			color: white;
+		}
+		.portfolio{
+			padding: 50px 0;
+		}
+		.portfolio-item{
+			float: left;
+			margin:0 30px 30px 0;
+			width: 465px;
+ 			height: 305px;
+		}
+		.portfolio-item img{
+			width: 465px;
+ 			height: 305px;
+		}
+		.portfolio ul{
+			margin-right: -30px;
+		}
+		.callme{
+			padding: 50px 0;
+			background: #337ab7;
+		}
+		.btn1,.btn2{
+			display: inline-block;
+			width: 140px;
+			height: 50px;
+			line-height: 50px;
+		}
+		.btn1{
+			background: white;
+		}
+		.btn2{
+			background: rgba(0, 0, 0, 0.4);
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<div class="wrapper1">
+			<div class="wrapper">
+				<h2>夏宇</h2>
+				<p>
+					一个热爱前端的同学
+				</p>
+				<a href="#" class="btn">查看更多</a>
+			</div>
+		</div>
+	</div>
+	<div id="main">
+		<div class="wrapper">
+			<div class="describe">
+				<h2>这里是个标题</h2>
+				<p>
+					关于我的简介 <a href="#">作品</a>
+				</p>
+			</div>
+		</div>
+		<div class="service">
+			<div class="container">
+				<h2>技能</h2>
+				<hr style="width:50px;margin:0 auto;">
+				<ul class="clearfix service-wrap">
+					<li class="service-item">
+						<span class="icon iconfont">&#xe694;</span>
+						<h4>HTML</h4>
+						<p>html相关技能</p>
+						<a href="" class="btn">相关作品</a>
+					</li>
+					<li class="service-item">
+						<span class="icon iconfont">&#xe844;</span>
+						<h4>CSS</h4>
+						<p>css相关技能</p>
+						<a href="" class="btn">相关作品</a>
+					</li>
+					<li class="service-item">
+						<span class="icon iconfont">&#xe608;</span>
+						<h4>项目</h4>
+						<p>比如</p>
+						<a href="" class="btn">我的项目</a>
+					</li>
+					<li class="service-item">
+						<span class="icon iconfont">&#xe61d;</span>
+						<h4>博客</h4>
+						<p>学习历程总结，比如，做了什么事</p>
+						<a href="" class="btn">查看博客</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="callout">
+			<div class="container">
+				<h1>又是一段话</h1>
+			</div>
+		</div>
+		<div class="portfolio">
+			<div class="container">
+			<h1>我的作品</h1>
+			<hr>
+			<ul class="clearfix">
+				<li class="portfolio-item">
+					<a href="#">
+						<img src="http://book.jirengu.com/jirengu-inc/task/%E4%BB%BB%E5%8A%A119-%E5%AE%9E%E6%88%983/img/portfolio-1.jpg" alt="" />
+					</a>
+				</li>
+				<li class="portfolio-item">
+					<a href="#">
+						<img src="http://book.jirengu.com/jirengu-inc/task/%E4%BB%BB%E5%8A%A119-%E5%AE%9E%E6%88%983/img/portfolio-1.jpg" alt="" />
+					</a>
+				</li>
+				<li class="portfolio-item">
+					<a href="#">
+						<img src="http://book.jirengu.com/jirengu-inc/task/%E4%BB%BB%E5%8A%A119-%E5%AE%9E%E6%88%983/img/portfolio-1.jpg" alt="" />
+					</a>
+				</li>
+				<li class="portfolio-item">
+					<a href="#">
+						<img src="http://book.jirengu.com/jirengu-inc/task/%E4%BB%BB%E5%8A%A119-%E5%AE%9E%E6%88%983/img/portfolio-1.jpg" alt="" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		</div>
+		<div class="callme">
+			<div class="container">
+			<h3>我是一个聪明勤奋的人</h3>
+			<a href="#" class="btn1">click me</a>
+			<a href="#" class="btn2">look at me</a>
+			</div>
+		</div>
+</div>
+	<div id="footer"></div>
+</body>
+
+</html>
