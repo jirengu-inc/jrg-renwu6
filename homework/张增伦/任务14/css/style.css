@@ -35,11 +35,11 @@ ul{
     vertical-align: middle;
 }
 
-.center-wrap{
+.wrap {
     width: 960px;
     margin: 0 auto;
-    /* border: 1px solid red;*/
     text-align: center;
+    height: 100%;
 }
 
 .clearfix:after{
@@ -69,7 +69,8 @@ ul{
 
 /*container样式*/
 #container .project-intro{
-    height: 175px;
+    margin: 35px 0;
+    height: 100%;
     line-height: 35px;
 }
 
@@ -90,13 +91,12 @@ ul{
 
 #container .our-services .short-line{
     width: 140px;
-
     border: 1px solid white;
     margin: 15px auto;
 }
 
 #container .our-services ul{
-    margin-left: -55px;
+    margin-left: -32px;
 }
 
 #container .our-services ul h2{
@@ -109,9 +109,9 @@ ul{
 }
 
 #container .our-services ul > li{
-    width: 255px;
+    width: 217px;
     height: 80px;
-    margin-left: 55px;
+    margin-left: 32px;
     float: left;
     line-height: 26px;
 }
@@ -124,7 +124,7 @@ ul{
 }
 
 #container .vertically-center{
-    height: 450px;
+    padding: 200px 0;
     background: url("../img/callout.jpg") no-repeat;
     background-size:100% 100%;
     font-size: 38px;
