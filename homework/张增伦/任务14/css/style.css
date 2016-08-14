@@ -1,0 +1,215 @@
+
+/*公用样式*/
+html,body,div,ul,li,span,p,i,h1,h2,h3,p{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style-type: none;
+}
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 10px ;
+    background-color: #6c7D83;
+    color: white;
+    font-family: "微软雅黑";
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.display-table{
+    display: table;
+    width: 100%;
+}
+
+.display-table-cell{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.center-wrap{
+    width: 960px;
+    margin: 0 auto;
+    /* border: 1px solid red;*/
+    text-align: center;
+}
+
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*header样式*/
+#header .header-wrap{
+    height: 900px;
+    background: url("../img/bg.jpg") no-repeat;
+    background-size:cover;
+}
+
+#header h1{
+    margin-bottom: 10px;
+}
+
+#header p{
+    font-weight: bold;
+}
+
+#header .find-out-more{
+    margin-top: 15px;
+}
+
+/*container样式*/
+#container .project-intro{
+    height: 175px;
+    line-height: 35px;
+}
+
+#container .our-services{
+    height: 400px;
+    background-color: #2F79B9;
+}
+
+#container .our-services {
+    color: white;
+    text-align: center;
+}
+
+#container .our-services .title{
+    margin-top: 60px;
+    display: inline-block;
+}
+
+#container .our-services .short-line{
+    width: 140px;
+
+    border: 1px solid white;
+    margin: 15px auto;
+}
+
+#container .our-services ul{
+    margin-left: -55px;
+}
+
+#container .our-services ul h2{
+    margin-top: 15px;
+}
+
+#container .items{
+    width: 1200px;
+    margin: 20px auto 1px auto;
+}
+
+#container .our-services ul > li{
+    width: 255px;
+    height: 80px;
+    margin-left: 55px;
+    float: left;
+    line-height: 26px;
+}
+
+#container .learn-more{
+    background-color: white;
+    color: #000000;
+    padding: 3px 10px ;
+    margin-top: 8px;
+}
+
+#container .vertically-center{
+    height: 450px;
+    background: url("../img/callout.jpg") no-repeat;
+    background-size:100% 100%;
+    font-size: 38px;
+    font-weight: bolder;
+    color: white;
+}
+
+#container .our-work .title{
+    margin-top: 70px;
+    margin-bottom: 10px;
+}
+
+#container .our-work .short-line{
+    width: 140px;
+    border: 1px solid #EEEEF0;
+    margin: 15px auto;
+}
+
+#container .our-work ul{
+    margin-left: -20px;
+}
+
+#container .our-work  ul > li{
+    width: 468px;
+    height: 270px;
+    margin-left: 20px;
+    margin-top: 20px;
+    /* border: solid 1px green;*/
+    float: left;
+}
+
+#container .our-work img{
+    width:468px;
+    height: 270px;
+}
+
+#container .view-more-items{
+    margin-top: 26px;
+    background-color: #9D999A;
+}
+
+#container .click-look{
+    height: 185px;
+    background-color: #2F79B9;
+    color: white;
+    margin-top: 40px;
+}
+
+#container .click-btn{
+    background-color: #FEFEFE;
+    color: #000000;
+    margin-right: 11px;
+}
+
+#container .look-btn{
+    background-color: #1A486C;
+    margin-left: 11px;
+}
+
+#container .click-look h2{
+    margin-bottom: 15px;
+}
+
+/*footer样式*/
+#footer{
+    height: 325px;
+    text-align: center;
+    line-height: 23px;
+}
+
+#footer h3{
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
+
+#footer .friend-link{
+    margin: 20px 0 20px 0;
+    text-align: center;
+    border: 1px solid #ffffff;
+}
+
+#footer .short-line{
+    width: 95px;
+    border-bottom: 1px solid #ccc;
+    margin: 15px auto 0 auto;
+}
