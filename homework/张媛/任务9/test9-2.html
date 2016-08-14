@@ -1,41 +1,57 @@
+<!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <title>test9-1</title>
+  <meta charset="utf-8">
+  <title>test9-2</title>
   <style>
+    .test{
+      height: 0px;
+      width: 0px;
+      margin: 50px;
+      border: 50px solid transparent;
+    }
+  .tra1{
+    border-top-color: blue ;
+    border-right-color: yellow;
+    border-bottom-color: green;
+    border-left-color: red;
+  }
+  .tra2{
+    border-top-color: blue ;
+  }
+  .tra3{
+    border-left-color: red;
+  }
+  .tra4{
+    border-right-color: yellow;
+  }
+  .tra5{
+    border-bottom-color: green;
+  }
+  .tra6{
+    border-width: 50px;
+    border-right-color: transparent;
+    border-left-color: red;
+  }
+  .tra7{
+    border-width: 50px;
+    border-left-color: transparent;
+    border-right-color:green;
+  }
 
-  .btn{
-    border-style: none;
-    border-radius: 10px;
-    color:#fff;
-    background-color: orange;
-    font-family: "weiruanyahei";
-    font-size: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    width: 70px;
-    height:40px;
-    display: inline-block;
-    vertical-align: middle;
-    text-align:center;
-  }
-  .btn:first-of-type{
-    text-align:center;
-    line-height:40px;
-  }
-  .btn:hover{
-    background-color: #c14d21;
-  }
-  .btn:active{
-    background-color: #e25f31;
-  }
   </style>
+
+
 </head>
 <body>
+  <div class="test tra1"> </div>
+  <div class="test tra2"> </div>
+  <div class="test tra3"> </div>
+  <div class="test tra4"> </div>
+  <div class="test tra5"> </div>
+  <div class="test tra6"> </div>
+  <div class="test tra7"> </div>
 
-  <a class="btn" href="#">确定</a>
-  <span class="btn" >取消</span>
-  <div class="btn">提交</div>
-  <button class="btn"> 发送</button>
 </body>
+
 </html>
