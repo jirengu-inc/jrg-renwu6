@@ -159,6 +159,14 @@ function filterNumericInPlace(arr) {
         }
     }
 }
+//第三种，反着遍历数组的方法
+function filterNumericInPlace(arr) {
+    for (var i = arr.length - 1; i >= 0; i--) {
+        if (typeof arr[i] !== "number") {
+            arr.splice(i,1);
+        }
+    }
+}
 arr = ["a", "b", 1, 3, 4, 5, "b", 2];
 //对原数组进行操作，不需要返回值
 filterNumericInPlace(arr);
