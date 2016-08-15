@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>task10-1</title>
+    <style>
+    /* global style */
+     *{
+         margin: 0;
+         padding: 0;
+     }
+    body {
+        font: 14px/1.5 "Microsoft YaHei","微软雅黑",sans-serif;
+        color: #656565;
+    }
+     .layout {
+         width: 900px;
+         margin: 0 auto;
+     }
+    .clearfix:before, .clearfix:after{
+        content: "";
+        display: table;
+    }
+    .clearfix:after{
+        clear: both;
+    }
+    ul {
+        float: right;
+        list-style-type: none;
+    }
+    ul li {
+        float: left;
+        padding: 8px;
+    }
+    a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 16px;
+    }
+    p{
+        line-height: 28px;
+        margin-bottom: 15px;
+    }
+    /* header  style*/
+     .header{
+         margin-bottom: 5px;
+         height: 50px;
+         background-color: #333;
+     }
+     .header .img-wrap {
+         float: left;
+     }
+     .img-wrap img{
+         height: 40px;
+     }
+     .header ul{
+         margin-right: 10px;
+     }
+    .header ul li{
+        height: 40px;
+        line-height: 40px;
+        padding: 4px 18px;
+    }
+    /* middle style */
+     .middle{
+     }
+     .middle .aside{
+         float: left;
+         width: 200px;
+         height: 500px;
+         margin-right: 8px;
+         background-color: #EEEEEE;
+     }
+     .middle .main{
+         float: left;
+         width: 680px;
+         padding-left: 10px;
+         background-color: #EEEEEE;
+     }
+     .main h1{
+         margin-top: 50px;
+         margin-bottom: 25px;
+         font-size: 30px;
+         font-weight: bolder;
+     }
+    /* footer style */
+    .footer{
+        height: 40px;
+        margin-top: 8px;
+        background-color: #333;
+    }
+    .footer ul{
+        float: left;
+    }
+    </style>
+</head>
+<body>
+<div class="header clearfix">
+    <div class="layout">
+        <div class="img-wrap">
+            <img src="http://cdn.jirengu.com/public/logo-tiny.png">
+        </div>
+        <ul class="nav">
+            <li><a href="#">技能</a> </li>
+            <li><a href="#">经历</a> </li>
+            <li><a href="#">作品</a> </li>
+            <li><a href="#">关于</a> </li>
+        </ul>
+    </div>
+</div>
+
+<div class="middle clearfix">
+    <div class="layout">
+       <div class="aside"></div>
+       <div class="main">
+           <h1>我的作品</h1>
+           <p>
+               生活美好<br>
+               心情不错<br>
+               代码写的漂亮
+           </p>
+       </div>
+     </div>
+</div>
+
+<div class="footer clearfix">
+    <div class="layout">
+        <ul>
+            <li><a href="#">饥人谷</a> </li>
+            <li><a href="#">JSCODE</a> </li>
+            <li><a href="#">JSBIN</a> </li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>
