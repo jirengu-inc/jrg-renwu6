@@ -1,0 +1,148 @@
+
+/*公用样式*/
+html,body,div,ul,li,span,p,i,h1,h2,h3,p{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    padding: 0.5em;
+    color: black;
+}
+
+ul{
+    list-style-type: none;
+}
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px ;
+    background-color: #fff;
+    color: #000000;
+    font-size: 14px;
+    border: solid 1px #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.wrap {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*header样式*/
+#header h1{
+    margin-bottom: 10px;
+}
+
+#header a{
+    display: block;
+}
+
+#header p{
+    font-weight: bold;
+}
+
+#header .first {
+    /* border: 1px green solid;*/
+    margin-top: 20px;
+}
+
+#header .first > li {
+    position: relative;
+    float: left;
+}
+
+#header li:hover .child{
+    display: block;
+    background: #fff;
+}
+#header .child{
+    position: absolute;
+    left: 5px;
+    top: 34px;
+    display: none;
+    border-top: 1px solid #eee;
+}
+#header .child li {
+    background-color: #fff;
+    width: 90px;
+}
+#header .child li:hover{
+    background-color: #aaaaaa;
+}
+
+#header .banner{
+    padding: 28px 0;
+    background-color: #b84d45;
+    color: #fff;
+    line-height: 25px;
+}
+
+/*content样式*/
+#content .nav {
+    margin-top: 40px;
+    padding: 10px 15px;
+    background-color: #eee;
+}
+
+#content ul{
+    margin-left: -27.5px;
+}
+
+#content ul li{
+    float: left;
+    margin-left: 27.5px;
+    margin-top: 26px;
+    padding-top: 4px;
+    border: 1px solid #ccc;
+    width: 313px;
+    height: 323px;
+    text-align: center;
+}
+
+#content li img{
+    width: 307px;
+    height: 190px;
+}
+
+#content li h2{
+    padding: 7px 0;
+}
+#content li p{
+    padding-bottom: 13px;
+}
+
+/*more-about-me样式*/
+#more-about-me{
+    margin-top: 40px;
+    text-align: center;
+    padding: 70px 0;
+    color: #fff;
+    background-color: #b84d45;
+}
+
+#more-about-me h1{
+    font-weight: bold;
+    font-size: 28px;
+
+}
+
+/*footer样式*/
+#footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 60px;
+}
+#footer .bottom-line{
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 10px;
+}
