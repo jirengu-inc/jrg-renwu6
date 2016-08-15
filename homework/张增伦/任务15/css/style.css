@@ -3,12 +3,22 @@
 html,body,div,ul,li,span,p,i,h1,h2,h3,p{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font: 14px/1.5 normal;
+    font-family:  "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif
+    color: #333;
 }
 
 a{
     text-decoration: none;
-    padding: 0.5em;
-    color: black;
+    color: #666;
+}
+
+a:hover{
+    color: #333;
 }
 
 ul{
@@ -17,7 +27,7 @@ ul{
 .btn {
     display: inline-block;
     text-decoration: none;
-    padding: 5px 10px ;
+    padding: 5px 8px ;
     background-color: #fff;
     color: #000000;
     font-size: 14px;
@@ -50,14 +60,18 @@ ul{
     font-weight: bold;
 }
 
-#header .first {
-    /* border: 1px green solid;*/
-    margin-top: 20px;
+#header .first{
+   /* border: 1px solid red;*/
 }
 
 #header .first > li {
+   /* border: 1px solid blue;*/
     position: relative;
     float: left;
+    height:50px;
+    line-height: 50px;
+    padding: 0 10px;
+
 }
 
 #header li:hover .child{
@@ -67,14 +81,22 @@ ul{
 #header .child{
     position: absolute;
     left: 5px;
-    top: 34px;
+    top: 50px;
     display: none;
     border-top: 1px solid #eee;
 }
 #header .child li {
     background-color: #fff;
     width: 90px;
+    height: 40px;
+    padding-left: 10px;
+    border-top: dashed 1px #ccc;
 }
+
+#header .child li:first-of-type{
+    border-top: 1px solid #ccc;
+}
+
 #header .child li:hover{
     background-color: #aaaaaa;
 }
@@ -94,22 +116,22 @@ ul{
 }
 
 #content ul{
-    margin-left: -27.5px;
+    margin-left: -45px;
 }
 
 #content ul li{
     float: left;
-    margin-left: 27.5px;
+    margin-left: 45px;
     margin-top: 26px;
     padding-top: 4px;
     border: 1px solid #ccc;
-    width: 313px;
+    width: 303px;
     height: 323px;
     text-align: center;
 }
 
 #content li img{
-    width: 307px;
+    width: 297px;
     height: 190px;
 }
 
