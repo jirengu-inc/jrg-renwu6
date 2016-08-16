@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务11-1</title>
+	<style>
+  	html,body,ul,li{
+  		margin:0;
+  		padding:0;
+  	}
+	li{
+  		list-style:none;
+	}
+ 	a{
+  		text-decoration:none;
+  		color:#333;
+  	}
+	.nav:after{
+  		content:'';
+  		display:block;
+  		clear:both;
+	}
+	#bar{
+   		background:#ccc;
+  	}
+	#bar>li{
+  		float:left;
+  		line-height:40px;
+  		padding:0 10px;
+  		position:relative;
+	}
+	#bar>li:hover{
+  		background:#bbb;
+	}
+	#bar .child>li{
+  		display:none;
+	}
+	#bar .child{
+  		position:absolute;
+  		top:100%;
+  		left:0;
+  		border:1px solid #ccc;
+	}
+
+  	#bar>li:hover .child>li{
+  		display:block;
+ 	}
+	#bar .child>li{
+  		padding:5px;
+	}
+
+	#bar .child>li:hover{
+  		background:#bbb;
+	}
+	</style>
+</head>
+<body>
+  <ul class="nav" id="bar">
+    <li>
+      <a href="">前端</a>
+      <ul class="child">
+        <li>Javascript</li>
+        <li>Html</li>
+        <li>Css</li>
+      </ul>
+    </li>
+    <li>
+      <a href="">服务器</a>
+      <ul class="child">
+        <li>Java</li>
+        <li>Php</li>
+        <li>Node</li>
+      </ul>
+    </li>
+    <li>
+      <a href="">前端工具</a>
+      <ul class="child">
+        <li>Sublime</li>
+        <li>Webstor</li>
+        <li>Git</li>
+      </ul>
+    </li>
+    <li>
+    <a href="">HTML</a>
+    </li>
+    <li>
+    <a href="">NODE</a>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

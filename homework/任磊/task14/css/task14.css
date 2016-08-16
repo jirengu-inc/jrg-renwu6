@@ -1,0 +1,217 @@
+html,
+body,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	font-family: "microsoft sans serif", sans-serif;
+	font-size: 14px;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+    clear: both;
+}
+.container {
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+}
+hr{
+	margin: 20px auto;
+	max-width: 100px;
+}
+
+/*header部分的设置*/
+
+#header {
+	width: 100%;
+	height: 100%;
+	background: url(../img/bg-header.jpg) 0 0 no-repeat;
+	background-size: cover;
+}
+
+.table {
+	display: table;
+	height: 100%;
+}
+
+.center {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.center p{
+	font-size: 18px;
+}
+.btn1 {
+	display: inline-block;
+	color: white;
+	font-size: 16px;
+	padding: 5px 10px;
+	background: rgba(204,204,204,0.4);
+	border-radius: 5px;
+	font-family: cursive;
+}
+
+.btn1:hover{
+	background-color: rgba(193,77,33,0.7);
+}
+/*content部分的设置*/
+.self-intro{
+	padding: 50px 0;
+} 
+.self-intro h3{
+	font-size: 30px;
+}
+.self-intro p{
+	font-size: 20px;
+}
+.self-intro a{
+	font-size: 20px;
+	color: dodgerblue;
+}
+.self-intro a:hover{
+	text-decoration: underline;
+}
+.skill {
+	background: #337ab7;
+	padding: 50px 0;
+	color: white;
+}
+
+.skill h2{
+	font-size: 30px;
+}
+
+.skill ul>li{
+	float: left;
+	width: 25%;
+}
+
+.skill .iconfont{
+	font-size: 80px;
+}
+.skill .btn2{
+	display: inline-block;
+	color: black;
+	background:white;
+	padding: 8px 20px;
+	margin-top: 10px;
+}
+.skill .btn2:hover{
+	background: #eee;
+}
+.passage{
+	padding: 200px 0;
+	background:url(../img/bg-passage.jpg) 0 0 no-repeat;
+	background-size: cover;
+}
+.passage h1{
+	color: white;
+	font-size: 70px;
+}
+.production{
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+.production h2{
+	font-size: 30px;
+}
+.production ul{
+	margin-right: -20px;
+}
+.production ul>li{
+	float: left;
+	width: 465px;
+	height: 305px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+.production li img{
+	width: 465px;
+	height: 305px;
+}
+.production .btn3{
+	display: inline-block;
+	font-size: 18px;
+	color: white;
+	padding: 5px 15px;
+	margin-top: 20px;
+	background: rgba(0,0,0,0.4);
+}
+.production .btn3:hover{
+	background: rgba(0,0,0,0.7);
+}
+.about-me{
+	background: #337ab7;
+	padding: 50px 0;
+	color: white;
+}
+.about-me .btn4{
+	display: inline-block;
+	color: black;
+	background: white;
+	line-height: 50px;
+	width: 150px;
+	height: 50px;
+}
+.about-me .btn4:hover{
+	background: #EEEEEE;
+}
+.about-me .btn5{
+	display: inline-block;
+	color: white;
+	line-height: 50px;
+	width: 150px;
+	height: 50px;
+	background: rgba(0,0,0,0.4);
+}
+
+.about-me .btn5:hover{
+	background: rgba(0,0,0,0.7);
+}
+/* footer部分的设置 */
+
+#footer{
+	padding: 100px 0;
+}
+
+.information a{
+	color: #337ab7;
+}
+.information a:hover{
+	color: #23527c;
+}
+.information .postbox{
+	font-size: 16px;
+	color: #337ab7;
+}
+.information .postbox:hover{
+	text-decoration: underline;
+}
+
+.information li{
+	display: inline-block;
+	margin: 20px 10px;
+}
+.information li a{
+	font-size: 40px;
+	color: #337ab7;
+}
+

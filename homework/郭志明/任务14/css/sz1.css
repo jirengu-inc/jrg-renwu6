@@ -1,0 +1,151 @@
+html,body,ul,li{
+  	margin: 0;
+  	padding: 0;
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  	}
+  	.container{
+  		width: 960px;
+  		margin: 0 auto;
+  	}
+  	.horizontal-center{
+  		text-align: center;
+  	}
+  	a{
+      color: #000;
+  		text-decoration: none;
+  	}
+  	ul{
+  		list-style-type: none;
+  	}
+  	h1 {
+  	font-size: 60px;
+  	font-weight: bold;
+	  }
+	  h2 {
+  	font-size: 30px;
+	  }
+    h3{
+      font-size: 24px;
+    }
+    .clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+    }
+
+/*#header*/
+    #header{
+      width: 100%;
+      background-image: url(../image/bg.jpg);
+      background-size: cover;
+      padding: 350px 0;
+    }
+    .btn1{
+      display: inline-block;
+      width: 140px;
+      line-height: 50px;
+      color: #fff;
+      background-color: #666;
+    }
+    .btn1:hover{
+      background-color: #333;
+    }
+
+    /*content*/
+  	.main{
+  		text-align: center;
+  		margin-top: 50px;
+  		margin-bottom: 50px;
+  	}
+
+  	.service{
+  		margin-top: 50px;
+  		background-color: #0bf;
+  		padding: 100px 0;
+  	}
+  	.service ul li{
+  		float: left;
+      width: 220px;
+      height: 240px;
+      padding: 10px;
+  	}
+    .icon-lists .icon{
+      font-size: 112px;
+      color:#fff;
+    }
+    .btn2{
+      display: inline-block;
+      width: 140px;
+      line-height: 30px;
+      color: #000;
+      background-color: #fff;
+    }
+    .btn2:hover{
+      background-color: rgba(225,225,225,0.7);
+    }
+  	.summary{
+  		color: #fff;
+  		background-image: url(../image/callout.jpg);
+  		padding: 200px 0;
+  	}
+
+    .work{
+      padding: 50px 0;
+    }
+  	.work h2{
+      margin: 30px 0;
+    }
+    .work ul{
+      margin-right: -30px;
+    }
+  	.work ul li{
+    width: 465px;
+    height: 305px;
+		float: left;
+    margin-right: 30px;
+    margin-bottom: 30px;
+  	}
+    .work li img{
+      width: 465px;
+      height: 305px;
+    }
+    .btn3{
+      display: inline-block;
+      width: 140px;
+      line-height: 30px;
+      color: #fff;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .btn3:hover{
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .extra{
+      color: #fff;
+      font-weight: bold;
+      background-color: #337ab7;
+      padding: 50px 0;
+    }
+    .btn4{
+      display: inline-block;
+      width: 180px;
+      line-height: 50px;
+      background-color: #fff;
+    }
+    .btn4:hover{
+      color: #fff;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    /*footer*/
+    #footer{
+      padding: 100px 0;
+    }
+    #footer li{
+      display: inline-block;
+      margin-right: 15px;
+    }
+    #footer .icon{
+      font-size: 40px;
+      color: rgba(0,0,225,0.7);
+    }

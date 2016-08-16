@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>弹框</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			padding: 0;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		a {
+			color: #000;
+			text-decoration: none;
+			display: block;
+		}
+		.modal {
+			padding: 5px 10px;
+		}
+		.cover {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			position: fixed;
+			z-index: 20;
+			background-color: #ccc;
+			opacity: 0.5;
+			display: none;
+		}
+		.ct {
+			width: 400px;
+			border: 1px solid #ccc;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			z-index: 21;
+			transform: translate(-50%,-50%);
+			background-color: #fff;
+			display: none;
+		}
+		.title {
+			padding: 10px 0;
+			border-bottom: 1px solid #333;
+		}
+		.title h3 {
+			padding: 0 5px;
+			float: left;
+		}
+		.title a {
+			padding: 0 5px;
+			float: right;
+		}
+		.main {
+			border-bottom: 1px solid #eee;
+			padding: 10px;
+		}
+		.footer {
+			padding: 10px 0;
+		}
+		.footer a {
+			padding: 0 10px;
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<button class="modal">点我1</button>
+	<div class="cover"></div>
+	<div class="ct">
+		<div class="title clearfix">
+			<h3>我是标题1</h3>
+			<a href="#" class="cancel">x</a>
+		</div>
+		<div class="main">
+			<p>我是内容1</p>
+			<p>我是内容1</p>
+		</div>
+		<div class="footer clearfix">
+			<a href="#" class="enter">确认</a>
+			<a href="#" class="cancel">取消</a>
+		</div>
+	</div>
+	<script>
+		var cover = document.querySelector('.cover');
+		var ct = document.querySelector('.ct');
+		var modal = document.querySelector('.modal');
+		var cancel = document.querySelectorAll('.cancel');
+		function show(){
+			cover.style.display = "block";
+			ct.style.display = "block";
+		}
+		function hide(){
+			cover.style.display = "none";
+			ct.style.display = "none";
+		}
+		modal.addEventListener('click',function(){
+			show();
+		})
+		cover.addEventListener('click',function(){
+			hide();
+		})
+		for(var i = 0;i < cancel.length;i++){
+			cancel[i].addEventListener('click',function(){
+				hide();
+			})
+		}
+	</script>
+</body>
+</html>
