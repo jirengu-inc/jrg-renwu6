@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<style>
+     *{
+      margin:0;
+      padding: 0;
+     }
+     body{
+      font:16px/1.2 "微软雅黑",sans-serif;
+     }
+    .topnav{
+      position: relative;
+      width: 100%;
+      height:40px;
+      background-color: #000;
+    }
+    img{
+     max-height: 35px;
+     float:left;
+     margin-left:235px;
+    }
+   .topnav .tag{
+     float:right; 
+     list-style: none;
+     margin-right: 250px; 
+    }
+   .tag .list{
+      float:left; 
+      padding: 0 10px;
+      line-height: 40px;
+      margin-left:10px;  
+      cursor: pointer;
+    }
+    .list .button{
+      text-decoration: none;
+      color: white;
+    }
+    .tag .list:hover{
+      background: #fff;   
+    }
+    .tag .list:hover a{
+       color: black; 
+    }
+    .tag .list:active{
+      background: #000;
+    }
+    #contain{
+     width:900px;
+     height:550px; 
+     margin:10px auto 0px auto;
+    }
+    #contain:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    #contain .main{
+      width:680px;
+      height:180px;
+      background: #eee;
+      overflow: auto;
+      padding: 0px 15px;
+      font:14px/1.5 "微软雅黑",sans-serif;
+      color: #7d7b7b;  
+    }
+    #contain .aside{
+      width: 180px;
+      height:550px;
+      background: #eee;
+      margin-right: 10px;
+      float: left;
+    }
+    .main h1 {
+      margin:28px 0; 
+    }
+    #footer{
+      width: 100%；
+      height:40px;
+      line-height: 40px;
+      background: #252323;
+    }
+    #footer a{ 
+        font:14px/40px "微软雅黑",sans-serif;     
+        color: white;
+        cursor: pointer;     
+        text-decoration: none;
+        padding:3px;
+    }
+    #footer .master{
+      margin-left: 240px;
+    }
+</style>
+<body>
+   <div class="topnav">
+   <a href="#"><img src="logo-tiny.png"></a>
+          <ul class="tag">
+             <li class="list"><a href="#" class="button">技能</a></li>
+             <li class="list"><a href="#" class="button">经历</a></li>
+             <li class="list"><a href="#" class="button">作品</a></li>
+             <li class="list"><a href="#" class="button">关于</a></li>
+           </ul> 
+   </div>
+   <div id="contain">
+    <div class="aside"></div>
+    <div class="main">
+    	<h1>我的作品</h1>
+    	<p>生活不美好</p>
+    	<p>心情不好</p>
+    	<p>代码写的不漂亮</p>
+    </div>
+   </div> 
+   <div id="footer"> 
+      <a href="http://jirengu.com/" class="master">饥人谷</a>
+      <a href="http://jscode.me/" class="code">JSCODE</a>
+      <a href="http://js.jirengu.com/?html,output" class="bin">JSBIN</a>
+   </div>
+</body>
+</html>
