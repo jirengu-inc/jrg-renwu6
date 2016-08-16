@@ -312,11 +312,11 @@ ul{
     position: absolute;
     content: "";
     width: 2px;
-    background-color: #F1F1F1;
+    background-color:#F1F1F1;
     /* background-color:red;*/
     left: 50%;
     margin-left: -1.5px;
-    height: 80%;
+    height: 78%;
     margin-top: 130px;
 }
 
