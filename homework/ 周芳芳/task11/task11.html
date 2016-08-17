@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task11-边距合并、BFC</title>
+	<style>
+	/*重置样式*/
+	html,body,div,ul,li,p,h1,h2,h3,h4,h5,h6{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font:'Microsoft YaHei' 14px;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+		color: #333;
+	}
+	/*导航条*/
+	.nav{
+		width: 600px;
+		background: #ccc;
+		margin: 0 auto 160px;
+	}
+	.nav:after{
+		content: '';
+		display: block;
+		clear:both;
+	}
+	.nav>li{
+		float: left;
+		padding: 0 12px;
+		line-height: 30px;
+		position: relative;
+	}
+	.nav>li:hover{
+		background: #999;
+	}
+	.nav .child{
+		display: none;
+	}
+	.nav>li:hover .child{
+		display: block;
+		position: absolute;
+		top:100%;
+		left: 0;
+		border: 1px solid;
+	}
+	.child li{
+		padding:5px; 
+	}
+    .child li:hover{
+    	background: #ccc;
+    }
+    /*BFC形成两栏布局*/
+    #header,#footer{
+    	height: 60px;
+    	background: #ccc;
+    	text-align: center;
+    }
+    .aside{
+    	width: 200px;
+    	height: 20px;
+    	background: #3c9;
+    	float: left;
+    }
+    .main{
+    	background: #f60;
+    	overflow: hidden;
+    }
+	</style>
+</head>
+<body>
+    <!-- 导航条 -->
+	<ul class="nav">
+		<li>
+		    <a href="">前端</a>
+		    <ul class="child">
+		    	<li><a href="">JavaScript</a></li>
+		    	<li><a href="">CSS</a></li>
+		    	<li><a href="">HTML</a></li>
+		    </ul>
+		</li>
+		<li>
+		    <a href="">服务端</a>
+		    <ul class="child">
+		    	<li><a href="">Node</a></li>
+		    	<li><a href="">PHP</a></li>
+		    	<li><a href="">JAVA</a></li>
+		    </ul>
+		</li>
+		<li>
+		    <a href="">前端工具</a>
+		    <ul class="child">
+		    	<li><a href="">Sublime</a></li>
+		    	<li><a href="">WebStrom</a></li>
+		    	<li><a href="">Git</a></li>
+		    </ul>
+		</li>
+		<li><a href="">HTML</a></li>
+		<li><a href="">NODE</a></li>
+	</ul>
+	<!-- BFC形成两栏布局-->
+	<div id="header">header</div>
+	<div id="content">
+		<div class="aside">aside</div>
+		<div class="main">
+			我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,
+			我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,
+			我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main,我是main......
+		</div>
+	</div>
+	<div id="footer">footer</div>
+</body>
+</html>
