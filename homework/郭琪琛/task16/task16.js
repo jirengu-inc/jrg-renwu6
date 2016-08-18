@@ -63,7 +63,7 @@ console.log(+"4");//4
 
 // 3. 以下代码的输出结果是? （难度***）
 var a = 1;
-a+++a;
+a+++a;//3
 
 typeof a+2;//'number2'
 

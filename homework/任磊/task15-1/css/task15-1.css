@@ -1,0 +1,146 @@
+html,body,ul,li{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style-type: none;
+}
+a{
+	text-decoration: none;
+	color: #666;
+}
+a:hover{
+	color: #333;
+}
+body{
+	font: 14px/1.4 "Lantinghei SC","Microsoft Yahei", Arial, "Hiragino Sans GB", sans-serif;
+	color: #333;
+}
+.container{
+	width: 1000px;
+	margin: 0 auto;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.btn{
+	display: inline-block;
+	font-size: 16px;
+	padding: 5px 8px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+/* 设置header */
+#header .container{
+	margin-top: 10px;
+}
+#header .iconfont{
+	float: left;
+	font-size: 30px;
+	line-height: 30px;
+}
+.nav{
+	float: left;
+	margin-left: 20px;
+
+}
+.nav li {
+	font-size: 18px;
+	float: left;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	position: relative;
+}
+.nav .triangle:after{
+	content: "";
+	border: 6px solid transparent; 
+	border-top-color: #666;
+	margin-left: 5px;
+    position: relative;
+    top: 15px;
+}
+.droplist{
+	position: absolute;
+	left: -9999px;
+	top: 100%;
+	border: 1px solid black;
+	background: white;
+}
+.droplist li{
+	border-bottom: 1px dashed black;
+}
+.droplist li:last-child{
+	border-bottom: 0;
+}
+.nav li:hover{
+	background: #cccccc;
+}
+.nav li:hover .droplist{
+	left: -1px;
+}
+/* 设置content */
+.intro{
+	padding: 20px 0;
+	background: #b84d45;
+	color: #ffffff;
+}
+.breadctrmb{
+	background: #eeeeee;
+	margin: 10px auto;
+}
+.breadctrmb a{
+	color: #b84d45;
+}
+.breadctrmb p{
+	font-size: 16px;
+	padding: 10px;
+}
+.works li img{
+	width: 300px;
+	height: 200px;
+}
+.works li{
+	float: left;
+	width: 300px;
+	border: 1px solid #ccc;
+	margin-right: 45px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+.works ul{
+	margin-right: -45px;
+}
+.works li h4{
+	text-align: left;
+	font-size: 16px;
+	margin-left: 10px;
+}
+.works li p{
+	text-align: left;
+	margin-left: 10px;
+	color: black;
+}
+
+.aboutme{
+	background: #b84d45;
+	margin: 20px 0;
+}
+.aboutme .container{
+	padding: 10px 0;
+	text-align: center;
+	color: white;
+}
+.aboutme a{
+	color: white;
+}
+/* 设置footer */
+#footer p{
+	border-top: 1px solid #ccc;
+	padding: 20px 0;
+ 	text-align: center;
+}

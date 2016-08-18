@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="gb2312">
+    <title>task10-1</title>
+    <style>
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  font:14px/1.2"微软雅黑",sans-serif;
+}
+.clearfix:before, .clearfix:after{
+  content: "";
+  display: table;
+}
+.clearfix:after{
+   clear: both;
+    }
+.header{
+  width:100%;
+  height:40%;
+  background-color:#000;
+  margin-bottom:10px;
+}
+.header img{
+     height:35px;
+     float:left;
+     position:relative;
+     left:200px;   
+}
+.header .nav{
+     float:right; 
+     list-style: none;
+     margin-right: 300px;
+ 
+}
+.header .nav li{
+     float:left;
+   line-height:40px;
+     cursor:pointer;
+}
+.header .nav  a{
+     text-decoration:none;
+     color:white;
+     padding:0 10px;
+     font-size:14px;
+}
+.header .nav a:hover{
+     color:black;
+}
+.header .nav li:hover{
+     background:white;
+    
+     margin:0px;
+}
+.middle .aside{
+     float:left;
+     width:180px;
+     height:550px;
+      background-color: #EEEEEE;
+      margin-left:200px;
+}
+.middle .main{
+      float:left;
+      width:800px;
+      height:200px;
+      background-color: #EEEEEE;
+      margin-left:10px;
+}
+.main h1{
+      margin:25px 20px;
+}  
+.main p{
+       margin:0px 20px;
+}  
+
+.footer{
+      background:#000;
+      width: 100%；
+      height:10px;    
+      text-decoration: none;
+     
+}
+.footer ul{
+      float:left;
+}
+.footer ul li{
+      display:inline-block;
+      position:relative;
+      left:210px;
+      margin-left:3px;
+}
+.footer a{ 
+        font:14px/40px "微软雅黑",sans-serif;     
+        color: white;
+        cursor: pointer;     
+        text-decoration: none;
+    }
+
+    </style>
+</head>
+<body>
+<div class="header clearfix">
+     <img src="http://cdn.jirengu.com/public/logo-tiny.png">
+        <ul class="nav">
+            <li><a href="#">技能</a> </li>
+            <li><a href="#">经历</a> </li>
+            <li><a href="#">作品</a> </li>
+            <li><a href="#">关于</a> </li>
+        </ul>
+    </div>
+
+
+
+<div class="middle clearfix">
+   <div class="aside"></div>
+   <div class="main">
+       <h1>我的作品</h1>
+       <p>生活很美好</p>
+       <p>心情不错</p>
+       <p>代码写得很漂亮</p>
+   </div>
+</div>
+
+
+<div class="footer clearfix">
+  <ul>
+    <li><a href="#">饥人谷</a> </li>
+    <li><a href="#">JSCODE</a> </li>
+    <li><a href="#">JSBIN</a> </li>
+        </ul>
+    </div>
+
+
+
+</body>
+</html>
+     

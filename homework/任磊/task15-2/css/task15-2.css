@@ -1,0 +1,468 @@
+html,body,ul,li,p,h1,h2,h3,h4,h5,h6,div,input,textarea{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,body{
+	font: 14px/1.4 "Microsoft Yahei", Arial, "Hiragino Sans GB", sans-serif;
+	height: 100%;/* 设置height100%，使header的背景图片高度撑开，若忘记原理，简书里面有详解 */
+}
+li{
+	list-style-type: none;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	color: #fed136;
+}
+.layout{
+	width: 1150px;
+	margin: 0 auto;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+/* 设置header */
+#header{
+	color: white;
+	background: url(../img/header-bg.jpg) 0 0 no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.nav{
+	background-color: #222222;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+.nav .layout{
+	padding: 20px 0;
+}
+
+.nav .layout>a{
+     font-size: 25px;
+     float: left;
+     line-height: 25px;
+     color: #fed136;
+}
+.topnav li{
+	font-size: 16px;
+    height: 25px;
+    line-height: 25px;
+	float: right;
+	margin-left: 25px;
+	padding: 5px;
+}
+#header .table{
+	display: table;
+	height: 100%;
+}
+#header .center{
+	display: table-cell;
+	vertical-align: middle;
+}
+#header .center p{
+	font-size: 40px;
+	padding: 10px;
+}
+#header .center h1{
+	font-size: 65px;
+	padding: 10px;
+}
+#header .center a{
+	display: inline-block;
+	font-size: 20px;
+	padding: 20px 40px;
+	margin-top: 30px;
+	background: #fed136;
+	border-radius: 4px;
+}
+#header .center a:hover{
+	color: white;
+	background: #fec503;
+}
+/* content设置 */
+#content h1,h2,h3,h4{
+	color: #333;
+}
+#content p{
+	color: #777;
+}
+.services{
+	text-align: center;
+	padding-top: 150px;
+	padding-bottom: 150px;
+}
+.services .layout>h1{
+	font-size:40px;
+	padding: 20px 0; 
+}
+.services .layout>p{
+	font-size: 20px;
+	padding-bottom: 100px;
+}
+.services ul{
+	margin-right: -50px;
+}
+.services ul>Li{
+	float: left;
+	width: 350px;
+	margin-right: 50px;
+}
+.services .container-icon{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: #fed136;
+	margin-left: auto;
+	margin-right: auto;
+}
+.services .iconfont{
+	font-size: 55px;
+	line-height: 100px;
+	color: white;
+}
+.services ul>li:nth-child(2) .iconfont{
+	font-size: 65px;
+}
+.services li h1{
+	font-size: 18px;
+	padding: 20px 0;
+}
+.portfolio {
+	text-align: center;
+	padding-top: 150px;
+	padding-bottom: 150px;
+	background: #f7f7f7;
+}
+
+.portfolio .layout>h1{
+	font-size: 40px;
+	padding: 20px 0;
+}
+.portfolio .layout>p{
+	font-size: 20px;
+	padding-bottom: 100px;
+}
+.portfolio ul a{
+	display: inline-block;
+	width: 363px;
+	height: 250px;
+	position: relative;
+}
+.portfolio .hover-centre{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(254,209,54,0.9);
+	z-index: 1;
+	display: none;
+}
+.portfolio ul a:hover .hover-centre{
+	display: block;
+}
+.portfolio .centre{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -33px;
+	margin-left: -26px;
+	font-size: 50px;
+	color: white;
+}
+
+.portfolio ul img{
+	width: 100%;
+	height: 100%;
+	display: block;/* a标签使用img后下面会多出一部分，使用block消除。 */
+}
+
+.portfolio ul li{
+	float: left;
+	width: 363px;
+	margin-right: 30px;
+	margin-bottom: 30px;
+	background: white;
+}
+
+.portfolio ul{
+	margin-right: -30px;
+}
+.portfolio li h1{
+	font-size: 18px;
+	padding-top: 20px;
+}
+.portfolio li p{
+	padding-bottom: 30px;
+}
+.about {
+	text-align: center;
+	margin-top: 150px;
+	margin-bottom: 150px;
+}
+.about h1{
+	font-size: 30px;
+	padding: 10px;
+}
+.about h3{
+	color: #333;
+	font-size: 18px;
+	padding-bottom: 10px;
+}
+
+.about p{
+	line-height: 2;
+}
+
+.about .layout>p{
+	padding-bottom:50px;
+}
+.about .timeline{
+	position: relative;
+}
+.about .timeline:before{
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 0;
+	bottom: 0;/* 设置top和bottom为0填满容器高度 */
+	width: 2px;
+	background-color: #f1f1f1;
+	z-index: 2;
+}
+
+.about .timeline li:nth-child(odd){
+	float: left;
+	width: 40%;
+	margin-right: 500px;
+	margin-bottom: 100px;
+	text-align: right;
+}
+.about .timeline li:nth-child(even){
+	float: right;
+	width: 40%;
+	margin-bottom: 100px;
+	text-align: left;
+}
+
+.about .timeline li>div{
+	position: absolute;
+	left: 50%;
+	width: 200px;
+	height: 200px;
+	margin-left: -100px;
+	border: 10px solid #f1f1f1;
+	border-radius: 50%;
+	text-align: center;
+	background: #fed136;
+	color: white;
+	z-index: 3;
+}
+.about .timeline img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-radius: 50%;
+}
+/* .about li:last-child h4{
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	color: white;
+	width: 80px;
+	height: 80px;
+	line-height: 30px;
+} 另一种实现垂直居中的方法*/
+.about li .table{
+	display: table;
+}
+.about li .table-cell{
+	display: table-cell;
+	vertical-align: middle;
+}
+.about li .table-cell h4{
+	color: white;
+    line-height: 30px;
+}
+
+.team{
+	text-align: center;
+	padding-top: 150px;
+	padding-bottom: 150px;
+	background:  #f7f7f7;
+}
+.team a{
+	color: #333;
+}
+.team a:hover{
+	color: #fed136;
+}
+.team .layout>h1{
+	font-size: 30px;
+	padding: 10px;
+}
+.team .layout>p:first-child{
+	font-size: 18px;
+	padding-bottom: 50px;
+}
+.team .team-intro>li{
+	float: left;
+	width: 33.3333%;
+	margin-bottom: 30px;
+}
+.team .container-img{
+	width: 250px;
+	height: 250px;
+	border: 10px solid white;
+	border-radius: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+.team .container-img img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-radius: 50%;
+}
+.team h3{
+	font-size: 18px;
+}
+.team .social-button li{
+	display: inline-block;
+	padding: 10px 7px;
+}
+.team .social-button a{
+	font-size:40px;
+}
+.clients {
+	padding-top: 50px;
+	padding-bottom: 100px;
+}
+.clients li{
+   float: left;
+   width: 25%;
+   padding: 10px 5px;
+}
+.contact{
+	text-align: center;
+	background: url(../img/map-image.png) 0 0 no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-color: #222;
+}
+.contact .layout{
+	padding-top: 100px;
+	padding-bottom: 150px;
+}
+.contact .layout #contact-header{
+	color: white;
+	font-size: 40px;
+	padding: 15px;
+}
+.contact .layout>p{
+	font-size: 16px;
+	padding-bottom: 50px;
+}
+.contact .contact-form{
+	text-align: center;
+}
+.contact-form .text-user-infor{
+	float: left;
+	width: 535px;
+	margin: 0 20px;
+}
+.contact-form .textarea-user-message{
+	float: right;
+	width: 535px;
+	margin: 0 20px;
+}
+.contact-form .text-user-infor input{
+	width: 535px;
+	height: 65px;
+	display: block;
+	font-size: 14px;
+	line-height: 1.4;
+	padding: 25px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	outline: none;
+}
+
+.contact textarea{
+	width: 535px;
+	height: 235px;
+	padding: 20px;
+	font-size: 14px;
+	line-height: 1.4;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	outline: none;
+}
+.contact #form-button{
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+}
+.contact .btn{
+	color: white;
+	background-color: #fed136;
+	text-align: center;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	padding: 23px 35px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+}
+/* footer部分设置 */
+#footer{
+	text-align: center;
+	padding: 20px;
+	color: #333;
+}
+#footer .footer-list>li{
+	float: left;
+	width: 383px;
+}
+#footer .footer-list>li:nth-child(1) p{
+	font-weight: bold;
+	padding-top: 15px;
+}
+#footer .footer-button li{
+	display: inline-block;
+	padding: 0px 7px;
+}
+#footer .footer-button li a{
+	font-size: 40px;
+	color: #333;
+}
+#footer .footer-button li a:hover{
+	color: #fed136;
+}
+#footer .footer-list>li:nth-child(3) a{
+	display: inline-block;
+	padding-top: 15px;
+	padding-right: 15px;
+	color: #fed136;
+	font-size: 16px;
+	line-height: 16px;
+}
+#footer .footer-list>li:nth-child(3) a:hover{
+	color: #fed136;
+	text-decoration: underline;
+}
