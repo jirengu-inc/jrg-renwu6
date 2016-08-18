@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task12-圣杯布局与双飞翼布局</title>
+	<style>
+	/*重置样式*/
+	html,body,div,ul,li,p,h1,h2,h3,h4,h5,h6{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font:'Microsoft YaHei' 14px;
+	}
+	li{
+		list-style: none;
+	}
+	/*用浮动、负边距实现效果*/
+	.layout{
+		width: 900px;
+		margin: 0 auto 30px;
+	}
+	.panels-main{
+        margin-bottom: 30px;
+        padding: 10px 0;
+        background: #ccc;
+	}
+	.panels{
+		margin-left: -20px;
+	}
+	.panels:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.panels>li{
+		width: 286px;
+		height: 100px;
+		background: #3c9;
+		float: left;
+		margin-top: 10px;
+		margin-left: 20px;
+	}
+	/*使用圣杯布局实现三栏布局(两侧固定宽度200px,中间自适应)*/
+	.ct{
+		padding: 0 200px;
+	}
+	.ct:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.ct2{
+		padding-left: 200px;
+	}
+	.ct2:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.header,.footer{
+		height: 40px;
+		background: #ccc;
+	}
+	.footer{
+		margin-bottom: 50px;
+	}
+	.main{
+		width: 100%;
+		float: left;
+		background: green; 
+	}
+	.aside,.extra{
+		width: 200px;
+		height: 100px;
+		float: left;
+	}
+	.aside{
+		background: red;
+		margin-left: -100%;
+		position: relative;
+		right: 200px;
+	}
+	.extra{
+		background: yellow;
+		margin-left: -200px;
+		position: relative;
+		left: 200px;
+	}
+	/*使用双飞翼布局实现三栏布局(两侧固定宽度200px,中间自适应)*/
+	.ct3:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.main2{
+		width: 100%;
+		float: left;
+	}
+	.wrap{
+		background: green;
+		margin: 0 200px 0 200px;
+	}
+	.wrap2{
+		background: green;
+		margin-right: 200px;
+	}
+	.aside2,.extra2{
+		width: 200px;
+		height: 100px;
+		float: left;
+	}
+	.aside2{
+		background: red;
+		margin-left: -100%;
+	}
+	.extra2{
+		background: yellow;
+		margin-left: -200px;
+	}
+	</style>
+</head>
+<body>
+    <!-- 用浮动、负边距实现效果 -->
+    <div class="layout">
+        <div class="panels-main">
+        	<ul class="panels">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+		    </ul>
+        </div>
+	</div>
+	<!-- 使用圣杯布局实现三栏布局(两侧固定宽度200px,中间自适应) -->
+	<h2>使用圣杯布局实现三栏布局(两侧固定宽度200px,中间自适应)</h2>
+	<div class="header">头部</div>
+	<div class="ct">
+			<div class="main">
+				圣杯布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。其流程为：1）设置container的左右padding，用于预留左右边栏的空间；2）给所有元素设置定位和浮动，用于设置左右两栏偏移；3）给左侧边栏设置margin-left,让其跑到上面去，右边同理
+			</div>
+			<div class="aside">左侧边栏，固定宽度</div>
+			<div class="extra">右侧边栏，固定宽度</div>
+		</div>	
+	<div class="footer">尾部</div>	
+	<!-- 使用圣杯布局的思路实现两栏布局 -->
+	<h2>使用圣杯布局的思路实现两栏布局</h2>
+	<div class="header">头部</div>
+	<div class="ct2">
+			<div class="main">
+				圣杯布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。其流程为：1）设置container的左右padding，用于预留左右边栏的空间；2）给所有元素设置定位和浮动，用于设置左右两栏偏移；3）给左侧边栏设置margin-left,让其跑到上面去，右边同理
+			</div>
+			<div class="aside">左侧边栏，固定宽度</div>
+		</div>	
+	<div class="footer">尾部</div>
+	<!-- 使用双飞翼布局实现三栏布局(两侧固定宽度200px,中间自适应) -->
+	<h2>使用双飞翼布局实现三栏布局(两侧固定宽度200px,中间自适应)</h2>
+	<div class="header">头部</div>
+	<div class="ct3">
+			<div class="main2">
+				<div class="wrap">
+					双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。
+				</div>
+			</div>
+			<div class="aside2">左侧边栏，固定宽度</div>
+			<div class="extra2">右侧边栏，固定宽度</div>
+		</div>	
+	<div class="footer">尾部</div>
+	<!-- 使用双飞翼布局的思路实现两栏布局 -->
+	<h2>使用双飞翼布局的思路实现两栏布局</h2>
+	<div class="header">头部</div>
+	<div class="ct3">
+			<div class="main2">
+				<div class="wrap2">
+					双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。双飞翼布局指两边定宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。
+				</div>
+			</div>
+			<div class="extra2">右侧边栏，固定宽度</div>
+		</div>	
+	<div class="footer">尾部</div>
+</body>
+</html>
