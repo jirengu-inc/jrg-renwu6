@@ -253,7 +253,7 @@ a:hover{
 	text-align: left;
 }
 
-.about .timeline div{
+.about .timeline li>div{
 	position: absolute;
 	left: 50%;
 	width: 200px;
@@ -273,7 +273,7 @@ a:hover{
 	border: 0;
 	border-radius: 50%;
 }
-.about li:last-child h4{
+/* .about li:last-child h4{
 	position: absolute;
 	margin: auto;
 	top: 0;
@@ -284,7 +284,19 @@ a:hover{
 	width: 80px;
 	height: 80px;
 	line-height: 30px;
+} 另一种实现垂直居中的方法*/
+.about li .table{
+	display: table;
 }
+.about li .table-cell{
+	display: table-cell;
+	vertical-align: middle;
+}
+.about li .table-cell h4{
+	color: white;
+    line-height: 30px;
+}
+
 .team{
 	text-align: center;
 	padding-top: 150px;
