@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .ct{
+      width:200px;
+      height:100px;
+      border:1px solid #ccc;
+      margin:20px 20px;
+    }
+
+    .tips1{
+      height:0px;
+      width:0px;
+      border-bottom:10px #ccc solid;
+      border-left:10px transparent solid;
+      border-top:10px transparent solid;
+      border-right:10px transparent solid;
+      position:relative;
+      margin-top:-20px;
+      margin-left:10px;
+    }
+
+    .tips2{
+      width:0px;
+      height:0px;
+      border-top:10px red solid;
+      border-right:10px red solid;
+      border-bottom:10px transparent solid;
+      border-left:10px transparent solid;
+      position:relative;
+      margin-left:180px;
+    }
+
+    .tips3{
+      height:0px;
+      width:0px;
+      border-bottom:10px #ccc solid;
+      border-left:10px transparent solid;
+      border-right:10px transparent solid;
+      position:relative;
+      margin-top:-10px;
+      margin-left:10px;
+    }
+
+    .tips3::after{
+      content:"";
+      display:block;
+      border-bottom:10px white solid;
+      border-left:10px transparent solid;
+      border-top:10px transparent solid;
+      border-right:10px transparent solid;
+      position:absolute;
+      margin-top:-8px;
+      margin-left:-10px;
+    }
+
+
+
+  </style>
+</head>
+<body>
+<div class="ct">
+  <div class="tips1"></div>
+</div>
+<div class="ct">
+  <div class="tips2"></div>
+</div>
+<div class="ct">
+  <div class="tips3">
+  </div>
+</div>
+</body>
+</html>
