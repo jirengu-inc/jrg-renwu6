@@ -93,10 +93,8 @@ hr{
 	color: #fff;
 	float:left;
 	list-style: none;
-	padding: 0 9px;
-	margin-right: 22px;
-	width: 200px;
-	height: 234px;
+	width: 220px;
+	margin: 10px;
 }
 .section2 span{
 	font-size: 110px;
