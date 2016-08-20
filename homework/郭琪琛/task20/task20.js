@@ -57,27 +57,29 @@ console.log( fnArr[3]() );
 
 
 //2. 使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态
-var Car = {
-    speed: 0,
-    setSpeed: function (s) {
-        Car.speed = s;
-    },
-    getSpeed: function () {
-        return Car.speed;
-    },
-    accelerate: function () {
-        Car.speed+=10;
-    },
-    decelerate: function() {
-        Car.speed-=10;
-    },
-    getStatus: function() {
-        if (Car.speed===0) {
-            return 'stop';
+var Car = (function () {
+    var speed = 0
+    return {
+        setSpeed: function (s) {
+            Car.speed = s;
+        },
+        getSpeed: function () {
+            return Car.speed;
+        },
+        accelerate: function () {
+            Car.speed+=10;
+        },
+        decelerate: function() {
+            Car.speed-=10;
+        },
+        getStatus: function() {
+            if (Car.speed===0) {
+                return 'stop';
+            }
+            return 'running';
         }
-        return 'running';
     }
-};//todo
+})()
 Car.setSpeed(30);
 Car.getSpeed(); //30
 Car.accelerate();
