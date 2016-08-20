@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务12-1</title>
+	<style>
+  		html,body,ul,li{
+		  margin:0;
+		  padding:0;
+		}
+		li{
+		  list-style:none;
+		}
+		.layout{
+		  width: 900px;
+		  margin:0 auto;
+		}
+		#content{
+			margin-top:30px;
+		}
+		.panels{
+		  margin-left:-20px
+		}
+		.main{
+		  margin-top:10px;
+		  padding:10px 0;
+		  background:#ccc;
+		}
+		.panels:after{ 
+		      content: '';
+		      display: block;
+		      clear: both;
+		    }
+		.panels>li{
+		      float: left;  
+		      margin-left: 20px;   
+		      margin-top: 10px;  
+		      width: 286px;       
+		      height: 80px;
+		      background: #004210;
+
+		}
+
+
+</style>
+</head>
+<body>
+  <div class="layout" id="content">
+    <div class="main">
+   <ul class="panels">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+  </div>
+</ul>
+  </div>
+</body>
+</html>

@@ -2,14 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>task16-4</title>
+    <title>task17-7</title>
   </head>
   <body>
     <script>
-      var arr = [3,4,5];
-      for(var i = 0; i < arr.length; i++) {
-        console.log(arr[i] * arr[i]);
+      var fn;
+      function fn(fn){
+        console.log(fn);
       }
+      fn = 1;
+      console.log(fn(fn));
     </script>
   </body>
 </html>

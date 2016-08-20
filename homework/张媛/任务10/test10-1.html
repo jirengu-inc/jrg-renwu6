@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>两栏布局</title>
+  <style>
+  *{
+    margin:0;
+    padding: 0;
+  }
+  /*----------------head部分--------------*/
+  .headcolor{
+    height:50px;
+    background: #000;
+}
+.center{
+  width: 900px;
+  margin: 2px -36px;
+  position: fixed;
+  left:20%;
+}
+a{
+  position: relative;
+  bottom: 50px;
+}
+.center  li {
+  width:70px;
+  height:50px;
+  list-style:none;
+  float: right;
+  font-family: Microsoft YaHei;
+  font-weight: bolder;
+  color: #eee;
+  position: relative;
+  bottom: 93px;
+  text-align: center;
+  line-height: 3;
+}
+.center  li:hover{
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+}
+
+
+  /*----------------content部分--------------*/
+#cot{
+  width:900px;
+  height: 500px;
+  margin:  0 auto;
+  padding: 0;
+  clear: both;
+}
+.content-left{
+width:200px;
+height:500px;
+background-color: #eee;
+float: left;
+
+margin-left: 0;
+}
+.content-right{
+width:690px;
+height:40%;
+background-color: #eee;
+padding: 10px
+margin-top: 10px;
+margin-left: 210px;
+}
+
+.coul li:first-child{
+line-height: 70px;
+font-size: 30px;
+
+}
+.coul{
+  padding: 10px;
+  list-style:none;
+  font-family: Microsoft YaHei;
+  color: #000;
+  font-size: 10px;
+}
+
+  /*----------------footer部分--------------*/
+.fotbg{
+  height:40px;
+  background: #111;
+}
+.fot{
+  width: 900px;
+  margin: 2px -44px;
+  position: relative;
+  left:20%;
+  bottom:40px;
+  background-color: red;
+}
+.fotul li{
+  margin-right: 40px;
+  list-style:none;
+  float: left;
+  font-family: Microsoft YaHei;
+  cursor: pointer;
+  color: #eee;
+}
+  </style>
+</head>
+<body>
+
+  <div id="head">
+    <div class="headcolor"></div>
+    <div class="center">
+      <a href="#"><img src="images/logo-tiny.png" height="40px" ></a>
+      <ul>
+        <li>关于</li>
+        <li>作品</li>
+        <li>经历</li>
+        <li>技能</li>
+      </ul>
+    </div>
+
+  </div>
+
+
+
+  <div id="cot">
+    <div class="content-left"></div>
+    <div class="content-right">
+      <ul class="coul">
+        <li>我的作品</li>
+        <li>生活如此美好</li>
+        <li>心情有点暴躁</li>
+        <li>这样不好不好</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div id="footer">
+
+    <div class="fotbg"></div>
+
+    <div class="fot">
+      <ul class="fotul">
+        <li>饥人谷</li>
+        <li>JSCODE</li>
+        <li>JSBIN</li>
+      </ul>
+
+  </div>
+  </div>
+  </div>
+
+
+</body>
+</html>
