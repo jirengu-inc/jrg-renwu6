@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/normalize/3.0.1/normalize.min.css" type="text/css" />
+    <style media="screen">
+        @font-face {
+            font-family: 'iconfont';
+            src: url('//at.alicdn.com/t/font_1471761090_4309914.eot');
+            /* IE9*/
+            src: url('//at.alicdn.com/t/font_1471761090_4309914.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//at.alicdn.com/t/font_1471761090_4309914.woff') format('woff'), /* chrome、firefox */
+            url('//at.alicdn.com/t/font_1471761090_4309914.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//at.alicdn.com/t/font_1471761090_4309914.svg#iconfont') format('svg');
+            /* iOS 4.1- */
+        }
+
+        .skills-iconfont {
+            font-family: "iconfont";
+            font-size: 120px;
+            font-style: normal;
+        }
+
+        ul,
+        ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            font-family: "微软雅黑";
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        #header a,
+        .skills a,
+        .works a,
+        .about-me a,
+        .contact a {
+            text-decoration: none;
+        }
+
+        #header {
+            height: 100vh;
+            background-image: url(http://www.tu123.cn/uploads/allimg/c130121/135WL41P2050-61Z40.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            width: 960px;
+            height: 100%;
+            margin: 0 auto;
+            display: table;
+        }
+
+        .wrap {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .header-btn {
+            display: inline-block;
+            height: 40px;
+            width: 140px;
+            line-height: 40px;
+            color: rgba(255, 255, 255, 1);
+            background: rgba(0, 0, 0, .4);
+        }
+
+        .header-btn:hover,
+        .works-btn:hover {
+            background: rgba(0, 0, 0, .8);
+        }
+
+        .part {
+            padding: 50px 0;
+        }
+
+        .skills {
+            color: rgba(255, 255, 255, 1);
+            padding: 50px 0;
+            background: #82BEDE;
+        }
+
+        hr {
+            border: 1px solid;
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .works hr,
+        #footer hr {
+            color: #eee;
+        }
+
+        .skills li {
+            box-sizing: border-box;
+            width: 25%;
+            float: left;
+            padding: 10px;
+        }
+
+        .skills-btn {
+            display: inline-block;
+            width: 95px;
+            height: 30px;
+            line-height: 30px;
+            background: #fff;
+            color: #000;
+        }
+
+        .skills-btn:hover,
+        {
+            background-color: RGB(238, 238, 238);
+        }
+
+        .digression {
+            background-image: url(http://www.100232.com/uploads/allimg/131109/1-131109211442-50.jpg);
+            background-size: cover;
+            color: rgba(255, 255, 255, 1);
+            padding: 200px 0;
+        }
+
+        .works ul {
+            margin-right: -30px;
+        }
+
+        .works li {
+            margin-right: 30px;
+            margin-bottom: 30px;
+            width: 465px;
+            height: 305px;
+            float: left;
+        }
+
+        .works-btn {
+            display: inline-block;
+            width: 140px;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.4)
+        }
+
+        .about-me {
+            background-color: #337AB7;
+            padding: 50px 0;
+            color: #fff;
+        }
+
+        .message-iconfont {
+            font-family: "iconfont";
+            font-style: normal;
+        }
+
+        #footer .wrap>ul {
+            margin-bottom: 30px;
+        }
+
+        .contact-iconfont {
+            font-family: "iconfont";
+            font-style: normal;
+            font-size: 50px;
+        }
+
+        .contact li {
+            padding: 10px;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            color: rgba(0, 0, 0, .8);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <div class="wrap">
+                <h1>Hi!nature</h1>
+                <p>我是一个正在学习前端的同学</p>
+                <a class="header-btn" href="#">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="resume part">
+            <div class="container">
+                <div class="wrap">
+                    <h1>想要了解我么？</h1>
+                    <p>我都不了解<a href="">自己</a>。</p>
+                </div>
+            </div>
+        </div>
+        <div class="skills">
+            <div class="container">
+                <div class="wrap">
+                    <h1>技能</h1>
+                    <hr>
+                    <ul class="clearfix">
+                        <li><span class="skills-iconfont">&#xe603;</span>
+                            <h4>HTML&CSS</h4>
+                            <p>HTML常用标签、CSS常见布局..</p>
+                            <a class="skills-btn" href="#">相关作品</a>
+                        </li>
+                        <li><span class="skills-iconfont">&#xe602;</span>
+                            <h4>JS&Jquery</h4>
+                            <p>JS组件、插件、AJAX。比如JS框架..</p>
+                            <a class="skills-btn" href="#">相关作品</a>
+                        </li>
+                        <li><span class="skills-iconfont">&#xe600;</span>
+                            <h4>项目</h4>
+                            <p>二级导航栏，单栏，双栏，三栏布局。</p>
+                            <a class="skills-btn" href="#">我的项目</a>
+                        </li>
+                        <li><span class="skills-iconfont">&#xe601;</span>
+                            <h4>个人博客</h4>
+                            <p>GitHub上传了代码，简书博客中记录了学习经验。</p>
+                            <a class="skills-btn" href="#">查看博客</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="digression">
+            <div class="container">
+                <div class="wrap">
+                    <h1>I love the nature</h1>
+                </div>
+            </div>
+        </div>
+        <div class="works part">
+            <div class="container">
+                <div class="wrap">
+                    <h1>Works</h1>
+                    <hr>
+                    <ul class="clearfix">
+                        <a href="#">
+                            <li><img src="http://dingyue.nosdn.127.net/28FxV01NrJR5ltDY=KUaB7wOuXDZuuMfRWhDtBthZsN=61446870904973compressflag.jpg" alt=""></li>
+                        </a>
+                        <a href="#">
+                            <li><img src="http://i1.w.hjfile.cn/doc/201112/walking%20along.JPG47334.jpg" alt=""></li>
+                        </a>
+                        <a href="#">
+                            <li><img src="http://china.ucanews.com/wp-content/uploads/2015/05/W_Pope-discuss-synod.jpg" alt=""></li>
+                        </a>
+                        <a href="#">
+                            <li><img src="http://asuke.info/images/blog_images/IMG_0542_c.jpg" alt=""></li>
+                        </a>
+                    </ul>
+                    <a class="works-btn" href="#">更多作品</a>
+                </div>
+            </div>
+        </div>
+        <div class="about-me">
+            <div class="container">
+                <div class="wrap">
+                    <h3>我的数学真的很差</h3>
+                    <a class="header-btn" href="#">Click Me</a>
+                    <a class="header-btn" href="#">Look at Me</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <div class="wrap">
+                <h4>我的信息</h4>
+                <p>福建省福州市
+                    <br> 三味舒屋
+                </p>
+                <ul>
+                    <li><span class="message-iconfont">&#xe607;</span>15959136108</li>
+                    <li><span class="message-iconfont">&#xe608;</span><a href="#">1184907487@qq.com</a></li>
+                </ul>
+                <ul class="contact">
+                    <li><a class="contact-iconfont contact-btn" href="#">&#xe606;</a></li>
+                    <li><a class="contact-iconfont contact-btn" href="#">&#xe604;</a></li>
+                    <li><a class="contact-iconfont contact-btn" href="#">&#xe605;</a></li>
+                </ul>
+                <hr>
+                <p>Copyright © hunger 2016</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
