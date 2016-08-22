@@ -46,7 +46,7 @@ body{
 	margin-left: 20px;
 
 }
-.nav li {
+.nav>li {
 	font-size: 18px;
 	float: left;
 	width: 70px;
@@ -54,6 +54,7 @@ body{
 	line-height: 30px;
 	text-align: center;
 	position: relative;
+	padding-bottom: 10px;
 }
 .nav .triangle:after{
 	content: "";
@@ -67,21 +68,24 @@ body{
 	position: absolute;
 	left: -9999px;
 	top: 100%;
+	width: 70px;
 	border: 1px solid black;
 	background: white;
 }
 .droplist li{
+	font-size: 16px;
+	padding: 5px 7px;
 	border-bottom: 1px dashed black;
 }
 .droplist li:last-child{
 	border-bottom: 0;
 }
-.nav li:hover{
-	background: #cccccc;
+.droplist li:hover{
+	background: #ccc;
 }
 .nav li:hover .droplist{
 	left: -1px;
-}
+} 
 /* 设置content */
 .intro{
 	padding: 20px 0;

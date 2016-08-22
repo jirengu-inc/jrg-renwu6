@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-19-3</title>
+</head>
+
+<body>
+  <script>
+    var lastweek = getLastNDays(7),
+        lastMonth = getLastNDays(30);
+    console.log(lastweek);
+    console.log(lastMonth);
+    function getLastNDays(n) {
+      var t1 = Date.now(),
+          t2 = n * 24 * 60 * 60 *1000,
+          t3 = new Date(t1 - t2),
+          str = t3.toLocaleDateString(),
+          newstr = str.split("/").join("-");
+      return newstr;
+    }
+  </script>
+</body>
+
+</html>

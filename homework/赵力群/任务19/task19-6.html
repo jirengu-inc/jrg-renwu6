@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-19-6</title>
+</head>
+
+<body>
+  <script>
+    function jsonDeepCopy(json) {
+      var newJson = {};
+      for(property in json) {
+        if(typeof json[property] === "object") {
+          newJson[property] = jsonDeepCopy(json[property]);
+        } else {
+          newJson[property] = json[property];
+        }
+      }
+      return newJson;
+    }
+    var json1 = {
+      "name": "zhao",
+      "age": 24
+    };
+    var json2 = jsonDeepCopy(json1);
+    json2.age = 25;
+    console.log(json1);
+    console.log(json2);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding: 0;
+	font:15px/1.2 Helvetica,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",Arial,sans-serif;
+}
+a{
+	text-decoration: none;
+	color: #666;
+}
+ul,li{
+	list-style: none;
+}
+.layout{
+	width: 1000px;
+	margin:0 auto;
+	text-align: left;
+}
+#header{
+	width: 100%;
+	height: 50px;
+}
+#header span{
+	color: #4c4a4a;
+	font-size: 35px;
+	line-height: 50px;
+}
+#header span:hover{
+	color: #151414;
+}
+#header .rocket,#header .items>li{
+	float: left;
+}
+.items>li{
+	padding:0 10px;
+	line-height: 50px;
+}
+.items>li a:hover{
+	color: #131212;
+}
+.items>li:hover .more{
+	display: block;
+}
+.items>li:nth-child(4){
+	position: relative;
+}
+.items .more{
+	position: absolute;
+	top: 100%;left: 0;
+	display: none;
+	background: #fff;
+	border:1px solid #ccc;
+}
+.more>li:hover{
+	background: #eee;
+}
+.more>li{
+	border-bottom: 1px dashed #ccc;
+	padding:8px 10px;
+}
+.profile,.download{
+    color: white;
+    background: #CD4F39;
+}
+.profile{
+	padding: 30px 0px;
+}
+.layout h1{
+	padding: 10px 0px;
+	font-size: 26px;
+}
+.layout p,.download p,h1,h3{
+	letter-spacing: 1px;
+}
+.homepage{
+	background: #eee;
+	padding: 10px 0px;
+	margin:40px auto 30px auto;
+}
+.homepage a{
+	text-align: left;
+	padding: 0 10px;
+	color: #CD4F39;
+}
+img{
+	width: 300px;
+	height: 200px;
+}
+.projects{
+	margin-left: -47px;
+	overflow: auto;
+}
+.projects>li{
+	width: 300px;
+	border:1px solid #aaa;
+	margin-left: 47px;
+	margin-bottom: 20px;
+	float: left; 
+}
+.projects h2{
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+}
+.projects p{
+	font-size: 14px;
+	padding: 0px 10px;
+}
+.projects{
+	text-align: center;
+}
+.projects p,h2{
+	text-align: left;
+}
+.projects a,.download a{
+	display: inline-block;
+	border:1px solid #aaa;
+	padding: 7px;
+	border-radius: 3px;	
+}
+.projects a{
+	margin:10px auto;
+}
+.projects a:hover{
+	color: #131212;
+}
+.download{
+	padding: 22px 0px;
+}
+h3{
+	font-size: 26px;
+}
+.download p{
+	margin:8px auto;
+}
+.download a{
+	color: #fff;
+}
+.download .layout{
+	text-align: center;
+}
+#footer{
+	text-align: center;
+}
+#footer p{
+	margin: 30px auto;
+	border-top:1px solid #eee;
+	padding-top: 20px;
+}
