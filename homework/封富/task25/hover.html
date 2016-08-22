@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航条的制作</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            border:0;
+        }
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear:both;
+        }
+        .ct {
+            margin: 20px;
+        }
+        li {
+            list-style-type:none;
+            width:100px;
+            height:40px;
+            line-height:40px;
+        }
+        a {
+            color: #fff;
+            display: block;
+            text-decoration: none;
+        }
+        .lis {
+            position: relative;
+            background-color: crimson;
+            padding:5px 5px 5px 20px;
+        }
+        .lis ul {
+            display: none;
+            position: absolute;
+            width: 220px;
+            top: 0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;;
+            left: 100%;
+        }
+        .lis .active {
+            display: block;
+        }
+        .lis>a {
+            float: left;
+        }
+        .lisdet {
+            float: left;
+        }
+        .lisdet a {
+        color: #000;
+        }
+    .tip {
+        float: right;
+        color: #fff;
+    }
+    </style>
+</head>
+<body>
+<div class="ct">
+    <ul class="nav">
+        <li class="lis clearfix"><a href="#">珠宝玉器</a>
+            <div class="tip">&gt;</div>
+            <ul class="navs clearfix">
+                <li class="lisdet"><a href="#">翡翠</a></li>
+                <li class="lisdet"><a href="#">玉石</a></li>
+                <li class="lisdet"><a href="#">宝石</a></li>
+                <li class="lisdet"><a href="#">水晶</a></li>
+                <li class="lisdet"><a href="#">玛瑙</a></li>
+                <li class="lisdet"><a href="#">珍珠</a></li>
+                <li class="lisdet"><a href="#">琥珀</a></li>
+                <li class="lisdet"><a href="#">和田</a></li>
+                <li class="lisdet"><a href="#">水晶</a></li>
+                <li class="lisdet"><a href="#">钻石</a></li>
+            </ul>
+        </li>
+        <li class="lis clearfix"><a href="#">珠宝玉器</a>
+            <div class="tip">&gt;</div>
+            <ul class="navs clearfix">
+                <li class="lisdet"><a href="#">翡翠</a></li>
+                <li class="lisdet"><a href="#">玉石</a></li>
+                <li class="lisdet"><a href="#">宝石</a></li>
+                <li class="lisdet"><a href="#">水晶</a></li>
+                <li class="lisdet"><a href="#">玛瑙</a></li>
+                <li class="lisdet"><a href="#">珍珠</a></li>
+                <li class="lisdet"><a href="#">琥珀</a></li>
+                <li class="lisdet"><a href="#">和田</a></li>
+            </ul>
+        </li>
+        <li class="lis clearfix"><a href="#">珠宝玉器</a>
+            <div class="tip">&gt;</div>
+            <ul class="navs clearfix">
+                <li class="lisdet"><a href="#">翡翠</a></li>
+                <li class="lisdet"><a href="#">玉石</a></li>
+                <li class="lisdet"><a href="#">宝石</a></li>
+                <li class="lisdet"><a href="#">水晶</a></li>
+                <li class="lisdet"><a href="#">玛瑙</a></li>
+                <li class="lisdet"><a href="#">珍珠</a></li>
+            </ul>
+        </li>
+        <li class="lis clearfix"><a href="#">珠宝玉器</a>
+            <div class="tip">&gt;</div>
+            <ul class="navs clearfix">
+                <li class="lisdet"><a href="#">翡翠</a></li>
+                <li class="lisdet"><a href="#">玉石</a></li>
+                <li class="lisdet"><a href="#">宝石</a></li>
+                <li class="lisdet"><a href="#">水晶</a></li>
+            </ul>
+        </li>
+        <li class="lis clearfix"><a href="#">珠宝玉器</a>
+            <div class="tip">&gt;</div>
+            <ul class="navs clearfix">
+                <li class="lisdet"><a href="#">翡翠</a></li>
+                <li class="lisdet"><a href="#">玉石</a></li>
+                <li class="lisdet"><a href="#">宝石</a></li>
+                <li class="lisdet"><a href="#">水晶</a></li>
+                <li class="lisdet"><a href="#">玛瑙</a></li>
+                <li class="lisdet"><a href="#">珍珠</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(".lis").on("mouseenter",function(){
+        $(this).find(".navs").addClass("active");
+    })
+    $(".lis").on("mouseleave",function(){
+        $(this).find(".navs").removeClass("active");
+    })
+</script>
+</body>
+</html>

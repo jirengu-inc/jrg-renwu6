@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>task12</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        .wrap {
+            width: 900px;
+            margin: 0 auto;
+            background-color: #ccc;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .wrap>ul {
+            list-style: none;
+            padding-top: 20px;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+
+        .wrap>ul>li {
+            width: 286px;
+            height: 80px;
+            background-color: #004210;
+            float: left;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul class="clearfix">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</body>
+
+</html>
