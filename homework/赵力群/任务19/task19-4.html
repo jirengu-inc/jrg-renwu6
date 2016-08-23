@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-19-4</title>
+</head>
+
+<body>
+  <script>
+    var Runtime = (function(){
+      var startTime,
+          endTime,
+          getTime;
+      var obj = {
+        start: function(){
+          startTime = Date.now();
+          return startTime;
+        },
+        end: function(){
+          endTime = Date.now();
+          return endTime;
+        },
+        get: function(){
+          getTime = endTime - startTime;
+          return getTime;
+        }
+      };
+      return obj;
+    }());
+    Runtime.start();
+    for(var i  = 0; i <1000; i++) {
+      var j = 0;
+      console.log(i);
+    }
+    Runtime.end();
+    console.log(Runtime.get());
+  </script>
+</body>
+
+</html>

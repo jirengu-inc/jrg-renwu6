@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+	body,ul,li{
+		margin:0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	.div1{
+		width: 920px;
+		background: #ccc;
+		margin: 0 auto;
+		padding: 10px 0;
+	}
+	.clear:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.div1 li{
+		width: 300px;
+		height: 100px;
+		background: green;
+		margin: 10px 0;
+		float: left;
+        margin-left: 10px;
+	}
+	ul li:nth-child(1){
+		margin-left: 0;
+	}
+	
+	ul li:nth-child(4){
+		margin-left: 0;
+	}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<ul class="clear">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</div>
+</html>
