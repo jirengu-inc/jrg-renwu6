@@ -12,14 +12,14 @@ function addClass(el,cls) {
 
 
 function hasClass(el,cls) {
-    var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)","g")
+    var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)")
     return reg.test(el.className)
 }
 
 
 function removeClass(el,cls) {
     var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)","g")
-    el.className = el.className.replace(reg,"")
+    el.className = el.className.replace(reg,"").trim()
 }
 
 //3. 写一个函数isEmail(str)，判断用户输入的是不是邮箱
