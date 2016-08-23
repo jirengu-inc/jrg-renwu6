@@ -5,7 +5,9 @@ function trim(str) {
 
 //2. 使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则
 function addClass(el,cls) {
-    el.className+=" "+cls
+    if (!hasClass(el,cls)) {
+        el.className+=" "+cls
+    }
 }
 
 
@@ -17,7 +19,7 @@ function hasClass(el,cls) {
 
 function removeClass(el,cls) {
     var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)","g")
-    el.className.replace(reg,"")
+    el.className = el.className.replace(reg,"")
 }
 
 //3. 写一个函数isEmail(str)，判断用户输入的是不是邮箱
