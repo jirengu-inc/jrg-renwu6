@@ -10,8 +10,11 @@ html,body{
 h2{
 	font:30px/1.2 Arial;
 }
-h1,h2,h3,h4,h5,p,li{
+h1,h2,h3,h4,h5,p,li,ul,div{
 	font-family: Arial,Helvetica,sans-serif;
+	padding: 0;
+	margin:0;
+	box-sizing:border-box;
 }
 h1,h2,h3,h4,h5{
 	font-weight: bold;
@@ -33,6 +36,9 @@ hr{
 	width: 960px;
     margin:0 auto;   
     text-align: center;
+}
+#header{
+	position: relative;
 }
 #header .myname{
 	position: absolute;

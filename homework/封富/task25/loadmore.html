@@ -1,0 +1,179 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>加载更多</title>
+    <style>
+        html,body,div,ul,li,img {
+            margin:0;
+            padding:0;
+            border:0;
+        }
+        html,body {
+            font:14px/1.5 "微软雅黑";
+        }
+        a {
+            text-decoration: none;
+            color:#111;
+        }
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear:both;
+        }
+        li {
+            list-style:none;
+        }
+        .ct {
+            margin:10px;
+        }
+        .title {
+            height: 42px;
+        }
+        .descri {
+            width: 720px;
+            border:1px solid yellowgreen;
+        }
+        .detail {
+            float: left;
+            border: 1px solid #ccc;
+            padding:10px;
+            width:218px;
+            position: relative;
+        }
+        .img {
+            text-align: center;
+        }
+        .price {
+            color: red;
+        }
+        .cue {
+            position: absolute;
+            top:0;
+            left:0px;
+            width:238px;
+            height:213px;
+            background-color: rgba(204,204,204,0.5);
+            text-align: center;
+            opacity:0;
+            cursor: pointer;
+        }
+        .cue.hover {
+            opacity:1;
+        }
+        .cue a {
+            display: block;
+            width:100px;
+            height:50px;
+            line-height:50px;
+            border:1px solid red;
+            text-align: center;
+            background-color: #00ffcc;
+            margin:81px 69px;
+        }
+        .addBtn {
+            margin:10px;
+            display: block;
+            width:60px;
+            padding:10px;
+            border:1px solid #f00;
+            color:#f00;
+            text-align: center;
+            border-radius:5px
+        }
+    </style>
+</head>
+<body>
+    <div class="ct">
+        <h3>珠宝首饰</h3>
+        <ul class="descri clearfix">
+            <li class="detail">
+                <div class="img">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                </div>
+                <div class="title">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+                <div class="cue"><a href="#">立即抢购</a></div>
+            </li><li class="detail">
+            <div class="img">
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            </div>
+            <div class="title">藏美千足金和田玉金镶玉路路通吊坠</div>
+            <div class="price">￥1699.00</div>
+            <div class="cue"><a href="#">立即抢购</a></div>
+            </li><li class="detail">
+            <div class="img">
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            </div>
+            <div class="title">藏美千足金和田玉金镶玉路路通吊坠</div>
+            <div class="price">￥1699.00</div>
+            <div class="cue"><a href="#">立即抢购</a></div>
+            </li><li class="detail">
+            <div class="img">
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            </div>
+            <div class="title">藏美千足金和田玉金镶玉路路通吊坠</div>
+            <div class="price">￥1699.00</div>
+            <div class="cue"><a href="#">立即抢购</a></div>
+            </li><li class="detail">
+            <div class="img">
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            </div>
+            <div class="title">藏美千足金和田玉金镶玉路路通吊坠</div>
+            <div class="price">￥1699.00</div>
+            <div class="cue"><a href="#">立即抢购</a></div>
+            </li><li class="detail">
+            <div class="img">
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            </div>
+            <div class="title">藏美千足金和田玉金镶玉路路通吊坠</div>
+            <div class="price">￥1699.00</div>
+            <div class="cue"><a href="#">立即抢购</a></div>
+            </li>
+        </ul>
+        <a href="#" class="addBtn">添加</a>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        $(".descri").on("mouseenter",".detail",function(){
+            $(this).find(".cue").addClass("hover");
+        })
+        $(".descri").on("mouseleave",".detail",function(){
+            $(this).find(".cue").removeClass("hover");
+        })
+        var products = [
+            {
+                img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+                name: '珂兰 黄金手 猴哥款',
+                price: '￥405.00'
+            },{
+                img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+                name: '珂兰 黄金转运珠 猴哥款',
+                price: '￥100.00'
+            },{
+                img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+                name: '珂兰 黄金手链 3D猴哥款',
+                price: '￥45.00'
+            }
+        ];
+
+        function addBtn(e){
+            var html = "";
+            for(var i = 0;i < e.length;i++){
+                html += '<li class="detail">';
+                html += '<div class="img">';
+                html += '<img src="' + e[i].img + '" alt="">' + '</div>' + '<div class="title">'+e[i].name + '</div>';
+                html += '<div class="price">' + e[i].price + '</div>' + '<div class="cue"><a href="#">立即抢购</a></div></li>';
+            }
+            return html;
+        }
+        $(".addBtn").on("click",function(e){
+            e.preventDefault();
+            var res = addBtn(products);
+            $(res).appendTo(".descri");
+        })
+    </script>
+</body>
+</html>
