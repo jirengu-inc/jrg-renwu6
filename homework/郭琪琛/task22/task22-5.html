@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <title>task22-5</title>
     <style>
-        * {
+        p {
             margin: 0;
-            padding: 0;
         }
 
         a {
@@ -20,6 +19,7 @@
             right: 0;
             bottom: 0;
             left: 0;
+            z-index: 1000;
             background-color: rgba(0,0,0,0.4);
         }
 
@@ -31,9 +31,10 @@
 
         .confirm {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 50%;
             left: 50%;
+            z-index: 1000;
             transform: translate(-50%,-50%);
             width: 400px;
             border-radius: 5px;
@@ -50,12 +51,9 @@
         }
 
         .cf-header>span {
+            float: right;
             line-height: 1;
             font-size: 1.3em;
-        }
-
-        .cf-header>span {
-            float: right;
         }
 
         .cf-header>span:hover {
@@ -80,18 +78,14 @@
             margin-left: 10px;
         }
 
-        .btn {
-            width: 40px;
-            height: 25px;
-            border: 1px solid #c2c2c2;
-            border-radius: 5px;
-            background-color: #fff;
+        .cf-footer>a:hover {
+            color: #d2d2d2;
         }
     </style>
 </head>
 <body>
-    <button class="btn">点我</button>
-    <div id="mask"></div>
+    <button id="btn">点我</button>
+    <div id="cover" class="cf-close"></div>
     <div class="confirm">
         <div class="cf-header">
             <span class="cf-close">&times;</span>
@@ -107,8 +101,8 @@
         </div>
     </div>
     <script>
-        var btn = document.getElementsByClassName('btn')[0],
-            mask = document.getElementById('mask'),
+        var btn = document.getElementById('btn'),
+            cover = document.getElementById('cover'),
             cf = document.getElementsByClassName('confirm')[0]
         function hasClass(node,cls) {
             return new RegExp('(\\s|^)'+cls+'(\\s|$)').test(node.className)
@@ -122,18 +116,19 @@
             var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)')
             node.className = node.className.replace(reg,"").trim()
         }
-        function btnClick() {
-            addClass(mask,'cf-bg')
+        function btnClick(event) {
+            addClass(cover,'cf-bg')
             addClass(cf,'cf-appear')
         }
         function cfClose(event) {
             if (hasClass(event.target,'cf-close')) {
                 removeClass(cf,'cf-appear')
-                removeClass(mask,'cf-bg')
+                removeClass(cover,'cf-bg')
             }
         }
         btn.addEventListener('click',btnClick)
         cf.addEventListener('click',cfClose)
+        cover.addEventListener('click',cfClose)
     </script>
 </body>
 </html>
