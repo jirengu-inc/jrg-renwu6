@@ -1,17 +1,16 @@
 // 1. 写一个函数getIntv，获取从当前时间到指定日期的间隔时间
 function getIntv(str) {
-    var getTime = new Date(str),
-        setTime = new Date(2016,1,7),
-        dif = new Date(setTime-getTime),
-        date = dif.getDate(),
-        hour = dif.getHours(),
-        min = dif.getMinutes(),
-        sec = dif.getSeconds();
-
-    return "距离除夕还有"+date+"天"+hour+"小时"+min+"分"+sec+"秒"
+    var now = new Date(),
+        set = new Date(str),
+        dif = set-now,
+        day = Math.floor(dif/(24*60*60*1000)),
+        hour = Math.floor(dif%(24*60*60*1000)/(60*60*1000)),
+        min = Math.floor(dif%(24*60*60*1000)%(60*60*1000)/(60*1000)),
+        sec = Math.floor(dif%(24*60*60*1000)%(60*60*1000)%(60*1000)/1000);
+    return "距离指定日期还有"+day+"天"+hour+"小时"+min+"分钟"+sec+"秒"
 }
-var str = getIntv("2016-01-08");
-console.log(str);  // 距除夕还有 20 天 15 小时 20 分 10 秒
+var str = getIntv("2016-09-10");
+console.log(str);  // 距离指定日期还有18天19小时56分钟4秒
 
 //2. 把数字日期改成中文日期
 function getChsDate(str) {

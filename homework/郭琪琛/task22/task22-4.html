@@ -1,0 +1,90 @@
+<!-- 4. 实现如下图Tab切换的功能 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tsk22-4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .tab-item {
+            float: left;
+            width: 200px;
+            height: 40px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .tab-item:hover {
+            cursor: pointer;
+        }
+
+        .content {
+            position: absolute;
+            display: none;
+            width: 600px;
+            height: 180px;
+            border: 1px solid #ccc;
+        }
+
+        .alive {
+            display: block;
+        }
+        .ontab {
+            background-color: #ededed;
+        }
+    </style>
+</head>
+<body>
+    <ul class="tab clearfix">
+        <li class="tab-item">tab1</li>
+        <li class="tab-item">tab2</li>
+        <li class="tab-item">tab3</li>
+    </ul>
+    <div class="content alive">内容1</div>
+    <div class="content">内容2</div>
+    <div class="content">内容3</div>
+    <script>
+        var lst = document.getElementsByTagName('li'),
+            ct = document.getElementsByClassName('content')
+        function hasClass(node,cls) {
+            return new RegExp('(\\s|^)'+cls+'(\\s|$)').test(node.className)
+        }
+        function removeClass(node,cls) {
+            var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)')
+            if(hasClass(node,cls)) {
+                node.className = node.className.replace(reg,'').trim()
+            }
+        }
+        for (var i = 0; i < lst.length; i++) {
+            lst[i].onclick = function (i) {
+                return function () {
+                    removeClass(lst[0],'ontab')
+                    removeClass(lst[1],'ontab')
+                    removeClass(lst[2],'ontab')
+                    lst[i].className += ' ontab'
+                    removeClass(ct[0],'alive')
+                    removeClass(ct[1],'alive')
+                    removeClass(ct[2],'alive')
+                    ct[i].className += ' alive'
+                }
+            }(i)
+        }
+    </script>
+</body>
+</html>
