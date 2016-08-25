@@ -1,12 +1,14 @@
 @charset "utf-8";
 /*重置样式*/
-body,div,p,ul,li,h1,h2,h3,h4,h5,h6{
+body,ul,li{
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
-html,body{
-	width: 100%;
-	height: 100%;
+body{
+	font-family: Helvetica,'Microsoft YaHei',Arial;
+	font-size: 14px;
+	height: 100vh;
 }
 ul,li{
 	list-style: none;
@@ -31,8 +33,199 @@ a{
 	height: 100%;
 }
 .header-wrap{
-	padding-top: 50px;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
+}
+.header-wrap>p{
+	margin: 20px 0;
+	font-size: 16px;
+}
+.btn1{
+	display: inline-block;
+	padding: 10px 8px;
+	background-color: #6d7d84;
+	color: #fff;
+	border-radius: 3px;
+}
+.btn1:hover{
+	background-color: #eee;
+	color: #333;
+}
+/*主体部分样式*/
+.about{
+	padding: 50px 0;
+	text-align: center;
+}
+.about h2{
+	margin-bottom: 20px;
+}
+.about p{
+	font-size: 16px;
+}
+.about a{
+	color: #337ab7;
+}
+.skill{
+	padding: 50px 0;
+	background-color: #337ab7;
+	color: #fff;
+}
+.skill h3{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #fff;
+    width: 80px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+.skill-main>li{
+	float: left;
+	padding: 10px;
+	width: 25%;
+    text-align: center;
+}
+.btn2{
+	display: inline-block;
+	padding:8px;
+	color: #333;
+	border-radius: 3px;
+	background-color: #fff;
+}
+.btn2:hover{
+	color: #fff;
+	background-color: #6d7d84;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear:both;
+}
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1471928614'); /* IE9*/
+  src: url('iconfont.eot?t=1471928614#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1471928614') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1471928614') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1471928614#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:100px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.content{
+	padding: 200px 0;
+	background:url(../images/callout.jpg);
+	background-size: cover;
+	color: #fff;
+}
+.content>p{
+	text-align: center;
+	font-size: 32px;
+}
+.works{
+	padding: 50px 0;
+	text-align: center;
+}
+.works h2{
+	font-size: 30px;	
+}
+.works ul{
+	margin-left: -30px;
+}
+.works li{
+	float: left;
+	width: 465px;
+	margin-left: 30px;
+	margin-bottom: 30px;
+}
+.call{
+	padding: 50px 0;
+	background-color: #337ab7;
+	color: #fff;
+	text-align: center;
+}
+.btn3{
+	display: inline-block;
+	width: 140px;
+	height: 50px;
+	line-height: 50px;
+	margin-right: 10px;
+}
+.btn3-white{
+	background-color: #fff;
+	color: #333;
+}
+.btn3-white:hover{
+	background-color: #e60;
+	color: #fff;
+}
+.btn-black{
+	background-color: #6d7d84;
+	color: #fff;
+}
+.btn-black:hover{
+	background-color: #f60;
+	color: #333;
+}
+/*尾部样式*/
+#footer{
+	padding: 80px 0;
+	text-align: center;
+}
+@font-face {font-family: "iconfont2";
+  src: url('iconfont2.eot?t=1471935576'); /* IE9*/
+  src: url('iconfont2.eot?t=1471935576#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont2.woff?t=1471935576') format('woff'), /* chrome, firefox */
+  url('iconfont2.ttf?t=1471935576') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont2.svg?t=1471935576#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont2 {
+  font-family:"iconfont2" !important;
+  font-size: 16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.contact{
+	margin-bottom: 30px;
+}
+.contact a{
+	color: #337ab7;
+}
+@font-face {font-family: "iconfont3";
+  src: url('iconfont3.eot?t=1471939513'); /* IE9*/
+  src: url('iconfont3.eot?t=1471939513#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont3.woff?t=1471939513') format('woff'), /* chrome, firefox */
+  url('iconfont3.ttf?t=1471939513') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont3.svg?t=1471939513#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont3 {
+  font-family:"iconfont3" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon li{
+	display: inline-block;
+	margin: 10px;
+}
+.icon a{
+	font-size: 45px;
+	color: #337ab7;
+}
+.icon a:hover{
+	color: #f60;
+}
+hr{
+	margin: 20px auto;
+	border-bottom: 1px solid #eee;
+	max-width: 100px;
 }
