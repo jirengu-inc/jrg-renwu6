@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>实现一些简单操作</title>
+	<style>
+		.ct {
+			border:1px solid #ccc;
+		}
+		.box1 {
+			width: 200px;
+			height: 200px;
+			border: 1px solid yellow;
+		}
+		.box3 {
+			width: 200px;
+			height: 200px;
+			border: 1px solid green;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<h3>1.点击，背景色先变红，再变蓝</h3>
+		<div class="box1"></div>
+	</div>
+	<div class="ct">
+		<h3>2.获取垂直滚动距离</h3>
+		<div class="box2">0px</div>
+	</div>
+	<div class="ct">
+		<h3>3.鼠标放在div上，变成红色，移除变为蓝色</h3>
+		<div class="box3"></div>
+	</div>
+	<div class="ct">
+		<h3>4.input框的操作</h3>
+		<input class="toUpper" type="text">
+	</div>
+	<div class="ct">
+		<h3>5.复选框的操作</h3>
+		<div class="box4">请选择</div>
+		<select name="" id="sel">
+			<option value="我是第1个">我是第1个</option>
+			<option value="我是第2个">我是第2个</option>
+			<option value="我是第3个">我是第3个</option>
+			<option value="我是第4个">我是第4个</option>
+			<option value="我是第5个">我是第5个</option>
+		</select>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<script>
+		$(".box1").on("click",function(){
+			$(this).css("background-color","red");
+			setTimeout(function(){$(".box1").css("background-color","blue")},1000);
+		})
+		$(window).on("scroll",function(){
+			$(".box2").text($("body").scrollTop() + "px");
+
+		})
+		$(".box3").on("mouseenter",function(){
+			$(this).css("background-color","red");
+		})
+		$(".box3").on("mouseleave",function(){
+			$(this).css("background-color","blue");
+		})
+		$(".toUpper").on("focus",function(){
+			$(this).css("border-color","blue");
+		}).on("blur",function(){
+			$(this).css("border-color","initial");
+		}).on("keyup",function(){
+			$(this).val($(this).val().toUpperCase());
+		});
+		$("#sel").on("change",function(){
+			$(".box4").text($(this).val());
+		})
+	</script>
+</body>
+</html>
