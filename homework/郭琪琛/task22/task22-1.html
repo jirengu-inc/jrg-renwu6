@@ -21,10 +21,11 @@
     //     lst[i].addEventListener('click',clickLst)
     // }
 //DOM2级事件委托
-    var lst = document.getElementsByTagName('li'),
-        ct = document.getElementsByClassName('ct')[0]
+    var ct = document.getElementsByClassName('ct')[0]
     function clickLst(e) {
-        console.log(e.target.innerText)
+        if (e.target.nodeName === 'LI') {
+            console.log(e.target.innerText)
+        }
     }
     ct.addEventListener('click',clickLst)
 </script>
