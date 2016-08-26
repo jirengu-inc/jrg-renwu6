@@ -8,11 +8,11 @@
 
 <script>
 
-   //整个立即执行函数被赋值,然后通过外部函数传参
+   //立即执行函数内赋值,然后通过外部函数传参
     var fnArr = [];
     for (var i = 0; i < 10; i ++) {
-        fnArr[i] =  (function(num){
-            return function(){
+        (function(num){
+            fnArr[i] = function(){
                 return num;
             }
         })(i);
