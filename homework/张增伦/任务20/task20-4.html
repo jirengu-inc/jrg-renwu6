@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+<script>
+
+    function getMini(){
+        var i = 0;
+        var startTime = Date.now();
+        var clock = setTimeout(
+                function(){
+                    i++;
+                    if(i===1000){
+                        clearTimeout(clock);
+                        var endTime = Date.now();
+                        console.log(endTime-startTime);
+                    }
+                    clock = setTimeout(arguments.callee,0);
+                },
+                0
+        );
+    }
+
+    getMini();
+
+</script>
+
+</body>
+</html>
