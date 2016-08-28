@@ -45,6 +45,16 @@
         }
         .pic li {
             float: left;
+            position: relative;
+        }
+        .pic li h1 {
+            font-size: 40px;
+            font-family:"楷体";
+            color: #f44;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform:translateX(-50%) translateY(-50%);
         }
         .turn {
             display: block;
@@ -90,10 +100,22 @@
 <body>
 <div class="ct clearfix">
     <ul class="pic clearfix">
-        <li><img src="1.jpg" alt=""></li>
-        <li><img src="2.jpg" alt=""></li>
-        <li><img src="3.jpg" alt=""></li>
-        <li><img src="4.jpg" alt=""></li>
+        <li>
+            <img src="1.jpg" alt="">
+            <h1>目击众神死亡的草原上野花一片</h1>
+        </li>
+        <li>
+            <img src="2.jpg" alt="">
+            <h1>远在远方的风比远方更远</h1>
+        </li>
+        <li>
+            <img src="3.jpg" alt="">
+            <h1>我的琴声无业，泪水全无</h1>
+        </li>
+        <li>
+            <img src="4.jpg" alt="">
+            <h1>只身打马过草原</h1>
+        </li>
     </ul>
     <a href="#" class="turn up">&lt;</a><a href="#" class="turn down">&gt;</a>
     <ul class="dot">
