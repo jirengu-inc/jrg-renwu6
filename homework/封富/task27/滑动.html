@@ -1,0 +1,191 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全屏滑动轮播</title>
+    <style>
+        html,body,ul,li,div,a,img {
+            margin:0;
+            padding:0;
+            border:0;
+        }
+        body {
+            font-size: 0;
+        }
+        li {
+            list-style:none;
+        }
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #000;
+        }
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        img {
+            width:100vw;
+            height:100vh;
+        }
+        .ct {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pic {
+            position: absolute;
+            top:0;
+            left:0;
+            /*display: none;*/
+        }
+        .pic li {
+            float: left;
+        }
+        .turn {
+            display: block;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius:10px;
+            background-color: #d13;
+            text-align: center;
+            line-height: 20px;
+            top: 50%;
+            margin-top: -10px;
+        }
+        .turn:hover {
+            background-color: chartreuse;
+        }
+        .up {
+            left: 10px;
+        }
+        .down {
+            right:10px;
+        }
+        .dot {
+            position: absolute;
+            left:50%;
+            transform: translateX(-50%);
+            bottom:20px;
+        }
+        .dot>li {
+            cursor: pointer;
+            float:left;
+            width:10px;
+            height:10px;
+            border-radius: 5px;
+            margin: 0 5px;
+            background-color: #d66;
+        }
+        .dot>li.active {
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<div class="ct clearfix">
+    <ul class="pic clearfix">
+        <li><img src="1.jpg" alt=""></li>
+        <li><img src="2.jpg" alt=""></li>
+        <li><img src="3.jpg" alt=""></li>
+        <li><img src="4.jpg" alt=""></li>
+    </ul>
+    <a href="#" class="turn up">&lt;</a><a href="#" class="turn down">&gt;</a>
+    <ul class="dot">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $dot = $(".dot"),
+        $pic = $(".pic"),
+        $item = $pic.children(),
+        $len = $dot.children().length,
+        imgwidth = $pic.children().width();
+//    $pic.prepend($pic.children().last().clone());
+    $pic.prepend($item.last().clone());
+    $pic.append($item.first().clone());
+//    $pic.append($pic.children().first().clone()); // 不能直接选择，会将上一步中clone的一起算在其中
+    var $reallen = $pic.children().size();
+    var lock = false;
+    $pic.css({
+        left:-imgwidth,
+        width:imgwidth * $reallen
+    });
+    function ind() {
+        for (var i = 0; i < $len; i++) {
+            if ($dot.children().eq(i).hasClass("active")){
+                var ind = i;
+            }
+        }
+        return ind;
+    }
+    $(".up").on("click",function(e){
+        e.preventDefault();
+        changePre();
+    })
+    $(".down").on("click",function(e){
+        e.preventDefault();
+        changeNext();
+    })
+    $dot.on("click","li",function () {
+        var idx1 = ind();
+        var idx2 = $(this).index();
+        console.log(idx1,idx2);
+        if(idx1 > idx2){
+            changePre(idx1 - idx2);
+        }else{
+            changeNext(idx2 - idx1);
+        }
+    })
+    function auto(){
+        setInterval(function(){
+//            changePre();
+            changeNext();
+        },3000);
+    }
+    function changeNext(idx){
+        var idx = idx || 1;
+        if(lock === true) return;
+        lock = true;
+        var curidx = ind();
+        console.log(curidx);
+
+        $dot.children().removeClass("active");
+        $dot.children().eq((curidx + idx)%$len).addClass("active");
+//        $pic.children().fadeOut(500);
+        $pic.animate({left:"-="+imgwidth * idx},function(){
+            if((curidx + idx)%$len === 0){
+                $pic.css("left",-imgwidth);
+            }
+            lock = false;
+        });
+    }
+    function changePre(idx){
+        var idx = idx || 1;
+        if(lock === true) return;
+        lock = true;
+        var curidx = ind();
+        console.log(curidx);
+        $dot.children().removeClass("active");
+        $dot.children().eq((curidx - idx)%$len).addClass("active");
+//        $pic.children().fadeOut(500);
+        $pic.animate({left:"+="+imgwidth * idx},function(){
+            if(curidx + idx === 1){
+                $pic.css("left",-(imgwidth*$len));
+            }
+            lock = false;
+        });
+    }
+    auto();
+</script>
+</body>
+</html>
