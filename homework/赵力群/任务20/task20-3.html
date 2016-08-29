@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-20-3</title>
+</head>
+
+<body>
+  <script>
+    //法 1：
+    var n = 0;
+    setTimeout(function(){
+      console.log(n++);
+      setTimeout(arguments.callee,1000);
+    },1000);
+    //法 2：
+    function func() {
+      setTimeout(function(){
+        console.log(n++);
+        func();
+      },1000);
+    }
+  </script>
+</body>
+
+</html>

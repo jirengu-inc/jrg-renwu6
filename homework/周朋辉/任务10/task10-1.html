@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>task10-1</title>
+<style type="text/css">
+/* 第一部分，重置样式 */
+html,body,ul,li,h1，h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: #fff;
+}
+/* 第二部分，页面的公共样式 */
+body{
+	font: 14px/1.5 "Microsoft YaHei","微软雅黑",sans-serif;
+	color: #656565;
+}
+/* 让页面的内容居中且宽度为900px */
+.container{
+	margin: 0 auto;
+	width: 900px;
+}
+
+/* 第三部分，功能区块 */
+
+/* 头部 */
+#header{
+	height: 50px;
+	background-color: #333;
+}
+#header .logo > img{
+	height: 40px;
+}
+#header .nav{
+	float: right;
+}
+#header .nav > li{
+	display: inline-block;
+	list-style-type: none;
+	width: 60px;
+	margin-right: 10px;
+	text-align: center;
+	line-height: 50px;
+}
+#header .nav li:hover{
+	background-color: #fff;
+	cursor: pointer;
+	color: #000;/* 这里a元素不会继承该属性,因为上面直接指定了其颜色属性 */
+}
+#header .nav li:hover a{
+	color: #000;/* 必需加在这里才有效果，就是直接给a元素设定一个颜色属性 */
+}
+/* 侧边栏 */
+
+#content{
+	margin-top: 10px;
+}
+#content .aside{
+	width: 200px;
+	min-height: 600px;
+	float: left;
+	background-color: #eee;
+}
+
+/* 主区块 */
+
+#content .main{
+	margin-left: 10px;
+	float: left;
+	width: 670px;
+	padding: 20px 10px;
+	background-color: #eee;
+}
+
+/* 页脚部分 */
+
+#footer{
+	height: 60px;
+	background-color: #333;
+	clear: both;
+}
+#footer ul li{
+	display: inline-block;
+	list-style-type: none;
+	width: 60px;
+	line-height: 60px;
+}
+
+</style>
+</head>
+<body>
+    <div id="header">
+		<div class="container">
+			<a class="logo" href="http://jirengu.com"><img src="http://cdn.jirengu.com/public/logo-tiny.png" alt="饥人谷logo"></a>
+			<ul class="nav">
+				<li><a href="#">技能</a></li>
+				<li><a href="#">经历</a></li>
+				<li><a href="#">作品</a></li>
+				<li><a href="http://www.jianshu.com/users/173a22b5263d/latest_articles">关于</a></li>
+			</ul>
+		</div>
+    </div>
+    <div id="content">
+    	<div class="container">
+			<div class="aside"></div>
+			<div class="main">
+				<h1>我的作品</h1>
+				<p>生活很美好</p>
+				<p>心情很不错</p>
+				<p>代码写的嘛...</p>
+			</div>
+    	</div>
+    </div>
+    <div id="footer">
+    	<div class="container">
+	    	<ul>
+				<li><a href="#">饥人谷</a></li>
+				<li><a href="#">JSCODE</a></li>
+				<li><a href="#">JSBIN</a></li>
+			</ul>
+    	</div>
+    </div>
+</body>
+</html>

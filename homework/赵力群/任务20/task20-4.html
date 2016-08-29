@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-20-4</title>
+</head>
+
+<body>
+  <script>
+    function timeGranularity() {
+      var a = 0;
+      var start = Date.now();
+      var timeIndex = setTimeout(function() {
+        a++;
+        if(a < 1000) {
+          setTimeout(arguments.callee,0);
+        } else {
+          clearTimeout(timeIndex);
+          var end = Date.now();
+          console.log((end - start)/a);
+        }
+      },0)
+    }
+    timeGranularity();
+  </script>
+</body>
+
+</html>
