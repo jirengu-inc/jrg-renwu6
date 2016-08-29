@@ -85,12 +85,13 @@
             var $top = $this.offset().top;
             var $left = $this.offset().left;
             var $margin = $this.css("margin");
+            var $marginTop = parseInt($this.css("margin-top"));
             var $clone = $this.clone().css({
                 "width":$width,
                 "height":$height,
                 "opacity":0,
                 "display":"none"
-            });
+            }).insertBefore($this);
             $(window).on("scroll",function(){
                 var $topLen = $(this).scrollTop();
                 if($topLen >= $top){
