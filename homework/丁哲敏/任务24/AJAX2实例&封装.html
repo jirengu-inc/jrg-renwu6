@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <titie>ajax封装</titie>
+  </head>
+  <body>
+    <input type="text" id="username" placeholder="username">
+    <button id="btn">获取信息</button>
+
+    <dl id="ct">
+      <dt>性别：</dt>
+      <dd>男</dd>
+      <dt>年纪：</dt>
+      <dd>20</dd>
+    </dl>
+  <script>//ajax实例应用
+       document.getELementById("btn").addEventListener('click',function(){
+        var username = document.getELementById('username').value;
+        var url = 'use_ajax.php' + '?username=' +username;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+          if(xmlhttp.readState==4 && xmlhttp.status==200){
+            dealWith(xmlhttp.responseText);
+          }
+        }
+        xmlhttp.open("GET",url,true);
+        xmlhttp.send();
+       });
+      function dealWith(str){
+        var userInfo = JSON.prse(str);
+        var str = '<dt>性别：</dt>'；
+        str +=    '<dd>'+userInfo.sex+'</dd>';
+        str +=    '<dt>年纪：</dt>'；
+        str +=    '<dd>'+userInfo.age+'</dd>';
+      }
+  </script>
+  </body>
+</html>
