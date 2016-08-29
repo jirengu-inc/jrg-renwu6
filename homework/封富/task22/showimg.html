@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片展示</title>
+	<style>
+	    .ct {
+	    	display: relative;
+	    }
+		img {
+			width: 400px;
+			height: 250px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="ct">
+	    <li data-img="1.jpg">鼠标放置查看图片1</li>
+	    <li data-img="2.jpg">鼠标放置查看图片2</li>
+	    <li data-img="3.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+	<script>
+		var li = document.getElementsByTagName('li');
+		var img = document.querySelector('.img-preview');
+		// for(var i = 0;i < li.length;i++){
+		// 	li[i].addEventListener('mouseenter',function(){
+		// 		var src = this.getAttribute('data-img');
+		// 		img.innerHTML = "<img src='"+src+"'/>";
+		// 	})
+		// }
+		// 怎么使用监听父元素，点击子元素时冒泡到父元素触发事件的方式来完成呢。。。
+		var ct = document.getElementsByClassName('ct');
+		ct[0].addEventListener('mouseover',function(e){
+			var src = e.target.getAttribute('data-img');
+			img.innerHTML = "<img src='"+src+"'/>";
+		})
+		// mouseenter并不能和click一样实现冒泡。只能用mouseover
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>加载更多</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.list {
+			list-style:none;
+			background-color: #ccc;
+			padding: 10px;
+			margin: 10px;
+			border-radius: 5px;
+		}
+		.list.active {
+			background-color: #0f0;
+		}
+		.load {
+			text-decoration: none;
+			color:#000;
+			display: inline-block;
+			padding: 10px;
+			border:1px solid yellow;
+			background-color: #fe0;
+			border-radius: 5px;
+			margin: 0 45%;
+	</style>
+</head>
+<body>
+	<ul class="nav">
+		<li class="list">内容1</li>
+		<li class="list">内容2</li>
+		<li class="list">内容3</li>
+	</ul>
+	<a href="#" class="load">加载更多</a>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<script>
+	$(".nav").on("mouseenter",".list",function(){
+		$(this).addClass("active");
+	});
+	$(".nav").on("mouseleave",".list",function(){
+		$(this).removeClass("active");
+	});
+	var start = 4;
+	$(".load").on("click",function(e){
+		e.preventDefault();
+		var $this = $(this);
+		if($this.data("load")) return;
+		$this.data("load",true).text("loading...");
+		$.ajax({
+			url:"load.php",
+			dataType:"json",
+			type:"get",
+			data:{
+				start:start,
+				len:5
+			},
+			success:function(json){
+				success(json);
+				$this.data("load",false).text("加载更多");
+
+			},
+			error:function(){
+				alert("error");
+				$this.data("load",false).text("加载更多");
+			}
+		})
+	})
+	function success(e){
+		for(var i = 0;i < e.data.length;i++){
+			var $node = $('<li class="list"></li>');
+			$node.text(e.data[i]).appendTo($(".nav"));
+		}
+		start += 5;
+	}
+	</script>
+</body>
+</html>

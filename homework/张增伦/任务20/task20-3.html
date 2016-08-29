@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+<script>
+
+   // 写一个函数使用setTimeout模拟setInterval的功能
+
+   function mockSetInterval(fn,ms)
+   {
+       setTimeout(
+              function(){
+                  fn();
+                  mockSetInterval(fn,ms);
+              }
+               ,ms);
+
+   }
+
+    var i=0;
+    var fn = function(){console.log(++i);}
+    mockSetInterval(fn,2000);
+
+</script>
+
+</body>
+</html>

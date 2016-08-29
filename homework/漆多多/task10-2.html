@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务10-2</title>
+	<style>
+	#box{
+    	position:relative;
+    	width: 230px;
+    	height: 110px;
+    	margin-top: 50px;
+    	border: solid 2px #ccc;
+        }
+	.triangle1{
+  		border:15px solid;
+  		border-color:transparent transparent gray transparent;
+  		display:table-cell;
+  		position:absolute;
+  		top:-30px;
+  		left:12px;
+		}
+  
+	.triangle2{
+  		border-right:20px solid red;
+  		border-bottom:20px solid transparent;
+		}
+	.triangle3{
+        position: absolute;
+        top: -15px;
+        left: 10px;
+        border-left: 15px solid ;
+        border-right: 15px solid ;
+        border-bottom: 15px solid;
+        border-color: transparent transparent #ccc transparent;
+}
+  .triangle3:after{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: -15px;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+        border-bottom: 15px solid  white;
+        }
+	
+	</style>
+</head>
+<body>
+<div id="box">
+	<div class="triangle1"></div>
+</div>
+<div id="box">
+	<div class="triangle2"></div>
+</div>
+<div id="box">
+  <div class="triangle3"></div>
+</div>
+</body>
+</html>

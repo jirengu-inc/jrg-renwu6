@@ -1,0 +1,106 @@
+@charset "utf-8";
+	.box1,.box2,.box3{
+		width: 300px;
+		margin: 0 auto 50px;
+	}
+	li{
+		list-style: none;
+	}
+	/*代码1:使用CSS Sprite 把如下6张图标图片合并成一张图片,当 hover 时背景变色*/
+	.box1 a{
+		text-decoration: none;
+		background: url(../images/result.png) no-repeat;
+		padding: 5px 2px 5px 28px;
+		font-size: 18px;
+		color:#333;
+	}
+	.box1 a:hover{
+		color: #A663BE;
+	}
+	.box1 .forward{
+		background-position: -4px -5px;
+	}
+	.box1 .forward:hover{
+		background-position: -5px -140px;
+	}
+	.box1 .start{
+		background-position: -2px -94px;
+	}
+	.box1 .start:hover{
+		background-position: -7px -189px;
+	}
+	.box1 .stop{
+		background-position: -6px -52px;
+	}
+	.box1 .stop:hover{
+		background-position: -2px -233px;
+	}
+	/*代码2:使用字体图标*/
+	@font-face {font-family: "jirengu";
+		  src: url('iconfont.eot?t=1470971076'); /* IE9*/
+		  src: url('iconfont.eot?t=1470971076#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		  url('iconfont.woff?t=1470971076') format('woff'), /* chrome, firefox */
+		  url('iconfont.ttf?t=1470971076') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		  url('iconfont.svg?t=1470971076#iconfont') format('svg'); /* iOS 4.1- */
+    }
+	.jirengu {
+	  font-family:"jirengu" !important;
+	  font-size:18px;
+	  font-style:normal;
+	}
+	.box2 div{
+		display: inline-block;
+		cursor: pointer;
+		margin-left: 5px;
+	}
+	.box2 div:hover{
+		color: #A663BE;
+	}
+	/*代码3:使用css border实现如下三角形*/
+	.caret{
+		width: 0;
+		height: 0;
+		margin-top: 50px;
+	}
+	.caret-all{
+        border-top: 30px solid blue;
+		border-right: 30px solid yellow;
+		border-bottom: 30px solid green;
+		border-left: 30px solid red;
+	}
+	.caret-top{
+		border-top: 30px solid blue;
+		border-right: 30px solid transparent;
+		border-bottom: 30px solid transparent;
+		border-left: 30px solid transparent;
+	}
+	.caret-left{
+		border-top: 30px solid transparent;
+		border-right: 30px solid transparent;
+		border-bottom: 30px solid transparent;
+		border-left: 30px solid red;
+	}
+	.caret-right{
+		border-top: 30px solid transparent;
+		border-right: 30px solid yellow;
+		border-bottom: 30px solid transparent;
+		border-left: 30px solid transparent;
+	}
+	.caret-bottom{
+        border-top: 30px solid transparent;
+		border-right: 30px solid transparent;
+		border-bottom: 30px solid green;
+		border-left: 30px solid transparent;
+	}
+	.caret-bottom-left{
+		border-top: 20px solid transparent;
+		border-right: 20px solid transparent;
+		border-bottom: 20px solid red;
+		border-left: 20px solid red;
+	}
+	.caret-right-bottom{
+		border-top: 20px solid transparent;
+		border-right: 20px solid green;
+		border-bottom: 20px solid green;
+		border-left: 20px solid transparent;
+	}

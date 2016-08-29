@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>task10-2</title>
+<style type="text/css">
+.ct{
+	position: relative;
+	height: 100px;
+	width: 200px;
+	border: 2px solid #ccc;
+	margin: 40px;
+}
+.ct::before,.ct:nth-child(3)::after{
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+.ct:nth-child(1)::before{
+	top: -15px;
+	left: 10px;
+	border-bottom: 15px solid #ccc;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+}
+.ct:nth-child(2)::before{
+	top: -2px;
+	right: -2px;
+	border-top: 20px solid red;
+	border-left: 20px solid transparent;
+}
+.ct:nth-child(3)::before{
+	top: -15px;
+	left: 10px;
+	border-bottom: 15px solid #ccc;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+}
+.ct:nth-child(3)::after{
+	top: -12px;
+	left: 10px;
+	border-bottom: 15px solid #fff;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+}
+</style>
+</head>
+<body>
+    <div class="ct"></div>
+    <div class="ct"></div>
+    <div class="ct"></div>
+</body>
+</html>

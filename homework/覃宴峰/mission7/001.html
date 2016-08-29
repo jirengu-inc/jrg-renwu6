@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        input {
+            margin-bottom: 20px;
+        }
+
+        select {
+            margin-right: 10px;
+        }
+    </style>
+    <title>mission7</title>
+</head>
+
+<body>
+    <form action="#">
+        姓名：
+        <input type="text" name="username" placeholder="用户名"></input>
+        <br /> 密码：
+        <input type="password" name="pwd" value='000000'></input>
+        <br /> 性别：
+        <input type="radio" name="sex" value="male" checked>男</input>
+        <input type="radio" name="sex" value="female">女</input>
+        <br /> 取向:
+        <input type="radio" name="target" value="male">男</input>
+        <input type="radio" name="target" value="female" checked>女</input>
+        <br /> 爱好：
+        <input type="checkbox" name="love[]" value="dota">dota</input>
+        <input type="checkbox" name="love[]" value="travle" checked>旅游</input>
+        <input type="checkbox" name="love[]" value="pit" checked>宠物</input>
+        <br /> 评论：
+        <textarea name="textarea" cols="60" rows="15">ddd</textarea>
+        <br /> 我的car:
+        <select name="select">
+            <option value="sab">萨博</option>
+            <option value="audi">奥迪</option>
+        </select>
+        <input type="submit" name="submit"></input>
+    </form>
+</body>
+
+</html>

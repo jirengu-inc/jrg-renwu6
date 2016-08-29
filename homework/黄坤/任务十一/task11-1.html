@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+   <style>
+   html,body,ul,li{
+       margin:0;
+       padding: 0;
+   }
+   body{
+   	   	font:16px/1.2 "微软雅黑";
+   }
+      .nav{
+      	position: relative;
+      	width: 50%;
+      	height: 30px;
+      	background: #ccc;
+      }
+     .nav .title{
+      	float: left;
+      	padding: 0 10px;      	
+      	list-style: none;
+      	line-height: 30px;
+     }
+     .nav:after{
+     	content: "";
+     	display: block;
+     	clear: both;
+     }
+     .nav a{
+     	text-decoration: none;
+     	color: black;
+     	cursor: pointer;
+     }
+     .container{
+     	display: none;
+     }
+     .nav .title:hover{
+      	background: #aaa;
+     }
+    .nav>li:hover .container{
+     	display: block;
+     }
+    .title .container{
+    	position: absolute;
+    	margin-left: -10px;
+        display: none;
+        border:1px solid #aaa;
+        list-style: none;
+     }
+    .container>li{
+    	color: black;
+     	line-height: 30px;
+     	cursor: pointer;
+     	padding:0 5px; 
+    }
+    .container>li:hover{
+    	background: #aaa;
+    }
+   </style>
+</head>
+<body>
+      <ul class="nav">
+      	<li class="title"><a href="#" class="tag1">前端</a>
+           <ul class="container">
+           	<li class="list">JavaScript</li>
+           	<li class="list">CSS</li>
+           	<li class="list">HTML</li>
+           </ul>
+      	</li>
+      	<li class="title"><a href="#" class="tag2">服务端</a>
+           <ul class="container">
+           	<li class="list">Node</li>
+           	<li class="list">PHP</li>
+           	<li class="list">Java</li>
+           </ul>
+      	</li>
+        <li class="title"><a href="#" class="tag3">前端工具</a>
+          <ul class="container">
+           	<li class="list">Sublime</li>
+           	<li class="list">WebStrom</li>
+           	<li class="list">Git</li>
+           </ul>
+        </li>
+      	<li class="title"><a href="#" class="tag4">HTML</a></li>
+      	<li class="title"><a href="#" class="tag5">NODE</a></li>
+      </ul>
+    
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用双飞翼布局实现如下三栏布局(两侧固定宽度200px,中间自适应)</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        #header,#footer{
+            height: 50px;
+            background-color: #ccc;
+        }
+
+        #container{
+            padding: 2px;
+        }
+
+        #container .main{
+            width: 100%;
+            float: left;
+        }
+
+        #container .main .wrap{
+            background-color: darkgreen;
+            height: 300px;
+            margin-left: 200px;
+            margin-right: 200px;
+            color: #fffdef;
+        }
+
+        #container .left_aside{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+            float: left;
+            margin-left: -100%;
+        }
+
+        #container .right_aside{
+            width: 200px;
+            height: 100px;
+            background-color: yellow;
+            float: left;
+            margin-left: -200px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="header">
+头部
+</div>
+<div id="container" class="clearfix">
+    <div class="main">
+        <div class="wrap">
+            双飞翼布局指两边顶宽，中间自适应的三栏布局，中间栏要在放在文档流前面以优先渲染。
+        </div>
+    </div>
+    <div class="left_aside">
+        左侧边栏，固定宽度
+    </div>
+    <div class="right_aside">
+        右侧边栏，固定宽度
+    </div>
+</div>
+<div id="footer">
+尾部
+</div>
+
+
+</body>
+</html>
