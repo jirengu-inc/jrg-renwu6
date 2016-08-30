@@ -15,24 +15,22 @@
       margin-top: 10px;
       cursor: pointer;
     }
-    #load-more{
+    #ct li:hover{
+      background-color: green;
+      color: #fff;
+    }
+    a{
       display: block;
       margin: 10px auto;
       text-align: center;
-      cursor: pointer;
-    }
-    .btn{
-      display: inline-block;
-      height: 40px;
-      line-height: 40px;
+      text-decoration: none;
       width: 80px;
+      line-height: 40px;
+      color: #000;
       border: 1px solid #ccc;
       border-radius: 3px;
-      text-align: center;
-      text-decoration: none;
-      color: #000;
+      cursor: pointer;
     }
-
     </style>
   </head>
     <body>
@@ -45,43 +43,43 @@
     <script>
       function ajax(opts){
         var xml = new XMLHttpRequest();
-        var type = type.toLowerCase();
-
-        xml.onreadystatechange = function(){
-          if(xml.readyState == 4 && xml.status == 200){
-            opts.success(xml.responseText);
-          }else{
-            xml.error();
-          }
-        }
-
         var strNew = "";
         for(var key in opts.data){
           strNew += key + "=" opts.data[key] + "&";
         }
         strNew = strNew.substr(0,opts.data-1)
-        if(opts.type === "get"){
+
+        xml.onreadystatechange = function(){
+          if(xml.readyState == 4 && xml.status == 200){
+            opts.success(json);
+          }
+          if(xml.status == 404){
+            xml.error();
+          }
+        }
+
+
+        if(opts.type.toLowerCase() === "get"){
           xml.open(opts.type,opts.url + "?" +strNew,true);
           xml.send();
         }
-        if(opts.type === "post"){
+        if(opts.type.toLowerCase() === "post"){
           xml.open(opts.type,opts.url,true);
           xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xml.send(strNew);
         }
       }
-
+      var index=2;
       var btn = document.querySelector('#btn');
       var ulCt = document.querySelector('.ct');
 
       var locked = false;
       btn.addEventListener('click',function(e){
         if(locked === true) return;
-
         locked = true;
         e.preventDefault();
         ajax({
-          url:"task2402.php",
+          url:"loadMore.php",
           type:"get",
           data:{
             pageStart:index,
