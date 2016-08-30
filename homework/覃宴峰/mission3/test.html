@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>test.html</title>
+  <style>
+    .content{
+      margin-bottom:20px;
+    }
+
+    #ct1{
+      width:50px;
+      height:50px;
+      border:20px solid green;
+    }
+
+    .content2 div{
+      width:50px;
+      height:50px;
+      margin-bottom:5px;
+      background:green;
+      display:inline-block;
+    }
+
+    .content3 div{
+      height:50px;
+      max-width:200px;
+      background:green;
+    }
+  </style>
+</head>
+  <body>
+    <div class="content">
+          <h2>盒模型</h2>
+          <div id="ct1"></div>
+    </div>
+
+    <div class="content2">
+          <h2>inline-block</h2>
+          <div></div>
+          <div></div>
+          <div></div>
+    </div>
+
+    <div class="content3">
+          <h2>max-width</h2>
+          <div></div>
+    </div>
+
+
+  </body>
+</html>

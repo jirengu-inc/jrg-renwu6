@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>两栏布局</title>
+<style type="text/css">
+*{
+	padding: 0;
+	margin: 0;
+}
+.container{
+	width: 900px;
+    margin: 0 auto;
+}
+
+/*----------------header部分--------------*/
+#header{
+	height: 50px;
+	background: black;
+}
+
+a{
+	text-decoration: none;
+}
+
+.nav li{
+	float:right;
+	margin-right: 25px;
+	font-family: "Microsoft YaHei";
+	font-weight: bolder;
+	color: white;
+    list-style:none;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    position: relative;
+    bottom: 43px;
+}
+
+.nav li:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+}
+ /*----------------content部分--------------*/
+
+#content{
+	margin-top: 10px;
+}
+#content:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+#content .aside{
+	float: left;
+	width: 200px;
+	min-height: 500px;
+	background: #ccc;
+}
+#content .main{
+	padding:20px;
+    margin-left: 220px;
+	background: #ccc;
+}
+
+/*----------------footer部分--------------*/
+#footer{
+	background-color: #333;
+	height: 50px;
+}
+#footer:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+#footer li{
+	font-family: "Microsoft YaHei";
+	font-weight: bolder;
+	color: white;
+	list-style: none;
+	float: left;
+	margin-left: 10px;
+	position: relative;
+	top: 15px;
+	cursor: pointer;
+}	
+</style>
+</head>
+<body>
+<div id="header">
+  <div class="container">
+    <a class="logo" href="#"><img src="image/logo.png" height="40px"></a>
+    <ul class="nav">
+    	<li>关于</li>
+    	<li>作品</li>
+    	<li>经历</li>
+    	<li>技能</li>
+    </ul>
+  </div>
+</div>
+
+<div id="content">
+  <div class="container">
+    <div class="aside"></div>
+    <div class="main">
+    	<h1>我的作品</h1>
+    	<p>生活很美好</p>
+    	<p>心情不错</p>
+    	<p>代码写的很漂亮</p>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="container">
+    <ul>
+    	<li>饥人谷</li>
+    	<li>JSCODE</li>
+    	<li>JSBIN</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

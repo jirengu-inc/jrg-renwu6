@@ -1,0 +1,110 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>stickup</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        .clearfix:after {
+            content:"";
+            display: block;
+            clear:both;
+        }
+        .header {
+            /*width:758px;*/
+            height:80px;
+            background-color: #f00;
+        }
+        .nav {
+            height:40px;
+            margin-top:20px;
+            background-color: antiquewhite;
+        }
+        .ct {
+            margin-right: 100px;
+        }
+        .aside {
+            float: left;
+            width:100px;
+            height:400px;
+            margin-left: -100px;
+            background-color: #0f0;
+            position: relative;
+            left:100px;
+        }
+        .main {
+            float:left;
+            height:800px;
+            width:100%;
+            background-color: aqua;
+        }
+        .footer {
+            height: 100px;
+            background-color: coral;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">header</div>
+    <div class="nav">nav</div>
+    <div class="ct clearfix">
+        <div class="main">main</div>
+        <div class="aside">aside</div>
+    </div>
+    <div class="footer">footer</div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        $.fn.stickup = function(){
+            var $this = $(this);
+            var $width = $this.width();
+            var $height = $this.height();
+            var $top = $this.offset().top;
+            var $left = $this.offset().left;
+            var $clone = $this.clone().insertBefore($this).css({
+                "z-index":100,
+                "width":$width,
+                "height":$height,
+                "position":"fixed",
+                "margin":0,
+                "top":0,
+                "left":$left,
+                "display":"none",
+                "opacity":0
+            }).data("fixed",false);
+            $(window).on("scroll",function(){
+                var instance = $(this).scrollTop();
+                if(instance >= $top){
+                    if(!hasfixed()){
+                        showfix();
+                    }
+                }else{
+                    if(hasfixed()){
+                        hidefix();
+                    }
+                }
+            });
+            function hasfixed(){
+                return $clone.data("fixed");
+            }
+            function  showfix(){
+                $clone.css({
+                    "display":"block",
+                    "opacity":"1"
+                }).data("fixed",true);
+            }
+            function  hidefix(){
+                $clone.css({
+                    "display":"none",
+                    "opacity":"0"
+                }).data("fixed",false);
+            }
+        }
+        $(".nav").stickup();
+    </script>
+</body>
+</html>
