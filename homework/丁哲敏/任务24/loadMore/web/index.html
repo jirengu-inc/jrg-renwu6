@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>任务24-2</title>
+    <style>
+    html,body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    #ct li{
+      list-style: none;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    #load-more{
+      display: block;
+      margin: 10px auto;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn{
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      width: 80px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+    }
+
+    </style>
+  </head>
+    <body>
+      <ul id="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+      </ul>
+        <a href="#" id="btn">加载更多</a>
+
+    <script>
+      function ajax(opts){
+        var xml = new XMLHttpRequest();
+        var type = type.toLowerCase();
+
+        xml.onreadystatechange = function(){
+          if(xml.readyState == 4 && xml.status == 200){
+            opts.success(xml.responseText);
+          }else{
+            xml.error();
+          }
+        }
+
+        var strNew = "";
+        for(var key in opts.data){
+          strNew += key + "=" opts.data[key] + "&";
+        }
+        strNew = strNew.substr(0,opts.data-1)
+        if(opts.type === "get"){
+          xml.open(opts.type,opts.url + "?" +strNew,true);
+          xml.send();
+        }
+        if(opts.type === "post"){
+          xml.open(opts.type,opts.url,true);
+          xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xml.send(strNew);
+        }
+      }
+
+      var btn = document.querySelector('#btn');
+      var ulCt = document.querySelector('.ct');
+
+      var locked = false;
+      btn.addEventListener('click',function(e){
+        if(locked === true) return;
+
+        locked = true;
+        e.preventDefault();
+        ajax({
+          url:"task2402.php",
+          type:"get",
+          data:{
+            pageStart:index,
+            len:5
+          },
+          success:function(res){
+            success(res)
+          }
+          error:function(){
+            error()
+          }
+        })
+      })
+
+      function success(res){
+        for(var i =0; i < res.length; i++){
+          var newLi = document.creatElement("li");
+          newLi.innerText=res[i];
+          ulCt.addpendChild(newLi);
+        }
+        btn.innerHTML="加载更多"；
+        btn.style.border="1px solid #ccc";
+        locked=false;
+        index += 5;
+      }
+      function error(){
+        console.log("出错了")；
+      }
+    </script>
+    </body>
+</html>
