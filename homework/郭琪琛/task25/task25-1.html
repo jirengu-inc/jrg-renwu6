@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task25-1</title>
+    <style>
+        body {
+            font-size: 14px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .fl-nav {
+            display: inline-block;
+            padding: 10px;
+            background-color: #C7171E;
+        }
+
+        .fl-nav>li {
+            position: relative;
+            width: 170px;
+            padding: 0px 0 6px 10px;
+            color: #fff;
+        }
+
+        .fl-nav>li:hover>.sl-nav {
+            position: absolute;
+            top: -10px;
+            left: 105.5%;
+            display: block;
+        }
+
+        .fl-nav>li>a {
+            color: #fff;
+        }
+
+        .fl-nav>li>span {
+            float: right;
+        }
+
+        .fl-nav>hr {
+            color: #DE272E;
+            border-top: 0;
+            border-style: dotted;
+        }
+
+        .sl-nav {
+            display: none;
+            width: 210px;
+            border: 1px solid #ccc;
+        }
+
+        .sl-nav>li {
+            float: left;
+            padding: 0 50px 0 20px;
+        }
+
+        .sl-nav>li>a {
+            display: inline-block;
+            height: 40px;
+            font-size: 12px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="fl-nav">
+        <li>
+            <a href="#">珠宝玉器</a>
+            <span>&gt;</span>
+            <ul class="sl-nav">
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">玉石</a></li>
+                <li><a href="#">宝石</a></li>
+                <li><a href="#">水晶</a></li>
+                <li><a href="#">玛瑙</a></li>
+                <li><a href="#">珍珠</a></li>
+                <li><a href="#">钻石</a></li>
+                <li><a href="#">琥珀</a></li>
+                <li><a href="#">和田</a></li>
+                <li><a href="#">琥珀</a></li>
+            </ul>
+        </li>
+        <hr>
+        <li>
+            <a href="#">珠宝玉器</a>
+            <span>&gt;</span>
+            <ul class="sl-nav">
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">玉石</a></li>
+                <li><a href="#">宝石</a></li>
+                <li><a href="#">水晶</a></li>
+                <li><a href="#">玛瑙</a></li>
+                <li><a href="#">珍珠</a></li>
+            </ul>
+        </li>
+        <hr>
+        <li>
+            <a href="#">珠宝玉器</a>
+            <span>&gt;</span>
+            <ul class="sl-nav">
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">玉石</a></li>
+                <li><a href="#">宝石</a></li>
+                <li><a href="#">水晶</a></li>
+            </ul>
+        </li>
+        <hr>
+        <li>
+            <a href="#">珠宝玉器</a>
+            <span>&gt;</span>
+            <ul class="sl-nav">
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">玉石</a></li>
+                <li><a href="#">宝石</a></li>
+                <li><a href="#">水晶</a></li>
+                <li><a href="#">玛瑙</a></li>
+                <li><a href="#">珍珠</a></li>
+            </ul>
+        </li>
+        <hr>
+        <li>
+            <a href="#">珠宝玉器</a>
+            <span>&gt;</span>
+            <ul class="sl-nav">
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">玉石</a></li>
+                <li><a href="#">宝石</a></li>
+                <li><a href="#">水晶</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
