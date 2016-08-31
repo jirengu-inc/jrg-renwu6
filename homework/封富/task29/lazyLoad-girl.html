@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片懒加载</title>
+    <style>
+        .ct {
+            width: 800px;
+            margin: 0 auto;
+
+        }
+        .nav {
+            background-color: #ccc;
+        }
+        .nav:after {
+            content: "";
+            display: block;
+            clear:both;
+        }
+       li {
+           list-style:none;
+           float: left;
+           padding:10px;
+       }
+        li>img {
+            width: 220px;
+            height: 400px;
+            cursor: pointer;
+        }
+        .loading {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="ct">
+    <ul class="nav">
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <div class="loading">more</div>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <!--<div class="loading">more</div>-->
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+        <li><img src="blank.jpg" alt="" data-src="girl.jpg"></li>
+    </ul>
+</div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        var lazyLoad = (function(){
+            var $win = $(window),
+                $img = $("img");
+            $img.data("Loaded",false);
+            function init(){
+                chechShow();
+                $win.on("scroll",function(){
+                    var clock;
+                    if(clock) clearTimeout();
+                    clock = setTimeout(function(){
+                        chechShow();
+                    },300);
+                }) 
+            }
+            function chechShow(){
+                    $img.each(function(){
+                        var $this = $(this);
+                        if($this.data("loaded")) return;
+                        if(canSee($this)){
+                            showImg($this);
+                        }
+                    })
+            }
+            function canSee(node){
+                var $Top = node.offset().top,
+                    $winH = $win.height(),
+                    $winS = $win.scrollTop();
+                if($Top < ($winH + $winS)){
+                    return true;
+                }
+                return false;
+            }
+            function showImg(node){
+                node.attr("src",(node.attr("data-src")));
+                node.data("loaded",true);
+            }
+            return {
+                init:init
+            };
+        })();
+        lazyLoad.init();
+    </script>
+</body>
+</html>
