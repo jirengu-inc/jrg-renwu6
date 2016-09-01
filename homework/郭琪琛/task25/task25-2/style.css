@@ -1,0 +1,120 @@
+body {
+    font: 12px '宋体';
+}
+
+ul,li,p {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/**/
+.nav {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    vertical-align: bottom;
+}
+
+.nav>li {
+    float: left;
+    padding: 10px 0;
+}
+
+.nav>li>a {
+    display: inline-block;
+    padding: 0 10px;
+    border-left: 1px solid #ccc;
+    color: inherit;
+}
+
+.nav>li:first-child>a {
+    border: none;
+}
+/**/
+
+.content {
+    display: none;
+    width: 700px;
+    border: 1px solid #ccc;
+}
+
+.content>ul {
+    margin-left: -20px;
+    margin-top: -20px;
+}
+
+.content>ul>li {
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    width: 220px;
+    padding: 20px;
+    border: 1px solid #eee;
+    margin: 20px 0 0 20px;
+}
+
+.cover {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.cover>a {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+    border: 1px solid #C81623;
+    border-radius: 3px;
+    color: #C81623;
+    background-color: #fff;
+}
+
+.content-image {
+    text-align: center;
+}
+
+.content-item>p:first-of-type {
+    height: 3em;
+    line-height: 1.5;
+}
+
+.content-item>p:last-child {
+    color: #CE2B45;
+    line-height: 1.5;
+    font-family: "microsoft yehei"
+}
+/*animate*/
+.ontab {
+    color: #C81623;
+    background-color: #ccc;
+}
+
+.active {
+    display: block;
+}
+
+.content .hover>.cover {
+    display: block;
+}
