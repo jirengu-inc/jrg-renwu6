@@ -542,13 +542,9 @@
             $content.eq(index).addClass('active')
         })
         // hover
-        $('.cover').parent('li').on('mouseenter',function(){
-            $(this).addClass('hover')
+        $('.cover').parent('li').on('mouseenter mouseleave',function(){
+            $(this).toggleClass('hover')
         })
-        $('.cover').parent('li').on('mouseleave',function(){
-            $(this).removeClass('hover')
-        })
-
     </script>
 </body>
 </html>

@@ -184,11 +184,8 @@
             }
             ]
         // hover
-        $('.content').on('mouseenter','.content-item',function(e){
-            $(this).addClass('hover')
-        })
-        $('.content').on('mouseleave','.content-item',function(e){
-            $(this).removeClass('hover')
+        $('.content').on('mouseenter mouseleave','.content-item',function(e){
+            $(this).toggleClass('hover')
         })
         // addContent
         $('#add-content').on('click',function(){
