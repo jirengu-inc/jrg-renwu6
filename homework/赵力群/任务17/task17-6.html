@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task17-6</title>
+  </head>
+  <body>
+    <script>
+      function fn(fn2){
+        var fn2;
+        function fn2(){
+          console.log('fnnn2');
+        }
+        console.log(fn2);
+        fn2 = 3;
+        console.log(fn2);
+        console.log(fn);
+      }
+      fn(10);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+.box1,.box2,.box3{
+	width: 200px;
+	height: 100px;
+	border: 1px solid #ccc;
+	position: relative;
+	margin-left: 50px;
+	margin-top: 50px;
+}
+.triangle1{
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-left: solid 13px transparent;
+	border-bottom: solid 13px #ccc;
+	border-right: solid 13px transparent;
+	top: -13px;
+	left: 10px;
+}
+.triangle2{
+	width: 0;
+	height: 0;
+	border-top: solid 10px red;
+	border-right: solid 10px red;
+	border-bottom: solid 10px transparent;
+	border-left: solid 10px transparent;
+	position: absolute;
+	left: 180px;
+}
+.triangle3{
+	width: 0;
+	height: 0;
+	border-left: solid 13px transparent;
+	border-right: solid 13px transparent;
+	border-bottom: solid 13px #ccc;
+	position: absolute;
+	top: -13px;
+	left: 10px;
+}
+.triangle4{
+	width: 0;
+	height: 0;
+	border-left: solid 14px transparent;
+	border-right: solid 14px transparent;
+	border-bottom: solid 14px #fff;
+	position: absolute;
+	top: -11px;
+	left: 9px;
+}

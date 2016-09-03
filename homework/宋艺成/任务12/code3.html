@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>圣杯两栏布局</title>
+    <style>
+        #header{
+            height:50px;
+            background: #ccc;
+        }
+        #content{
+            padding-left:200px;
+        }
+        #footer{
+            height:50px;
+            background: #ccc;
+        }
+        #content:after{
+            display: block;
+            clear: both;
+            content: " ";
+        }
+        #content .aside{
+            background: #f00;
+            float: left;
+            margin-left: -100%;
+            position: relative;
+            left:-200px;
+            width: 200px;
+            height: 300px;
+        }
+        #content .main{
+          width:100%;
+            float:left;
+            position: relative;
+            background: #0f0;;
+        }
+    </style>
+</head>
+<body>
+<div id="header">头部</div>
+<div id="content">
+    <div class="main">圣杯布局指两边顶宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染。参考圣杯布局原理。其流程为1）设置container的左右padding，用于预留左右边栏的空间。2）给所有元素设置定位浮动，用于设置左右两栏偏移；3）给左边栏设置right让其移动位置
+        设置负边距100%（#center的宽度）让其跑到上面4）给右边栏设置负边距让其跑到上面</div>
+    <div class="aside"></div>
+</div>
+<div id="footer">脚部</div>
+</body>
+</html>

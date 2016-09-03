@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>task11</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .nav {
+            font-family: "Microsoft YaHei", "微软雅黑";
+        }
+
+        .nav>ul>li>ul {
+            display: none;
+        }
+
+        .nav>ul {
+            background-color: #CBCBCB;
+        }
+
+        .nav>ul>li {
+            float: left;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .nav>ul>li:hover {
+            cursor: pointer;
+            background-color: #AAAAAA;
+        }
+
+        .nav>ul:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .nav>ul>li:hover>ul {
+            display: block;
+        }
+
+        .nav>ul>li>ul {
+            position: absolute;
+            left: 0;
+            border: 1px solid #CBCBCB;
+        }
+
+        .nav>ul>li>ul>li:hover {
+            background-color: #AAA;
+            cursor: pointer;
+        }
+
+        .nav>ul>li>ul>li {
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>前端
+                <ul>
+                    <li>JavaScript</li>
+                    <li>CSS</li>
+                    <li>HTML</li>
+                </ul>
+            </li>
+            <li>服务端
+                <ul>
+                    <li>NODE</li>
+                    <li>PHP</li>
+                    <li>JAVA</li>
+                </ul>
+            </li>
+            <li>前端工具
+                <ul>
+                    <li>Sublime</li>
+                    <li>WebStrom</li>
+                    <li>Git</li>
+                </ul>
+            </li>
+            <li>HTML</li>
+            <li>NODE</li>
+        </ul>
+    </div>
+</body>
+
+</html>

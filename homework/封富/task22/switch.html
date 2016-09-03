@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>切换页面</title>
+	<style>
+		ul,li,div {
+			padding: 0px;
+			margin: 0px;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.ct {
+			width: 500px;
+			margin: 0 auto;
+		}
+		.tab {
+			list-style: none;
+			float: left;
+			width: 150px;
+			height: 30px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			cursor: pointer;
+			text-align: center;
+			line-height: 30px;
+		}
+		.table:nth-child(2){
+			border-left: none;
+			border-right: none;
+		}
+		.tab.active {
+			background-color: #ccc;
+		}
+		.content {
+			width: 450px;
+			height: 200px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-top: none;
+			display: none;
+		}
+		.content.active {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<ul class="nav clearfix">
+			<li class="tab active">tab1</li>
+			<li class="tab">tab2</li>
+			<li class="tab">tab3</li>
+		</ul>
+		<div class="content active">内容1</div>
+		<div class="content">内容2</div>
+		<div class="content">内容3</div>
+	</div>
+	<script>
+		function hasClass(ele,cls){
+			var reg = new RegExp('\\b'+cls+'\\b','g');
+			return reg.test(ele);
+		}
+		function addClass(ele,cls){
+			if(ele.length && ele.length > 0){
+          		for(var i=0; i<ele.length; i++){
+              		singleAddClass(ele[i], cls); 
+          		}
+      		}else{
+          		singleAddClass(ele, cls);
+      		} 
+		}
+		function removeClass(ele,cls){
+			if(ele.length && ele.length > 0){
+          		for(var i=0; i<ele.length; i++){
+              		singleRemoveClass(ele[i], cls); 
+          		}
+      		}else{
+          		singleRemoveClass(ele, cls);
+      		}
+		}
+		function singleAddClass(ele, cls){
+	        if(hasClass(ele,cls)) return;
+	        ele.className += ' ' + cls;
+	    }
+	    
+	    function singleRemoveClass(ele, cls){
+	        ele.className = ele.className.replace(new RegExp('\\b'+cls+'\\b', 'g'), '');
+	    }
+
+		function indexNum (ele){
+			// console.log(ele)
+			var parent = ele.parentElement;
+			var siblings = parent.children;
+			// console.log(siblings[1])
+			for(var i = 0;i < siblings.length;i++){
+				if(ele === siblings[i]){
+					return i;
+				}
+			}
+			return -1;
+		}
+		// var tab = document.querySelector('.nav');
+		// tab.addEventListener('click',function(e){
+		// 	var tabs = tab.chidren;
+		// 	var ind = index(e.target);
+		// 	var content = document.querySelectorAll('.content');
+		// 	if(ind !== 1){
+		// 		removeClass(tab,'active');
+		// 		e.target.className = addClass(e.target.className,'active');
+		// 		removeClass(content,'active');
+		// 		content[ind] = addClass(content[ind],'active');
+		// 	}
+			
+		// })
+	var tabCt = document.querySelector('.nav');
+
+	tabCt.addEventListener('click', function(e){
+	   var target = e.target,
+	       tabs = tabCt.children,
+	       index = indexNum(target),
+	       panels = document.querySelectorAll('.content');
+	       console.log(index)
+	   if(index > -1){
+	   		// console.log(1);
+	       removeClass(tabs, 'active');
+	       addClass(target, 'active');
+	       removeClass(panels, 'active');
+	       addClass(panels[index], 'active');
+	   } 
+	})
+	</script>
+</body>
+</html>

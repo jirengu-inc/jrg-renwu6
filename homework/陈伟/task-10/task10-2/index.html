@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>task10-2</title>
+    <style>
+        .warp {
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 100px;
+            margin: 20px;
+        }
+
+        .icon1,
+        .icon2,
+        .icon3 {
+            position: relative;
+        }
+
+        .gray {
+            border-width: 13px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(204, 204, 204, 1) rgba(0, 0, 0, 0);
+            position: absolute;
+            top: -27px;
+            left: 10px;
+        }
+
+        .red {
+            border-width: 10px;
+            border-style: solid;
+            border-color: rgba(255, 0, 0, 1) rgba(255, 0, 0, 1) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+            position: absolute;
+            right: 0;
+        }
+
+        .white {
+            border-width: 15px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(255, 255, 255, 1) rgba(0, 0, 0, 0);
+            position: absolute;
+            top: -14px;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="icon1 warp">
+        <div class="gray"></div>
+    </div>
+    <div class="icon2 warp">
+        <div class="red"></div>
+    </div>
+    <div class="icon3 warp">
+        <div class="gray">
+            <div class="white"></div>
+        </div>
+    </div>
+</body>
+
+</html>

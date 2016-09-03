@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC to column</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #header,#footer {
+            height: 100px;
+            background-color: red;
+        }
+
+        .aside {
+            width: 200px;
+            height: 50px;
+            background-color: blue;
+            float: left;
+        }
+
+        .main {
+            background-color: #ccc;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">header</div>
+    <div id="content">
+        <div class="aside">aside</div>
+        <div class="main">我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main我是main
+        </div>
+    </div>
+    <div id="footer">footer</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        .box2,.box3,.box1 {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            margin-top: 50px;
+            border: solid 1px #ccc;
+        }
+
+        .box1-triangle {
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            width: 0px;
+            height: 0px;
+            border:12px solid;
+            border-top: 0;
+            border-color: transparent transparent blue transparent;
+        }
+
+        .box2-triangle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0px;
+            height: 0px;
+            border:12px solid;
+            border-color: red red transparent transparent;
+        }
+
+        .box3-triangle {
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            border-left: 12px solid ;
+            border-right: 12px solid ;
+            border-bottom: 12px solid;
+            border-color: transparent transparent #ccc transparent;
+
+        }
+
+        .box3-triangle:after{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 2px;
+            left: -10px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #fff;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="box1">
+        <div class="box1-triangle"></div>
+    </div>
+
+    <div class="box2">
+        <div class="box2-triangle"></div>
+    </div>
+
+    <div class="box3">
+        <div class="box3-triangle"></div>
+    </div>
+
+
+</body>
+</html>

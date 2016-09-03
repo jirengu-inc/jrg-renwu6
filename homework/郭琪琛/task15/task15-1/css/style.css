@@ -1,0 +1,189 @@
+/*重置样式*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.contain {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/*header导航栏*/
+.hd-nav {
+    text-align: center;
+}
+
+.fl-nav>li {
+    float: left;
+}
+
+.icon-icon {
+    display: block;
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.icon-icon:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.fl-nav>li>a {
+    display: inline-block;
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.fl-nav>li:hover>ul {
+    display: block;
+}
+
+.fl-nav>li:last-child {
+    position: relative;
+}
+
+.sl-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.sl-nav>li>a {
+    display: block;
+    width: 55px;
+    height: 35px;
+    border-bottom: 1px dashed #ccc;
+    line-height: 35px;
+}
+
+.sl-nav>li>a:hover {
+    background-color: #eee;
+}
+.sl-nav>li:last-child>a {
+    border-bottom: none;
+}
+
+/*header我的简介*/
+.hd-intro {
+    color: #fff;
+    background-color: #b84d45;
+}
+
+.intro-contain {
+    padding: 35px 0;
+}
+
+/*body面包屑导航栏*/
+.bd-breadcrumb {
+    height: 40px;
+    padding-left: 10px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #666;
+    line-height: 40px;
+    background-color: #eee;
+}
+
+.bd-breadcrumb>p>span {
+    color: #b84d45;
+}
+
+/*body我的作品*/
+.works-item {
+    float: left;
+    margin-top: 20px;
+    margin-left: 46px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.works-layout {
+    margin-left: -46px;
+    margin-bottom: 30px;
+}
+
+.works-item-image {
+    width: 300px;
+    height: 200px;
+}
+
+.works-item-image>img {
+    width: 100%;
+}
+
+.works-item>h2 {
+    margin: 10px;
+    text-align: left;
+}
+
+.works-item>p {
+    margin: 10px;
+    text-align: left;
+}
+
+/*footer个人简历*/
+.ft-resume {
+    padding: 20px 0;
+    color: #fff;
+    text-align: center;
+    background-color: #b84d45;
+}
+
+.ft-resume p {
+    margin: 5px;
+}
+
+.ft-resume a {
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+#ft>hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-top: 1px solid #eee;
+}
+
+#ft>p {
+    height: 40px;
+    margin-bottom: 20px;
+    line-height: 40px;
+    text-align: center;
+}

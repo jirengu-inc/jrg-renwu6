@@ -34,6 +34,7 @@ form{
 }
 .tablerow .tablecell:first-child{
 	text-align: right;
+	width:40%;
 }
 .tablerow input,.tablerow textarea{
 	padding: 5px;

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>饥人谷任务6</title>
+    <meta charset="UTF-8">
+    <style>
+        /*代码题1样式*/
+        .bk p.wb_01 {
+            width: 200px;
+            height: 80px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            color: #f0f;
+            line-height: 80px;
+        }
+
+        /*代码题2样式*/
+        .dialog {
+            border: 1px solid #ccc;
+        }
+
+        .header {
+            height: 40px;
+            text-align: left;
+            padding-left: 10px;
+            font-size: 16px;
+            color: #f00;
+            border-bottom: 1px solid #ccc;;
+        }
+
+        .content {
+            height: 100px;
+        }
+
+        .content a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        .content a:hover {
+            color: red;
+        }
+
+        .footer {
+            hieght: 50px;
+            text-align: center;;
+        }
+
+        .footer a.btn {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 4px 3px;
+            display: inline-block;
+        }
+
+        /*代码题3样式*/
+        table {
+            width: 650px;
+            margin: 10px 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #2aa;
+        }
+
+        table tr {
+            background-color: #fff;
+        }
+
+        table tr:hover {
+            background-color: #eee;
+        }
+
+        /*代码题4样式*/
+        .wrap {
+            width: 900px;
+            margin: 0 auto;
+        }
+        /*margin: 0 auto;保证该块能够水平居中,通过浏览页面发现页面缩放的时候文字位置发生了改变,当宽度小于900px的时候下面和右边均会出现滚动条*/
+    </style>
+</head>
+<body>
+<!--代码题1-->
+<div class="bk"><p class="wb_01">这里是饥人谷</p></div>
+<!--代码题2-->
+<div class="dialog">
+    <div class="header">
+        <h3>我是标题</h3>
+        <a class="close" title="关闭" href="#">X</a>
+    </div>
+    <div class="content">
+        <h3>欢迎来到 <a href="http://jirengu.com">饥人谷</a></h3>
+        <p> 在这个大家庭你能快乐的学到更多前端技能</p>
+    </div>
+    <div class="footer">
+        <a class="btn btn-cancel" href="#">取消</a>
+        <a class="btn btn-confirm" href="#">确认</a>
+    </div>
+</div>
+<!--代码题3-->
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>性别</th>
+    </tr>
+    <tr>
+        <td>小明</td>
+        <td>男</td>
+    </tr>
+    <tr>
+        <td>小花</td>
+        <td>女</td>
+    </tr>
+</table>
+<!--代码题4-->
+<div id='header'>
+    <div class="wrap">这里是标题</div>
+</div>
+<div id='content'>
+    <div class="wrap">这里是内容</div>
+</div>
+<div id='footer'>
+    <div class="wrap">这里是footer</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+h2 {
+  font-size: 30px;
+  margin: 25px 0;
+}
+hr {
+  margin: 20px auto;
+  border-top: 1px solid #eee;
+  width: 100px;
+}
+a { text-decoration: none; }
+li { list-style: none; }
+h4 { margin: 19px 0; }
+p { margin: 14px 0; }                       /* 以上为标签定义CSS */
+.layout {
+  width: 960px;
+  margin: 0 auto;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.container { text-align: center; }            /* 以上为类名CSS */
+.btn-l {
+  display: inline-block;
+  width: 140px;
+  height: 50px;
+  line-height: 50px;
+}
+.btn-m {
+  display: inline-block;
+  width: 95px;
+  height: 30px;
+  line-height: 30px;
+}
+.btn-s {
+  display: inline-block;
+  width: 140px;
+  height: 30px;
+  line-height: 30px;
+}
+.btn1 {
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+}
+.btn1:hover { background: rgba(0,0,0,0.7); }
+.btn2 {
+  background: #fff;
+  color: #000;
+}
+.btn2:hover { background: #eee; }             /* 以上为按钮CSS */
+#header {
+  background: rgba(255,255,0,0.1) url("http://i4.piimg.com/567571/200cdfc9e45f761a.png") no-repeat;
+  background-size: cover;
+}
+#header .container { padding: 210px 0; }
+#header .container h3 {
+  font-size: 25px;
+  margin: 20px 0;
+}
+#content .aboutme .container {
+  padding: 50px;
+  font-size: 21px;
+}
+#content .aboutme p {
+  display: inline-block;
+  padding-bottom: 20px;
+}
+#content .aboutme a,
+#footer .contact-information a,
+#footer .contact-icon a {
+  color: #337ab7;
+}                                              /* 为指定链接设置样式 */
+#content .aboutme a:hover,
+#footer .contact-information a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+#content .skills,
+#content .extra {
+  background: #337ab7;
+  color: #fff;
+  padding: 50px;
+}
+#content .skills ul { margin-left: -20px; } /* 宽度加20px，子元素上流 */
+#content .skills li {
+  float: left;
+  margin: 20px 0 0 20px;
+  width: 225px;
+}                                          /* (960-20*3)/4 */
+#content .presentation {
+  background: rgba(255,255,0,0.1) url("http://i4.piimg.com/567571/f42a0e88aa5581fe.jpg") no-repeat;
+  background-size: cover;
+}
+#content .presentation .container { padding: 200px 0; }
+#content .presentation h1 {
+  font-size: 60px;
+  margin: 42px 0;
+  color: #fff;
+}
+#content .works .container { padding: 50px 0; }
+#content .works ul { margin-left: -30px; }
+#content .works li {
+  float: left;
+  margin: 0 0 30px 30px;
+}
+#content .works li img {
+  width: 465px;
+  height: 310px;
+}
+#content .extra h3 { padding: 15px 0 20px 0; }
+#footer .container { padding: 100px 0; }
+#footer .contact-information { margin-bottom: 30px; }
+#footer .contact-icon li {
+  display: inline-block;
+  margin: 10px;
+}
+#footer .contact-icon a:hover { color: #23527c; }

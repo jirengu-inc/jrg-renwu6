@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-19-2</title>
+</head>
+
+<body>
+  <script>
+    var str = getChsDate("2015-01-08");
+    console.log(str);
+    function getChsDate(str) {
+      var chsNum = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"],
+          t1 = new Date(str),
+          arr = str.split("-"),
+          year = chsNum[arr[0][0]] + chsNum[arr[0][1]] + chsNum[arr[0][2]] + chsNum[arr[0][3]],
+          mon, days, str;
+          if(chsNum[arr[1][0]] === "零") {
+            mon = chsNum[arr[1][1]];
+          } else {
+            mon = chsNum[arr[1][0]] + chsNum[arr[1][1]];
+          }
+          if(chsNum[arr[2][0]] === "零") {
+            days = chsNum[arr[2][1]];
+          } else {
+            days = chsNum[arr[2][0]] + chsNum[arr[2][1]];
+          }
+          str = year + "年" + mon + "月" + days + "日";
+      return str;
+    }
+  </script>
+</body>
+
+</html>

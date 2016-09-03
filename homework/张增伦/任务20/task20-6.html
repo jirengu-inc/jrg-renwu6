@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+
+<script>
+
+    for(var i=0;i<5;i++){
+
+        (function(){
+            var n = i;
+            setTimeout(function(){
+                console.log('delayer:' + n );
+            }, 0);
+        })();
+
+        console.log(i);
+    }
+
+
+
+</script>
+
+</body>
+</html>

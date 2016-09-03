@@ -1,0 +1,188 @@
+html,body,ul,li{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width:100%;
+    height:100%;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.clearfix:after{
+    display: block;
+    content: " ";
+    clear:both;
+}
+.layout{
+    width: 960px;
+    margin: 0 auto;
+}
+#header{
+    background:url('http://book.jirengu.com/jirengu-inc/task/%E4%BB%BB%E5%8A%A119-%E5%AE%9E%E6%88%983/img/bg.jpg') no-repeat;
+    width: 100%;
+    height:100%;
+    background-size:cover;
+}
+#header .intro{
+    text-align: center;
+    position: relative;
+    top:50%;
+}
+#header .btn>a{
+    display:block;
+    padding:10px 10px;
+    background: #333;
+    color:white;
+    border-radius: 5px;
+    width:110px;
+    margin: 0 auto;
+}
+#header .btn>a:hover{
+    background: #555;
+}
+#content{
+    width:100%;
+    margin:0 auto;
+}
+#content .intro{
+    padding:50px 0;
+    background: #fff;
+    text-align: center;
+}
+#content .skills{
+    color:#fff;
+    width: 100%;
+    background: #337ab7;
+    padding:50px 0;
+}
+#content .skills>h1{
+    text-decoration: underline;
+    margin-top:40px;
+    text-align: center;
+}
+#content .skills>ul{
+    margin-top:40px;
+}
+#content .skills ul>li{
+    float:left;
+    margin:0 0 0 10px;
+    width: 225px;
+    text-align: center;
+}
+
+#content .skills-btn a{
+    display:block;
+    background: #333;
+    color:#fff;
+    padding:10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100px;
+    margin:0 auto;
+}
+#content .skills-btn a:hover{
+    background:#888;
+}
+#content .callout {
+    background: url('../img/10484752.jpg') no-repeat;
+    margin-top: -22px;
+    text-align: center;
+    border-top:1px solid #666;
+}
+#content .callout>h1{
+    color:#fff;
+    padding:200px 0;
+}
+#content .works{
+    text-align: center;
+}
+#content .works h2{
+    margin: 20px 0;
+}
+#content .works hr{
+    width:80px;
+}
+#content .works ul{
+    margin-left:5px;
+}
+#content .works li{
+    float:left;
+    margin:20px 20px 0 0;
+}
+#content .works img{
+    width: 460px;
+    height: 300px;
+}
+#content .works-btn a{
+    display:block;
+    margin: 25px auto;
+    background: #333;
+    color:#fff;
+    padding:10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100px;
+}
+#content .works-btn a:hover{
+    opacity:0.8;
+}
+#content .endding{
+    background: #337AB7;
+    text-align: center;
+    padding:60px 0;
+}
+#content .endding p{
+    color:#fff;
+    font-size:20px;
+}
+
+#content .endding-btn1{
+    display:inline-block;
+    background: #fff;
+    color:#000;
+    padding:10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    width:100px;
+    line-height: 30px;
+}
+#content .endding-btn2{
+    display:inline-block;
+    background: #333;
+    color:#fff;
+    padding:10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100px;
+    line-height: 30px;
+}
+#content .endding-btn1:hover{
+    opacity: 0.5;
+}
+#content .endding-btn2:hover{
+    opacity: 0.8;
+}
+#footer{
+    text-align: center;
+    padding:100px 0;
+}
+#footer .icon2{
+    text-align: center;
+    margin: 0 auto;
+}
+#footer .icon2>li{
+    display: inline-block;
+}
+#footer .main{
+    text-align: center;
+}
+#footer .main hr{
+    color:#fff;
+    width:0px;
+}
+
+

@@ -1,0 +1,20 @@
+
+.icon_lists .icon{
+  font-size: 42px;
+  line-height: 100px;
+  margin: 10px 8px;
+  color:#333;
+  -webkit-transition: font-size 0.25s ease-out 0s;
+  -moz-transition: font-size 0.25s ease-out 0s;
+  transition: font-size 0.25s ease-out 0s;
+  cursor: pointer;
+}
+
+.icon_lists i:nth-of-type(2){
+    font-size: 38px;
+}
+
+.icon_lists .icon:hover{
+  color: #cc33ff;
+}
+
