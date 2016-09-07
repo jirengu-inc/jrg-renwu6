@@ -57,6 +57,7 @@
         if($this.data('load')){return}
         $.ajax({
             url: 'myPHP.php',
+            dataType: 'json',
             type: 'GET',
             data: {
                 start: start,
