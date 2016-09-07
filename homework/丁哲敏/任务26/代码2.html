@@ -51,31 +51,35 @@
     });
 
     var str = 2,
+        len = 6;
         isLocking = false;
     $('.btn').on('click',function (e) {
         e.preventDefault();
-        if(isLocking){
+        if (isLocking = true) {
             return;
-    }
-    $('.btn').text('loading...');
-    $.ajax({
-        url: 'myPHP.php',
-        type: 'get',
-        data: {
-            start: str,
-            len: 6
         }
-    }).done(function(msg){
-        var json = JSON.parse(msg.split('<!--')[0])
-        $.each(json.data,function(index,value){
-            contentNumber += 1
-            isLocking = false
-            $('#loadMore').text('加载更多')
-            $('<li></li>').html(value).appendTo($('.content'))
-        })
+        $('.btn').text('loading...');
+        $.ajax({
+            url: 'myPHP.php',
+            type: 'GET',
+            data: {
+                start: str,
+                len: len
+            },
+            success: function (json) {
+                onSuccess(json);
+            }
+        });
+        function onSuccess(json) {
+            console.log(json)
+            if(json.status == 1){
+                for(var i=0;i<json.data.length;i++){
+                    $('.ct').append(' <div class="box">'+json.data[i]+'</div>')
+                }
+            }
+            str += len;
+        }
     })
-    })
-
 </script>
 </body>
 </html>
