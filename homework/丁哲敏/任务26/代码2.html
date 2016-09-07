@@ -55,7 +55,7 @@
     $('.btn').on('click',function (e) {
         e.preventDefault();
         var $this = $(this);
-        if($this.data('load')){return};
+        if($this.data('load')){return}
         $.ajax({
             url: 'myPHP.php',
             type: 'GET',
@@ -79,6 +79,7 @@
             }
             strart += 5;
         }
+    })
 
 </script>
 </body>

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="" />
+    <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
+    </list>
     <ignored path="jrg-renwu6.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +26,8 @@
       <file leaf-file-name="代码2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+            <state relative-caret-position="205">
+              <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -199,12 +202,12 @@
       <workItem from="1473062076087" duration="384000" />
       <workItem from="1473063883661" duration="1948000" />
       <workItem from="1473145078577" duration="20668000" />
-      <workItem from="1473234369150" duration="5503000" />
+      <workItem from="1473234369150" duration="6086000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28851000" />
+    <option name="totallyTimeSpent" value="29434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -378,8 +381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+        <state relative-caret-position="205">
+          <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
           <folding />
         </state>
       </provider>
