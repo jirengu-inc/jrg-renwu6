@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新浪新闻摘要抓取展示</title>
+    <style>
+        html,body,ul,li,div,img {
+            margin:0;
+            padding:0;
+            border-width:0;
+        }
+        .ct {
+            /*width:960px;*/
+            width: 72vw;
+            margin: 0 auto;
+        }
+        .nav {
+            position: relative;
+        }
+        .item {
+            list-style-type:none;
+            width: 280px;
+            border: 1px solid #dfdfdf;
+            margin:10px;
+            position: absolute;
+            opacity: 0;
+            translation: all 1s;
+        }
+        .item.hide {
+            position: static;
+        }
+        .item img {
+            width: 260px;
+            margin: 10px;
+        }
+        .item .title {
+            height:25px;
+            margin:0 12px;
+            border-bottom:1px solid #dbdbdb;
+        }
+        .item .para {
+            margin:10px 15px;
+            font-size: 12px;
+            line-height:1.8;
+            color: #777371;
+        }
+        .load {
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+<div class="ct">
+    <ul class="nav">
+        <li class="item hide"></li>
+    </ul>
+
+    <div class="load">loadMore</div>
+</div>
+
+<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    var Load = (function(){
+        var $win = $(window),
+            $nav = $(".nav"),
+            $item = $(".item"),
+            $hide = $(".hide"),
+            clock,
+            page = 1,
+            len = 10,
+            $cur = $(".load").data("loading",false);
+        var itemW = $item.outerWidth(true),
+            count = Math.floor($nav.width()/itemW),
+            heightArr = [];
+        for(var i = 0;i < count;i++){
+            heightArr.push(0);
+        }
+
+        function bind(){
+            $win.on("scroll",function(){
+                if(clock) clearTimeout(clock);
+                clock = setTimeout(function(){
+                    if(isVisible($cur)){
+                        loadData();
+                    }
+                },100);
+            })
+        }
+        function isVisible(node){
+            var nodeT = node.offset().top,
+                winH =  $win.height(),
+                scrT = $win.scrollTop();
+            if(nodeT < winH + scrT){
+                return true;
+            }
+            return false;
+        }
+        loadData();
+        function loadData(){
+            if($cur.data("loading")) return;
+            $cur.data("loading",true);
+            $.ajax({
+                url:"http://platform.sina.com.cn/slide/album_tech",
+                dataType:"jsonp",
+                type:"get",
+                jsonp:"jsoncallback",
+                data:{
+                    app_key:"1271687855",
+                    page:page,
+                    num:len
+                }
+            }).done(function(ret){
+                if(ret.status.code === "0"){
+                    success(ret);
+                    $cur.data("loading",false);
+                }else{
+                    alert("get data error...");
+                }
+            })
+        }
+        function success(ret){
+            $node = placeNode(ret).appendTo($nav);
+            waterFlow($node);
+            page += 1;
+        }
+        function placeNode(ret){
+            node = "";
+            for(var i = 0;i < ret.data.length;i++){
+                node += '<li class="item"><a href="';
+                node += ret.data[i].url + '" class="link"><img src="';
+                node += ret.data[i].img_url + '" alt=""></a><h4 class="title">';
+                node += ret.data[i].short_name + '</h4><p class="para">';
+                node += ret.data[i].short_intro + '</p></li>';
+            }
+            $node = $(node);
+            return $node;
+        }
+        function waterFlow(node){
+            node.each(function(){
+                var $cur = $(this);
+                $cur.find("img").on("load",function(){
+                    var minVal = heightArr[0],
+                        idx = 0;
+                    for(var i = 0;i < heightArr.length;i++){
+                        if(minVal > heightArr[i]){
+                            minVal = heightArr[i];
+                            idx = i;
+                        }
+                    }
+                    $cur.css({
+                        "top":minVal,
+                        "left":idx * itemW,
+                        "opacity":1
+                    })
+                    console.log(heightArr[0])
+                    heightArr[idx] += $cur.outerHeight(true);
+                    $hide.css("height",heightArr[idx]);
+                })
+            })
+        }
+
+        return {
+            init : bind
+        }
+    })()
+//    var Water = (function(){
+//        function bind(){
+//            $(window).on("resize",function(){
+//                var $item = $(".item");
+//                var $itemW = $item.outerWidth(true);
+//                var count = Math.floor($(".nav").width()/$itemW);
+//                var heightArr = [];
+//                for(var i = 0;i < count;i++){
+//                    heightArr.push(0);
+//                }
+//                $item.each(function(){
+//                    var minVal = heightArr[0],
+//                        idx = 0;
+//                    for(var i = 0;i < heightArr.length;i++){
+//                        if(minVal > heightArr[i]){
+//                            minVal = heightArr[i];
+//                            idx = i;
+//                        }
+//                    }
+//                    $(this).css({
+//                        "top":minVal,
+//                        "left":idx * $itemW
+//                    })
+//                    heightArr[idx] += $(this).outerHeight(true);
+//                    $(".hide").css("height",heightArr[idx]);
+//                })
+//            })
+//        }
+//        return {
+//            init:bind
+//        }
+//    })()
+    Load.init();
+//    Water.init();
+</script>
+</body>
+</html>

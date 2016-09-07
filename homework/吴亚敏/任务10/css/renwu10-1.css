@@ -1,0 +1,121 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	font-family: Microsoft YaHei;
+}
+
+.header{
+	background: #333;
+	height: 50px;
+}
+
+.header .inner{
+	width: 900px;
+	margin: 0 auto;
+}
+
+.header .inner a{
+	float: left;
+}
+
+.header ul.nav{
+	float: right;
+}
+
+.header ul li{
+	list-style: none;
+	float: left;
+	
+}
+
+
+.header .nav a{
+	display: block;
+	padding: 0 10px;
+	line-height: 50px;
+	margin-right: 10px;
+	font-size: 15px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.header .nav a:hover{
+	background: #fff;
+	color: #333;
+
+}
+
+.content{
+	width: 900px;
+	margin: 0 auto;
+	margin-top: 10px;
+	position: relative;
+}
+
+.aside{
+	width: 200px;
+	min-height: 600px;
+	background: #eee;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.main{
+	margin-left: 210px;
+	background: #eee;
+	min-height: 600px;
+	padding: 10px;
+	color: #555;
+}
+
+.main h1{
+	line-height: 70px;
+}
+
+.main p{
+	line-height: 26px;
+}
+
+.clearfix:after{
+  content: "020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+  }
+
+.clearfix {
+  /* 触发 hasLayout */ 
+  zoom: 1; 
+  }
+
+ .footer{
+ 	background: #333;
+ }
+
+ .footer .inner{
+ 	width: 900px;
+ 	margin: 0 auto;
+ }
+
+ .footer li{
+ 	list-style: none;
+ 	padding: 0 10px;
+ 	float: left;
+ 	font-size: 14px;
+ 	color: #fff;
+ 	line-height: 40px;
+ }
+
+ .footer li a{
+ 	text-decoration: none;
+ 	color: #fff;
+ }
+
+ .footer li a:hover{
+ 	opacity: 0.8;
+ }
