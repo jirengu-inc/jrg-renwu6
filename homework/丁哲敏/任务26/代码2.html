@@ -50,27 +50,26 @@
         $(this).removeClass('active')
     });
 
-    var str = 2,
+    var start = 4,
         len = 6;
-        isLocking = false;
     $('.btn').on('click',function (e) {
         e.preventDefault();
-        if (isLocking = true) {
-            return;
-        }
-        $('.btn').text('loading...');
+        var $this = $(this);
+        if($this.data('load')){return};
         $.ajax({
             url: 'myPHP.php',
             type: 'GET',
             data: {
-                start: str,
+                start: start,
                 len: len
             },
             success: function (json) {
                 onSuccess(json);
+                $this.data('load',false).text('loading...');
             },
             error: function () {
-                alert('出错了')
+                alert('出错了');
+                $this.data('load',false).text('loading...');
             }
         });
         function onSuccess(e) {
