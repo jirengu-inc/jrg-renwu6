@@ -50,8 +50,7 @@
         $(this).removeClass('active')
     });
 
-    var start = 4,
-        len = 6;
+    var start = 4;
     $('.btn').on('click',function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -61,7 +60,7 @@
             type: 'GET',
             data: {
                 start: start,
-                len: len
+                len: 5
             },
             success: function (json) {
                 onSuccess(json);
