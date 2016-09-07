@@ -50,47 +50,32 @@
         $(this).removeClass('active')
     });
 
-    var str = 2;
+    var str = 2,
+        isLocking = false;
     $('.btn').on('click',function (e) {
         e.preventDefault();
-    if( $(this).data( 'isLocking' ) ){//使用data给btn绑定一个状态锁
-        return;
+        if(isLocking){
+            return;
     }
-    $(this).data('isLocking',ture).html('<p class="load">loading...</p>')
+    $('.btn').text('loading...');
     $.ajax({
         url: 'myPHP.php',
-        dataType: 'json',
         type: 'get',
         data: {
             start: str,
             len: 6
-        },
-        success: function () {
-            Success(josn);
-        },
-        error: function () {
-            Error();
         }
-     })
-    });
-    function Success(josn) {
-        $('.btn').data( 'isLocking',false );
-        if(josn.status == 1) {
-            append(json.data);
-            str += 6;
-        }else{
-            alert('出错了')
-        }
-    }
-    function Error() {
-        $('.btn').data( 'isLocking',false );
-        alert('系统异常');
-    }
-    function append(num) {
-        for(var i=0; i<data.length;i++){
-            $('.ct').append('<div class="box">内容'+num[i]+'+</div>')
-        }
-    }
+    }).done(function(msg){
+        var json = JSON.parse(msg.split('<!--')[0])
+        $.each(json.data,function(index,value){
+            contentNumber += 1
+            lock = false
+            $('#loadMore').text('加载更多')
+            $('<li></li>').html(value).appendTo($('.content'))
+        })
+    })
+    })
+
 </script>
 </body>
 </html>

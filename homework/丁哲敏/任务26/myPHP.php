@@ -12,4 +12,3 @@
     //{status: 1, data: ['内容1','内容2','内容3']}
     sleep(0.5);
     echo json_encode($ret);
-    >
