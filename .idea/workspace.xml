@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
     </list>
     <ignored path="jrg-renwu6.iws" />
@@ -24,17 +22,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="代码2.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="代码2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
+            <state relative-caret-position="460">
+              <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myPHP.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="myPHP.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -203,12 +201,12 @@
       <workItem from="1473062076087" duration="384000" />
       <workItem from="1473063883661" duration="1948000" />
       <workItem from="1473145078577" duration="20668000" />
-      <workItem from="1473234369150" duration="1210000" />
+      <workItem from="1473234369150" duration="1292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24558000" />
+    <option name="totallyTimeSpent" value="24640000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="264" y="11" width="1370" height="744" extended-state="0" />
@@ -372,18 +370,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/php.php" />
-    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
           <folding />
         </state>
       </provider>

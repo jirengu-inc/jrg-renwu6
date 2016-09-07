@@ -69,7 +69,7 @@
         var json = JSON.parse(msg.split('<!--')[0])
         $.each(json.data,function(index,value){
             contentNumber += 1
-            lock = false
+            isLocking = false
             $('#loadMore').text('加载更多')
             $('<li></li>').html(value).appendTo($('.content'))
         })
