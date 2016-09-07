@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务25-2</title>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    a{
+        list-style: none;
+        text-decoration: none;
+        color: #8b0000;
+        border: 1px solid #8b0000;
+        border-radius: 3px;
+        padding: 10px;
+        margin: 10px auto;
+        display: inline-block;
+    }
+    .box{
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+    }
+    .btn-box{
+        text-align: center;
+    }
+    .active{
+        background: #228b22;
+        color: #fff;
+    }
+    .load{
+        color: #8b0000;
+    }
+</style>
+<body>
+<div class="ct">
+    <div class="box">内容1</div>
+    <div class="box">内容2</div>
+</div>
+<div class="btn-box"><a href="#" class="btn">加载更多</a></div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+    $('.ct').on('mouseenter','.box',function () {
+        $(this).addClass('active')
+    }).on('mouseleave','.box',function () {
+        $(this).removeClass('active')
+    });
+
+    var str = 2;
+    $('.btn').on('click',function (e) {
+        e.preventDefault();
+    if( $(this).data( 'isLocking' ) ){//使用data给btn绑定一个状态锁
+        return;
+    }
+    $(this).data('isLocking',ture).html('<p class="load">loading...</p>')
+    $.ajax({
+        url: 'myPHP.php',
+        dataType: 'json',
+        type: 'get',
+        data: {
+            start: str,
+            len: 6
+        },
+        success: function () {
+            Success(josn);
+        },
+        error: function () {
+            Error();
+        }
+     })
+    });
+    function Success(josn) {
+        $('.btn').data( 'isLocking',false );
+        if(josn.status == 1) {
+            append(json.data);
+            str += 6;
+        }else{
+            alert('出错了')
+        }
+    }
+    function Error() {
+        $('.btn').data( 'isLocking',false );
+        alert('系统异常');
+    }
+    function append(num) {
+        for(var i=0; i<data.length;i++){
+            $('.ct').append('<div class="box">内容'+num[i]+'+</div>')
+        }
+    }
+</script>
+</body>
+</html>
