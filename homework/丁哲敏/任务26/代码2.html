@@ -71,14 +71,14 @@
                 $this.data('load',false).text('loading...');
             }
         });
+    });
         function onSuccess(e) {
-            for(var i=0; i<e.data.length; i++){
+            for(var i=0; i< e.data.length; i++){
                 var $node = $('<div class="box"></div>');
                 $node.text(e.data[i]).appendTo( $('.ct') );
             }
             strart += 5;
         }
-    })
 
 </script>
 </body>
