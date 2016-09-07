@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
     </list>
     <ignored path="jrg-renwu6.iws" />
@@ -25,8 +26,8 @@
       <file leaf-file-name="代码2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+            <state relative-caret-position="355">
+              <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -35,8 +36,8 @@
       <file leaf-file-name="myPHP.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="210">
+              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -62,8 +63,8 @@
         <option value="$PROJECT_DIR$/homework/张增伦/任务20/task20-1-5.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码1.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/php.php" />
-        <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
       </list>
     </option>
   </component>
@@ -74,8 +75,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="351" />
-    <option name="y" value="10" />
+    <option name="x" value="764" />
+    <option name="y" value="18" />
     <option name="width" value="1370" />
     <option name="height" value="744" />
   </component>
@@ -201,15 +202,15 @@
       <workItem from="1473062076087" duration="384000" />
       <workItem from="1473063883661" duration="1948000" />
       <workItem from="1473145078577" duration="20668000" />
-      <workItem from="1473234369150" duration="6556000" />
+      <workItem from="1473234369150" duration="6792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29904000" />
+    <option name="totallyTimeSpent" value="30140000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="351" y="10" width="1370" height="744" extended-state="0" />
+    <frame x="764" y="18" width="1370" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815361" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -372,16 +373,16 @@
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/php.php" />
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="210">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+        <state relative-caret-position="355">
+          <caret line="75" column="24" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="24" />
           <folding />
         </state>
       </provider>
