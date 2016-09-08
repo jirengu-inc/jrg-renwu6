@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .slides {
+            position: relative;
+            overflow: hidden;
+            width: 400px;
+            height: 400px;
+        }
+
+        .slides-img {
+            position: absolute;
+            left: -400px;
+            width: 2000px;
+        }
+
+        .slides-img>li {
+            float: left;
+            width: 400px;
+            height: 400px;
+        }
+
+
+        .list {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            z-index: 10;
+            transform: translate(-50%);
+        }
+
+        .list>li {
+            float: left;
+            margin: 0 10px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid;
+            border-radius: 50%;
+        }
+
+        .pre {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        a.pre,a.next {
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+        }
+
+
+        .next {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .move {
+            display: none;
+        }
+
+        .selected {
+            background-color: #000;
+        }
+
+        .slides>.active {
+            display: block;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <div class="slides">
+        <ul class="slides-img clearfix">
+            <li class="slides-img-item3">
+                <img src="image/3.jpg" alt="">
+            </li>
+            <li class="slides-img-item1">
+                <img src="image/1.jpg" alt="">
+            </li>
+            <li class="slides-img-item2">
+                <img src="image/2.jpg" alt="">
+            </li>
+            <li class="slides-img-item3">
+                <img src="image/3.jpg" alt="">
+            </li>
+            <li class="slides-img-item1">
+                <img src="image/1.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="list clearfix">
+            <li class="slides-btn selected"></li>
+            <li class="slides-btn"></li>
+            <li class="slides-btn"></li>
+        </ul>
+        <a href="#!" class="pre slides-btn move">&lt;</a>
+        <a href="#!" class="next slides-btn move">&gt;</a>
+    </div>
+
+
+
+  <!--   <div class="slides">
+        <ul class="slides-img clearfix">
+            <li class="slides-img-item3">
+                <img src="image/3.jpg" alt="">
+            </li>
+            <li class="slides-img-item1">
+                <img src="image/1.jpg" alt="">
+            </li>
+            <li class="slides-img-item2">
+                <img src="image/2.jpg" alt="">
+            </li>
+            <li class="slides-img-item3">
+                <img src="image/3.jpg" alt="">
+            </li>
+            <li class="slides-img-item1">
+                <img src="image/1.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="list clearfix">
+            <li class="slides-btn selected"></li>
+            <li class="slides-btn"></li>
+            <li class="slides-btn"></li>
+        </ul>
+        <a href="#!" class="pre slides-btn move">&lt;</a>
+        <a href="#!" class="next slides-btn move">&gt;</a>
+    </div> -->
+    <script>
+
+
+        var index = 0,
+            lock =false
+        function selected(index) {
+            $('.list>li').removeClass('selected').eq(index).addClass('selected')
+        }
+
+        function animate() {
+            $('.slides-img').stop(true,true).animate({
+                left: -400*(index+1)
+            },150,animateCallback)
+        }
+
+        function animateCallback() {
+            if (index === 3) {
+                index = 0
+                $('.slides-img').css('left',-400)
+            } else if (index === -1) {
+                index = 2
+                $('.slides-img').css('left',-1200)
+            }
+            lock = false
+            selected(index)
+        }
+
+        function moveNext(dir) {
+            if (lock) return
+            lock = true
+            if (dir) {
+                index++
+                animate()
+            } else {
+                index--
+                animate()
+            }
+        }
+
+        $('.next').on('click',function(){
+            moveNext(true)
+        })
+
+        $('.pre').on('click',function(){
+            moveNext(false)
+        })
+
+
+        $('.list').on('click','li',function(){
+            var index = $(this).index()
+            $('.slides-img').stop(true,true).animate({
+                left: -400*(index+1)
+            },150,selected(index))
+        })
+
+        function autoPlay() {
+            moveNext(true)
+            setTimeout(autoPlay,5000)
+        }
+
+        autoPlay()
+
+        $('.slides').on('mouseenter mouseleave',function(){
+            $(this).children('a').toggleClass('active')
+        })
+
+    </script>
+</body>
+</html>
