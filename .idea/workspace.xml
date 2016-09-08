@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
     </list>
     <ignored path="jrg-renwu6.iws" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="代码2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="74" column="49" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
+            <state relative-caret-position="145">
+              <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -64,8 +63,8 @@
         <option value="$PROJECT_DIR$/homework/张增伦/任务20/task20-1-5.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码1.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/php.php" />
-        <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
       </list>
     </option>
   </component>
@@ -204,15 +203,15 @@
       <workItem from="1473063883661" duration="1948000" />
       <workItem from="1473145078577" duration="20668000" />
       <workItem from="1473234369150" duration="7974000" />
-      <workItem from="1473308008724" duration="609000" />
+      <workItem from="1473308008724" duration="861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31931000" />
+    <option name="totallyTimeSpent" value="32183000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="496" y="13" width="1370" height="744" extended-state="1" />
+    <frame x="496" y="13" width="1370" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815361" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -399,8 +398,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="74" column="49" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
+        <state relative-caret-position="145">
+          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
           <folding />
         </state>
       </provider>

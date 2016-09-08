@@ -37,6 +37,7 @@
 <div class="ct">
     <div class="box">内容1</div>
     <div class="box">内容2</div>
+    <div class="box">内容3</div>
 </div>
 <div class="btn-box"><a href="#" class="btn">加载更多</a></div>
 <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
@@ -51,8 +52,8 @@
     $('.btn').on('click',function (e) {
         e.preventDefault();
         var $this = $(this);
-        if($this.data('load')){return};
-        $this.data('load',true).text('loading...');
+        if($this.data('btn')){return}
+        $this.data('btn',true).text('loading...');
         $.ajax({
             url: 'myPHP.php',
             dataType: 'json',
@@ -63,11 +64,11 @@
             },
             success: function (json) {
                 onSuccess(json);
-                $this.data('load',false).text('loading...');
+                $this.data('btn',false).text('loading...');
             },
             error: function () {
                 alert('出错了');
-                $this.data('load',false).text('loading...');
+                $this.data('btn',false).text('loading...');
             }
         })
     });
