@@ -1,50 +1,34 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Sprite</title>
-		<style type="text/css">
-		     *{
-		     	margin: 0px;
-		     	padding: 0px;
-		     }
-			.icon{
-				display: inline-block;
-				width: 40px;
-				height: 40px;
-				background: url(img/sprite.png) 0 0 no-repeat;
-				padding-left: 45px;
-				font-size: 20px;
-				font-family: "微软雅黑";
-				cursor: pointer;
-			}
-			.icon:hover{
-				color: #A766BF;
-			}
-			.s1{
-			    background-position: 11px -3px;
-			}
-			.s2{
-				background-position: 11px -46px;
-			}
-			.s3{
-				background-position: 11px -93px;
-			}
-			.s1:hover{
-				background-position: 10px -138px;
-			}
-			.s2:hover{
-				background-position: 6px -187px;
-			}
-			.s3:hover{
-				background-position: 15px -231px;
-			}
-			
-		</style>
-	</head>
-	<body>
-		<div class="icon s1">前进</div>
-		<div class="icon s2">开始</div>
-		<div class="icon s3">后退</div>
-	</body>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task9_2_2</title>
+	<link rel="stylesheet" type="text/css" href="icon-font/icon-1/iconfont.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.wraps{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+		}
+		.icon{
+			font-size: 25px;
+			margin-right:5px;
+		}
+		.icon:hover{
+			color: #a663be;
+		}
+	</style>
+</head>
+<body>
+<div class="wraps">
+	<span class="icon"><i class="icon iconfont">&#xf0006;</i>播放</span>
+	<span class="icon"><i class="icon iconfont">&#xe6bd;</i>快进</span>
+	<span class="icon"><i class="icon iconfont">&#xe6bb;</i>停止</span>
+</div>
+</body>
 </html>
