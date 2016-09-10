@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-4</title>
+    <style>
+        body,h3,p,ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .slide {
+            margin: 0 auto;
+            height: 100vh;
+        }
+
+        .slide-btn-dot {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+
+        .btn-dot-item {
+            float: left;
+            width: 20px;
+            height: 7px;
+            margin: 0 5px;
+            border: 1px solid;
+            border-radius: 3px;
+            background-color: rgba(255,255,255,0.8);
+        }
+
+        .btn-dot-item:hover {
+            cursor: pointer;
+        }
+
+        .slide-btn-dot>.selected {
+            background-color: #000;
+        }
+
+        .slide-btn-move {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .slide-btn-move:active {
+            color: #000;
+        }
+        .move-next {
+            right: 0;
+        }
+
+        .slide-img-wrap>a {
+            text-decoration: none;
+            display: block;
+            float: left;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: #fff;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .content-item {
+            display: none;
+        }
+
+        .slide-content>.selected-text {
+            display: block;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script src="slide.js"></script>
+</head>
+<body>
+    <div class="slide">
+        <div class="slide-img-wrap">
+            <a href="#!">
+                <img src="img/full1.jpg" alt="">
+            </a>
+            <a href="#!">
+                <img src="img/full2.jpg" alt="">
+            </a>
+            <a href="#!">
+                <img src="img/full3.jpg" alt="">
+            </a>
+            <a href="#!">
+                <img src="img/full4.jpg" alt="">
+            </a>
+        </div>
+        <div class="slide-content">
+            <div class="content-item">
+                <h3>薄雾中的撑船者</h3>
+                <p>中国,东江</p>
+            </div>
+            <div class="content-item">
+                <h3>苍劲有力的松树</h3>
+                <p>挪威,松恩-菲尤拉讷</p>
+            </div>
+            <div class="content-item">
+                <h3>森林环绕下的波蒂奇湖</h3>
+                <p>美国,楚加奇国家公园</p>
+            </div>
+            <div class="content-item">
+                <h3>古朴的童话小镇</h3>
+                <p>法国,勃恳第</p>
+            </div>
+        </div>
+        <a href="#!" class="slide-btn-move move-pre">&lt;</a>
+        <a href="#!" class="slide-btn-move move-next">&gt;</a>
+    </div>
+    <script>
+
+        jQuery.fn.slide = function(o){
+            var $slide = this,
+                $imgWrap = $slide.children('.slide-img-wrap'),
+                $img = $slide.find('.slide-img-wrap>a')
+            $img.first().clone().appendTo($imgWrap)
+            $img.last().clone().prependTo($imgWrap)
+            var imgNumber = $slide.find('.slide-img-wrap>a').length
+
+            if (o.fullScreen) {
+                $slide
+                    .css({
+                        'height': '100vh'
+                    })
+            } else {
+                $slide
+                    .css({
+                        'width': o.width,
+                        'height': o.height
+                    })
+            }
+
+            $slide
+                .css({
+                    'position': 'relative',
+                    'overflow': 'hidden'
+                })
+                .children('.slide-img-wrap').css({
+                    'position': 'absolute',
+                    'left': -o.width,
+                    'width': o.width*imgNumber
+                })
+
+            $slide
+                .append('<ul class="slide-btn-dot"></ul>')
+                .children('ul').append(function(){
+                    var listStr = ''
+                    for (var i = 0; i < imgNumber-2; i++) {
+                        listStr += '<li class="btn-dot-item"></li>'
+                    }
+                    return listStr
+                })
+
+
+            var $btnDot = $slide.children('.slide-btn-dot'),
+                $next = $slide.children('.move-next'),
+                $pre = $slide.children('.move-pre'),
+                $text = $slide.find('.content-item'),
+                index = -1,
+                lock =false
+            $btnDot.children().first().addClass('selected')
+
+            function selected(index) {
+                $text.removeClass('selected-text').eq(index).addClass('selected-text')
+                $btnDot.children().removeClass('selected').eq(index).addClass('selected')
+            }
+
+            function animate() {
+                $imgWrap.stop(true,true).animate({
+                    left: -o.width*(index+1)
+                },150,animateCallback)
+            }
+
+            function animateCallback() {
+                if (index === (imgNumber-2)) {
+                    index = 0
+                    $imgWrap.css('left',-o.width)
+                } else if (index === -1) {
+                    index = (imgNumber-2)-1
+                    $imgWrap.css('left',-o.width*(imgNumber-2))
+                }
+                lock = false
+                selected(index)
+            }
+
+
+            function moveNext(dir) {
+                if (lock) return
+                lock = true
+                if (dir) {
+                    index++
+                    animate()
+                } else {
+                    index--
+                    animate()
+                }
+            }
+
+
+            $next.on('click',function(){
+                moveNext(true)
+            })
+
+            $pre.on('click',function(){
+                moveNext(false)
+            })
+
+            $btnDot.on('click','li',function(){
+                var index = $(this).index()
+                $imgWrap.stop(true,true).animate({
+                    left: -o.width*(index+1)
+                },150)
+                selected(index)
+            })
+
+            function autoPlay() {
+                moveNext(true)
+                setTimeout(autoPlay,5000)
+            }
+
+            autoPlay()
+
+
+            $slide.on('mouseenter mouseleave',function(){
+                $(this).children('a').toggleClass('active')
+            })
+
+        }
+
+        $('.slide').slide({
+            width: 1920,
+            height: 1200,
+            fullScreen: true
+        })
+
+
+    </script>
+</body>
+</html>

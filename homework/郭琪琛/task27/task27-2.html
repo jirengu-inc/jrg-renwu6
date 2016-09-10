@@ -147,7 +147,7 @@
                 $dotItem = $slide.find('.btn-dot-item'),
                 $next = $slide.children('.move-next'),
                 $pre = $slide.children('.move-pre'),
-                index = 0
+                index = -1
 
             function move(next) {
                 $imgItem.eq(index).stop(true,true).fadeOut()
@@ -174,7 +174,7 @@
 
             function autoPlay() {
                 move(true)
-                setTimeout(autoPlay,5000)
+                setTimeout(autoPlay,3000)
             }
 
             function btnMove(btnIndex) {

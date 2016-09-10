@@ -1,3 +1,11 @@
+/*
+这是一个简单无限滚动的轮播插件,调用方法如下:
+1. HTML结构已经写好,自己只需要写一个div.slide然后几个img就可以
+3. 需要给上下翻页按钮和索引翻页按钮写样式,还有索引需要写一个selected背景色
+2. 需要传入参数,传入的参数是一个对象,包括图片的宽高,不需要单位
+*/
+
+
 jQuery.fn.slide = function(o){
     var $slide = this,
         $img = $slide.children()
@@ -5,12 +13,23 @@ jQuery.fn.slide = function(o){
     $img.last().clone().prependTo($slide)
     var imgNumber = $slide.children().length
 
+    if (o.fullScreen) {
+        $slide
+            .css({
+                'height': '100vh'
+            })
+    } else {
+        $slide
+            .css({
+                'width': o.width,
+                'height': o.height
+            })
+    }
+
     $slide
         .css({
             'position': 'relative',
-            'overflow': 'hidden',
-            'width': o.width,
-            'height': o.height
+            'overflow': 'hidden'
         })
         .children().wrap('<a href="#!" />').end()
         .children().css({
@@ -41,7 +60,7 @@ jQuery.fn.slide = function(o){
         $btnDot = $slide.children('.slide-btn-dot'),
         $next = $slide.children('.move-next'),
         $pre = $slide.children('.move-pre'),
-        index = 0,
+        index = -1,
         lock =false
     $btnDot.children().first().addClass('selected')
     function selected(index) {
@@ -98,7 +117,7 @@ jQuery.fn.slide = function(o){
 
     function autoPlay() {
         moveNext(true)
-        setTimeout(autoPlay,3000)
+        setTimeout(autoPlay,5000)
     }
 
     autoPlay()

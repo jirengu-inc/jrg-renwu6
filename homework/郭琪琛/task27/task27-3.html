@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>task27-3</title>
     <style>
+        body {
+            padding: 0;
+            margin: 0
+        }
+
         ul {
             list-style: none;
             padding: 0;
@@ -14,8 +19,8 @@
             text-decoration: none;
         }
 
-        .slide {
-            margin: 0 auto;
+        .slide,.slide1,.slide2 {
+            margin: 10px auto;
         }
 
         .slide-btn-dot {
@@ -74,10 +79,32 @@
         <img src="img/nature3.jpg" alt="">
         <img src="img/nature4.jpg" alt="">
     </div>
+
+    <div class="slide1">
+        <img src="img/nature1.jpg" alt="">
+        <img src="img/nature2.jpg" alt="">
+        <img src="img/nature3.jpg" alt="">
+        <img src="img/nature4.jpg" alt="">
+    </div>
+
+    <div class="slide2">
+        <img src="img/nature1.jpg" alt="">
+        <img src="img/nature2.jpg" alt="">
+        <img src="img/nature3.jpg" alt="">
+        <img src="img/nature4.jpg" alt="">
+    </div>
     <script>
         $('.slide').slide({
             width: 600,
-            height: 300
+            height: 300,
+        })
+        $('.slide1').slide({
+            width: 600,
+            height: 300,
+        })
+        $('.slide2').slide({
+            width: 600,
+            height: 300,
         })
     </script>
 </body>
