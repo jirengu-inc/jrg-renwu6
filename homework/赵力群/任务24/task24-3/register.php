@@ -1,4 +1,5 @@
 <?php
+  header("Content-type: ");
   $name = $_GET['username'];
   if($name === 'hunger') {
     $ret = 1;

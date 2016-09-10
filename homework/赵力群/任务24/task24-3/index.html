@@ -118,7 +118,7 @@
       }
     }
     function testPass1() {
-      if(isValidPass(psdIpt1.value)) {
+      if(!isValidPass(psdIpt1.value)) {
         addClass(psdIpt1, 'error');
         psdMsg1.innerText = '密码格式不正确';
         return false;
@@ -151,12 +151,12 @@
       if(str.length < 6 || str.length > 15) {
         return false;
       }
-      if(/[^a-zA-Z_\d]/g.test(str)) {
-        return false;
-      }
-      if(/(^\d+$)|(^[a-z]+$)|(^[A-Z]+$)|(^_+$)/g.test(str)) {
-        return false;
-      }
+      if(/[^A-Za-z_0-9]/.test(str)){
+    		return false;
+    	}
+      if( /(^[a-z]+$)|(^[A-Z]+$)|(^_+$)|(^\d+$)/g.test(str) ){
+    		return false;
+    	}
       return true;
     }
     // 添加删除class
