@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task29-3</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 10px 0;
+            border: 1px solid;
+            background-color: #eee;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script src="task29-1.js"></script>
+</head>
+<body>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box-target">我是目标</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+
+    <script>
+        function isLoad($target) {
+            if (!$target.data('isLoad')) {
+                console.log(true)
+                $target.data('isLoad',true)
+            }
+        }
+        $(document).on('scroll',function(){
+            var $target = $('.box-target')
+            if($target.isVisible()) {
+                isLoad($target)
+            }
+       })
+    </script>
+</body>
+</html>
