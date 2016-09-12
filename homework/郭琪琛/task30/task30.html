@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task30</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .grid {
+            position: relative;
+        }
+
+        .img {
+            position: absolute;
+            padding: 10px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            border: 1px solid;
+            box-shadow: 0 0 2px #000;
+            transition: all 1s;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <div class="grid">
+        <div class="img"><img src="img/1.jpg" alt=""></div>
+        <div class="img"><img src="img/2.jpg" alt=""></div>
+        <div class="img"><img src="img/3.jpg" alt=""></div>
+        <div class="img"><img src="img/4.jpg" alt=""></div>
+        <div class="img"><img src="img/5.jpg" alt=""></div>
+        <div class="img"><img src="img/6.jpg" alt=""></div>
+        <div class="img"><img src="img/7.jpg" alt=""></div>
+        <div class="img"><img src="img/8.jpg" alt=""></div>
+        <div class="img"><img src="img/9.jpg" alt=""></div>
+        <div class="img"><img src="img/10.jpg" alt=""></div>
+        <div class="img"><img src="img/1.jpg" alt=""></div>
+        <div class="img"><img src="img/2.jpg" alt=""></div>
+        <div class="img"><img src="img/3.jpg" alt=""></div>
+        <div class="img"><img src="img/4.jpg" alt=""></div>
+        <div class="img"><img src="img/5.jpg" alt=""></div>
+        <div class="img"><img src="img/6.jpg" alt=""></div>
+        <div class="img"><img src="img/7.jpg" alt=""></div>
+        <div class="img"><img src="img/8.jpg" alt=""></div>
+        <div class="img"><img src="img/9.jpg" alt=""></div>
+        <div class="img"><img src="img/10.jpg" alt=""></div>
+        <div class="img"><img src="img/1.jpg" alt=""></div>
+        <div class="img"><img src="img/2.jpg" alt=""></div>
+        <div class="img"><img src="img/3.jpg" alt=""></div>
+        <div class="img"><img src="img/4.jpg" alt=""></div>
+        <div class="img"><img src="img/5.jpg" alt=""></div>
+        <div class="img"><img src="img/6.jpg" alt=""></div>
+        <div class="img"><img src="img/7.jpg" alt=""></div>
+        <div class="img"><img src="img/8.jpg" alt=""></div>
+        <div class="img"><img src="img/9.jpg" alt=""></div>
+        <div class="img"><img src="img/10.jpg" alt=""></div>
+        <div class="img"><img src="img/1.jpg" alt=""></div>
+        <div class="img"><img src="img/2.jpg" alt=""></div>
+        <div class="img"><img src="img/3.jpg" alt=""></div>
+        <div class="img"><img src="img/4.jpg" alt=""></div>
+        <div class="img"><img src="img/5.jpg" alt=""></div>
+        <div class="img"><img src="img/6.jpg" alt=""></div>
+        <div class="img"><img src="img/7.jpg" alt=""></div>
+        <div class="img"><img src="img/8.jpg" alt=""></div>
+        <div class="img"><img src="img/9.jpg" alt=""></div>
+        <div class="img"><img src="img/10.jpg" alt=""></div>
+    </div>
+    <script>
+        var $img = $('.img'),
+            $wrap = $('.grid'),
+            imgW = $img.outerWidth(true)
+
+        function heightArrInit(cols,heightArr) {
+            for (var i = 0; i < cols; i++) {
+                heightArr.push(0)
+            }
+        }
+
+
+        function setPosiiton(heightArr) {
+            var minH,index
+            for (var i = 0; i < $img.length; i++) {
+                minH = Math.min.apply(null,heightArr)
+                index = heightArr.indexOf(minH)
+                heightArr[index] += $img.eq(i).outerHeight(true)
+                $img.eq(i).css({
+                    position: 'absolute',
+                    top: minH,
+                    left: index*imgW
+                })
+            }
+        }
+
+        function layOut() {
+            var screenW = $(window).width(),
+                cols = Math.floor(screenW/imgW),
+                heightArr = []
+            heightArrInit(cols,heightArr)
+            setPosiiton(heightArr)
+        }
+
+        layOut()
+        $(window).on('resize',function(){
+            layOut()
+        })
+    </script>
+</body>
+</html>
