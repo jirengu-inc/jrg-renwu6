@@ -24,6 +24,48 @@
         }
     </style>
     <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script>
+        $(function(){
+            var $img = $('.img'),
+                $wrap = $('.grid')
+
+            function heightArrInit(cols,heightArr) {
+                for (var i = 0; i < cols; i++) {
+                    heightArr.push(0)
+                }
+            }
+
+
+            function setPosiiton(imgW,heightArr) {
+                var minH,index
+                for (var i = 0; i < $img.length; i++) {
+                    minH = Math.min.apply(null,heightArr)
+                    index = heightArr.indexOf(minH)
+                    heightArr[index] += $img.eq(i).outerHeight(true)
+                    $img.eq(i).css({
+                        position: 'absolute',
+                        top: minH,
+                        left: index*imgW
+                    })
+                }
+            }
+
+            function layOut() {
+                var screenW = $(window).width(),
+                    imgW = $img.outerWidth(true),
+                    cols = Math.floor(screenW/imgW),
+                    heightArr = []
+                heightArrInit(cols,heightArr)
+                setPosiiton(imgW,heightArr)
+            }
+
+            layOut()
+            $(window).on('resize',function(){
+                layOut()
+            })
+
+        })
+    </script>
 </head>
 <body>
     <div class="grid">
@@ -68,44 +110,6 @@
         <div class="img"><img src="img/9.jpg" alt=""></div>
         <div class="img"><img src="img/10.jpg" alt=""></div>
     </div>
-    <script>
-        var $img = $('.img'),
-            $wrap = $('.grid'),
-            imgW = $img.outerWidth(true)
 
-        function heightArrInit(cols,heightArr) {
-            for (var i = 0; i < cols; i++) {
-                heightArr.push(0)
-            }
-        }
-
-
-        function setPosiiton(heightArr) {
-            var minH,index
-            for (var i = 0; i < $img.length; i++) {
-                minH = Math.min.apply(null,heightArr)
-                index = heightArr.indexOf(minH)
-                heightArr[index] += $img.eq(i).outerHeight(true)
-                $img.eq(i).css({
-                    position: 'absolute',
-                    top: minH,
-                    left: index*imgW
-                })
-            }
-        }
-
-        function layOut() {
-            var screenW = $(window).width(),
-                cols = Math.floor(screenW/imgW),
-                heightArr = []
-            heightArrInit(cols,heightArr)
-            setPosiiton(heightArr)
-        }
-
-        window.onload = layOut
-        $(window).on('resize',function(){
-            layOut()
-        })
-    </script>
 </body>
 </html>
