@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="div" class="clazz1 clazz2 clzz3-hi">
+
+    </div>
+
+    <script>
+
+        //trim(str)
+        function trim(str){
+            var pattern = new RegExp('^\\s+|\\s+$','g');
+            str = str.replace(pattern,'');
+            return str;
+        }
+
+        var str = ' hi st  ';
+        str = trim(str);
+        str='|'+str+'|';
+        console.log(str);
+
+       // addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)
+
+        function addClass(el,cls){
+
+            if(!hasClass(el,cls)){
+                el.className = el.className+" "+cls;
+                console.log( el.className);
+            }else{
+                console.log(cls+' has exists!');
+            }
+
+        }
+
+        function hasClass(el,cls){
+          //  var pattern = /(\\s|^)'+cls+'(\\b|$)/g;
+            var pattern = new RegExp('(\\s|^)'+cls+'(\\b|$)','g');
+            var bool = pattern.test(el.className);
+            console.log('---bool:'+bool);
+            return bool;
+        }
+
+        function removeClass(el,cls){
+            //  var pattern = /(\\s|^)'+cls+'(\\b|$)/g;
+            var pattern = new RegExp('(\\s|^)'+cls+'(\\b|$)','g');
+            el.className = el.className.replace(pattern,'');
+            console.log( el.className);
+        }
+
+        var el = document.getElementById('div');
+        addClass(el,'clzz');
+        addClass(el,'clzz-hi');
+        addClass(el,'clzz-hi');
+        removeClass(el,'clazz1');
+        removeClass(el,'clzz3-hi');
+
+
+        function isEmail(str){
+            var pattern = new RegExp('\\w+@\\w+\\.\\w+','g');
+            return pattern.test(str);
+        }
+
+        console.log('isEmail '+isEmail('test@163.com'));
+
+        function isPhoneNum(str) {
+            var pattern = new RegExp('1[3456789]\\d{9}$','g');
+            return pattern.test(str);
+        }
+        console.log('isPhoneNum '+isPhoneNum('15557130708'));
+
+        //写一个函数isValidUsername(str)，判断用户输入的是不是合法的用户名（长度6-20个字符，只能包括字母、数字、下划线）
+        function isValidUsername(str){
+            var pattern = new RegExp('\\b\\w{6,20}\\b','g');
+            return pattern.test(str);
+        }
+        console.log('isValidUsername '+isValidUsername('tttyyy3_222222222222'));
+
+        function isValidPassword(str){
+            var pattern = new RegExp('\\b\\w{6,20}\\b','g');
+            if(!pattern.test(str)){ return false;}
+
+            var count = 0;
+            pattern = new RegExp('\\d+','g');
+            if(pattern.test(str)){
+                count++;
+            }
+            pattern = new RegExp('[a-zA-Z]+','g');
+            if(pattern.test(str)){
+                count++;
+            }
+            pattern = new RegExp('_+','g');
+            if(pattern.test(str)){
+                count++;
+            }
+
+            return count>=2;
+        }
+
+        console.log('isValidPassword '+isValidPassword('_2f22232222222222222'));
+
+        var re = /#[a-zA-Z\d]{3,6}/g;
+
+        var subj = "color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddee #fd2 "
+
+       // alert( subj.match(re) )  // #121212,#AA00ef
+        console.log('subj '+subj.match(re));
+
+        //下面代码输出什么? 为什么? 改写代码，让其输出hunger, world.
+        var str = 'hello  "hunger" , hello "world"';
+        var pat =  /".*"/g;
+        console.log('subj1 '+ str.match(pat));
+         pat =  /".*?"/g;
+        console.log('subj2 '+ str.match(pat));
+
+        //补全如下正则表达式，输出字符串中的注释内容. (可尝试使用贪婪模式和非贪婪模式两种方法)
+        str = '.. <!-- My -- comment \n test --> ..  <!----> .. ';
+
+
+        re = /<!--[\s\S]*?-->/g;
+        console.log(' '+str.match(re));
+        //alert(str.match(re)); // '<!-- My -- comment \n test -->', '<!---->'
+
+
+        var re = /<[^>]+?>/g
+
+        var str = '<> <a href="/"> <input type="radio" checked> <b>'
+        //str.match(re) // '<a href="/">', '<input type="radio" checked>', '<b>'
+        console.log('subj '+str.match(re));
+    </script>
+
+</body>
+</html>
