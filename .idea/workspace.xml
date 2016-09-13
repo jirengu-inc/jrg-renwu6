@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="" />
+    <list default="true" id="5f79abd7-63d6-44ae-8a68-f7d3aa4ed275" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" afterPath="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
+    </list>
     <ignored path="jrg-renwu6.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,21 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="代码2.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
+      <file leaf-file-name="全屏轮播.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/全屏轮播.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="myPHP.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="249">
+              <caret line="189" column="48" selection-start-line="189" selection-start-column="48" selection-end-line="189" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -60,8 +53,14 @@
         <option value="$PROJECT_DIR$/homework/张增伦/任务20/task20-1-5.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码1.html" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/php.php" />
-        <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
         <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
+        <option value="$USER_HOME$/Desktop/MyCode/轮播练习/渐变轮播练习1.html" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务27/任务27-1.html" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务27/多个轮播图-渐变.html" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务27/实验" />
+        <option value="$PROJECT_DIR$/homework/丁哲敏/任务27/全屏轮播.html" />
       </list>
     </option>
   </component>
@@ -72,10 +71,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="496" />
-    <option name="y" value="13" />
+    <option name="x" value="413" />
+    <option name="y" value="51" />
     <option name="width" value="1370" />
-    <option name="height" value="744" />
+    <option name="height" value="743" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -113,12 +112,12 @@
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/homework/丁哲敏/任务27/多个轮播图-渐变.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.CoffeeScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
@@ -200,15 +199,25 @@
       <workItem from="1473063883661" duration="1948000" />
       <workItem from="1473145078577" duration="20668000" />
       <workItem from="1473234369150" duration="7974000" />
-      <workItem from="1473308008724" duration="892000" />
+      <workItem from="1473308008724" duration="5759000" />
+      <workItem from="1473404667115" duration="11826000" />
+      <workItem from="1473487943880" duration="5000" />
+      <workItem from="1473488035734" duration="8000" />
+      <workItem from="1473488066219" duration="1033000" />
+      <workItem from="1473494697624" duration="3246000" />
+      <workItem from="1473505777245" duration="3823000" />
+      <workItem from="1473660126777" duration="14184000" />
+      <workItem from="1473683469303" duration="5410000" />
+      <workItem from="1473736593641" duration="8860000" />
+      <workItem from="1473753789565" duration="5567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32214000" />
+    <option name="totallyTimeSpent" value="91043000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="496" y="13" width="1370" height="744" extended-state="0" />
+    <frame x="413" y="51" width="1370" height="743" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815361" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -249,7 +258,15 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="140" column="24" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/全屏轮播.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -257,11 +274,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="140" column="24" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/全屏轮播.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/多个轮播图-渐变.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/任务27-1.html" />
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/任务27-1.html" />
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/任务27-1.html" />
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -377,26 +450,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/php.php" />
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/myPHP.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="105">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+        <state relative-caret-position="265">
+          <caret line="65" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="84" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务26/代码1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="70" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/MyCode/轮播练习/渐变轮播练习1.html" />
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/任务27-1.html" />
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/多个轮播图-渐变.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1165">
+          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="212" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/轮播图-滚动.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="140" column="24" selection-start-line="140" selection-start-column="24" selection-end-line="140" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/实验">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homework/丁哲敏/任务27/全屏轮播.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="189" column="48" selection-start-line="189" selection-start-column="48" selection-end-line="189" selection-end-column="48" />
           <folding />
         </state>
       </provider>
