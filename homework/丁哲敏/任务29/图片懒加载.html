@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            padding: 0 300px;
+        }
+        li{
+            list-style: none;
+            padding: 10px;
+            float: left;
+        }
+        img{
+            width: 350px;
+            height: 280px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a></li>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a></li>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a></li>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a></li>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a></li>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a></li>
+    <li><a href=""><img src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg" alt=""></a><p>从这里开始懒加载</p></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+    <li><a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" alt="" data-src="http://i0.hdslb.com/video/c7/c7f134f01e9220dfee0b2f923e483ad0.jpg"></a></li>
+</ul>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var clock;
+    $(window).on('scroll',function () {
+        if(clock){
+            clearTimeout(clock);
+        }
+        clock = setTimeout(function () {
+            checkShow();
+        },300);
+    });
+    checkShow();
+    function checkShow() {
+        $('ul img').each(function () {
+            var $cur = $(this);
+                if(isShow($cur)){
+                    showImg($cur);
+                }
+        });
+    }
+    function isShow($el) {
+        var windowHeight = $(window).height(),
+            curScrollTop = $(document).scrollTop(),
+            elTop = $el.offset().top;
+        
+        if(elTop < windowHeight + curScrollTop){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    function showImg($el) {
+        $el.attr('src',$el.attr('data-src'));
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无限滚动</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            text-align: center;
+        }
+        .content{
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+        .content:hover{
+            color: #fff;
+            background: green;
+            cursor: pointer;
+        }
+        .loadMore{
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 3px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="content">内容1</div>
+    <div class="content">内容2</div>
+    <div class="content">内容3</div>
+</div>
+<div class="box">
+    <div class="loadMore">加载更多</div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+    $(window).on('scroll',function () {
+            var $loadMore = $('.loadMore'),
+                loadMoreScroll = $loadMore.offset().top,
+                windowHeight = $(window).height,
+                curScrollTop = $(window).scrollTop();
+
+        if(loadMoreScroll < windowHeight + curScrollTop){
+                loadMoreContent();
+        }
+    });
+    
+    function loadMoreContent() {
+        status = $('.container > .content').length;
+        $.ajax({
+            url: 'text.php',
+            dataType: 'json',
+            type: 'get',
+            data: {
+                start: status,
+                len: 20
+            },
+            success: function(json){
+                onSuccess(json);
+            },
+            error: function(){
+                alert('出错了')
+            }
+
+        })
+    }
+
+    function onSuccess(e){
+        for(var i=0; i<e.data.length; i++){
+            var $node = $(' <div class="content"></div> ');
+                $node.text(e.data[i]).appendTo($('.container'));
+        }
+        start += 20;
+    }
+    
+</script>
+</body>
+</html>
