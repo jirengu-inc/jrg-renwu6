@@ -80,29 +80,6 @@
         }
         console.log('isValidUsername '+isValidUsername('tttyyy3_222222222222'));
 
-        function isValidPassword(str){
-            var pattern = new RegExp('\\b\\w{6,20}\\b','g');
-            if(!pattern.test(str)){ return false;}
-
-            var count = 0;
-            pattern = new RegExp('\\d+','g');
-            if(pattern.test(str)){
-                count++;
-            }
-            pattern = new RegExp('[a-zA-Z]+','g');
-            if(pattern.test(str)){
-                count++;
-            }
-            pattern = new RegExp('_+','g');
-            if(pattern.test(str)){
-                count++;
-            }
-
-            return count>=2;
-        }
-
-        console.log('isValidPassword '+isValidPassword('_2f22232222222222222'));
-
         var re = /#[a-zA-Z\d]{3,6}/g;
 
         var subj = "color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddee #fd2 "
@@ -131,6 +108,35 @@
         var str = '<> <a href="/"> <input type="radio" checked> <b>'
         //str.match(re) // '<a href="/">', '<input type="radio" checked>', '<b>'
         console.log('subj '+str.match(re));
+
+
+        function isValidPassword(str){
+            var pattern = new RegExp('\\b\\w{6,20}\\b','g');
+            if(!pattern.test(str)){ return false;}
+
+            pattern = new RegExp(' ','g');
+            if(pattern.test(str)){
+                return false;
+            }
+
+            var count = 0;
+            pattern = new RegExp('\\d+','g');
+            if(pattern.test(str)){
+                count++;
+            }
+            pattern = new RegExp('[a-zA-Z]+','g');
+            if(pattern.test(str)){
+                count++;
+            }
+            pattern = new RegExp('_+','g');
+            if(pattern.test(str)){
+                count++;
+            }
+
+            return count>=2;
+        }
+
+        console.log('isValidPassword '+isValidPassword('_2f222322 22222222222'));
         
     </script>
 
