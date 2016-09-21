@@ -131,11 +131,11 @@
         }
         dataSend = dataSend.substr(0,dataSend.length-1);
         if(o.type.toLowerCase()=="get"){
-            xhr.open("GET",o.url+dataSend,false);
+            xhr.open("GET",o.url+dataSend,true);
             xhr.send();
         }
         if(o.type.toLowerCase()=="post"){
-            xhr.open("POST",o.url,false);
+            xhr.open("POST",o.url,true);
             xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             xhr.send(dataSend);
         }
