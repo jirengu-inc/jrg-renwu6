@@ -296,6 +296,7 @@ i:hover {
 #about .about-way li {
 	position: relative;
 	margin-bottom: 100px;
+	opacity: 0;
 }
 #about .about-des-l {
 	width: 475px;
