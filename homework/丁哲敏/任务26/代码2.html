@@ -32,14 +32,12 @@
         background: #228b22;
         color: #fff;
     }
-    .load{
-        color: #8b0000;
-    }
 </style>
 <body>
 <div class="ct">
     <div class="box">内容1</div>
     <div class="box">内容2</div>
+    <div class="box">内容3</div>
 </div>
 <div class="btn-box"><a href="#" class="btn">加载更多</a></div>
 <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
@@ -54,22 +52,23 @@
     $('.btn').on('click',function (e) {
         e.preventDefault();
         var $this = $(this);
-        if($this.data('load')){return}
+        if($this.data('btn')){return}
+        $this.data('btn',true).text('loading...');
         $.ajax({
             url: 'myPHP.php',
             dataType: 'json',
-            type: 'GET',
+            type: 'get',
             data: {
                 start: start,
                 len: 5
             },
             success: function (json) {
                 onSuccess(json);
-                $this.data('load',false).text('loading...');
+                $this.data('btn',false).text('loading...');
             },
             error: function () {
                 alert('出错了');
-                $this.data('load',false).text('loading...');
+                $this.data('btn',false).text('loading...');
             }
         })
     });

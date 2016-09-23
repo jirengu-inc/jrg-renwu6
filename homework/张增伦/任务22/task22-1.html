@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+</ul>
+
+<script>
+
+    var ct = document.getElementsByTagName('ul');
+    [].forEach.call(ct[0].children,function(e){
+        e.onclick = function(){
+            console.log(e.innerText);
+        }
+    })
+
+</script>
+
+</body>
+</html>

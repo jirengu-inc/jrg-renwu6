@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task35-3</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .slide-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        .slide-view {
+            display: inline-block;
+            vertical-align: bottom;
+            position: relative;
+            overflow: hidden;
+            width: 600px;
+            height: 300px;
+        }
+
+        .img-wrapper {
+            position: absolute;
+            left: -600px;
+            width: 3600px;
+        }
+
+        .img-item {
+            float: left;
+        }
+
+        .img-item>a {
+            display: block;
+        }
+
+        .img-item img {
+            vertical-align: bottom;
+        }
+
+        .slide-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5em;
+            line-height: 40px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .slide-button:hover {
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .btn-prev {
+            left: 10px;
+        }
+
+        .btn-next {
+            right: 10px;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <div class="slide-wrapper">
+        <div class="slide-view">
+            <ul class="img-wrapper clearfix">
+                <li class="img-item"><a href="#!"><img src="img/nature1.jpg" alt=""></a></li>
+                <li class="img-item"><a href="#!"><img src="img/nature2.jpg" alt=""></a></li>
+                <li class="img-item"><a href="#!"><img src="img/nature3.jpg" alt=""></a></li>
+                <li class="img-item"><a href="#!"><img src="img/nature4.jpg" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="slide-button btn-prev">&lt;</div>
+        <div class="slide-button btn-next">&gt;</div>
+    </div>
+
+    <div class="slide-wrapper">
+        <div class="slide-view">
+            <ul class="img-wrapper clearfix">
+                <li class="img-item"><a href="#!"><img src="img/nature1.jpg" alt=""></a></li>
+                <li class="img-item"><a href="#!"><img src="img/nature2.jpg" alt=""></a></li>
+                <li class="img-item"><a href="#!"><img src="img/nature3.jpg" alt=""></a></li>
+                <li class="img-item"><a href="#!"><img src="img/nature4.jpg" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="slide-button btn-prev">&lt;</div>
+        <div class="slide-button btn-next">&gt;</div>
+    </div>
+    <script>
+        $.fn.slide = function(){
+            function Slide($node) {
+                this.$node = $node
+                this.$imgWrap = $node.find('.img-wrapper')
+                this.$imgItem = $node.find('.img-item')
+                this.$btnPrev = $node.find('.btn-prev')
+                this.$btnNext = $node.find('.btn-next')
+                this.imgWidth = this.$imgItem.width()
+                this.current = 1
+                this.init()
+            }
+
+            Slide.prototype.init = function() {
+                this.$imgItem.first().clone().appendTo(this.$imgWrap)
+                this.$imgItem.last().clone().prependTo(this.$imgWrap)
+                this.imgNum = this.$node.find('.img-item').length
+                this.bindEvent()
+            }
+
+
+            Slide.prototype.go = function(index){
+                var _this = this
+                var width = this.imgWidth
+                var num = this.imgNum
+                this.$imgWrap.stop(true,true).animate({
+                    left: -index*width
+                },150,function(){
+                    _this.current = index
+                    if (_this.current === num-1) {
+                        _this.current = 1
+                        _this.$imgWrap.css('left',-width*1)
+                    }
+                    if (_this.current === 0) {
+                        _this.current = num-2
+                        _this.$imgWrap.css('left',-width*(num-2))
+                    }
+                })
+
+            }
+
+            Slide.prototype.bindEvent = function(){
+                var _this = this
+                this.$btnPrev.on('click',function(){
+                    _this.go(_this.current-1)
+                })
+                this.$btnNext.on('click',function(){
+                    _this.go(_this.current+1)
+                })
+            }
+
+            this.each(function(){
+                $node = $(this)
+                new Slide($node)
+            })
+        }
+
+        $('.slide-wrapper').slide()
+    </script>
+</body>
+</html>

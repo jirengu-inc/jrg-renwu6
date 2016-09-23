@@ -8,7 +8,6 @@
         array_push($items, '内容' . ($start+$i));
     }
     $ret = array('status'=>1, 'data'=>$items);
-
     //{status: 1, data: ['内容1','内容2','内容3']}
     sleep(1);
     echo json_encode($ret);
