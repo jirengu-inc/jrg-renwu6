@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task35-3</title>
+    <style>
+        .content {
+            height: 2000px;
+        }
+
+        .goto {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 20px;
+            background-color: #ccc;
+        }
+
+        .goto:hover {
+            cursor: pointer;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">滚动吧</div>
+    <div class="footer"></div>
+    <script>
+        function GoTop(ct) {
+            this.ct = ct
+            this.createNode()
+            this.bindEvent()
+        }
+
+        GoTop.prototype.bindEvent = function(){
+            var target = this.target
+            target.addEventListener('click',function(){
+                document.body.scrollTop = 0
+            })
+            window.addEventListener('scroll',function(){
+                var regexp = /(\s|^)show(\s|$)/
+                var show = regexp.test(target.className)
+                if (document.body.scrollTop>200&&!show) {
+                    target.className += ' show'
+                }
+                if (document.body.scrollTop<200&&show) {
+                    target.className = target.className.replace(regexp,"")
+                }
+            })
+        }
+
+        GoTop.prototype.createNode = function(){
+            var node = document.createElement('div')
+            node.className = 'goto'//提供的CSS接口
+            node.innerHTML = 'TOP'
+            this.target = this.ct.appendChild(node)
+        }
+
+
+        var footer = document.getElementsByClassName('footer')[0]
+        var test = new GoTop(footer)
+    </script>
+</body>
+</html>

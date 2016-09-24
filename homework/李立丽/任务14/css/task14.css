@@ -1,0 +1,192 @@
+html,body,h1,h2,h3,p,ul,li{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html,body{
+	font-family: Helvetica,'Microsoft YaHei',Arial;
+	font-size: 14px;
+	height: 100%;
+	width: 100%;
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+hr{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-top: 1px solid #eee;
+	max-width: 100px;
+}
+h1{
+	font-size:60px;
+}
+h2{
+    font-size:30px;
+}
+h3{
+	font-size:20px;
+}
+p{
+    font-size:16px;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.container{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+}
+#header{
+	height: 100%;
+	background: url(../image/1.jpg) 0 0 no-repeat;
+	background-size: cover;
+}
+#header h1{
+	padding-top:420px;
+}
+#header p{
+	padding:20px 0;
+}
+#header a{
+	color:white;
+	background-color:#76858a;
+	font-weight: bold;
+	padding: 10px 10px;
+	line-height: 60px;
+}
+#content h2{
+    padding-top:70px;
+    color:#333;
+}
+#content p{
+	font-size: 18px;
+	padding-bottom: 60px;
+	color:#ccc;
+}
+#content .services p{
+	padding:20px 0;
+}
+#content span{
+	color:#77c8ec; 
+}
+#content .services{
+	background: #0e72c1;
+	padding:30px 0;
+}
+#content .services h2,#content .services h3,#content .services p{
+	color:white;
+}
+#content .iconfont{
+	font-size: 80px;
+	color:#0e72c1;
+	border: 20px solid white;
+	border-radius: 50%;
+	background-color: white;
+}
+#content .services li{
+	float:left;
+	padding-top: 50px;
+	width: 240px;
+}
+#content h3{
+	padding:30px 30px 0 30px;
+}
+#content .services a{
+	background-color: white;
+	padding:5px 5px;
+	color: black;
+}
+#content .text{
+	height: 100%;
+	background: url(../image/2.jpg) 0 0 no-repeat;
+	background-size: cover;
+}
+#content .text p{
+	font-size: 60px;
+	font-weight: bold;
+	color: white;
+	padding: 180px 0;
+}
+#content .work li{
+    float: left;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+#content .work a{
+	background-color:#76858a;
+	color: white;
+	padding:10px 18px;
+	margin-right:20px;
+}
+#content .work .clearfix{
+	margin-top: -20px;
+	padding-bottom:20px;
+}
+#content .button{
+	background: #0e72c1;
+	padding:30px 0;
+	margin-top: 50px;
+}
+#content .button p{
+	color:white;
+	font-weight: bold;
+	padding: 30px 0 20px 0;
+}
+#content .button a{
+	display:inline-block;
+	background:#1d496b;
+	color:white;
+	font-weight: bold;
+	padding:10px 10px;
+	margin-right: 20px;
+	line-height: 30px;
+}
+#content .button a:first-of-type{
+	background-color: white;
+	color:black;
+}
+#footer{
+	padding:100px 0;
+}
+#footer address{
+	font-size: 14px;
+	font-style: normal;
+	padding: 10px 0;
+}
+#footer .container p>img{
+	vertical-align: middle;
+}
+#footer .container a{
+	color:#0e72c1;
+}
+#footer li{
+	display: inline-block;
+	padding:10px 10px;
+}
+#footer .iconfont{
+	color:#0e72c1;
+	font-size:30px;
+}
+@font-face {font-family: "iconfont";
+  src: url('../iconfont/iconfont.eot?t=1473062114'); /* IE9*/
+  src: url('../iconfont/iconfont.eot?t=1473062114#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../iconfont/iconfont.woff?t=1473062114') format('woff'), /* chrome, firefox */
+  url('../iconfont/iconfont.ttf?t=1473062114') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../iconfont/iconfont.svg?t=1473062114#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
