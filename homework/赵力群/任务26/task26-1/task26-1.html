@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task26-1</title>
+    <style type="text/css">
+      div {
+        border: 1px solid #eee;
+      }
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <p>点击按钮改变颜色</p>
+      <button type="button">添加class</button>
+      <button type="button">删除class</button>
+      <button type="button">展示元素</button>
+      <button type="button">隐藏元素</button>
+    </div>
+    <div class="box2">
+      <img id="demo" src="rabbit.jpg" alt="rabbit" title="rabbit">
+      <p></p>
+      <button type="button">获取属性</button>
+      <button type="button">更改属性</button>
+    </div>
+    <div class="ct">
+      <div>1</div>
+      <button type="button">开头添加</button>
+      <button type="button">尾部添加</button>
+      <button type="button">删除段落</button>
+      <button type="button">清空内容</button>
+      <button type="button">添加div</button>
+    </div>
+    <div class="box3">
+      <div class="log">2</div>
+      <button type="button">获取宽高</button>
+      <button type="button">设置宽高</button>
+    </div>
+    <div class="box4">
+      <div class="log"></div>
+      <button type="button">滚动条</button>
+      <button type="button">到根节点距离</button>
+      <button type="button">更改距离</button>
+      <button type="button">更改样式</button>
+    </div>
+    <div class="box5">
+      <ul>
+        <li>foo</li>
+        <li>bar</li>
+      </ul>
+      <button type="button">遍历元素</button>
+    </div>
+    <div class="box6">
+      <ul class="ct">
+        <li class="panel">1</li>
+        <li class="item">2</li>
+        <li>3</li>
+      </ul>
+      <p></p>
+      <button type="button">找元素</button>
+      <button type="button">找孩子</button>
+      <button type="button">找2相邻元素</button>
+      <button type="button">获取选择元素数量</button>
+      <button type="button">获取元素排行</button>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $('.box1 button:first').on('click', function() {
+        $('.box1').addClass('active');
+      });
+      $('.box1 button:eq(1)').on('click', function() {
+        $('.box1').removeClass('active');
+      });
+      $('.box1 button:eq(2)').on('click', function() {
+        $('.box1 p').show();
+      });
+      $('.box1 button:eq(3)').on('click', function() {
+        $('.box1 p').hide();
+      });
+      $('.box2 button:first').on('click', function() {
+        $('.box2 p').text($('.box2 img').attr('id') + ' ' + $('.box2 img').attr('title') + ' ' + $('.box2 img').attr('src'));
+      });
+      $('.box2 button:eq(1)').on('click', function() {
+        $('.box2 img').attr({
+          src: 'dog.jpg',
+          title: 'dog',
+          id: 'demo2'
+        });
+      });
+      $('.box2 img').attr('data-src', '#');
+      $('.ct button:eq(0)').on('click', function() {
+        $('.ct').prepend('<p>开头添加段落</p>');
+      });
+      $('.ct button:eq(1)').on('click', function() {
+        $('.ct').append('<p>尾部添加段落</p>');
+      });
+      $('.ct button:eq(2)').on('click', function() {
+        $('.ct p').remove();
+      });
+      $('.ct button:eq(3)').on('click', function() {
+        $('.ct').empty();
+      });
+      $('.ct button:eq(4)').on('click', function() {
+        $('.ct').html('<div class="btn"></div>');
+      });
+      $('.box3 button:eq(0)').on('click', function() {
+        $('.box3 .log').text($(this).width() + ' ' +
+                  $(this).innerWidth() + ' ' +
+                  $(this).outerWidth() + ' ' +
+                  $(this).outerWidth(true) + ' ' +
+                  $(this).height() + ' ' +
+                  $(this).innerHeight() + ' ' +
+                  $(this).outerHeight() + ' ' +
+                  $(this).outerHeight(true));
+      });
+      $('.box3 button:eq(1)').on('click', function() {
+        $('.box3 .log').height(50)
+                  .innerHeight(55)
+                  .outerHeight(60);
+      });
+      $('.box4 button:eq(0)').on('click', function() {
+        $('.box4 .log').text($(window).scrollTop() + ' ' + $(window).scrollLeft());
+      });
+      $('.box4 button:eq(1)').on('click', function() {
+        $('.box4 .log').append(' ' + $(this).offset().top + ' ' + $(this).offset().left);
+      });
+      $('.box4 button:eq(2)').on('click', function() {
+        $('.box4 .log').offset({
+          top: 100,
+          left: 200
+        });
+      });
+      $('.box4 button:eq(3)').on('click', function() {
+        $('.box4 .log').css({
+          'color': 'red',
+          'fontSize': '14px'
+        });
+      });
+      $('.box5 button:eq(0)').on('click', function() {
+        $('.box5 li').each(function(index) {
+          $('.box5').append(' ' + index + ':' + $(this).text());
+        });
+      });
+      $('.box6 button:eq(0)').on('click', function() {
+        $('.box6 p').append($('.box6').find('.item').text());
+      });
+      $('.box6 button:eq(1)').on('click', function() {
+        $('.box6 p').append($('.box6').children());
+      });
+      $('.box6 button:eq(2)').on('click', function() {
+        $('.box6 p').append($('.box6 .item').parent('.ct').find('.panel'));
+      });
+      $('.box6 button:eq(3)').on('click', function() {
+        $('.box6 p').append($('.box6').children().length);
+      });
+      $('.box6 button:eq(4)').on('click', function() {
+        $('.box6 p').append('<br>' + $('.box6 .item').index());
+      });
+    </script>
+  </body>
+</html>
