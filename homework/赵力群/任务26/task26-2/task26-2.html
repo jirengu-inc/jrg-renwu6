@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task26-2</title>
+    <style type="text/css">
+      .btn {
+        width: 80px;
+        height: 40px;
+      }
+      .distance {
+        position: fixed;
+        top: 200px;
+        right: 0;
+        height: 40px;
+        border: 1px solid #eee;
+        font-size: 1.5em;
+      }
+      .div1 {
+        width: 500px;
+        height: 500px;
+        border: 1px solid #eee;
+      }
+      input {
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.5em;
+      }
+      .red-div {
+        background-color: red;
+      }
+      .blue-border {
+        border-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn" type="button">按钮</button>
+    <div class="distance"></div>
+    <div class="div1">div1</div>
+    <input type="text">
+    <select class="se">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+    <p class="res">1</p>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $('.btn').on('click', function() {
+        $(this).css('backgroundColor', 'red');
+        setTimeout(function() {
+          $('.btn').css('backgroundColor', 'blue');
+        },500);
+      });
+      $(window).on('scroll', function() {
+        $('.distance').text('垂直滚动距离为: ' + $(document).scrollTop());
+      });
+      $('.div1').on('mouseenter', function() {
+        $(this).addClass('red-div');
+      });
+      $('.div1').on('mouseleave', function() {
+        $(this).removeClass('red-div');
+      });
+      $('input').on('focus', function() {
+        $(this).addClass('blue-border');
+      });
+      $('input').on('keyup', function() {
+        $(this).val($(this).val().toUpperCase());
+      });
+      $('input').on('blur', function() {
+        $(this).removeClass('blue-border');
+        console.log($(this).val());
+      });
+      $('.se').on('change', function() {
+        $('.res').text($(this).val());
+      });
+    </script>
+  </body>
+</html>

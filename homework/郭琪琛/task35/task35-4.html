@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task35-4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .tab-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        .tab-item {
+            float: left;
+            padding: 10px 40px;
+            border: 1px solid #ccc;
+
+        }
+
+        .tab-item:hover {
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #eee;
+        }
+
+        .tab-content {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+
+        .selected {
+            display: block;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <div class="tab-wrapper">
+        <ul class="tab clearfix">
+            <li class="tab-item active">tab1</li>
+            <li class="tab-item">tab2</li>
+            <li class="tab-item">tab3</li>
+        </ul>
+        <div class="tab-content selected">内容1</div>
+        <div class="tab-content">内容2</div>
+        <div class="tab-content">内容3</div>
+    </div>
+
+    <div class="tab-wrapper">
+        <ul class="tab clearfix">
+            <li class="tab-item active">tab1</li>
+            <li class="tab-item">tab2</li>
+            <li class="tab-item">tab3</li>
+        </ul>
+        <div class="tab-content selected">内容1</div>
+        <div class="tab-content">内容2</div>
+        <div class="tab-content">内容3</div>
+    </div>
+    <script>
+
+        // function Tab($node) {
+        //     this.$tab = $node.find('.tab')
+        //     this.$content = $node.find('.tab-content')
+        //     this.bindEvent()
+        // }
+
+        // Tab.prototype.bindEvent = function(){
+        //     var _this = this
+        //     this.$tab.on('click','li',function(){
+        //         var index = $(this).addClass('active').siblings('.active').removeClass('active').end().index()
+        //         _this.$content.eq(index).addClass('selected').siblings('.selected').removeClass('selected')
+        //     })
+        // }
+
+        // var tab = new Tab($('.tab-wrapper'))
+
+        //jQuery 插件方式
+        $.fn.tab = function(){
+
+            function Tab($node) {
+                this.$tab = $node.find('.tab')
+                this.$content = $node.find('.tab-content')
+                this.bindEvent()
+            }
+
+            Tab.prototype.bindEvent = function(){
+                var _this = this
+                this.$tab.on('click','li',function(){
+                    var index = $(this)
+                                    .addClass('active')
+                                    .siblings('.active')
+                                    .removeClass('active')
+                                    .end()
+                                    .index()
+                    _this.$content
+                        .eq(index)
+                        .addClass('selected')
+                        .siblings('.selected')
+                        .removeClass('selected')
+                })
+            }
+
+            this.each(function(){
+                new Tab($(this))
+            })
+        }
+
+        $('.tab-wrapper').tab()
+    </script>
+</body>
+</html>

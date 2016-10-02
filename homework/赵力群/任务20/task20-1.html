@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-20-1</title>
+</head>
+
+<body>
+  <script>
+    // 法 1：
+    var fnArr = [];
+    for(var i = 0; i < 10; i++) {
+      fnArr[i] = (function(num) {
+        return function() {
+          return num;
+        }
+      })(i);
+    }
+    console.log(fnArr[3]());
+    //法 2：
+    var fnArr = [];
+    for(var i = 0; i < 10; i++) {
+      (function(n) {
+        fnArr[i] = function () {
+          return n;
+        }
+      })(i);
+    }
+    console.log(fnArr[3]());
+  </script>
+</body>
+
+</html>

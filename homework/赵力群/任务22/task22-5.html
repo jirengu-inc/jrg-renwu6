@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task22-5</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #ct {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -100px 0 0 -150px;
+      width: 300px;
+      height: 200px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+    }
+    #header {
+      height: 35px;
+      line-height: 35px;
+      border-bottom: 1px solid #ccc;
+    }
+    #header h4 {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    #content {
+      padding: 15px 0;
+      height: 100px;
+      border-bottom: 1px solid #eee;
+    }
+    #content p {
+      margin: 20px 10px;
+    }
+    .btn1 {
+      float: right;
+      margin-right: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn1:hover,
+    .btn2 li:hover {
+      color: #ccc;
+    }
+    .btn2 {
+      list-style: none;
+      float: right;
+      height: 30px;
+      line-height: 30px;
+    }
+    .btn2 li {
+      float: left;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .cover {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.4;
+      background-color: #000;
+    }
+    .clearfix {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">点我1</button>
+  <div class="cover"></div>
+  <div id="ct">
+    <div id="header">
+      <h4>我是标题1</h4>
+      <span class="btn1 clearfix">×</span>
+    </div>
+    <div id="content">
+      <p>我是内容1</p>
+      <p>我是内容2</p>
+    </div>
+    <div id="footer">
+      <ul class="btn2 clearfix">
+        <li>取消</li>
+        <li>确定</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    var ct = document.querySelector('#ct'),
+        btn = document.querySelector('#btn'),
+        btn1 = document.querySelector('.btn1'),
+        btn2 = document.querySelector('.btn2'),
+        cover = document.querySelector('.cover'),
+        choose = btn2.children;
+    function handler1() {
+      ct.style.display = "none";
+      cover.style.display = "none";
+    }
+    function handler2() {
+      ct.style.display = "block";
+      cover.style.display = "block";
+    }
+    btn.addEventListener('click', handler2);
+    btn1.addEventListener('click', handler1);
+    choose[0].addEventListener('click', handler1);
+    cover.addEventListener('click', handler1);
+  </script>
+</body>
+
+</html>

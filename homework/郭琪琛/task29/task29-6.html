@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限加载</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .content>li {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .content>li:hover {
+            cursor: pointer;
+            background-color: #008000;
+        }
+
+        .content>li>a {
+            color: #000;
+        }
+
+        .loadMore {
+            display: block;
+            width: 80px;
+            height: 40px;
+            margin: 0 auto;
+            border: 1px solid #cb1623;
+            border-radius: 5px;
+            color: #cb1623;
+            font-size: 1em;
+            background-color: #fff;
+        }
+
+        .loadMore:focus {
+            outline: none;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <ul class="content">
+        <li><a href="#!">内容1</a></li>
+        <li><a href="#!">内容2</a></li>
+    </ul>
+    <button class="loadMore">加载更多</button>
+    <script>
+
+        $.fn.isVisible = function(){
+            var nodeT = $(this).offset().top,
+                screenH = $(window).height(),
+                scrollT = $(document).scrollTop()
+            if(nodeT > scrollT&&nodeT<screenH+scrollT){
+                return true
+            };
+            return false
+        }
+
+        var status = 2,
+            $ct = $('.content'),
+            timer = 0
+
+        function createContentItem(resArr) {
+            for (var i = 0; i < resArr.length; i++) {
+                $('<li />')
+                    .html('<a href="#!">'+resArr[i]+'</a>')
+                    .appendTo($ct)
+            }
+        }
+
+        function load() {
+            status = $('.content>li').length
+            if ($('.loadMore').isVisible()) {
+                $.ajax({
+                    url: 'test.php',
+                    method: 'get',
+                    data: {
+                        start: status,
+                        len: 20
+                    },
+                    dataType: 'json'
+                }).done(function(msg){
+                    createContentItem(msg.data)
+                })
+            }
+        }
+
+        load()
+
+        $(document).on('scroll',function(){
+            clearTimeout(timer)
+            timer = setTimeout(function(){
+                load()
+            },150)
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+
+    //1. 写一个函数，获取从min到max之间的随机整数，包括min不包括max （***）
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    for(var i = 0; i < 10; i++) {
+    console.log(getRandomInt(4,7));
+    }
+
+    //2. 写一个函数，获取从min都max之间的随机整数，包括min包括max （***）
+
+    function getRandomInt_2(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    for(var i = 0; i < 10; i++) {
+      console.log(getRandomInt_2(4,7));
+    }
+
+    //3. 写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max(包括)的随机整数 （***）
+
+    function randomArr(len, min, max) {
+      var arr = [];
+      for(var i = 0; i < len; i++) {
+        arr[i] = Math.floor(Math.random() * (max - min +1)) + min;
+      }
+      return arr;
+    }
+
+    console.log(randomArr(5, 2, 6));
+
+    //4. 写一个函数，生成一个长度为 n 的随机字符串，字符串字符的取值范围包括0到9，a到 z，A到Z。
+
+    function getRandStr(len) {
+      var str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+          newstr = "";
+      for(var i = 0; i < len; i++) {
+        newstr += str[Math.floor(Math.random() * str.length)];
+      }
+      return newstr;
+    }
+
+    var str = getRandStr(10);
+    console.log(str);
+
+    </script>
+  </body>
+</html>

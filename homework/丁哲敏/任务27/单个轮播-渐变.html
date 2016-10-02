@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务27-1</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    a {
+        text-decoration: none;
+    }
+    ul,li{
+        list-style: none;
+    }
+    .carousel{
+        position: relative;
+        width: 400px;
+        height: 225px;
+        overflow: hidden;/*使窗口外的图片隐藏*/
+    }
+    .img-ct{
+        position: relative;
+    }
+    .img-ct li{
+        position: absolute;
+        display: none;
+    }
+    .carousel .img-ct .hover{
+        display: block;
+    }
+    .img-ct img{
+        width: 400px;
+        height: 225px;
+    }
+    .arrow{
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        background: #4e443c;
+        color: #fff;
+        text-align: center;
+        line-height: 30px;
+        opacity: 0.8;
+    }
+    .arrow:hover{
+        opacity: 0.6;
+    }
+    .pre{
+        left: 10px;
+    }
+    .next{
+        right: 10px;
+    }
+    .bullet{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .bullet > li {
+        width: 16px;
+        height: 4px;
+        border-radius: 2px;
+        background: #fff;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .carousel .bullet .active{
+        background: #666;
+    }
+</style>
+<body>
+<div class="carousel">
+    <!--图片-->
+    <ul class="img-ct">
+        <li><a href=""><img src="http://img2.3lian.com/2014/c7/12/d/77.jpg" alt=""></a></li>
+        <li><a href=""><img src="http://img2.3lian.com/2014/c7/12/d/80.jpg" alt=""></a></li>
+        <li><a href=""><img src="http://img2.3lian.com/2014/c7/12/d/82.jpg" alt=""></a></li>
+        <li><a href=""><img src="http://img2.3lian.com/2014/c7/12/d/83.jpg" alt=""></a></li>
+    </ul>
+    <!--翻滚箭头-->
+    <a href="#" class="next arrow"> > </a>
+    <a href="#" class="pre arrow"> < </a>
+    <!--底部定位-->
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+var $ct = $('.img-ct'),
+    $items = $ct.children(),
+    $pre = $('.pre'),
+    $next = $('.next'),
+    $bullet = $('.bullet'),
+    imgCount = $ct.children().size();
+
+var curIdx = 0,
+    isLocking = false;
+
+    $next.on('click',function(){
+        playNext();
+    });
+    $pre.on('click',function () {
+        playPre();
+    });
+
+    $bullet.find('li').on('click',function () {
+        idx = $(this).index();
+        play(idx);
+    });
+
+    play(0);
+    autoPlay();
+
+    function playNext() {
+        play((curIdx+1)%imgCount)
+    }
+    function playPre() {
+        play((imgCount+curIdx-1)%imgCount)
+    }
+    function play(idx) {
+        if(isLocking) return;
+        isLocking = true;
+        $items.eq(curIdx).fadeOut(500);
+        $items.eq(idx).fadeIn(500,function () {
+            isLocking = false;
+        });
+        curIdx = idx;
+        setBullet();
+    }
+
+    function setBullet() {
+        $bullet.children().removeClass('active')
+                          .eq(curIdx).addClass('active');
+    }
+    function stopAuto() {
+        clearInterval(clock);
+    }
+    function autoPlay() {
+        clock = setInterval(function () {
+            playNext();
+        },1000);
+    }
+
+    $items.on('mouseenter',function () {
+        stopAuto()
+    });
+    $items.on('mouseleave',function () {
+        autoPlay();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>淡入淡出全屏轮播</title>
+    <style>
+        html,body,ul,li,div,a,img {
+            margin:0;
+            padding:0;
+            border:0;
+        }
+        body {
+            font-size: 0;
+        }
+        li {
+            list-style:none;
+        }
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #000;
+        }
+        clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        img {
+            width:100vw;
+            height:100vh;
+        }
+        .ct {
+            height: 100vh;
+            position: relative;
+            /*overflow: hidden;*/
+        }
+
+        .pic>li {
+            position: absolute;
+            top:0;
+            left:0;
+            display: none;
+        }
+        .turn {
+            display: block;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius:10px;
+            background-color: #d13;
+            text-align: center;
+            line-height: 20px;
+            top: 50%;
+            margin-top: -10px;
+        }
+        .turn:hover {
+            background-color: chartreuse;
+        }
+        .up {
+            left: 10px;
+        }
+        .down {
+            right:10px;
+        }
+        .dot {
+            position: absolute;
+            left:50%;
+            transform: translateX(-50%);
+            bottom:20px;
+        }
+        .dot>li {
+            cursor: pointer;
+            float:left;
+            width:10px;
+            height:10px;
+            border-radius: 5px;
+            margin: 0 5px;
+            background-color: #d66;
+        }
+        .dot>li.active {
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<div class="ct clearfix">
+    <ul class="pic">
+        <li><img src="1.jpg" alt=""></li>
+        <li><img src="2.jpg" alt=""></li>
+        <li><img src="3.jpg" alt=""></li>
+        <li><img src="4.jpg" alt=""></li>
+    </ul>
+    <a href="#" class="turn up">&lt;</a><a href="#" class="turn down">&gt;</a>
+    <ul class="dot">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script>
+    var $dot = $(".dot"),
+        $pic = $(".pic"),
+        $len = $dot.children().length;
+    var lock = false;
+    function ind() {
+        for (var i = 0; i < $len; i++) {
+            if ($dot.children().eq(i).hasClass("active")){
+                var ind = i;
+            }
+        }
+        return ind;
+    }
+    change();
+    $(".up").on("click",function(e){
+        e.preventDefault();
+        var idx = ind();
+        change((idx - 1)%$len);
+    })
+    $(".down").on("click",function(e){
+        e.preventDefault();
+        var idx = ind();
+        change((idx + 1)%$len);
+    })
+    $dot.on("click","li",function () {
+        var idx = $(this).index();
+        change(idx);
+    })
+    function auto(){
+        var i = 1;
+        setInterval(function(){
+            i = i % $len;
+            change(i);
+            i++;
+        },3000);
+    }
+    function change(idx){
+        var idx = idx || 0;
+        if(lock === true) return;
+        lock = true;
+        $dot.children().removeClass("active");
+        $dot.children().eq(idx).addClass("active");
+        $pic.children().fadeOut(500);
+        $pic.children().eq(idx).fadeIn(500,function(){
+            lock = false;
+        });
+    }
+    auto();
+</script>
+</body>
+</html>

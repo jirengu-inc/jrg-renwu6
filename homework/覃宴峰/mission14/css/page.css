@@ -1,0 +1,263 @@
+html,body,ul,li,p,h1,h2 {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .fa {
+            color: white;
+        }
+
+        .container {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        #header {
+            background: url(../img/bg.jpg) 0px 0px no-repeat;
+            background-size: 100% 100%;
+            height: 650px;
+        }
+
+        #header:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        #header>.container {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .text-title:nth-child(1) {
+            font-size: 45px;
+            font-weight: bold;
+        }
+
+        .text-title:nth-child(2) {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        #header a {
+            background: #999;
+            font-size: 16px;
+            color: white;
+            padding: 15px 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        #introduce h2 {
+            margin: 50px auto;
+        }
+
+        #introduce p {
+            margin: 50px auto;
+        }
+
+        #introduce a {
+            color: blue;
+        }
+
+        #skill {
+            background: #337AB7;
+            height: 500px;
+        }
+
+        #skill h2 {
+            display: inline-block;
+            color: #fff;
+            padding: 40px 20px;
+            border-bottom: 2px solid white;
+        }
+
+        #skill li {
+            float: left;
+            width: 220px;
+            padding: 60px 0px;
+            color: white;
+            font-size: 14px;
+        }
+
+        #skill .btn {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            background: #fff;
+            line-height: 30px;
+            margin-top: 20px;
+        }
+
+        #skill .btn:hover {
+            background: #eee;
+        }
+
+        #callouter {
+            background: url(../img/callout.jpg) 0px 0px no-repeat;
+            background-size: 100%;
+            height: 550px;
+            text-align: center;
+        }
+
+        #callouter span {
+            font: normal bold 40px/100% "微软雅黑";
+            color: #fff;
+        }
+
+        #callouter:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        #works h2 {
+            display: inline-block;
+            border-bottom: 2px solid #ccc;
+            padding: 30px 0px;
+            margin-bottom: 20px;
+        }
+
+        #works .layout {
+            text-align: center;
+        }
+
+        #works img {
+            margin: 10px 10px;
+        }
+
+        #works a {
+            display: inline-block;
+            width: 140px;
+            height: 30px;
+            background: #999999;
+            line-height: 30px;
+            color: white;
+            margin: 50px 0px;
+        }
+
+        #works a:hover {
+            background: #282828;
+        }
+
+        .footer-bg {
+            background: #337AB7;
+            height: 150px;
+        }
+
+        .footer-bg:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .footer-bg .container {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .footer-bg p {
+            color: #fff;
+            margin: 20px 0px;
+        }
+
+        .footer-bg .btn:nth-child(2) {
+            display: inline-block;
+            width: 140px;
+            height: 40px;
+            line-height: 40px;
+            background: #fff;
+            margin-left: 5px;
+            font-size: 14px;
+        }
+
+        .footer-bg .btn:nth-child(2):hover {
+            background: #eee;
+        }
+
+        .footer-bg .btn:nth-child(3) {
+            display: inline-block;
+            width: 140px;
+            height: 40px;
+            line-height: 40px;
+            background: #1F496E;
+            margin-left: 5px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .footer-bg .btn:nth-child(3):hover {
+            background: #2F698E;
+        }
+
+        .footer-infor .container span,
+        .footer-infor .container a {
+            display: block;
+            font-size: 14px;
+        }
+
+        .footer-infor .container span:nth-child(1) {
+            font-weight: bold;
+            margin: 100px 0px 20px;
+        }
+
+        .footer-infor .container span:nth-child(3) {
+            margin-bottom: 20px;
+        }
+
+        .footer-infor a {
+            font-size: 14px;
+            text-decoration: underline;
+            color: #337AB7;
+            margin-bottom: 20px;
+        }
+
+        .footer-infor a:hover {
+            color: #222;
+        }
+
+        .footer-infor .container span:nth-child(6)>i {
+            padding: 40px 10px 20px;
+        }
+
+        hr {
+            width: 90px;
+            color: #ccc;
+        }
+
+        .footer-infor>.container>.wrap>a{
+          float:left;
+          padding:10px;
+        }
+
+        .footer-infor>.container>.wrap i{
+          color:#337AB7;
+        }
+
+        .footer-infor>.container>.wrap i:hover{
+          color:#1F496E;
+        }
+
+
+        .footer-infor>.container>.wrap{
+          overflow:hidden;
+          text-align:center;
+          display:inline-block;
+        }
+
+
+        .footer-infor .container span:nth-child(8) {
+            margin: 20px 0px 90px;
+        }
+    </style>

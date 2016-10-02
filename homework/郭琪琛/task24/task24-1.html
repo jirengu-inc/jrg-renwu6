@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task24-1</title>
+</head>
+<body>
+    <button id="btn">查询</button>
+    <script>
+       function ajax(opts){
+           // todo ...
+           var xhr = new XMLHttpRequest(),
+               url = ''
+           xhr.onreadystatechange = function() {
+               if (xhr.readyState === 4&&xhr.status === 200) {
+                    opts.success(xhr.responseText)
+               } else if (xhr.readyState === 4&&xhr.status !== 200) {
+                    opts.error()
+               }
+           }
+           for(var key in opts.data) {
+                url += key+'='+opts.data[key]+'&'
+           }
+           url = url.substr(0,url.length-1)
+           if (opts.type.toLowerCase()==='get') {
+                xhr.open('GET',opts.url+'?'+url)
+                xhr.send()
+           } else {
+                xhr.open('POST',opts.url)
+                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+                xhr.send(url)
+           }
+       }
+       document.querySelector('#btn').addEventListener('click', function(){
+           ajax({
+               url: 'getData.php',   //接口地址
+               type: 'get',               // 类型， post 或者 get,
+               data: {
+                   username: 'xiaoming',
+                   password: 'abcd1234'
+               },
+               success: function(ret){
+                   console.log(ret);       // {status: 0}
+               },
+               error: function(){
+                  console.log('出错了')
+               }
+           })
+       });
+    </script>
+</body>
+</html>

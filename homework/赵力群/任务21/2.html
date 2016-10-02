@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-21-2</title>
+</head>
+
+<body>
+  <script>
+    function addClass(el, cls) {
+      el.className += " " + cls;
+    }
+    function hasClass(el, cls) {
+      var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
+      return reg.test(el.className);
+    }
+    function removeClass(el, cls) {
+      var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
+      return el.className.replace(reg, "");
+    }
+  </script>
+</body>
+
+</html>

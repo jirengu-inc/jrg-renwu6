@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task22-5</title>
+    <style>
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .cf-bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .confirm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 1000;
+            transform: translate(-50%,-50%);
+            width: 400px;
+            border-radius: 5px;
+            background-color: #fefefe;
+        }
+
+        .cf-appear {
+            display: block;
+        }
+
+        .cf-header {
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .cf-header>span {
+            float: right;
+            line-height: 1;
+            font-size: 1.3em;
+        }
+
+        .cf-header>span:hover {
+            cursor: pointer;
+            color: #d2d2d2;
+        }
+
+        .cf-body {
+            padding: 20px 10px;
+            border-top: 1px solid #d3d3d3;
+            border-bottom: 1px solid #f0f1f0;
+            line-height: 2
+
+        }
+
+        .cf-footer {
+            padding: 10px;
+        }
+
+        .cf-footer>a {
+            float: right;
+            margin-left: 10px;
+        }
+
+        .cf-footer>a:hover {
+            color: #d2d2d2;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点我</button>
+    <div id="cover" class="cf-close"></div>
+    <div class="confirm">
+        <div class="cf-header">
+            <span class="cf-close">&times;</span>
+            <p>我是标题</p>
+        </div>
+        <div class="cf-body">
+            <p>我是内容</p>
+            <p>我是内容</p>
+        </div>
+        <div class="cf-footer clearfix">
+            <a href="#">确定</a>
+            <a href="#" class="cf-close">取消</a>
+        </div>
+    </div>
+    <script>
+        var btn = document.getElementById('btn'),
+            cover = document.getElementById('cover'),
+            cf = document.getElementsByClassName('confirm')[0],
+            unit = {
+                hasClass: function(node,cls) {
+                    return new RegExp('(\\s|^)'+cls+'(\\s|$)').test(node.className)
+                },
+                addClass: function(node,cls) {
+                    if (!unit.hasClass(node,cls)) {
+                        node.className += ' '+cls
+                    }
+                },
+                removeClass: function(node,cls) {
+                    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)')
+                    node.className = node.className.replace(reg,"").trim()
+                }
+            },
+            event = {
+                btnClick: function(e) {
+                    unit.addClass(cover,'cf-bg')
+                    unit.addClass(cf,'cf-appear')
+                },
+                cfClose: function(e) {
+                    if (unit.hasClass(e.target,'cf-close')) {
+                        unit.removeClass(cf,'cf-appear')
+                        unit.removeClass(cover,'cf-bg')
+                    }
+                }
+            }
+        btn.addEventListener('click',event.btnClick)
+        cf.addEventListener('click',event.cfClose)
+        cover.addEventListener('click',event.cfClose)
+    </script>
+</body>
+</html>

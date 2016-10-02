@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>写出以下功能对应的jQuery方法</title>
+	<style>
+		.ct {
+			border:1px solid #ccc;
+		}
+		a {
+			padding: 5px 10px;
+			line-height: 30px;
+			text-decoration: none;
+			color: #fff;
+			background-color: #000;
+		}
+		.ct .box {
+			background-color: #f00;
+			width: 200px;
+			height: 100px;
+		}
+		.ct .box.active {
+			background-color: #0f0;
+		}
+		.btn {
+			width: 20px;
+			height: 20px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct ct1">
+		<h3>1.添加删除class</h3>
+		<div class="box">
+			未添加class：红色<br>
+			添加class：绿色<br>
+		</div>
+		<a href="#" class="add">添加</a>
+		<a href="#" class="remove">删除</a>
+		<a href="#" class="toggle">切换</a>
+	</div>
+	<div class="ct ct2">
+		<h3>2.展示隐藏元素</h3>
+		<div class="box">show()和hide()</div>
+		<a href="#" class="show">展示</a>
+		<a href="#" class="hide">隐藏</a>
+	</div>
+	<div class="ct ct3">
+		<h3>3.获取元素的id、src、title，并修改</h3>
+		<div class="box" id="node" src="##" title="title">我的id是node<br>src是##<br>title是title</div>
+		<a href="#" class="reset">修改</a>
+	</div>
+	<div class="ct ct4">
+		<h3>4.添加自定义属性data-src</h3>
+		<div class="box">我现在没有data-src</div>
+		<input type="text" placeholder="请输入要添加的data-src">
+		<a href="#" class="data-src">添加</a>
+	</div>
+	<div class="ct ct5">
+		<h3>5.6.在内部开始/结束位置添加元素</h3>
+		<div class="box">我是一个box</div>
+		<a href="#" class="sub">开头添加</a>
+		<a href="#" class="end">结尾添加</a>
+	</div>
+	<div class="ct ct6">
+	<h3>7.删除node节点</h3>
+		<div class="box">
+			<p>我是一个node节点里面的p</p>
+		</div>
+		<a href="#" class="delNode">删除</a>
+	</div>
+	<div class="ct ct7">
+		<h3>8.清空node节点</h3>
+		<div class="box">
+			<p>我是一个node节点里面的p</p>
+		</div>
+		<a href="#" class="empNode">清空</a>
+	</div>
+	<div class="ct ct8">
+		<h3>9.设置html(一个绿色小块儿)</h3>
+		<div class="box"></div>
+		<a href="#" class="sethtml">设置html</a>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<script>
+	$("a").on("click",function(e){
+		e.preventDefault();
+	})
+	$(".add").on("click",function(){
+		$(this).parent().find(".box").addClass("active");
+	})
+	$(".remove").on("click",function(){
+		$(this).parent().find(".box").removeClass("active");
+	})
+	$(".toggle").on("click",function(){
+		$(this).parent().find(".box").toggleClass("active");
+	})
+	$(".show").on("click",function(){
+		$(this).parent().find(".box").show();
+	})
+	$(".hide").on("click",function(){
+		$(this).parent().find(".box").hide();
+	})
+	$(".reset").on("click",function(){
+		var $box = $(this).parent().find(".box");
+		$box.attr({
+			"id":"newid",
+			"src":"alink",
+			"title":"otherTitle"
+		});
+		$box.html("我现在的id是" + $box.attr("id") + "<br>" + "src是" + $box.attr("src") + "<br>title是" + $box.attr("title"));
+	})
+	$(".data-src").on("click",function(){
+		var $box = $(this).parent().find(".box");
+		var $val = $(this).parent().find("input").val();
+		$box.attr("data-src",$val);
+		$box.text("我添加了一个data-src属性，它的值是："+$box.attr("data-src"));
+	})
+	$(".sub").on("click",function(){
+		var $str = $('<div class="box">我是一个被添加在开头的box</div>');
+		$(this).parent().prepend($str);
+	})
+	$(".end").on("click",function(){
+		var $str = $('<div class="box">我是一个被添加在结尾的box</div>');
+		$(this).parent().append($str);
+	})
+	$(".delNode").on("click",function(){
+		$(this).parent().find(".box").remove();
+	})
+	$(".empNode").on("click",function(){
+		$(this).parent().find(".box").empty();
+	})
+	$(".sethtml").on("click",function(){
+		$(this).parent().find(".box").html('<div class="btn"></btn>');
+	})	
+	</script>
+</body>
+</html>

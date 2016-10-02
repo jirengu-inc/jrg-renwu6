@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>createTimer</title>
+</head>
+<body>
+  <script>
+    function createTimer(){
+      var timeStart,
+          timeEnd;
+      function start(){
+        timeStart = Date.now();
+      }
+      function end(){
+        timeEnd = Date.now();
+      }
+      function get(){
+        return timeEnd - timeStart;
+      }
+      return {
+        start:start,
+        end:end,
+        get:get
+      }
+    }
+  </script>
+</body>
+</html>
