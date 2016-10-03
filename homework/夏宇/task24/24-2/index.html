@@ -38,7 +38,7 @@ div{
 
 var oUl=document.getElementById('ct')
 var oBtn=document.getElementById('btn')
-var start=2;
+var start=3;
 var len=6;
 oBtn.onclick=function(){
   ajax({
@@ -55,7 +55,7 @@ oBtn.onclick=function(){
            text = '内容' + num;
            var newli = document.createElement("li");
            newli.innerText = text;
-           ct.appendChild(newli);
+           oUl.appendChild(newli);
          }
         start = ret;
         },
@@ -65,32 +65,32 @@ oBtn.onclick=function(){
   })
 }
 function ajax(opts){
-  var xhr=new XMLHttpRequest();
-xhr.onreadystatechange=function(){
-  if(xhr.readyState===4&&xhr.status===200){
-      var json=JSON.parse(xhr.responseText)
-      opts.success(json);
-  }
-  if(xhr.status!=200){
-    opts.error();
-  }
-}
-  var dataString='';
-  for( var key in opts.data){
-    dataString+=key+'='+opts.data[key]+'&'
-  }
-  dataString=dataString.substr(0,dataString.length-1)
-  if(opts.type.toLowCase()==='get'){
-    xhr.open('get',opts.url+'?'+dataString,false);
-    xhr.send();
-  }
-  if(opts.type.toLowCase()==='post'){
-    xhr.open('post',opts.url,false);
-    xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
-    xhr.send(dataString);
-  }
-}
-
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          console.log(xmlhttp.responseText);
+          var json = JSON.parse(xmlhttp.responseText);
+          opts.success(json);
+        }
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 404){
+          opts.error();
+        }
+      }
+      var datastr = '';
+      for(var key in opts.data){
+        datastr += key + '=' + opts.data[key] + '&'
+      }
+      datastr = datastr.substr(0,datastr.length-1);
+      if(opts.type.toLowerCase() === 'get'){
+        xmlhttp.open('get', opts.url + '?' + datastr, true);
+        xmlhttp.send();
+      }
+      if(opts.type.toLowerCase() === 'post'){
+        xmlhttp.open('post', opts.url, true);
+        xmlhttp.setRequestHeader("Contenr-type","application/x-www-form-urlencoded");
+        xmlhttp.send(datastr);
+      }
+    }
 </script>
 </body>
 </html>
