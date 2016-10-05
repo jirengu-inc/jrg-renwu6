@@ -62,6 +62,7 @@
         if(clock) clearTimeout(clock);
         clock = setTimeout(function () {
             if(!isVisible($loadMore)) return;
+            console.log(clock);
             loadMoreContent();
         },100);
     });
@@ -81,7 +82,7 @@
                 onSuccess(json);
             },
             error: function(){
-                alert('系统异常')
+                console.log('error');
             }
         })
     }
@@ -90,8 +91,8 @@
         console.log(json);
        if(json.status == 1){
            append(json.data);
-           cur += 6;
        }else{
+           console.log(onSuccess);
            alert('获取数据失败');
        }
     }
@@ -104,7 +105,7 @@
 
     function isVisible($node) {
        var offsetH = $node.offset().top,//按钮位置
-           windowHeight = $(window).height,//可见窗口高度
+           windowHeight = $(window).height(),//可见窗口高度
            curScrollTop = $(window).scrollTop();//滚动距离
         if((offsetH < windowHeight + curScrollTop) && (offsetH > curScrollTop)){
             return true;
