@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2016 by anonymous (http://js.jirengu.com/wivogihuqi/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+*{margin:0;padding:0}
+ul{list-style:none;}
+li{
+  border:1px solid #ddd;
+  margin:2px 0;
+}
+li:hover{
+  background:green;
+  cursor: pointer;
+}
+div{
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<ul id='ct'>
+  <li>内容1</li>
+  <li>内容2</li>
+</ul>
+  <div><button id='btn'>加载更多</button></div>
+<script id="jsbin-javascript">
+
+var oUl=document.getElementById('ct')
+var oBtn=document.getElementById('btn')
+var start=3;
+var len=6;
+oBtn.onclick=function(){
+  ajax({
+        url: "task24-2.php",
+        type: "get",
+        data: {
+          "start": start,
+          "len": len
+        },
+        success:function(ret){
+        var text = "";
+        for(var i=0; i<len; i++){
+           var num = start + i;
+           text = '内容' + num;
+           var newli = document.createElement("li");
+           newli.innerText = text;
+           oUl.appendChild(newli);
+         }
+        start = ret;
+        },
+        error:function(){
+          console.log("出错啦");
+        }
+  })
+}
+function ajax(opts){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+          console.log(xmlhttp.responseText);
+          var json = JSON.parse(xmlhttp.responseText);
+          opts.success(json);
+        }
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 404){
+          opts.error();
+        }
+      }
+      var datastr = '';
+      for(var key in opts.data){
+        datastr += key + '=' + opts.data[key] + '&'
+      }
+      datastr = datastr.substr(0,datastr.length-1);
+      if(opts.type.toLowerCase() === 'get'){
+        xmlhttp.open('get', opts.url + '?' + datastr, true);
+        xmlhttp.send();
+      }
+      if(opts.type.toLowerCase() === 'post'){
+        xmlhttp.open('post', opts.url, true);
+        xmlhttp.setRequestHeader("Contenr-type","application/x-www-form-urlencoded");
+        xmlhttp.send(datastr);
+      }
+    }
+</script>
+</body>
+</html>

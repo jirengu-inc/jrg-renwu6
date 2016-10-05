@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2016 by anonymous (http://js.jirengu.com/tixejamuji/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+dd{
+        position: relative;
+        top:-20px;
+        left:50px;
+    }
+</style>
+</head>
+<body>
+<h3>注册</h3>
+    <form id="register-form" action="">
+        <dl class="register-ct">
+            <dt>用户名:</dt>
+            <dd>
+                <input id="username" type="text" placeholder="用户名(hunger被注册过)">
+            </dd>
+            <dd class="msg msg-un">只能是字母、数字、下划线，3-10个字符</dd>
+
+            <dt>密码:</dt>
+            <dd>
+                <input type="password" id="password1" placeholder="密码">
+            </dd>
+            <dd class="msg msg-pwd1">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+
+            <dt> 确认密码:</dt>
+            <dd>
+                <input type="password" id="password2" placeholder="请再输入一次密码">
+            </dd>
+            <dd class="msg msg-pwd2"></dd>
+            <dd><button id="btn-register">注册</button></dd>
+        </dl>
+    </form>
+<script id="jsbin-javascript">
+var userName=document.getElementById('username');
+    msgUn=document.querySelector('.msg-un');
+    passwordIpt=document.querySelector('#password1');
+    msgPwd1=document.querySelector('.msg-pwd1');
+    passwordRpt=document.querySelector('#password2');
+    msgPwd2=document.querySelector('.msg-pwd2');
+    btn=document.getElementById('btn-register')
+btn.onclick=function(){
+  if(msgUn.innerText === "用户名可用"&&testPasswordIpt()&&testPasswordRpt()){
+    alert("注册成功！");
+  }else{
+     alert("请检查用户名和密码，再注册");
+  }
+}
+userName.onchange=function(){
+  testUsername();
+}
+passwordIpt.onchange=function(){
+  testPasswordIpt();
+}
+passwordRpt.onchange=function(){
+  testPasswordRpt();
+}
+function testUsername(){
+  if(isLegalName()){
+    ajax({
+          url:'task24-3.php',
+          type:'get',
+          data:{
+            username:userName.value
+          },
+          success: function(ret) {
+                            if (ret == "1") {
+                                msgUn.innerText = "用户名已存在";
+                            } else {
+                                msgUn.innerText = "用户名可用"
+                            }
+                        },
+          error:function(){
+            console.log("cuowu");
+          }
+        })
+
+  }else{
+    msgUn.innerText="对不起您输入的用户名无法使用"
+  }
+}
+function isLegalName() {
+  var username = userName.value;
+  return /\w{3,10}/.test(username);
+};
+function isLegalPassword(){
+  var password=passwordIpt.value;
+  if(password.length<6||password.length>15){
+    return false
+  }else if(/[^A-Za-z0-9_]+/.test(password)){
+    return false
+  }else if(/^[A-Z]+$|^[a-z]+$|^[0-9]+$|^_+$/.test(password)){
+    return false
+  }else{
+    return true
+  }
+}
+function testPasswordIpt(){
+  if(isLegalPassword()){
+    msgPwd1.innerText="密码可用"
+    return true
+  }else{
+    msgPwd1.innerText="密码格式错误，请看懂提示后再试一次"
+    return false
+  }
+}
+function testPasswordRpt(){
+  if(passwordIpt.value===passwordRpt.value){
+    msgPwd2.innerText="输入正确"
+    return true
+  }else{
+    msgPwd2.innerText="两次输入不一致"
+    return false
+  }
+}
+function ajax(opts) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var json = JSON.parse(xmlhttp.responseText)
+            opts.success(json);
+        }
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
+            opts.error();
+        }
+    }
+    var strdata = "";
+    for (var key in opts.data) {
+        strdata += key + "=" + opts.data[key] + "&";
+    }
+    strdata = strdata.substr(0, strdata.length - 1);
+    if (opts.type.toLowerCase() === "get") {
+        xmlhttp.open('get', opts.url + "?" + strdata, true);
+        xmlhttp.send();
+    }
+    if (opts.type.toLowerCase() === "post") {
+        xmlhttp.open('post', opts.url, true);
+        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xmlhttp.send(strdata);
+    }
+}
+</script>
+</body>
+</html>

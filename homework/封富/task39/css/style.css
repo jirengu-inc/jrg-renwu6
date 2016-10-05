@@ -116,6 +116,8 @@ i:hover {
 	height: 100%;
 	width: 100%;
 	position: relative;
+	/*z-index: 300;*/
+	/*background-color: red;*/
 	/*background-image: url(../image/header-bg.jpg);*/
 }
 #home-page .home-page-ct {
@@ -296,6 +298,7 @@ i:hover {
 #about .about-way li {
 	position: relative;
 	margin-bottom: 100px;
+	opacity: 0;
 }
 #about .about-des-l {
 	width: 475px;
@@ -429,8 +432,9 @@ i:hover {
 /*Carousel style*/
 #carousel {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	position: relative;
+	/*background-color: green;*/
 	overflow: hidden;
 }
 #carousel .C-section {

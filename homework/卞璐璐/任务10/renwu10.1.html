@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title></title>
+	<style>
+	/*重置样式*/
+*{
+  margin:0;
+  padding:0;
+}
+a{
+		color: #333;
+		text-decoration: none;
+	}
+	ul,li{
+		list-style: none;
+		color: #fff;
+	}
+	/*公共样式*/
+
+	body{
+		font: 14px/1.5 "Microsoft YaHei","微软雅黑",sans-serif;
+		color: #656565;
+	}
+
+	/*让页面上的内容都居中,宽度固定在900px 以内*/
+	.container{
+		width: 900px;
+		margin: 0 auto;
+	}
+
+	#header{
+		height: 80px;
+		background-color: #333;
+	}
+	.logo{
+		float: left;
+	}
+	.nav{
+		float: right;
+	}
+	.nav li{
+		float: left;
+	}
+	.nav li a{
+		display: block;
+		padding: 0 10px;
+		margin: 0 10px;
+		height: 80px;
+		line-height: 80px;
+		color: #fff;
+	    font-size: 20px;
+	}
+ .nav li a:hover {
+            color: #000;
+            background: #fff;
+        }
+
+        /*主区块*/
+
+#content{
+margin-top: 20px;
+
+}
+
+.aside{
+
+width: 200px;
+height: 500px;
+background-color: #ccc;
+float: left;
+
+}
+.main{
+	float: left;
+    width:650px;
+    height: 200px;
+    margin-left: 20px;
+    background-color: #ccc;
+    padding-left: 20px;
+
+
+}
+p{
+	font-size: 15px;
+}
+h1{
+	margin:20px 0;
+}
+
+
+/*尾部*/
+#footer{
+	height: 50px;
+	background-color: #333;
+	clear: both;
+}
+
+#footer li{
+	float: left;
+	padding: 0 5px;
+	line-height: 50px;
+}
+#footer a{
+	color: #fff;
+	
+}
+
+
+
+	</style>
+</head>
+<body>
+
+<div id="header">
+  <div class="container">
+  <a class="logo" href="#">
+<img alt="" src="http://cdn.jirengu.com/public/logo-tiny.png">
+</a>
+<ul class="nav">
+<li>
+<a href="">技能</a>
+  </li>
+  <li>
+    <a href="">经历</a>
+  </li>
+   <li>
+    <a href="">作品</a>
+  </li>
+  <li>
+    <a href="">关于</a>
+  </li>
+	</ul>
+  </div>
+	</div>
+	<div id="content">
+	<div class="container">
+		<div class="aside"></div>
+		<div class="main">
+			<h1>我的作品</h1>
+			<p>生活很美好</p>
+		    <p>心情不错</p>
+		    <p>代码写的很漂亮</p>
+		</div>
+</div>
+	</div>
+
+
+	<div id="footer">
+		<div class="container">
+			<ul>
+			   <li><a href="http://jirengu.com/">饥人谷</a></li>
+               <li><a href="http://jscode.me/">JSCODE</a></li>
+               <li><a href="http://js.jirengu.com/">JSBIN</a></li>
+
+
+			</ul>
+
+
+
+		</div>
+
+
+	</div>
+  
+  
+
+
+
+
+
+</body>
+</html>
