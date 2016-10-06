@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task29-demo3</title>
+    <style type="text/css">
+      html, body, div {
+        margin: 0;
+        padding: 0;
+      }
+      .test {
+        margin: 30px auto;
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        border: 3px solid;
+        background-color: rgba(180, 255, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test test1">test1</div>
+    <div class="test test2">test2</div>
+    <div class="test test3">test3</div>
+    <div class="test test4">test4</div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $.fn.isVisible = function() {
+        var $self = $(this);
+        $(window).on('scroll', function() {
+          var $me = $(this);
+              offsetTop = $self.offset().top,
+              $winH = $me.height(),
+              scrollTop = $me.scrollTop(),
+              scrollBottom = $me.scrollTop() + $winH;
+          if(!$self.data('data-visible')) {
+            if(offsetTop > scrollTop && scrollBottom > offsetTop) {
+                console.log(true);
+                $self.data('data-visible', true);
+            } else {
+              return;
+            }
+          }
+        });
+      }
+      $('.test4').each(function() {
+        $(this).isVisible();
+      });
+    </script>
+  </body>
+</html>
