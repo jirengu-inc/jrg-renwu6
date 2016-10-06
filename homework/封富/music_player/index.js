@@ -53,15 +53,16 @@
       $.ajax({
         url:'http://api.jirengu.com/fm/getChannels.php',
         dataType:'json',
-        Method:'get'
-      }).done(function(response){
-        var response = JSON.parse(response);
-        var channels = response.channels;
-        var num = Math.floor(Math.random()*channels.length);
-        var channelId = channels[num].channel_id;
-        $audio.attr('data-id',channelId);
-        getMusic();
-      })
+        Method:'get',
+        success:function(){
+          var response = JSON.parse(response);
+          var channels = response.channels;
+          var num = Math.floor(Math.random()*channels.length);
+          var channelId = channels[num].channel_id;
+          $audio.attr('data-id',channelId);
+          getMusic();
+        }
+      });
     }
     function getMusic(){
       $.ajax({
