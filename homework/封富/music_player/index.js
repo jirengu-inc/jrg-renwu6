@@ -54,7 +54,7 @@
         url:'http://api.jirengu.com/fm/getChannels.php',
         dataType:'json',
         Method:'get',
-        success:function(){
+        success:function(response){
           var response = JSON.parse(response);
           var channels = response.channels;
           var num = Math.floor(Math.random()*channels.length);
