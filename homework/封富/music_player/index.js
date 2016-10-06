@@ -50,7 +50,11 @@
       pauseProgress();
     }
     function getChannel(){
-      $.get('http://api.jirengu.com/fm/getChannels.php').done(function(response){
+      $.ajax({
+        url:'http://api.jirengu.com/fm/getChannels.php',
+        dataType:'json',
+        Method:'get'
+      }).done(function(response){
         var response = JSON.parse(response);
         var channels = response.channels;
         var num = Math.floor(Math.random()*channels.length);
@@ -103,7 +107,6 @@
       var allStr = allMin + ":" + allSec;
       var curStr = curMin + ":" + curSec;
       progress.value = audio.currentTime;
-      console.log(progress.max,audio.duration)
       progress.max = audio.duration;
       $current.text(curStr);
       if($total.text() !== allStr){
@@ -124,8 +127,8 @@
     $progress.on("click",function(e){
       var posX = e.clientX;
       var targetLeft = $(this).offset().left;
-      var percentage = (posX - targetLeft)/400*100;
-      audio.currentTime = audio.duration * percentage/100;
+      var percentage = (posX - targetLeft)/260;
+      audio.currentTime = audio.duration * percentage;
     });
   }
 
