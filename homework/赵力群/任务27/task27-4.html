@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task27-4</title>
+    <style type="text/css">
+      html, body, ul, li, p {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      html, body, .carousel, .img-ct {
+        width: 100%;
+        height: 100%;
+      }
+      .carousel {
+        position: relative;
+        overflow: hidden;
+      }
+      .img-ct {
+        position: absolute;
+      }
+      .img-ct:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .item {
+        position: relative;
+        float: left;
+        height: 100%;
+      }
+      .main {
+        position: absolute;
+        width: 800px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #000;
+        text-align: center;
+      }
+      .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        opacity: 0.8;
+      }
+      .bullet {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .bullet li {
+        width: 16px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #eee;
+        display: inline-block;
+        cursor: pointer;
+        opacity: 0.8;
+      }
+      .bullet li.active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel">
+      <ul class="img-ct">
+        <li class="item">
+          <div class="cover" data-bd-img="http://p1.bpimg.com/567571/df19fe39fe8fc900.jpg"></div>
+          <div class="main">
+            <h3>007：大破天幕危机</h3>
+            <p>年龄并不代表你有能力。</p>
+          </div>
+        </li>
+        <li class="item">
+          <div class="cover" data-bd-img="http://p1.bpimg.com/567571/48f7ce01fde2d198.jpg"></div>
+          <div class="main">
+            <h3>阿甘正传</h3>
+            <p>妈妈说过，要往前走，就得先忘掉过去，我想，这就是跑的用意。</p>
+          </div>
+        </li>
+        <li class="item">
+          <div class="cover" data-bd-img="http://p1.bpimg.com/567571/cbdc58daf6268e02.jpg"></div>
+          <div class="main">
+            <h3>肖申克的救赎</h3>
+            <p>要么忙于生存，要么赶着去死。</p>
+          </div>
+        </li>
+        <li class="item">
+          <div class="cover" data-bd-img="http://p1.bpimg.com/567571/e60bcc15b4783132.jpg"></div>
+          <div class="main">
+            <h3>超体</h3>
+            <p>我，无处不在。</p>
+          </div>
+        </li>
+      </ul>
+      <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      var $ct = $('.img-ct'),
+          $items = $ct.children(),
+          $bullet = $('.bullet'),
+          imgWidth = $(window).width(),
+          imgCount = $items.size(),
+          curIdx = 0,
+          clock = '',
+          isAnimate = false;
+      $ct.prepend($items.last().clone());
+      $ct.append($items.first().clone());
+      $ct.find('.item').css('width', imgWidth);
+      $ct.find('.cover').css('width', imgWidth);
+      imgRealCount = $ct.children().size();
+      $ct.css({
+        'left': 0 - imgWidth,
+        'width': imgRealCount * imgWidth
+      });
+      $bullet.on('click', 'li', function() {
+        var idx = $(this).index();
+        if(idx > curIdx) {
+          playNext(idx - curIdx);
+        } else if(idx < curIdx) {
+          playPre(curIdx - idx);
+        }
+      });
+      setBg(1);
+      autoPlay();
+      function playNext(idx) {
+        var idx = idx || 1;
+        if(!isAnimate) {
+          isAnimate = true;
+          setBg(curIdx + 2);
+          $ct.animate({left: '-=' + (imgWidth * idx)}, function() {
+            curIdx = (curIdx + idx) % imgCount;
+            if(curIdx === 0) {
+              $ct.css('left', 0 - imgWidth);
+            }
+            isAnimate = false;
+            setBullet();
+          });
+        }
+      }
+      function playPre(idx) {
+        var idx = idx || 1;
+        if(!isAnimate) {
+          isAnimate = true;
+          setBg(curIdx);
+          $ct.animate({left: '+=' + (imgWidth * idx)}, function() {
+            curIdx = (curIdx - idx + imgCount) % imgCount;
+            if(curIdx === (imgCount - 1)) {
+              $ct.css('left', 0 - imgWidth);
+            }
+            isAnimate = false;
+            setBullet();
+          });
+        }
+      }
+      function setBullet() {
+        $bullet.children().removeClass('active')
+                          .eq(curIdx).addClass('active');
+      }
+      function setBg(idx) {
+        var idx = idx || 0,
+            $node = $ct.children().eq(idx),     // 用$items.eq(idx)就不会显示第一张图片
+            $cover = $node.find('.cover'),
+            imgUrl = $cover.attr('data-bd-img');
+        if($node.data('isBdSet')) {
+          return;
+        } else {
+          $cover.css('background-image', 'url(' + imgUrl + ')');
+          $node.data('isBdSet', true);
+        }
+      }
+      function autoPlay() {
+        clock = setInterval(function() {
+          playNext();
+        }, 3000);
+      }
+      function stopAuto() {
+        clearInterval(clock);
+      }
+
+    </script>
+  </body>
+</html>
