@@ -55,7 +55,6 @@
         dataType:'json',
         Method:'get',
         success:function(response){
-          var response = JSON.parse(response);
           var channels = response.channels;
           var num = Math.floor(Math.random()*channels.length);
           var channelId = channels[num].channel_id;
