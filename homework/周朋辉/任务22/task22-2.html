@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task22-2</title>
+</head>
+<body>
+	<ul class="ct"> 
+	    <li>这里是</li> 
+	    <li>饥人谷</li> 
+	    <li>前端6班</li>
+	</ul>
+	<input id="ipt-add-content" placeholder="添加内容"/>
+	<button id="btn-add-start">开头添加</button>
+	<button id="btn-add-end">结尾添加</button>
+	<script>
+		var ct = document.querySelector(".ct"),
+		    inputValue = document.querySelector("#ipt-add-content"),
+			btnStart = document.querySelector("#btn-add-start"),
+			btnEnd = document.querySelector("#btn-add-end");
+		//点击在前面添加li
+		btnStart.addEventListener("click", function(){ 
+			var li = document.createElement("li");
+			li.innerText = inputValue.value;
+			ct.insertBefore(li, ct.firstChild);
+		});
+
+		//点击在后面添加li
+		btnEnd.addEventListener("click", function(){ 
+			var li = document.createElement("li");
+			li.innerText = inputValue.value;
+			ct.appendChild(li);
+		});
+
+		//实现控制台输出内容，用事件代理机制，把事件监听函数绑定在父容器上，根据事件的来源进行处理
+		ct.addEventListener("click", function(event){
+			console.log(event.target.innerText);
+		});
+
+	</script>
+    
+</body>
+</html>

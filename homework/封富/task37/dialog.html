@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <title>dialog</title>
+    <style>
+      .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .wrapper {
+        width: 300px;
+        background-color: #ccc;
+      }
+      .header {
+        height: 30px;
+        divne-height: 30px;
+        background-color: #fe0;
+      }
+      .header p{
+        margin: 0;
+        float: left;
+      }
+      .header a {
+        display: block;
+        text-decoration: none;
+        color: #f00;
+        float: right;
+      }
+      .main {
+          min-height: 30px;
+          text-align: center;
+      }
+      .footer {
+        background-color: #0fe;
+      }
+      .footer .pick {
+        display: block;
+        padding: 10px;
+        background-color: #3a3;
+        color: #fff;
+        text-decoration: none;
+      }
+      .footer {
+        padding: 10px;
+      }
+      .footer .close {
+        float: left;
+        margin-left: 20px;
+      }
+      .footer .confirm {
+        float: right;
+        margin-right: 20px;
+      }
+      button {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="btn-ct">
+ <!--      <button id="open1">打开1</button>
+      <button id="open2">打开2</button>
+      <button id="open3">打开3</button>
+      <button id="open4">打开4</button>
+      <button id="open5">打开5</button>
+ -->    </div>
+    <div class="box">
+      <!-- <div class="wrapper">
+          <div class="header clearfix">
+            <p>欢迎来到饥人谷</p>
+            <a href="#">X</a>
+          </div>
+          <div class="main">hello,这里是饥人谷</div>
+          <div class="footer clearfix">
+            '<a href="#" class="pick close">取消</a>'
+            <a href="#" class="pick confirm">确定</a>
+          </div>
+      </div> -->
+    </div>
+  <script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $btn = $("<button></button>");
+    function Dialog(opts){
+      this.btn = $btn.clone().appendTo($("#btn-ct"));
+      this.index = this.btn.index();
+      this.btn.text("按钮" + (this.index + 1));
+    }
+    Dialog.prototype = {
+      constuctor:Dialog,
+      open:function(opts){
+        var title = '<div class="header clearfix">' + '<p>' + opts.title + '</p>' + '<a class="pick" href="#">X</a></div>',
+            message = '<div class="main">' + opts.message + '</div>',
+            closebtn = "",
+            // that = this,
+            confirmbtn = "";
+          if(opts.isShowCloseBtn){
+            closebtn += '<a href="#" class="pick close">取消</a>';
+          }
+          if(opts.isShowConfirmBtn){
+            closebtn += '<a href="#" class="pick confirm">确定</a>';
+          }
+          var footer = closebtn + confirmbtn;
+          if(footer !== ""){
+            footer = '<div class="footer clearfix">' + footer + '</div>';
+          }
+        var tpl = "";
+        tpl += '<div class="wrapper">'+ title + message + footer + "</div>" ;
+        this.bind(tpl);
+        },
+      bind:function(tpl){
+        var self = this;
+        this.btn.on("click",function(){
+          if(self.dialog){
+            self.showDialog();
+          }else{
+            var $node = $(tpl).attr("a","f").appendTo($(".box")).css({
+              "display":"none",
+              "position":"absolute",
+              "left":($(window).width() - $(".wrapper").outerWidth(true))/2,
+              "top":($(window).height() - $(".wrapper").outerHeight(true))/2
+            });
+            self.dialog = $node;
+            self.showDialog();
+            self.clickevent();
+          }
+        });
+      },
+      clickevent:function(){
+        var $pick = this.dialog.find(".pick");
+        var $confirm = this.dialog.find(".confirm");
+        var $header = this.dialog.find(".header");
+        var self = this;
+        var self = this;
+        $pick.on("click",function(e){
+          e.preventDefault();
+          alert("close");
+          self.hideDialog();
+        });
+        $confirm.on("click",function(e){
+          e.preventDefault();
+          alert("确定");
+          self.hideDialog();
+        });
+        var dragable = false;
+        $header.on("mousedown",function(e){
+          var yInstance = e.pageY - self.dialog.position().top,
+              xInstance = e.pageX - self.dialog.position().left,
+              $doc = $(document);
+          dragable = true;
+            $doc.on("mousemove",function(e){
+              if(dragable){
+                self.dialog.css({
+                  "cursor":"move",
+                  "opacity":".8",
+                  "position":"absolute",
+                  "top":e.pageY - yInstance,
+                  "left":e.pageX - xInstance
+                });
+              }
+            })
+          $doc.on("mouseup",function(){
+            dragable = false;
+          })
+        })
+      },
+      showDialog:function(){
+        this.dialog.show();
+      },
+      hideDialog:function(){
+        this.dialog.hide();
+      }
+    }
+    var tpl = "<ul type='disc'><div>列表1</div><div>列表2</div><div>列表3</div><div>列表4</div></ul>";
+      var dialog1 = new Dialog();
+      dialog1.open({
+        title: '欢迎来到饥人谷',  // 标题内容
+        message: "hello world",    // main的内容
+        isShowCloseBtn: false,  // 是否在footer显示取消
+        isShowConfirmBtn: false  // 是否在footer显示确定
+        });
+      var dialog2 = new Dialog();
+      dialog2.open({
+        title: 'hello',  // 标题内容
+        message: "tpl",    // main的内容
+        isShowCloseBtn: false,  // 是否在footer显示取消
+        isShowConfirmBtn: false
+      });
+      var dialog3 = new Dialog();
+      dialog3.open({
+        title: '欢迎来到饥人谷',  // 标题内容
+        message: tpl,    // main的内容
+        isShowCloseBtn: false,  // 是否在footer显示取消
+        isShowConfirmBtn: false
+      });
+      var dialog4 = new Dialog();
+      dialog4.open({
+        title: '欢迎来到饥人谷',  // 标题内容
+        message: tpl,    // main的内容
+        isShowCloseBtn: false,  // 是否在footer显示取消
+        isShowConfirmBtn: true
+      });
+      var dialog5 = new Dialog();
+      dialog5.open({
+        title: '欢迎来到饥人谷',  // 标题内容
+        message: tpl,    // main的内容
+        isShowCloseBtn: true,  // 是否在footer显示取消
+        isShowConfirmBtn: true
+      });
+    </script>
+  </body>
+</html>

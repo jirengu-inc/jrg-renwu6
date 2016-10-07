@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+</head>
+<style>
+    ul,li{
+        margin: 0;
+        padding: 0;
+    }
+
+    #list li{
+        list-style-type: none;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        cursor:pointer;
+    }
+
+    #more{
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #more img{
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn{
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        width: 80px;
+        border: 1px solid #E27272;
+        border-radius: 3px;
+        text-align: center;
+        text-decoration: none;
+        color: #E27272;
+    }
+
+    .btn:hover{
+        color: red;
+    }
+
+    #list li:hover{
+        background: green;
+        color: #fff;
+    }
+
+
+
+</style>
+<body>
+
+<ul id="list">
+</ul>
+<a id="more" class="btn" href="#">加载更多</a>
+
+<script>
+    var cur = 0;
+    var len = 2;
+    var isRequesting = false;
+    var list = document.getElementById('list');
+    var more = document.querySelector('#more');
+
+    loadMore();
+    function loadMore() {
+        if(isRequesting){
+            alert('正在请求请耐心等待。。。');
+            return ;
+        }
+        isRequesting = true;
+        more.innerHTML =  '<img src="loading.gif" />';
+        console.log(more.innerHTML);
+
+        ajax({
+            url: 'http://zhangzenglun.com/jirengu/task24/loadMore.php',   //接口地址
+            type: 'get',               // 类型， post 或者 get,
+            data: {
+                cur: cur,
+                len: cur>1?6:2
+            },
+            success: function(ret){
+                console.log('len:'+ret.length);
+                for(var i = 0; i < ret.length; i++) {
+                    var li = document.createElement('li');
+                    li.innerText = ret[i];
+                    list.appendChild(li);
+                }
+                cur += this.data.len;
+                isRequesting = false;
+                more.innerHTML = '加载更多';
+
+
+            },
+            error: function(){
+                console.log('出错了');
+                isRequesting = true;
+                more.innerHTML = '加载更多';
+            }
+        })
+    }
+
+    more.addEventListener('click', function(e){
+        var $this = this;
+        e.preventDefault();
+        loadMore();
+    });
+    function ajax(o){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var json = JSON.parse(xhr.responseText);
+                o.success(json);
+            }
+            if(xhr.readyState == 4 && xhr.status == 404){
+                concole.log("Error!");
+                o.error();
+            }
+        }
+        var dataSend="";
+        if(o.url.indexOf('?')<0 && o.type.toLowerCase()=="get"){
+            dataSend = "?";
+        }
+        for(var key in o.data){
+            dataSend += key + "=" +o.data[key] + "&";
+        }
+        dataSend = dataSend.substr(0,dataSend.length-1);
+        if(o.type.toLowerCase()=="get"){
+            xhr.open("GET",o.url+dataSend,true);
+            xhr.send();
+        }
+        if(o.type.toLowerCase()=="post"){
+            xhr.open("POST",o.url,true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send(dataSend);
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

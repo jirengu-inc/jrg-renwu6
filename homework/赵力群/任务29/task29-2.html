@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task29-2</title>
+    <style type="text/css">
+      html, body, ul, li, p {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      .container {
+        width: 800px;
+        margin: 0 auto;
+      }
+      .container:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .container li {
+        margin: 10px 10px;
+        float: left;
+      }
+      .container li img {
+        width: 220px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="container">
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://p1.bqimg.com/567571/036eb2f8bee1aee6.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/77579cb410c985de.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/7b5a942557ff3b21.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/03d7eeace65e1968.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/c51c23d7d37ff0ac.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/74900ac06a23267d.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/71dc088986f6a027.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/f95a5798d4ce0e48.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/e81bb43765aa18ca.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/3ecf9dbd61139386.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/949bf56a3ad07870.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/ca892ad6ecc83bc0.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/abb902fbe1f5ce15.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/631edb2ed859ee5d.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/917ef9c8f51106f3.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/c5c1d8d509544d06.jpg"></a></li>
+      <li><a href="#"><img src="http://p1.bqimg.com/567571/ccc7d081c719a475.jpg" alt="pic" data-src="http://i1.piimg.com/567571/137261a7bca8776c.jpg"></a></li>
+    </ul>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      var clock;
+      $(window).on('scroll', function() {
+        if(clock) {
+          clearTimeout(clock);
+        }
+        clock = setTimeout(function() {
+          checkShow();
+        }, 300);
+      });
+      checkShow();
+      function checkShow() {
+        $('.container img').each(function() {
+          var $cur = $(this);
+          if($cur.data('isLoaded')) {
+            return;
+          } else {
+            if(isShow($cur)) {
+              showImg($cur);
+            }
+          }
+        });
+      }
+      function isShow($el) {
+        var offsetTop = $el.offset().top,    // 不能定义为全局变量，因为需要用到对应的值，全局变量初始值为undefined
+            winH = $(window).height(),
+            scrollTop = $(window).scrollTop();
+        if(offsetTop < scrollTop + winH) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function showImg($el) {
+        $el.attr('src', $el.attr('data-src'));
+        $el.data('isLoaded', true);
+      }
+    </script>
+  </body>
+</html>

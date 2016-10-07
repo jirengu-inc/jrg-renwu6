@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滚动轮播图</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .carousel{
+            width: 310px;
+            height: 206px;
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel .img-ct{
+            position: absolute;/*绝对定位后才可以通过JS来偏移*/
+        }
+        .carousel .img-ct:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .carousel .img-ct img{
+            width: 310px;
+            height: 206px;
+        }
+        .carousel .img-ct li{
+            float: left;
+        }
+        .arrow{
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background: #4e443c;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            opacity: 0.8;
+        }
+        .arrow:hover{
+            opacity: 0.6;
+        }
+        .pre{
+            left: 10px;
+        }
+        .next{
+            right: 10px;
+        }
+        .bullet{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .bullet > li {
+            width: 16px;
+            height: 4px;
+            border-radius: 2px;
+            background: #fff;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .carousel .bullet .active{
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="carousel">
+    <ul class="img-ct">
+        <li data-id=0><a href=""><img src="http://img2.3lian.com/2014/f5/77/d/108.jpg" alt=""></a></li>
+        <li data-id=1><a href=""><img src="http://img2.3lian.com/2014/f5/77/d/109.jpg" alt=""></a></li>
+        <li data-id=2><a href=""><img src="http://img2.3lian.com/2014/f5/77/d/110.jpg" alt=""></a></li>
+        <li data-id=3><a href=""><img src="http://img2.3lian.com/2014/f5/77/d/111.jpg" alt=""></a></li>
+    </ul>
+    <a href="javascript:void(0)" class="pre arrow"> < </a>
+    <a href="javascript:void(0)" class="next arrow"> > </a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+var $imgCt = $('.img-ct'),
+    $items = $imgCt.children(),
+    $pre = $('.pre'),
+    $next = $('.next'),
+    $bullet = $('.bullet'),
+    imgCount = $items.size(),
+    imgWidth = $items.width();
+
+    $imgCt.prepend($items.last().clone());
+    $imgCt.append($items.first().clone());
+    imgRealCount = $imgCt.children().length;//必须使用$imgCt.children(),不能使用$items(这是未clone元素前的个数)
+    $imgCt.css({left: 0-imgWidth, width: imgRealCount*imgWidth});//ul向左移动一个图片的宽度;设置ul宽度
+
+var curIdx = 0,
+    isLocking = false;
+        
+    $next.on('click',function () {
+        playNext()
+    });
+    $pre.on('click',function () {
+        playPre()
+    });
+    $bullet.find('li').on('click',function () {
+        var bulletIdx = $(this).index();
+        if(bulletIdx > curIdx){
+            playNext(bulletIdx - curIdx);
+        }else if(bulletIdx < curIdx){
+            playPre(curIdx - bulletIdx);
+        }
+    });
+
+    function playNext(idx) {
+        var idx = idx || 1;
+        if(isLocking){return}
+        isLocking = true;
+        $imgCt.animate({left: '-='+(imgWidth*idx)},function () {
+            curIdx = (curIdx + idx)%imgCount;
+            if(curIdx === 0){
+                $imgCt.css({left: 0-imgWidth});
+            }
+            isLocking = false;
+            setBullet();
+        })
+    }
+    function playPre(idx) {
+        var idx = idx || 1;
+        if(isLocking){return}
+        isLocking = true;
+        $imgCt.animate({left: '+='+(imgWidth*idx)},function () {
+            curIdx = (imgCount + curIdx - idx)%imgCount;
+            if(curIdx === (imgCount - 1)){
+                $imgCt.css({left: 0-imgWidth*imgCount});
+            }
+            isLocking = false;
+            setBullet();
+        })
+    }
+
+    function setBullet() {
+        $bullet.find('li').removeClass('active')
+                          .eq(curIdx).addClass('active');
+    }
+
+
+</script>
+</body>
+</html>

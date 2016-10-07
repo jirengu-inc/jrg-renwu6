@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exposure</title>
+</head>
+<body>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr class="bind">
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br class="one">
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <hr>
+  <br>
+  <script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+  var Exposure = (function(){
+    function visible(node){
+      var Top = node.offset().top,
+          winH = $(window).height(),
+          scrT = $(document).scrollTop();
+      if(Top < winH + scrT && Top > scrT){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    function bind($target,callback){
+      $(document).on("scroll",function(){
+        if(visible($target)){
+          callback.call($target);
+        }
+      })
+    }
+    function one($target,callback){
+      $(document).on("scroll",function(){
+        if(visible($target) && !$target.data("load")){
+          callback.call($target);
+          $target.data("load",true);
+        }
+      })
+    }
+    return {
+      bind:bind,
+      one:one
+    }
+  })()
+  Exposure.one($(".one"),function(){
+    console.log(this);
+  })
+    Exposure.bind($(".bind"),function(){
+    console.log(this);
+  })
+  </script>
+</body>
+</html>

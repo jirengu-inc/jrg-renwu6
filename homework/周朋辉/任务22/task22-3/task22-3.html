@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task22-3</title>
+</head>
+<body>
+    <ul class="ct"> 
+	    <li data-img="img/1.jpg">鼠标放置查看图片1</li> 
+	    <li data-img="img/2.jpg">鼠标放置查看图片2</li> 
+	    <li data-img="img/3.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+
+	<script>
+		//都是使用事件代理，但是会有问题，鼠标移到每个列表的最前面报错？
+		//mouseover和mouseenter区别？
+		var ct = document.querySelector('.ct'),
+			imgPreview = document.querySelector('.img-preview'),
+			dataImg = document.createElement('img');
+
+		ct.addEventListener('mouseover', function(event){ 
+			dataImg.src = event.target.getAttribute('data-img');
+			imgPreview.appendChild(dataImg);
+		});
+
+
+        var ct = document.querySelector('.ct'),
+            imgPreview = document.querySelector('.img-preview'),
+            dataImg = document.createElement('img');
+        ct.addEventListener('mouseover', function(event) {
+        	var value = event.target.getAttribute('data-img');
+        	dataImg.setAttribute('src', value);
+        	imgPreview.appendChild(dataImg);
+        });
+
+
+		var ct = document.querySelector(".ct"),
+			imgPreview = document.querySelector(".img-preview");
+		ct.addEventListener("mouseover", function(event){ //这里mouseover和mouseenter区别
+			var dataImg = event.target.getAttribute("data-img");
+			imgPreview.innerHTML = '<img src="' + dataImg + '">';
+		});
+
+
+		//用for循环去遍历每一个li
+		var ct = document.querySelector('.ct'),
+    		childs = ct.querySelectorAll('li'),
+    		preview = document.querySelector('.img-preview');
+
+		for(var i=0; i<childs.length; i++){
+		    childs[i].addEventListener('mouseenter', function(){
+		       var dataImg = this.getAttribute('data-img');
+		       preview.innerHTML = '<img src="' + dataImg + '">'
+		    });
+		}
+	</script>
+</body>
+</html>

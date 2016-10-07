@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Car对象</title>
+</head>
+<body>
+	<script>
+	function Car(name,color,status){
+		this.name = name;
+		this.color = color;
+		this.status = status;
+		this.run = function(){
+			console.log("一辆叫做" + this.name + "的" this.color + "色的车在路上跑");
+		};
+		this.stop = function(){
+			console.log("车停下来了");
+		};
+		this.getStatus = function(){
+			console.log("车现在的状态是" + this.status);
+		};
+	}
+	</script>
+</body>
+</html>
