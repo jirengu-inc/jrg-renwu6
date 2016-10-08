@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多个stickup</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            text-align: center;
+        }
+        .clearfix:after {
+            content:"";
+            display: block;
+            clear: both;
+        }
+        #header,#footer {
+            height:100px;
+            background-color: navy;
+        }
+        .ct {
+            margin-bottom: 20px;
+        }
+        .nav {
+            height:40px;
+            margin-top:30px;
+            background-color: chocolate;
+        }
+        .main-ct {
+            float:left;
+            width: 100%;
+            height:400px;
+        }
+        .main {
+            margin-left: 100px;
+            height:400px;
+            background-color: greenyellow;
+        }
+        .aside {
+            height:400px;
+            width:100px;
+            float: left;
+            margin-left:-100%;
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">header</div>
+    <div class="ct clearfix">
+        <div class="nav">nav1</div>
+        <div class="main-ct">
+            <div class="main">main</div>
+        </div>
+        <div class="aside">aside</div>
+    </div>
+    <div class="ct clearfix">
+        <div class="nav">nav2</div>
+        <div class="main-ct">
+            <div class="main">main</div>
+        </div>
+        <div class="aside">aside</div>
+    </div>
+    <div class="ct clearfix">
+        <div class="nav">nav3</div>
+        <div class="main-ct">
+            <div class="main">main</div>
+        </div>
+        <div class="aside">aside</div>
+    </div>
+    <div class="ct clearfix">
+        <div class="nav">nav4</div>
+        <div class="main-ct">
+            <div class="main">main</div>
+        </div>
+        <div class="aside">aside</div>
+    </div>
+    <div id="footer">footer</div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        $.fn.stickup = function(){
+            var $this = $(this).data("fixed",false);
+            var $width = $this.width();
+            var $height = $this.height();
+            var $top = $this.offset().top;
+            var $left = $this.offset().left;
+            var $margin = $this.css("margin");
+            var $marginTop = parseInt($this.css("margin-top"));
+            var $clone = $this.clone().css({
+                "width":$width,
+                "height":$height,
+                "opacity":0,
+                "display":"none"
+            }).insertBefore($this);
+            $(window).on("scroll",function(){
+                var $topLen = $(this).scrollTop();
+                if($topLen >= $top){
+                    if(!isFix()){
+                        showFix();
+                    }
+                }else{
+                    if(isFix()){
+                        hideFix();
+                    }
+                }
+            });
+            function isFix(){
+                return $this.data("fixed");
+            }
+            function showFix(){
+                $this.data("fixed",true).css({
+                    "position":"fixed",
+                    "width":$width,
+                    "height":$height,
+                    "margin":0,
+                    "top":0,
+                    "left":$left
+                });
+                $clone.show();
+            }
+            function hideFix(){
+                $this.data("fixed",false).css({
+                    "position":"static",
+                    "margin":$margin
+                });
+                $clone.hide();
+            }
+        }
+        $(".nav").each(function(){
+            $(this).stickup();
+        });
+    </script>
+</body>
+</html>

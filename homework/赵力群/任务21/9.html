@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-21-9</title>
+</head>
+
+<body>
+  <script>
+    // 非贪婪模式
+    str = '.. <!-- My -- comment \n test --> .. <!----> .. ';
+    reg = /<!--[\w\W]*?-->/g;
+    str.match(reg);
+    // 贪婪模式
+    str = '.. <!-- My -- comment \n test --> .. <!----> .. ';
+    reg = /<!--[^>]*-->/g;
+    str.match(reg);
+  </script>
+</body>
+
+</html>

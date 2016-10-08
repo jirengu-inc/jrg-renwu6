@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>任务1</title>
+    <style>
+        .box{
+            border: 1px solid red;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">box1</div>
+<div class="box">box2</div>
+<div class="box">box3</div>
+<div class="box">box4</div>
+<div class="target box">目标</div>
+<div class="box">box6</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    function isVisible ($node) {
+        var nodeScrollTop = $node.offset().top,//参数所在位置
+                windowHeight = $(window).height(),//页面高度
+                curScrollTop = $(document).scrollTop(),//滚动距离
+                curScrollBottom = curScrollTop + windowHeight;//页面底部滚动距离
+
+
+        if(curScrollBottom > nodeScrollTop && nodeScrollTop > curScrollTop ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function isLoad($target){
+        if(!$target.data('isLoad')){
+            console.log(true);
+            $target.data('isLoad',true);
+        }
+    }
+
+
+    $(document).on('scroll',function(){
+        $target = $('.target');
+        if(isVisible($target)){
+            isLoad($target)
+        }
+    });
+</script>
+</body>
+</html>

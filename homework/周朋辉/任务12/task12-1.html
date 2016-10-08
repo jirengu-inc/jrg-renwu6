@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>固定宽度居中</title>
+  <style type="text/css">
+	/*定义全局样式*/
+html,body,ul,li{
+  margin: 0;
+  padding: 0;
+}
+ul>li{
+  list-style-type: none;
+}
+
+/*给容器设置样式*/
+.wrap{
+  width: 900px;
+  margin: 0 auto;
+  background-color: #ccc;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+
+/*设置其他样式*/
+
+  .panels>li{
+    height: 80px;
+    width: 286px;
+    background-color: green;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  /*撑开父容器高度*/
+  .wrap::after{
+    content:"";
+    display: block;
+    clear: both;
+  }
+  .panels{
+    margin-left: -20px;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <ul class="panels">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+  </div>
+</body>
+</html>

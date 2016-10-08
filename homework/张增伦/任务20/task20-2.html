@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+<script>
+
+    var Car =  (
+            function(){
+                var speed = 0;
+                var status = 'stop';
+                var Car = function(){
+                      this.setSpeed = function(_speed){
+                            speed = _speed;
+                      }
+                      this.getSpeed = function(){
+                          console.log(speed);
+                          return speed;
+                      }
+
+                      this.accelerate = function(){
+                          speed = speed+10;
+                          if(status!='running')
+                            status = 'running';
+                      }
+
+                      this.decelerate = function(){
+                          if(speed>=10)
+                              speed = speed-10;
+
+                          if(speed<=0)
+                             status = 'stop';
+                      }
+
+                      this.getStatus = function(){
+                          console.log(status);
+                          return status;
+                      }
+                }
+
+                return new Car();
+
+            })();
+
+
+    //todo;
+    Car.setSpeed(30);
+    Car.getSpeed(); //30
+    Car.accelerate();
+    Car.getSpeed(); //40;
+    Car.decelerate();
+    Car.decelerate();
+    Car.getSpeed(); //20
+    Car.getStatus(); // 'running';
+    Car.decelerate();
+    Car.decelerate();
+    Car.getStatus();  //'stop';
+    //Car.speed;  //error
+
+
+</script>
+
+</body>
+</html>

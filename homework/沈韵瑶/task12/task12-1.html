@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>task12-1</title>
+</head>
+<style>
+ * {
+            margin: 0;
+            padding: 0
+        }
+        .layout {
+            width: 900px;
+            margin: 0 auto;
+            background-color: #ccc;
+        }
+        .parent:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .parent {
+            list-style: none;
+            padding-top: 20px;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+        .parent>li {
+            width: 286px;
+            height: 80px;
+            background-color: #004210;
+            float: left;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    
+</style>
+<body>
+    <div class="layout">
+    <ul class="parent">
+      <li>1</li>
+       <li>2</li>
+       <li>3</li>
+       <li>4</li>
+       <li>5</li>
+       <li>6</li>
+      
+      </ul></div></div>
+</body>
+</html>

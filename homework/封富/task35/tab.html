@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tab切换功能</title>
+	<style>
+		html,body,div {
+			margin: 0;
+			padding: 0;
+		}
+		.clearfix:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.clearfix {
+			*zoom: 1;
+		}
+		.ct {
+			margin: 50px;
+		}
+		.item {
+			float: left;
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			cursor: pointer;
+		}
+		.item.active {
+			background-color: #ccc;
+		}
+		.content {
+			width: 300px;
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+			border-style: solid;
+			border-width: 0 1px 1px;
+			border-color: #ccc;
+			display: none;
+		}
+		.content.active {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<div class="tab clearfix">
+			<div class="item active">页面1</div>
+			<div class="item">页面2</div>
+			<div class="item">页面3</div>
+		</div>
+		<div class="container clearfix">
+			<div class="content active">内容1</div>
+			<div class="content">内容2</div>
+			<div class="content">内容3</div>
+		</div>
+	</div>
+	<div class="ct">
+		<div class="tab clearfix">
+			<div class="item active">页面1</div>
+			<div class="item">页面2</div>
+			<div class="item">页面3</div>
+		</div>
+		<div class="container clearfix">
+			<div class="content active">内容1</div>
+			<div class="content">内容2</div>
+			<div class="content">内容3</div>
+		</div>
+	</div>
+	<div class="ct">
+		<div class="tab clearfix">
+			<div class="item active">页面1</div>
+			<div class="item">页面2</div>
+			<div class="item">页面3</div>
+		</div>
+		<div class="container clearfix">
+			<div class="content active">内容1</div>
+			<div class="content">内容2</div>
+			<div class="content">内容3</div>
+		</div>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		function Tab($ct){
+			this.ct = $ct;
+			this.item = this.ct.find(".item");
+			this.content = this.ct.find(".content");
+			this.bind();
+		}
+		Tab.prototype = {
+			bind:function(){
+				var _this = this;
+				this.item.on("click",function(){
+					var $this = $(this);
+					_this.item.removeClass("active");
+					_this.content.removeClass("active");
+					var idx = $this.index();
+					$this.addClass("active");
+					_this.content.eq(idx).addClass("active");
+				})
+			}
+		}
+		$(".ct").each(function(){
+			var tab = new Tab($(this));
+		})
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+html,body,ul,li,h2,h4,p{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	font-family: "微软雅黑";
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+#header .nav{
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+}
+#header>.nav>i{
+	font-size: 40px;
+	position: absolute;
+	top: 10%;
+}
+#header>.nav>ul{
+	padding-left: 40px;
+}
+#header>.nav>ul>li{
+	float: left;
+	padding: 20px 20px;
+	cursor:pointer
+}
+#header>.nav>ul>li:hover{
+	background: #eee;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+#header .hidden{
+	display: none;
+	position: absolute;
+    top: 100%;
+    background: #fff;
+}
+#header .hidden li{
+	padding: 5px 10px;
+	border-bottom: 1px solid #ccc;
+}
+#header .hidden li:hover{
+	background: #eee;
+}
+#header>.nav>ul>li:nth-child(4):hover .hidden{
+    display: block;
+}
+#header .intro{
+	background: #b84d45;
+	color: #fff;
+}
+#header .content{
+	width: 1000px;
+	margin: 0 auto;
+	padding: 40px 0;
+}
+#header .intro h2{
+    font-size: 35px;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+#main .content{
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 40px 0;
+}
+#main .content ul{
+	margin-left:-30px;
+}
+#main .content li img{
+	width: 300px;
+}
+#main .content li {
+	float: left;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	padding:5px 5px 15px 5px;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+#main .content li a{
+	display: inline-block;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+#main .content a:hover{
+	background: #eee;
+}
+#main .content h4{
+	padding: 20px 0;
+}
+#main>.content>p{
+	background: #eee;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	text-align: left;
+	padding:10px 0;
+}
+#main>.content>p>a{
+	color:#b84d45; 
+}
+#main .aboutme{
+	background: #b84d45;
+	text-align: center;
+	padding: 30px 0;
+}
+#main .aboutme .layout{
+	width: 1000px;
+	margin:0 auto;
+}
+#main .aboutme p{
+	font-size: 14px;
+	color: #fff;
+}
+#main .aboutme strong{
+	font-size: 30px;
+	font-weight: normal;	
+}
+#main .aboutme a{
+	display: inline-block;
+	background: #b84d45;
+	border:1px solid #fff;
+	padding: 5px 10px;
+	color: #fff;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+#footer{
+	text-align: center;
+	padding: 40px 0;
+}
+#footer hr{
+	width: 1000px;
+    opacity: 0.3;
+}
+#footer p{
+	padding: 20px 0;
+}

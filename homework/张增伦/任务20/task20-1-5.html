@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+<script>
+
+   // 不通过闭包,通过函数静态变量的方式变通实现
+    var fnArr = [];
+    for (var i = 0; i < 10; i ++) {
+
+        function fn(){
+            return fn.num;
+        }
+        fn.num = i;
+
+        fnArr[i] = fn;
+    }
+    console.log( fnArr[3]() );
+
+</script>
+
+</body>
+</html>
