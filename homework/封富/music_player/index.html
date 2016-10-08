@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer" />
   <title>Music Player</title>
   <link rel="shortcut icon" href="./favicon.ico" />
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1475742909_4830005.css">
@@ -34,7 +35,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translateX(-50%) translateY(-50%);
+      /*transform: translateX(-50%) translateY(-50%);*/
+      margin-top: -250px;
+      margin-left: -160px;
       border-radius: 5px;
       box-shadow: 0 45px 50px rgba(0,0,0,0.4);
       overflow: hidden;
@@ -60,6 +63,13 @@
       position: absolute;
       bottom: 5px;
       right: 15px;
+      font-size: 12px;
+      color: #fef;
+    }
+    header>p.category {
+      position: absolute;
+      bottom: 5px;
+      left: 15px;
       font-size: 12px;
       color: #fef;
     }
@@ -168,6 +178,7 @@
   <div class="poster">
     <header>
       <h1></h1>
+      <p class="category"></p>
       <p class="singer"></p>
     </header>
     <main><img src="" alt=""></main>
@@ -180,8 +191,8 @@
         <span class="iconfont icon-xiayishou next" title="下一首"></span>
         <span class="iconfont icon-next turn" title="换个风格"></span>
       </div>
+      <audio src="http://yinyueshiting.baidu.com/data2/music/3d9af2bcdea644aa787f502528a2188e/263649546/64558084147578046164.mp3?xcode=8be3fd8f07838e232c25efac0ddd93cf">你的浏览器不支持该文件</audio>
       <progress max="0" value="0"></progress>
-      <audio src=""></audio>
       <ul class="timer clearfix">
         <li class="current"></li>
         <li>/</li>
