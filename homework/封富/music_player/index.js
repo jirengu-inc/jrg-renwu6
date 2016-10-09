@@ -15,7 +15,9 @@
         $like = this.find(".like"),
         $img = this.find("main img"),
         $progress = this.find("progress"),
-        progress = $progress.get(0);
+        $category = this.find(".category"),
+        progress = $progress.get(0),
+        clock;
     getChannel();
     $play.on("click",function(){
       play();
@@ -35,7 +37,7 @@
       getChannel();
     });
     $next.on("click",function(){
-      getMusic();
+      getSong();
     });
     function play(){
       audio.play();
@@ -55,21 +57,26 @@
         dataType:'json',
         Method:'get',
         success:function(response){
+          // var response = JSON.parse(response);
           var channels = response.channels;
           var num = Math.floor(Math.random()*channels.length);
           var channelId = channels[num].channel_id;
-          $audio.attr('data-id',channelId);
-          getMusic();
+          $category.text(channels[num].name);
+          $category.attr('data-id',channelId);
+          getSong();
+      console.log(audio)
         }
       });
     }
-    function getMusic(){
+    function getSong(){
       $.ajax({
-        url: 'http://api.jirengu.com/fm/getSong.php',
+        url: "http://api.jirengu.com/fm/getSong.php",
         dataType: 'json',
         Method: 'get',
         data:{
-          'channel': $audio.attr('data-id')
+          'channel': $category.attr('data-id')
+          // 'version':100,
+          // 'type':'n'
         },
         success: function (ret){
           var resource = ret.song[0],
@@ -79,18 +86,22 @@
               ssid = resource.ssid, // 歌词数据
               title = resource.title,
               author = resource.artist;
-         $audio.attr('src',url);
+         $audio.attr("src",url);
          $audio.attr('sid',sid);
          $audio.attr('ssid',ssid);
          $title.text(title);
          $singer.text(author);
          $img.attr("src",bgPic);
          play();
-         // getlyric();//获取歌词,留着数据，稍后做
+         // getlyric();
         }
       })
     }
-    var clock;
+    // function getlyric(){
+    //   $.post('http://api.jirengu.com/fm/getLyric.php', {ssid: $audio.attr("ssid"), sid: $audio.attr("sid")}).done(function(response){
+    //     console.log(response)
+    //   })
+    // }
     function setProgress(){
       var currentTime = audio.currentTime,
           curMin = Math.floor(currentTime/60),
@@ -113,7 +124,7 @@
         $total.text(allStr);
       }
       if(progress.value >= progress.max){
-        getMusic();
+        getSong();
       }
     }
     function playProgress(){

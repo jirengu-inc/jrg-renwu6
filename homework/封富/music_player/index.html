@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Music Player</title>
   <link rel="shortcut icon" href="./favicon.ico" />
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1475742909_4830005.css">
@@ -84,6 +86,15 @@
     }
     main>img {
       height: 330px;
+    }
+    main>.lyric {
+
+    }
+    main>.lyric>li {
+      
+    }
+    main>.lyric>.active {
+
     }
     footer {
       margin-top: 10px;
@@ -170,8 +181,36 @@
       color: #fc8926;
       font-weight: 18px;
     }
-
-
+  @media (max-width: 767px) {
+    .poster {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      position: static;
+      margin: 0;
+    }
+    header {
+      height: 10%;
+    }
+    main {
+      height: 65%;
+    }
+    main>img {
+      height: 100%;
+    }
+    footer {
+      height: 25%;
+    }
+    footer>progress {
+      position: absolute;
+      top: 35%;
+      left: 10%;
+      width: 80%;
+    }
+    footer>.timer {
+      padding-top: 100px;
+    }
+  }
   </style>
 </head>
 <body>
@@ -181,7 +220,10 @@
       <p class="category"></p>
       <p class="singer"></p>
     </header>
-    <main><img src="" alt=""></main>
+    <main>
+      <img src="" alt="">
+      <ul class="lyric"></ul>
+    </main>
     <footer>
       <div id="player">
         <span class="iconfont icon-xihuanxuanzhong like" title="喜欢"></span>
@@ -191,7 +233,7 @@
         <span class="iconfont icon-xiayishou next" title="下一首"></span>
         <span class="iconfont icon-next turn" title="换个风格"></span>
       </div>
-      <audio src="http://yinyueshiting.baidu.com/data2/music/3d9af2bcdea644aa787f502528a2188e/263649546/64558084147578046164.mp3?xcode=8be3fd8f07838e232c25efac0ddd93cf">你的浏览器不支持该文件</audio>
+      <audio src="">你的浏览器不支持该文件</audio>
       <progress max="0" value="0"></progress>
       <ul class="timer clearfix">
         <li class="current"></li>
