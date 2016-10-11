@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        .mod-tab{
+            border:1px solid;
+        }
+        .mod-tab * {
+             box-sizing: border-box;
+        }
+        .mod-tab li{
+            float: left;
+            list-style: none;
+            width: 33.33%;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 22px;
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+            cursor: pointer;
+        }
+        .mod-tab li:last-child{
+            border-right: none;
+        }
+        .tabs:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .mod-tab .tabs .active{
+            background: #eee;
+        }
+        .mod-tab .panel{
+            height: 180px;
+            padding: 20px;
+            display: none;
+        }
+        .mod-tab .active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="mod-tab">
+        <ul class="tabs">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="panel active panel1">内容1</div>
+        <div class="panel">内容2</div>
+        <div class="panel">内容3</div>
+    </div>
+    <script>
+    var oUl=document.querySelector(".tabs");
+    var oDiv=document.querySelector(".panel");
+    oUl.addEventListener("click",function(event){
+        var txt=event.target.innerText;
+        for(var i=0;i<oUl.children.length;i++){
+            oUl.children[i].style.backgroundColor="#fff";
+        }
+        event.target.style.backgroundColor="#eee";
+        oDiv.innerText="内容"+txt[txt.length-1];
+    })
+    </script>
+</body>
+</html>
