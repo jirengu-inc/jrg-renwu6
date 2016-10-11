@@ -143,6 +143,8 @@
 				playPre(curIdx - idx);
 			}
 
+
+
 		});
 
 		
@@ -181,11 +183,12 @@
 					isAnimate = true;
 					$imgCnt.animate({left: '-='+(imgWidth*idx)},function(){
 				
-						curIdx++;
-						if(curIdx === imgCount){
+						curIdx = (curIdx + idx)%imgCount;
+                                console.log('playNext idx:'+idx+' curIdx:'+curIdx+' imgCount:'+imgCount);
+						if(curIdx === 0){
 							$imgCnt.css({left: 0-imgWidth});;
-							curIdx = 0;
-						}
+						}                        
+
 						isAnimate = false;
 						setBullet();
 					});
