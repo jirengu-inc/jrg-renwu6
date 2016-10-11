@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-20-2</title>
+</head>
+
+<body>
+  <script>
+    function myCar() {
+      var speed;
+      function setSpeedFunc(num) {
+        speed = num;
+      }
+      function getSpeedFunc() {
+        console.log(speed);
+      }
+      function accelerateFunc() {
+        speed += 10;
+      }
+      function decelerateFunc() {
+        speed -= 10;
+      }
+      function getStatusFunc() {
+        if(speed > 0) {
+          return console.log('running');
+        } else {
+          return console.log('stop');
+        }
+      }
+      return {
+        setSpeed:setSpeedFunc,
+        getSpeed:getSpeedFunc,
+        accelerate:accelerateFunc,
+        decelerate:decelerateFunc,
+        getStatus:getStatusFunc
+      };
+    }
+    var Car = myCar();
+    Car.setSpeed(30);
+    Car.getSpeed(); //30
+    Car.accelerate();
+    Car.getSpeed(); //40;
+    Car.decelerate();
+    Car.decelerate();
+    Car.getSpeed(); //20
+    Car.getStatus(); // 'running';
+    Car.decelerate();
+    Car.decelerate();
+    Car.getStatus();  //'stop';
+    //Car.speed;  //error
+  </script>
+</body>
+
+</html>

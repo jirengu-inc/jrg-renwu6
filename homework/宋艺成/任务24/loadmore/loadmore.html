@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+    <style>
+        ul,li,a{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+            padding:6px;
+            margin:10px;
+            text-align: center;
+            border:1px solid #ccc;
+            border-radius: 5px;
+        }
+        li:hover{
+            background: #ff0;
+        }
+        a{
+            display: block;
+            text-decoration: none;
+            width:100px;
+            border:1px solid #ccc;
+            padding:10px;
+            border-radius: 5px;
+            margin:0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>标题1</li>
+        <li>标题2</li>
+    </ul>
+    <a href="" class="btn">加载更多</a>
+    <script>
+        function ajax(data){
+            var xmlhttp =new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(XMLhttp.readyState === 4 && xmlhttp.status===200){
+                    console.log(xmlhttp.responseText);
+                    var json = JSON.parse(xmlhttp.responseText);
+                    console.log(json);
+                    data.succeed(json)
+                }
+                if(xmlhttp.readyState === 4 && xmlhttp.status===404){
+                    data.error()
+                }
+            };
+            var str = "";
+            for(var i in data.data){
+                str += i + "=" + data.data[i] +"&";
+            }
+            str = str.replace(/\&$/,"");
+            if(data.type.toLowerCase() === "get"){
+                xmlhttp.open(data.type.toLowerCase(),data.url+"?"+str,true);
+                xmlhttp.send()
+            }
+            if(data.type.toLowerCase() === "post"){
+                open(data.type.toLowerCase(),data.url,true);
+                xmlhttp.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                xmlhttp.send(str)
+            }
+        }
+        function success(json){
+            for(var i = 0;i<json.data.length;i++){
+                var ele = document.createElement("li");
+                ele.innerHTML = JSON.data[i];
+                document.querySelector("ul").appendChild(ele)
+            }
+        }
+        function error(){
+            alert("错误")
+        }
+        var btn = document.querySelector(".btn");
+        var start = 3;
+        var len = 4;
+        btn.addEventListener("click",function(e){
+            e.preventDefault();
+            ajax({
+                url:"more.php",
+                type:"get",
+                data:{
+                    start:start,
+                    len:len
+                },
+                succeed:function(data){
+                    success(data);
+                    start += len
+                },
+                error:function(){
+                    error()
+                }
+            })
+        })
+    </script>
+</body>
+</html>

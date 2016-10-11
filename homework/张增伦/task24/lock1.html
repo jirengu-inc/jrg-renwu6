@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<body>
+
+<input id="btn" type="button" value="点我" style="cursor: pointer">
+<div id="div1"></div>
+
+<script>
+    var btn = document.getElementById('btn');
+    var isRequesting = false;
+    btn.addEventListener('click',function(){
+        if(isRequesting){
+            alert('正在请求请耐心等待。。。');
+            return ;
+        }
+            isRequesting = true;
+            //模拟处理点击事件业务
+            $.ajax({url:"http://zhangzenglun.com/jirengu/get.php",success:function(result){
+                // $("#div1").html(result);
+                alert(result);
+                isRequesting = false;
+            }});
+    },false);
+
+</script>
+
+</body>
+</html>

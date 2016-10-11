@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .header{
+            width: 800px;
+            margin: 0 auto;
+            background: red;
+            height: 100px;
+        }
+        p{
+            height: 100px;
+        }
+        .nav{
+            background: #ccc;
+            height: 30px;
+            line-height: 30px;
+        }
+        .aside{
+            background: pink;
+            float: left;
+            height: 300px;
+            width: 100px;
+        }
+        .aside:after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .main{
+            background: green;
+            height: 300px;
+            margin-left: 120px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <p>header</p>
+<div class="content">
+    <div class="nav1 nav">nav1</div>
+    <div class="aside1 aside">aside1</div>
+    <div class="main1 main">main1</div>
+</div>
+    <div class="content">
+    <div class="nav2 nav">nav2</div>
+    <div class="aside2 aside">aside2</div>
+    <div class="main2 main">main2</div>
+</div>
+    <div class="content">
+    <div class="nav3 nav">nav3</div>
+    <div class="aside3 aside">aside3</div>
+    <div class="main3 main">main3</div>
+</div>
+    <div class="content">
+    <div class="nav4 nav">nav4</div>
+    <div class="aside4 aside">aside4</div>
+    <div class="main4 main">main4</div>
+</div>
+
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $.fn.stickup = function () {
+        var $nav = $(this),
+            navHeight = $nav.height(),
+            navWidth = $nav.width(),
+            offsetTop = $nav.offset().top,
+            offsetLeft = $nav.offset().left;
+
+        var $navClone = $nav.clone()
+                            .hide()
+                            .insertBefore($nav);
+
+        $(window).on('scroll',function(){
+            var scrollTop = $(this).scrollTop();
+
+            if(scrollTop >= offsetTop){
+                if(!isFixed()){
+                    setFixed();
+                }
+            }else{
+                if(isFixed()){
+                    unsetFixed();
+                }
+            }
+        });
+
+        function setFixed(){
+            $nav.data('data-fixed',true)
+                    .css({
+                        'position': 'fixed',
+                        'top': 0,
+                        'left': offsetLeft,
+                        'height': navHeight,
+                        'width': navWidth,
+                        'z-index': 9999
+                    });
+            $navClone.show();
+        }
+
+        function unsetFixed(){
+            $nav.data('data-fixed',false)
+                    .removeAttr('style');
+            $navClone.hide();
+        }
+
+        function isFixed(){
+            return $nav.data('data-fixed');
+        }
+    };
+
+    $('.nav').each(function () {
+        $(this).stickup();
+    })
+</script>
+</body>
+</html>

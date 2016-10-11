@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task22-1</title>
+</head>
+<body>
+    <ul class="ct">
+    	<li>这里是</li>
+    	<li>饥人谷</li>
+    	<li>任务6班</li>
+    </ul>
+    <script>
+    	//方法1：直接给每个li元素绑定事件；
+    	var ulArr = document.getElementsByClassName("ct");  //返回的是一个由ul组成的数组
+    	var liArr = ulArr[0].getElementsByTagName("li");  //返回的是一个由三个li组成的数组
+    	for(var i=0;i<liArr.length;i++){
+    		liArr[i].addEventListener("click", function(){ 
+    			console.log( this.innerText );
+    		});
+    	}
+
+
+    	//方法2：使用事件代理机制，即把事件监听绑定在父容器上，根据事件的来源进行处理；
+    	// var ct = document.querySelector(".ct");
+    	// ct.addEventListener("click", function(event){ 
+    	// 	console.log(event.target.innerText);
+    	// });
+
+    </script>
+</body>
+</html>

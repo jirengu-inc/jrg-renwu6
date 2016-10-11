@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-21-4</title>
+</head>
+
+<body>
+  <script>
+    function isPhoneNum(str) {
+      var reg = /_\d/;
+      return reg.test(str);
+    }
+    var str1 = "3_",
+        str2 = "_3";
+    console.log(isPhoneNum(str1));
+    console.log(isPhoneNum(str2));
+  </script>
+</body>
+
+</html>

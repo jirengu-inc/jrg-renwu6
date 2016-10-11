@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>代码2</title>
+<style type="text/css">
+	.square{
+		border:1px solid #ccc;
+		width: 200px;
+		height:100px;
+		margin:50px;
+		position: relative;
+	}
+	.triangle1{
+        position: absolute;
+        top:-40px;
+        left:10px;
+		border: 20px solid;
+		border-color: transparent transparent gray transparent;
+	}
+	.triangle2{
+	    position: absolute;
+        top:0px;
+        right:-1px;
+		border: 20px solid;
+		border-color: red red transparent transparent;	
+	}
+	.triangle3{
+		position: absolute;
+        top:-40px;
+        left:10px;
+		border: 20px solid;
+		border-color: transparent transparent black transparent
+	}
+	.triangle3:after{
+        content: '';
+        display: block;
+		position: absolute;
+        top:-20px;
+        left:-20px;
+		border: 20px solid;
+		border-color: transparent transparent white transparent
+	}
+
+</style>
+</head>
+<body>
+   <div class="square">
+   	  <div class="triangle1"></div>
+   </div>
+   <div class="square">
+   	  <div class="triangle2"></div>
+   </div>
+   <div class="square">
+   	  <div class="triangle3"></div>
+   </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-21-6</title>
+</head>
+
+<body>
+  <script>
+    function isValidPassword(str) {
+      var reg = /^\w{6,20}$/;
+      if(reg.test(str)) {
+        if(/(^\d+$)|(^_+$)|(^[a-z]+$)|(^[A-Z]+$)/.test(str)) {
+          return false;
+        }
+        return true;
+      }
+      return false;
+    }
+    console.log(isValidPassword("123456"));  // false
+    console.log(isValidPassword("abcdef"));  // false
+    console.log(isValidPassword("ABCDEF"));  // false
+    console.log(isValidPassword("______"));  // false
+    console.log(isValidPassword("abcAVB"));  // true
+    console.log(isValidPassword("abc123"));  // true
+    console.log(isValidPassword("abc___"));  // true
+    console.log(isValidPassword("abc_2_"));  // true
+    console.log(isValidPassword("dfghjkhgfdsfghjkl34223423645")); // false
+    console.log(isValidPassword("sad"));     // false
+  </script>
+</body>
+
+</html>

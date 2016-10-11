@@ -1,0 +1,63 @@
+html,body,ul,li{
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei;
+  color: #333;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+.nav{
+  background: #eee;
+}
+
+.nav:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.nav>li{
+  float: left;
+  padding: 0 10px;
+  line-height: 30px;
+}
+
+.nav>li a{
+  display: block;
+  color: #333;
+}
+
+.nav>li:hover{
+  background: #ccc;
+  cursor: pointer;
+  position: relative;
+}
+
+.submenu{
+  display: none;
+  background: #fff;
+  width: 100px;
+  border: solid 1px #ccc;
+  position: absolute;
+  left: 0;
+}
+
+.nav>li:hover .submenu{
+  display: block;
+}
+
+.submenu li{
+  line-height: 30px;
+  padding: 0 5px;
+}
+
+.submenu li:hover{
+  background: #c4c3c3;
+}

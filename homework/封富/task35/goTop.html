@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>回到顶部</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div class="aa">
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+		<hr>
+		<br>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+	function GoTop($ct){
+		this.ct = $ct;
+		this.target = '<div class="top">回到顶部</div>';
+		this.bindEvent();
+	}
+
+	GoTop.prototype.bindEvent = function(){
+		var $ct = this.ct,
+			_this = this,
+			locked,
+			$node;
+		$ct.on("scroll",function(){
+			if($ct.scrollTop() > 200){
+				if(locked) return;
+				$node = _this.createNode();
+
+				$node.appendTo($("body")).on("click",function(){
+					$ct.scrollTop(0);
+				});
+				locked = true;
+			}else{
+				if(!locked) return;
+				$node.remove();
+				locked = false;
+			}
+		});
+
+			// $(this.target).on("click",function(){
+			// 	$ct.scrollTop(0)
+			// })
+	};
+	GoTop.prototype.createNode = function(){
+		var $node = $(this.target).css({
+			"position":"fixed",
+			"bottom":30,
+			"right":40,
+			"width":32,
+			"background-color":"#bbb",
+			"cursor":"pointer"
+		});
+		return $node;
+
+	};
+	var goTop = new GoTop($(window));
+	</script>
+</body>
+</html>

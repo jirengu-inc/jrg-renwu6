@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2016 by anonymous (http://js.jirengu.com/kokigayeki/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.wrap{
+  position:relative;
+}
+.item{
+			position: absolute;
+			width: 200px;
+			margin-right: 10px;
+			margin-top: 10px;
+			transition: all 1s;
+            font-size:30px;
+		}
+.h1{
+  height:100px;
+  background:#DDB822;
+}
+.h2{
+  height:200px;
+  background:#6FD9E7;
+}
+.h3{
+  height:150px;
+  background:#6C9201;
+}
+.h4{
+  height:250px;
+  background:#F47F7B;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="item h2">1</div>
+<div class="item h1">2</div>
+<div class="item h2">3</div>
+<div class="item h4">4</div>
+<div class="item h3">5</div>
+<div class="item h2">6</div>
+<div class="item h3">7</div>
+<div class="item h1">8</div>
+<div class="item h4">9</div>
+<div class="item h2">10</div>
+<div class="item h3">11</div>
+<div class="item h4">12</div>
+<div class="item h4">13</div>
+<div class="item h1">14</div>
+<div class="item h2">15</div>
+<div class="item h4">16</div>
+<div class="item h3">17</div>
+<div class="item h2">18</div>
+<div class="item h3">19</div>
+<div class="item h1">20</div>
+  <div class="item h4">21</div>
+<div class="item h1">22</div>
+<div class="item h2">23</div>
+<div class="item h4">24</div>
+<div class="item h3">25</div>
+<div class="item h2">26</div>
+<div class="item h3">27</div>
+<div class="item h1">28</div>
+</div>
+<script id="jsbin-javascript">
+function keke(){
+  var iw=$('.item').outerWidth(true)
+  var al=Math.floor($(window).width()/iw)
+  var ah=[];
+  for (var i=0;i<al;i++){
+    ah.push(0)
+  }
+  $('.item').each(function(){
+    var minh=ah[0]
+    var idx=0
+    for(var i=0;i<ah.length;i++){
+      if(ah[i]<minh){
+        idx=i
+        minh=ah[i]
+      }
+    }
+    $(this).css({
+      top:minh,
+      left:iw*idx
+    })
+    ah[idx]=ah[idx]+$(this).outerHeight(true)
+  })
+}
+keke();
+$(window).on('resize',function(){
+  keke()
+})
+</script>
+</body>
+</html>
