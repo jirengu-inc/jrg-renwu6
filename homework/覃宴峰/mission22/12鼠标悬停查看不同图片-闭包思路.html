@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul class="ct">
+	    <li>鼠标放置查看图片1</li>
+	    <li>鼠标放置查看图片2</li>
+	    <li>鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+	<script>
+	var str1=document.querySelectorAll("li")
+	var str2=document.querySelector(".img-preview")
+	for(var i=0;i<str1.length;i++){
+		(function t1(m){//生成闭包，参数m由外层i传入
+			return str1[m].addEventListener("mouseenter",function(mousev){
+				var newnode=document.createElement("img");
+				str2.innerHTML="<img src=http://cdn.jirengu.com/book.jirengu.com/img/1"+[m]+".jpg>"
+			},false)
+		}(i))
+		}
+	</script>
+</body>
+</html>

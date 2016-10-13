@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul class="ct">
+	<li data-img="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg">鼠标放置查看图片1</li>
+	<li data-img="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg">鼠标放置查看图片2</li>
+	<li data-img="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+	<script>
+	var str1=document.querySelectorAll("li");
+	var str2=document.querySelector(".img-preview");
+	var str3=document.querySelector(".ct");
+	str3.addEventListener("mouseenter",function(mousev){//父元素.ct上绑定时间代理能监听到所有子元素的事件
+		var newnode=mousev.target.getAttribute('data-img')
+		str2.innerHTML="<img src="+newnode+">"
+	},true)//mouseenter即鼠标移入，移入过程是由外向内即ul到li，如果为false冒泡响应，内部元素li事件还没发生ul就已经完成了事件响应。
+	//改为true即事件捕获时响应，定位到准确的元素后再做响应，此例中当移入到ul上时会返回错误信息，移动到li上无影响。
+
+	</script>
+</body>
+</html>
