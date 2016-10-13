@@ -86,9 +86,8 @@
 <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-$(function(){
+  var Waterfall = (function(){
 		function render(){
-
 		  	var nodeWidth = $('.item').outerWidth(true),
 		 		colNum = parseInt($(window).width()/nodeWidth),
 		 		colSumHeight = [];
@@ -99,8 +98,6 @@ $(function(){
 
 		 	$('.item').each(function(){
 		 		var $cur = $(this);
-
-		 		//colSumHeight = [100, 250, 80, 200]
 
 		 		var idx = 0,
 		 			minSumHeight = colSumHeight[0];
@@ -120,12 +117,20 @@ $(function(){
 		 	});
 	 	}
 
- 		render();
+    function init() {
+        render();
 
- 	$(window).on('resize', function(){
- 		render();
- 	})
-});
+        $(window).on('resize', function(){
+            render();
+        })
+    }
+
+    return {
+        init: init
+    }
+})();
+
+ Waterfall.init();
 
 </script>
     
