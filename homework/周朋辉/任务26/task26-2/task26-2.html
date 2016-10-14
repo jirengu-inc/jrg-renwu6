@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task26-2</title>
+<style>
+	html,body,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	a{
+		text-decoration: none;
+		color: #008000;
+	}
+	li{
+		list-style-type: none;
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin: 10px;
+	}
+	li.hover{
+		background-color: #008000;
+		color: #fff;
+		cursor: pointer;
+	}
+	#btn{
+		display: block;
+		width: 80px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		margin: 10px auto;
+		border: 1px solid #008000;
+		border-radius: 5px;
+	}
+	#btn:hover{
+		background-color: #008000;
+		color: #fff;
+	}
+
+</style>
+</head>
+<body>
+    <ul class="ct">
+    	<li>内容1</li>
+    	<li>内容2</li>
+    </ul>
+    <a id="btn" href="#">加载更多</a>
+
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+
+    	/**
+    	*定义接口:
+    	*url: 
+    	*入参：{start:3, length:5}
+    	*回参：{
+		*		status: 0,  //0代表正常，1代表出错
+		*		data: ['3的内容', '4的内容', '5的内容', '6的内容', '7的内容']
+    	*	}
+    	**/
+
+
+
+
+		//由于li是动态添加的，所以必须使用事件代理实现鼠标放在li上的效果
+		$('.ct').on('mouseover', "li", function(){
+			// $(this).css({
+			// 	"backgroundColor": "#008000",
+			// 	"color": "#fff",
+			// 	"cursor": "pointer"
+			// });
+			$(this).addClass("hover");
+		});
+		$('.ct').on('mouseout', "li", function(){
+			// $(this).css({
+			// 	"backgroundColor": "#fff",
+			// 	"color": "#000"
+			// });
+			$(this).removeClass("hover");
+		});
+
+
+		//定义一个状态锁，用来防止用户重复点击，正在加载的时候让用户的点击效果
+		var isLoading = false;  //是否在加载，一开始设置为false代表没有在加载
+		
+		//调用封装函数，实现Ajax
+		$("#btn").on('click', function(event){
+			event.preventDefault();  //阻止a标签的默认行为，不让它跳到顶部
+			if( isLoading === true ){  
+				return;  //如果正在加载数据就直接跳出函数
+			}
+			isLoading = true;  //如果走到这一步了我就上锁了，设置为true，如果用户再点击那么他在上一步就退出函数了
+			$("#btn").text('加载中...');
+			//定义传递参数的变量
+			var fromStart = $('.ct').children().length+1;  //定义从拿第几个数据，就是要获取目前有多少个li了
+		   	$.ajax({   //模拟jQuery的写法，里面的参数是一个json对象
+		      	url: 'task26-2.php',   //接口地址即请求地址
+		      	type: 'get',   // 请求类型， post 或者 get, 
+		      	//dataType: 'json',  //约定后台给我返回的数据类型
+		      	data: {   //发送给后台的数据
+		          	start: fromStart,  //在上面定义传递的变量
+		          	length: 5  //这里由于每次都拿5条数据，所以直接是5了
+
+		      	}, 
+		      	success: function(jsonData){   //响应成功执行这个函数
+					isLoading = false;//数据拿到了，我们要让用户可以接着点击，这是解锁的地方
+		          	dealwith(jsonData);  //这里的处理函数和上面的一样
+					//fromStart +=5;  //数据拿到之后将变量加5，如果上面的声明放外面的话要加上这句
+		      	}, 
+		      	error: function(){   //失败执行这个函数
+					isLoading = false;//尽管系统错误，我们要也让用户可以接着点击，这是解锁的地方
+		          	onError(); 
+		      	} 
+		  	});
+		});
+
+		//状态正确时处理数据的函数
+		function dealwith(jsonData){  //这里的jsonData为"{'status': 0, 'backData': ['3的内容', '4的内容', '5的内容', '6的内容', '7的内容']}"是JSON格式的字符串数据
+			//如果在发送请求时没有明确指出dataType为json类型那么这里就要将后台返回的字符串转换为JSON对象了
+			var result = JSON.parse(jsonData);  //但是我们不建议这么做，直接在请求中指定就好，这样就不会显得原生JS和jQuery混合使用严重，代码不够优雅
+			if(result.status===0){  //状态为0代表数据正常拿到了
+				for(var i=0;i<result.backData.length;i++){
+					$('.ct').append('<li>'+result.backData[i]+'</li>');  //往li后面继续添加5个li，获取到的数据填在里面
+				}
+			}else{
+				alert('获取数据失败');
+			}
+			$("#btn").text('加载更多');
+		}
+
+		//系统出错的处理函数
+		function onError(){
+			alert('系统异常'); 
+			$("#btn").t ext('加载更多');
+		}
+
+    </script>
+</body>
+</html>

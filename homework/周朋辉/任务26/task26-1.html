@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task26-1</title>
+<style>
+	fieldset{
+		margin-bottom: 20px;
+	}
+	.demo1 p.bgc{
+		background-color: pink;
+	}
+	img{
+		height: 400px;
+	}
+	.demo3 input{
+		margin: 10px 0;
+	}
+	.demo9 div.btn{
+		width: 90px;
+		margin: 10px 0;
+		text-align: center;
+		border: 1px solid pink;
+	}
+
+</style>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+
+</head>
+<body>
+	<fieldset class="demo1">
+		<legend>1、给元素添加移除class</legend>
+		<p>给这里添加和移除背景色</p>
+		<button class="btn-ac">添加</button>
+		<button class="btn-rc">移除</button>
+		<button class="btn-toglc">切换</button>
+		<script>
+			$(function(){
+				$(".btn-ac").on('click', function(){
+					$(this).parent().find('p').addClass('bgc');
+				});
+				$(".btn-rc").on('click', function(){
+					$(this).parent().find('p').removeClass('bgc');
+				});
+				$(".btn-toglc").on('click', function(){
+					$(this).parent().find('p').toggleClass('bgc');
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo2">
+		<legend>2、展示/隐藏元素</legend>
+		<p>将这里展示/隐藏</p>
+		<button class="btn-hide">隐藏</button>
+		<button class="btn-show">展示</button>
+		<button class="btn-togl">切换</button>
+		<script>
+			$(function(){
+				$(".btn-hide").on('click', function(){
+					$(this).parent().find('p').hide();
+				});
+				$(".btn-show").on('click', function(){
+					$(this).parent().find('p').show();
+				});
+
+				$(".btn-togl").on('click', function(){
+					$(this).parent().find('p').toggle();
+				});
+			});
+		</script>
+	</fieldset>
+ 	<fieldset class="demo3">
+		<legend>3、获取并修改元素的属性</legend>
+		<img id="img-jay" title="周杰伦2013" src="http://dl.bizhi.sogou.com/images/2013/01/31/330620.jpg" alt="这是周杰伦的图片">
+		<p class="id-jay">id:</p>
+		<p class="title-jay">title:</p>
+		<p class="src-jay">src:</p>
+		<p class="alt-jay">alt:</p>
+		<button class="btn-getattr">获取图片的属性值</button>
+		<button class="btn-modattr">修改图片 的属性值</button>
+		<script>
+			$(function(){
+				$(".btn-getattr").on('click', function(){
+					var id = $("#img-jay").attr('id');
+					var title = $("#img-jay").attr('title');
+					var src = $("#img-jay").attr('src');
+					var alt = $("#img-jay").attr('alt');
+					$(".id-jay").text('id:'+id);
+					$(".title-jay").text('title:'+title);
+					$(".src-jay").text('src:'+src);
+					$(".alt-jay").text('alt:'+alt);
+				});
+				$(".btn-modattr").on('click', function(){
+					var newid = "img-jay2",
+						newtitle = "这是新的logo",
+						newsrc = "http://pic13.nipic.com/20110320/6755124_193316275107_2.jpg",
+						newalt = "周杰伦logo";
+					$("#img-jay").attr({
+						"id": newid, 
+						"title": newtitle,
+						"src": newsrc,
+						"alt": newalt
+					});
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo4">
+		<legend>4、添加自定义属性data-src</legend>
+		<p class="target">在这个元素上添加属性</p>
+		<p class="showattr">展示添加的属性</p>
+		<button class="btn-addattr">添加属性</button>
+		<button class="btn-showattr">展示属性</button>
+		<script>
+			$(function(){
+				$(".btn-addattr").on('click', function(){
+					$(this).parent().find('p.target').data("src","http://jirengu.com/logo.png");
+				});
+				$(".btn-showattr").on('click', function(){
+					var datasrc = $(this).parent().find('p.target').attr('data-src');
+					$(".showattr").text('展示添加的属性data-src:'+datasrc);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo5">
+		<legend>5、在内部开头添加元素</legend>
+		<div class="ct">
+			<p>这是一个段落</p>
+		</div>
+		<button class="btn-befaddele">在开头添加</button>
+		<script>
+			$(function(){
+				$(".btn-befaddele").on('click', function(){
+					var $new = $('<p>新增的段落</p>');
+					$(this).parent().find('.ct').prepend($new);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo6">
+		<legend>6、在内部末尾添加元素</legend>
+		<div class="ct">
+			<p>这是一个段落</p>
+		</div>
+		<button class="btn-aftaddele">在末尾添加</button>
+		<script>
+			$(function(){
+				$(".btn-aftaddele").on('click', function(){
+					var $new = $('<p>新增的段落</p>');
+					$(this).parent().find('.ct').append($new);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo7">
+		<legend>7、删除元素</legend>
+		<p style="border: 2px solid pink;height: 20px;">这是一个段落,点击按钮把我从html中删除掉</p>
+		<button class="btn-remove">点击删除元素</button>
+		<script>
+			$(function(){
+				$(".btn-remove").on('click', function(){
+					$(this).parent().find('p').remove();
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo8">
+		<legend>8、把容器里内容清空</legend>
+		<p style="border: 2px solid pink;height: 20px;">这是一个段落,点击按钮把我里面的所有节点清空，但是我本身还在</p>
+		<button class="btn-empty">清空</button>
+		<script>
+			$(function(){
+				$(".btn-empty").on('click', function(){
+					$(this).parent().find('p').empty();
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo9">
+		<legend>9、设置html</legend>
+		<div class="ct">
+			<p>这是一个段落,点击按钮我会整个被替换为一个div</p>
+		</div>
+		<button class="btn-sethtml">设置html</button>
+		<script>
+			$(function(){
+				$(".btn-sethtml").on('click', function(){
+					var $new = $('<div class="btn">替换的div</div>');
+					$(this).parent().find('.ct').html($new);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo10">
+		<legend>10、获取设置元素的宽高</legend>
+		<div class="ct">
+			这是一个段落
+		</div>
+		<button class="btn-seth">设置宽高</button>
+		<button class="btn-setht">不包括内边距</button>
+		<button class="btn-setl">包括内边距</button>
+		<button class="btn-shtml">包括边框</button>
+		<button class="btn-sml">包括外边距</button>
+		<script>
+			$(function(){
+				$(".btn-setml").on('click', function(){
+					var $new = $('<div class="btn">替换的div</div>');
+					$(this).parent().find('.ct').html($new);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo11">
+		<legend>11、获取窗口滚动条垂直滚动距离</legend>
+		<div class="ct">
+			<p>这是一个段落,点击按钮我会整个被替换为一个div</p>
+		</div>
+		<button class="btn-sethtml">设置html</button>
+		<script>
+			$(function(){
+				$(".btn-sethtml").on('click', function(){
+					var $new = $('<div class="btn">替换的div</div>');
+					$(this).parent().find('.ct').html($new);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo12">
+		<legend>12、获取元素到根节点水平、垂直偏移距离</legend>
+		<p style="margin-left: 200px;">我的距离为多少？</p>
+		<div class="target12">
+			水平距离为：
+			垂直距离为：
+		</div>
+		<button class="btn-getdis12">获取距离</button>
+		<script>
+			$(function(){
+				$(".btn-getdis12").on('click', function(){
+					var offset = $(this).parent().find('p').offset();
+					var left = offset.left;
+					var top = offset.top;
+					$(".target12").text("水平距离为："+left+";"+"垂直距离为："+top);
+				});
+			});
+		</script>
+	</fieldset>
+
+
+
+
+	<fieldset class="demo13">
+		<legend>13、修改元素的样式</legend>
+		<p>这是一个段落,点击按钮设置我的颜色为红色，字体大小为14px</p>
+		<button class="btn-modcss">修改样式</button>
+		<script>
+			$(function(){
+				$(".btn-modcss").on('click', function(){
+					$(this).parent().find('p').css({
+						"color": "red",
+						"fontSize": "14px"
+					});
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo14">
+		<legend>14、遍历节点，把每个节点里面的文本内容重复一遍</legend>
+		<div class="pct">
+			<p>这是段落1</p>
+			<p>这是段落2</p>			
+		</div>
+		<div class="ct14"></div>
+		<button class="btn-copenode">遍历节点，重复里面的文本</button>
+		<script>
+			$(function(){
+				$(".btn-copenode").on('click', function(){
+					$(".pct").find('p').each(function(){
+						$(".ct14").append( $(this).clone() );
+					});
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo15">
+		<legend>15、从$ct里查找class为 .item的子元素</legend>
+		<div class="pct15">
+			<p>这是段落1</p>			
+			<p class="item">这是段落2,为指定的段落</p>
+			<p>这是段落3</p>			
+		</div>
+		<p class="target15">目标子元素位置为：</p>
+		<button class="btn-lookcla">查找指定元素</button>
+		<script>
+			$(function(){
+				$(".btn-lookcla").on('click', function(){
+					var idx = $(".pct15").find('p.item').index();
+					$(".target15").text('目标子元素位置为：'+idx);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo16">
+		<legend>16、获取父容器里面的所有孩子</legend>
+		<div class="ct16">
+			<p>这是段落1</p>			
+			<p>这是段落2</p>
+			<p>这是段落3</p>			
+		</div>
+		<div class="target16">所有孩子：</div>
+		<button class="btn-getall">获取所有孩子</button>
+		<script>
+			$(function(){
+				$(".btn-getall ").on('click', function(){
+					$(".ct16").children().clone().each(function(index, Element){
+						$(".target16").append( Element );
+					});
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo17">
+		<legend>17、向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子</legend>
+		<div class="ct17">
+			<p>这是段落1</p>			
+			<div class="panel">
+				<p>这是目标1</p>
+				<p>这是目标2</p>
+			</div>			
+		</div>
+		<div class="target17">目标元素为：</div>
+		<button class="btn-gettar17">获取目标元素</button>
+		<script>
+			$(function(){
+				$(".btn-gettar17").on('click', function(){
+					$(".ct17").parent().find(".panel").children().clone().each(function(index, Element){
+						$(".target17").append( Element );
+					});
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo18">
+		<legend>18、获取选择元素的数量</legend>
+		<div class="ct18">
+			<p>这是段落1</p>			
+			<p>这是段落2</p>
+			<p>这是段落3</p>
+		</div>
+		<div class="target18">选择的元素数量为：</div>
+		<button class="btn-gettotal18">获取选择元素数量</button>
+		<script>
+			$(function(){
+				$(".btn-gettotal18").on('click', function(){
+					var totnum = $(".ct18").children().length;
+					$(".target18").text('选择的元素数量为：'+totnum);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo19">
+		<legend>19、获取当前元素在兄弟中的排行</legend>
+		<div class="ct19">
+			<p>这是段落1</p>			
+			<p class="targ19">这是段落2，我在里面排行为？</p>
+			<p>这是段落3</p>		
+		</div>
+		<div class="target19">目标元素排行为：</div>
+		<button class="btn-tarposi19">目标元素排行</button>
+		<script>
+			$(function(){
+				$(".btn-tarposi19").on('click', function(){
+					var tarposi = $(".ct19").find(".targ19").index();
+					$(".target19").text('目标元素排行为：'+tarposi);
+				});
+			});
+		</script>
+	</fieldset>
+
+	<fieldset class="demo20">
+		<legend>20、当点击$btn时，让$btn的背景色变为红色再变为蓝色</legend>
+		<button class="btn-ainim20">点击变色</button>
+		<script>
+			$(function(){
+				$(".btn-ainim20").on('click', function(){
+					// $(this).animate({"background-color": "red"}, 100);
+					// $(this).animate({"background-color": "blue"}, 100); 不能实现，animate方法一般只支持大小，位置和透明度
+					$(this).css("background-color", "red");
+					setTimeout( function(){ 
+						$(".btn-ainim20").css("background-color", "blue");
+					}, 1000);
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo22">
+		<legend>22、当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</legend>
+		<div class="chancol22" style="height: 100px;width: 100px;border: 1px solid;background: #ccc;">
+			鼠标移入移出，改变背景色
+		</div>
+		<script>
+			$(function(){
+				$(".chancol22").on('mouseenter', function(){
+					$(this).css("background-color", "red");
+				});
+				$(".chancol22").on('mouseleave', function(){
+					$(this).css("background-color", "#fff");
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo23">
+		<legend>23、激活input框时边框变为红色，把输入框里的文字小写变大写，输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</legend>
+		<input type="text" id="put23">
+		<script>
+			$(function(){
+				$("#put23").on('focus', function(){
+					$(this).css("border", "1px solid blue");
+				});
+				$("#put23").on('keyup', function(){
+					$(this).val( $(this).val().toUpperCase() );
+				});
+				$("#put23").on('blur', function(){
+					$(this).css("border", "1px solid black");
+					console.log( $(this).val() );
+				});
+			});
+		</script>
+	</fieldset>
+	<fieldset class="demo24">
+		<legend>24、当选择 select 后，获取用户选择的内容</legend>
+		<select name="city" id="city">
+			<option value="上海">上海</option>
+			<option value="北京">北京</option>
+			<option value="南京">南京</option>
+		</select>
+		<div class="showget24">
+			这里展示用户获取的内容：
+		</div>
+		<script>
+			$(function(){
+				$("select").on('change', function(){
+					var value = $(this).val();
+					$(".showget24").text('这里展示用户获取的内容：'+value);
+				});
+			});
+		</script>
+	</fieldset>
+
+
+
+    
+</body>
+</html>
