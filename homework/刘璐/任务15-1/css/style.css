@@ -1,0 +1,164 @@
+/*初始化 start*/
+html, body, ul, li, h1, p, h1, h2, h3, h4, h5, h6, div {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei;
+    box-sizing: border-box;
+}
+ul, li {
+    list-style: none;
+}
+a {
+    color: #666;
+    font-size: 14px;
+    text-decoration: none;
+}
+.clearfix:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.layout {
+    width: 1000px;
+    margin: 0 auto;
+}
+/*初始化 end*/
+
+/*头部 start*/
+#header a.rocket {
+    display: inline-block;
+    float: left;
+}
+#header i.fa-rocket {
+    font-size: 28px;
+    margin-right: 20px;
+    line-height: 50px
+}
+#header ul.list li {
+    float: left;
+    padding: 0 10px;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+}
+#header a:hover {
+    color: #333;
+}
+#header ul.list li:hover .detail-more {
+    display: block;
+}
+#header ul.detail-more {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    display: none;
+    border: 1px solid #ccc;
+}
+#header ul.detail-more li {
+    border-bottom: 1px dashed #ccc;
+    line-height: 1px;
+    height: 0;
+    padding: 12px;
+}
+#header ul.detail-more li a {
+    width: 48px;
+    display: inline-block;
+}
+#header ul.detail-more li:last-child {
+    border:none;
+}
+#header ul.detail-more li:hover {
+    background: #eee;
+}
+/*头部 end*/
+
+/*简介 start*/
+#content .introduce .tit-intro {
+    padding: 0;
+    line-height: 25px;
+}
+#content .introduce, .personal {
+    background: #b84d45;
+    padding: 30px 0;
+    color: #fff;
+    margin-bottom: 40px;
+}
+/*简介 end*/
+
+/*面包屑 start*/
+#content .bread {
+    background: #eee;
+    border-radius: 5px;
+}
+#content .bread ul {
+    padding: 10px;
+    margin-bottom: 30px;
+}
+#content .bread li {
+    float: left;
+    color: #666;
+    font-size: 14px;
+}
+#content .bread li.line {
+    padding: 0 5px;
+}
+#content .bread li a {
+    color: #b84d45;
+}
+/*面包屑 end*/
+
+/*作品 start*/
+#content .works ul {
+    margin-left: -40px;
+}
+#content .works ul > li {
+    float: left;
+    width: 300px;
+    border: 1px solid #ccc;
+    margin: 0 0 20px 45px;
+    text-align: center;
+}
+#content .works ul > li img {
+    width: 298px;
+    height: 200px;
+    border: none;
+}
+#content .works ul > li h4, p {
+    text-align: left;
+    padding: 5px 10px;
+}
+#content a.btn {
+    display: inline-block;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+#content .works ul > li a.btn:hover {
+    color: #000;
+}
+/*作品 end*/
+
+/*简历 start*/
+#content .personal {
+    color: #fff;
+    padding: 20px 0 10px 0;
+    margin-top: 10px;
+}
+#content .text-cont, .style-text {
+    text-align: center;
+}
+#content .personal a.btn {
+    color: #fff;
+}
+/*简历 end*/
+
+/*footer start*/
+#footer p {
+    margin: 30px 0;
+    padding-top: 30px;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+/*footer end*/
