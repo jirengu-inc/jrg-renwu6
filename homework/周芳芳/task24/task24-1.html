@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装ajax</title>
+</head>
+<body>
+	<button id="btn">点我</button>
+	<script>
+	//封装一个 ajax 函数，能通过如下方式调用
+	// function ajax(opts){
+ //    // todo ...
+ //    }
+	document.querySelector('#btn').addEventListener('click', function(){
+	    ajax({
+	        url: 'http://book.jirengu.com/jirengu-inc/jrg-renwu6/homework/%20%E5%91%A8%E8%8A%B3%E8%8A%B3/task24/task24-1.html',   //接口地址
+	        type: 'get',               // 类型， post 或者 get,
+	        data: {
+	            username: 'xiaoming',
+	            password: 'abcd1234'
+	        },
+	        success: function(ret){
+	            console.log(ret);       // {status: 0}
+	        },
+	        error: function(){
+	           console.log('出错了')
+	        }
+	    })
+	});
+
+// function ajax(opts){
+// 			var xhr = new XMLHttpRequest();
+// 			xhr.onreadystatechange = function(){
+// 				if(xhr.readyState == 4){
+// 					if(xhr.status == 200){
+// 						opts.success(xhr.responseText);
+// 					}else{
+// 						opts.error();
+// 					}
+// 				}
+// 			};
+// 			var dataStr = "";
+// 			for(var key in opts.data){
+// 				dataStr += key +"="+opts.data[key]+"&";
+// 			}
+// 			dataStr = dataStr.substring(0,dataStr.length-1);
+// 			if(opts.type.toLowerCase() === "post"){
+// 				xhr.open(opts.type,opts.url,true);
+// 				xhr.setRequestHeader("Content-type","application/xxx-form-urlencoded");
+// 				xhr.send(dataStr);
+// 			}
+// 			if(opts.type.toLowerCase() === "get"){
+// 				xhr.open(opts.type,opts.url+"?"+dataStr,true);
+// 				xhr.send();
+// 			}
+// 		}
+
+// 	    document.querySelector('#btn').addEventListener('click', function(){
+//         ajax({
+//             url: 'http://zhangzenglun.com/jirengu/task24/getData.php',   //接口地址
+//             type: 'get',               // 类型， post 或者 get,
+//             data: {
+//                 username: 'xiaoming',
+//                 password: 'abcd1234'
+//             },
+//             success: function(ret){
+//                 console.log(ret);       // {status: 0}
+//             },
+//             error: function(){
+//                 console.log('出错了')
+//             }
+//         })
+//     });
+//     function ajax(o){
+//         var xhr = new XMLHttpRequest();
+//         xhr.onreadystatechange = function(){
+//             if(xhr.readyState == 4 && xhr.status == 200){
+//                 console.log(xhr.responseText);
+//             }
+//             if(xhr.readyState == 4 && xhr.status == 404){
+//                 concole.log("Error!");
+//             }
+//         }
+//         var dataSend="";
+//         if(o.url.indexOf('?')<0 && o.type.toLowerCase()=="get"){
+//             dataSend = "?";
+//         }
+//         for(var key in o.data){
+//             dataSend += key + "=" +o.data[key] + "&";
+//         }
+//         dataSend = dataSend.substr(0,dataSend.length-1);
+//         if(o.type.toLowerCase()=="get"){
+//             xhr.open("GET",o.url+dataSend,false);
+//             xhr.send();
+//         }
+//         if(o.type.toLowerCase()=="post"){
+//             xhr.open("POST",o.url,false);
+//             xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//             xhr.send(dataSend);
+//         }
+//     }
+    
+//     function ajax(o){
+//     	var xhr = new XMLHttpRequest();
+//     	xhr.onreadystatechange = function(){
+//     		if(xhr.readyState == 4 && xhr.status ==200){
+//     			var json = JSON.parse
+//     		}
+    		
+//     }
+
+    //r
+    function ajax(opts){
+    //创建ajax对象
+    var xmlhttp = new XMLHttpRequest();
+    //对ajax进行事件监听
+    xmlhttp.onreadystatechange = function() {
+        if(xmlhttp.readyState ===4 && xmlhttp.status === 200){
+            //将服务器返回的文本内容转为JSON格式
+            var json = JSON.parse(xmlhttp.responseText);
+            opts.success(json);;
+        }
+        if(xmlhttp.status === 404){
+            opts.error()
+        }
+    };
+    //创建发送到服务器的数据，为了让数据附加到url上，必须为key/value格式。
+    var dataStr = "";
+    for (var key in opts.data) {
+        dataStr += key + '=' +opts.data[key]+'&';
+    }
+    dataStr = dataStr.substr(0,dataStr.length-1);
+    //判断请求的方式为get
+    if(opts.type.toLowerCase() === "get"){
+        //链接服务器
+        xmlhttp.open('GET',opts.url+'?' +dataStr,true);
+        //发送请求
+        xmlhttp.send();
+    }
+    //判断请求方式为post
+    if(opts.type.toLowerCase() === "post"){
+        xmlhttp.open('POST',opts.url,true);
+        //为了使post请求与提交web表单相同，将 Content-Type 头部信息设置为 application/x-www-form-urlencoded来模仿表单提交功能。
+        xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+        xmlhttp.send(dataStr);
+    }
+}
+	</script>
+</body>
+
+
+</html>
