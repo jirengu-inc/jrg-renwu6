@@ -6,6 +6,7 @@
 </head>
 <body>
 	<button id="btn">点我</button>
+    <div id="myDiv"></div>
 	<script>
     
 	document.querySelector('#btn').addEventListener('click', function(){
@@ -18,6 +19,8 @@
 	        },
 	        success: function(ret){
 	            console.log(ret);       // {status: 0}
+                var myDiv=document.querySelector('#myDiv');
+                myDiv.innerText='用户名：'+ret.username+','+'密码：'+ret.password;
 	        },
 	        error: function(){
 	           console.log('出错了')
