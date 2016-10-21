@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task24-3</title>
+<style>
+	html,body,h3,form,dl,dt,dd{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font-size: 14px;
+	}
+	.content{
+		margin: 30px;
+	}
+	h3{
+		margin: 10px 0;
+	}
+	input{
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		height: 24px;
+		width: 200px;
+		line-height: 24px;
+		padding-left: 10px;
+	}
+	input.error{
+		border-color: red;
+	}
+	dt{
+		float: left;
+		height: 28px;
+		line-height: 28px;
+	}
+	dd{
+		margin-left: 100px;
+	}
+	dd.msg{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: #aaa;
+    	font-size: 12px;
+    	height: 12px;
+	}
+</style>
+</head>
+<body>
+	<div class="content">
+	    <h3>注册</h3>
+	    <form action="" id="register-form">
+	    	<dl>
+	    		<dt>用户名</dt>
+	    		<dd>
+	    			<input id="username" type="text" placeholder="用户名(zhoupenghui被注册过)">
+	    		</dd>
+	    		<dd class="msg msg-un">只能是字母、数字、下划线，3-10个字符</dd>
+	    		
+	    		<dt>密码</dt>
+	    		<dd>
+	    			<input id="password1" type="password" placeholder="密码">
+	    		</dd>
+	    		<dd class="msg msg-pwd1">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+	    		
+	    		<dt>再输一次</dt>
+	    		<dd>
+	    			<input id="password2" type="password" placeholder="再输一次密码">
+	    		</dd>
+	    		<dd class="msg msg-pwd2"></dd>
+	    		
+	    		<dd>
+	    			<button id="btn-register">注册</button>
+	    		</dd>
+	    	</dl>
+	    </form>		
+	</div>
+	<script src="task24-3-ajax.js"></script>
+	<script src="task24-3-forClass.js"></script>
+	<script src="task24-3-regExp.js"></script>
+	<script>
+
+		var usernameIpt = document.querySelector('#username'),
+			password1Ipt = document.querySelector('#password1'),
+			password2Ipt = document.querySelector('#password2'),
+			registerBtn = document.querySelector('#btn-register'),
+			unMsg = document.querySelector('.msg-un'),
+			pwd1Msg = document.querySelector('.msg-pwd1'),
+			pwd2Msg = document.querySelector('.msg-pwd2');
+
+		/**
+		 * 先判断输入的格式是否正确
+		 * 用户名：格式不对提示格式错误信息
+		 * 密码：格式不对提示格式错误信息，格式正确没有任何提示
+		 * 再输一次：格式不对提示格式错误信息，和上面的没有逻辑关系；如果格式正确，则和上面输入的比较
+		 */
+		usernameIpt.addEventListener('change', function(){ 
+			testUn() && testUnUsage();
+		});
+		function testUn(){
+			var username = usernameIpt.value;
+			if(!isLegalUsername(username)){
+				unMsg.innerText = "用户名格式不正确";
+				addClass(usernameIpt,"error");
+				return false;  //因为在最后要判断是否可以提交，所以对于不合法的值必须return出false
+			}else{  //如果满足格式，那么马上就要验证是否重复??这一步怎么办??
+				unMsg.innerText = "";
+				removeClass(usernameIpt,"error");
+				return true;
+			}
+		}
+
+
+		password1Ipt.addEventListener('change', function(){
+			testPwd1();
+		});
+		function testPwd1(){
+			var pwd1 = password1Ipt.value;
+			if(!isLegalPassword(pwd1)){
+				pwd1Msg.innerText = "密码格式不对";
+				addClass(password1Ipt,"error");
+				return false;
+			}else{
+				pwd1Msg.innerText = "密码格式有效";
+				removeClass(password1Ipt,"error");
+				return true;
+			}
+		}
+
+		password2Ipt.addEventListener('change', function(){
+			testPwd2();
+		});
+		function testPwd2(){
+			var pwd2 = password2Ipt.value;
+			if(!isLegalPassword(pwd2)){
+				pwd2Msg.innerText = "密码格式不对";
+				addClass(password2Ipt,"error");
+				return false;
+			}else if(pwd2!= password1Ipt.value){  //上面输入之后pwd1就被赋值了，所以这里可以使用，先变量提升，然后赋的值
+				pwd2Msg.innerText = "两次输入不一致";
+				addClass(password2Ipt,"error");
+				return false;
+			}else{
+				pwd2Msg.innerText = "密码确定成功";
+				removeClass(password2Ipt,"error");
+				return true;
+			}
+		}
+	
+		/**
+		 * 判断用户名是否可用，这就要向后台发送请求，动态获取后台的数据，用到ajax
+		 * 约定接口:
+		 * url：
+		 * 入参：{username: username}
+		 * 回参：{status:0, data:"用户名可用"}
+		 *       {status:1, data:"用户名已存在"}
+		*/
+		function testUnUsage(handle){
+			ajax({
+				url: "task24-3.php",
+				type: "post",
+				dataType: "json",
+				data: {
+					username: usernameIpt.value
+				},
+				success: function(jsonData){
+					if(jsonData.status===1){
+						unMsg.innerText = jsonData.data;
+						addClass(usernameIpt,"error");
+						handle&&handle(false);
+					}else if(jsonData.status===0){
+						unMsg.innerText = jsonData.data;
+						removeClass(usernameIpt,"error");
+						handle&&handle(true);
+					}
+				}
+			});
+		}
+
+
+		//如果上面的几个输入框输入的都合法点击按钮才能有效的提交，否则点击是没用的
+		registerBtn.addEventListener('click', function(event){
+			event.preventDefault();  //貌似不加这个还打印不出来下面的呢？为啥
+			if( testUn()&&testPwd1()&&testPwd2() ){ 
+				testUnUsage(function(canUse){  //如果填写的格式都合法，则看用户名是否被使用
+					if(canUse){
+						alert("正在注册");
+						console.log('正在注册...');  //不知道为什么有时候能打印有时候不能
+					}
+				});
+			}
+		});
+		//这里为了防止ajax响应缓慢，用户输入了合法用户名后，又再次输入非法用户名也通过验证的情况，所以将函数作为参数传递给testUnUsage()，这个回调函数将在ajax的回调中执行
+
+
+	</script>
+
+</body>
+</html>
