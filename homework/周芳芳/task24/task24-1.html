@@ -36,7 +36,7 @@
     			var json = JSON.parse(xhr.responseText);
                 o.success(json);
     		}
-            if(xhr.status === 404){
+            if(xhr.status == 404){
                 o.error();
             }	
     };
@@ -48,16 +48,16 @@
     dataStr = dataStr.substr(0,dataStr.length-1);
     //判断请求的方式为get
     if(o.type.toLowerCase() === "get"){
-        xhr.open('GET',o.url+'?'+dataStr,true);
+        xhr.open(o.type,o.url+'?'+dataStr,true);
         xhr.send();
-    }
+    };
     //判断请求方式为post
     if(o.type.toLowerCase() === "post"){
-        xhr.open('POST',o.url,true);
+        xhr.open(o.type,o.url,true);
         //设置http请求头部，按键值对解析
         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         xhr.send(dataStr);
-    }
+    };
     
 	</script>
 </body>
