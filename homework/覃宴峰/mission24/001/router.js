@@ -17,6 +17,7 @@ if(req.query.usInfo=="hunger"){  //前台请求.query.前台入参
 		str=1;
 	}
 	res.send({
+		status:0,
 		msg:str
 	});
 });
