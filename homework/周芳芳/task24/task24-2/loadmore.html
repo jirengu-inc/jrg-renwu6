@@ -46,45 +46,34 @@
 		    ct = document.querySelector('#ct'),
 		    locked = false,     //设置状态锁
 		    cur = 2;
-		loadMoreBtn.addEventListener('click',function(ev){
-			ev.preventDefault();  //防止点击a链接页面跳到顶部
-			if(locked){
-				return;   //如果有锁存在，则不执行ajax
-			}
+		loadMoreBtn.addEventListener('click',function(){
+			loadMoreBtn.innerText='正在加载';
 			locked =true;  //上锁
+		
 			ajax({
-				url:'task24-2.php',
+				url:'loadmore.php',
 				type:'get',
 				data:{
 					start:cur,
 					leng:5
 				},
-				success:function(json){
-					onSuccess(json);
+				success:function(ret){
+					loadMoreBtn.innerText='加载更多';
+					for(var i=0;len=ret.length;i++){
+			        		var oLi=document.createElement('li');
+			        		oLi.innerHTML='内容'+ret[i];
+			        		ct.appendChild(oLi);
+        	        }
+        	        locked = false;
 				},
 				error:function(){
-					onError();
+					loadMoreBtn.innerText='加载更多';
+					alert('系统异常');
+					locked = false;
 				}
 			})
 		});
-
-		function onSuccess(json){
-			append(json);
-			cur+=5;
-			locked = false;
-		};
-		function onError(){
-			locked = false;
-			alert('系统异常');
-		};
         
-        function append(arr){
-        	for(var i=0,len=arr.length;i<len;i++){
-        		var oLi=document.createElement('li');
-        		oLi.innerHTML='内容'+arr[i];
-        		ct.appendChild(oLi);
-        	}
-        }
 	</script>
 </body>
 </html>
