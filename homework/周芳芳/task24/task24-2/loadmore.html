@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>loadmore</title>
+	<style>
+	ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #ccc;
+		text-align: center;
+		margin-bottom: 15px;
+		cursor: pointer;
+	}
+	li:hover{
+		background-color: green;
+	}
+	a{
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+		width: 100px;
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #f60;
+		text-decoration: none;
+		border-radius: 3px;
+		color: #f60;
+	}
+	</style>
+</head>
+<body>
+	<ul id="ct">
+		<li>内容1</li>
+		<li>内容2</li>
+	</ul>
+	<a href="#" id="load-more">加载更多</a>
+    
+    <script src='ajax.js'></script>
+	<script>
+		var loadMoreBtn = document.querySelector('#load-more')
+		    ct = document.querySelector('#ct'),
+		    locked = false,     //设置状态锁
+		    cur = 2;
+		loadMoreBtn.addEventListener('click',function(ev){
+			ev.preventDefault();  //防止点击a链接页面跳到顶部
+			if(locked){
+				return;   //如果有锁存在，则不执行ajax
+			}
+			locked =true;  //上锁
+			ajax({
+				url:'task24-2.php',
+				type:'get',
+				data:{
+					start:cur,
+					leng:5
+				},
+				success:function(json){
+					onSuccess(json);
+				},
+				error:function(){
+					onError();
+				}
+			})
+		});
+
+		function onSuccess(json){
+			append(json);
+			cur+=5;
+			locked = false;
+		};
+		function onError(){
+			locked = false;
+			alert('系统异常');
+		};
+        
+        function append(arr){
+        	for(var i=0,len=arr.length;i<len;i++){
+        		var oLi=document.createElement('li');
+        		oLi.innerHTML='内容'+arr[i];
+        		ct.appendChild(oLi);
+        	}
+        }
+	</script>
+</body>
+</html>
