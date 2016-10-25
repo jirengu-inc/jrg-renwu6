@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务4</title>
+    <style type="text/css">
+        body,ul,li,p{
+            margin:0;
+            padding:0;
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        .tab-switch *{
+            box-sizing:border-box;
+        }
+        .tab-switch{
+            width:600px;
+            margin:auto;
+            margin-top:40px;
+            border:1px solid #ccc;
+        }
+        .tab li{
+            list-style-type:none;
+            float:left;
+            width:200px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            cursor:pointer;
+            border-right:1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .tab li:last-child{
+            border-right:none;
+        }
+        .tab .active {
+            background-color:#eee;
+        }
+        .tab-switch div{
+            display:none;
+            height:300px;
+            padding:20px;
+        }
+        .tab-switch .content{
+            display:block;
+        }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+    <script>
+        $(function(){
+            $(".tab li").on("click",function(){
+                var index = $(this).index();
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+                console.log($(".tab li"));
+
+                $(this).parents(".tab-switch").find("div").removeClass("content");
+                $(this).parents(".tab-switch").find("div").eq(index).addClass("content");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="tab-switch">
+        <ul class="tab clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="content">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+    <div class="tab-switch">
+        <ul class="tab clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="content">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+    <!--<script>-->
+        <!--var oDiv = document.querySelector(".tab-switch"),-->
+            <!--aLi = oDiv.getElementsByTagName("li"),-->
+            <!--aDiv = oDiv.getElementsByTagName("div");-->
+        <!--for(var i=0,len=aLi.length; i<len; i++){-->
+            <!--aLi[i].index = i;//创建一个index属性来表示div的序列号。-->
+            <!--aLi[i].addEventListener("click",function(){-->
+                <!--for(var i=0,len=aLi.length; i<len; i++){-->
+                    <!--aLi[i].className= "";-->
+                    <!--aDiv[i].style.display = "none";-->
+                <!--}-->
+                <!--this.className = "active";-->
+                <!--aDiv[this.index].style.display="block";-->
+            <!--},false);-->
+        <!--}-->
+    <!--</script>-->
+</body>
+</html>
