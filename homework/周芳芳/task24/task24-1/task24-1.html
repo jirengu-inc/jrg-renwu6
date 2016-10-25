@@ -34,6 +34,7 @@
     		if(xhr.readyState == 4 && xhr.status ==200){
                 //将服务器返回的文本内容转为JSON格式
     			var json = JSON.parse(xhr.responseText);
+                console.log(xhr.responseText);
                 o.success(json);
     		}
             if(xhr.status == 404){
@@ -58,7 +59,6 @@
         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         xhr.send(dataStr);
     };
-    }
 	</script>
 </body>
 </html>
