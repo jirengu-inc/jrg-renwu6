@@ -11,7 +11,7 @@
     
 	document.querySelector('#btn').addEventListener('click', function(){
 	    ajax({
-	        url: 'getData.php',   //接口地址
+	        url: 'http://zhenai.luckhu.com/getData.php',   //接口地址
 	        type: 'get',               // 类型， post 或者 get,
 	        data: {
 	            username: 'xiaoming',
@@ -34,7 +34,7 @@
     		if(xhr.readyState == 4 && xhr.status ==200){
                 //将服务器返回的文本内容转为JSON格式
     			var json = JSON.parse(xhr.responseText);
-                console.log(xhr.responseText);
+                // console.log(xhr.responseText);
                 o.success(json);
     		}
             if(xhr.status == 404){
