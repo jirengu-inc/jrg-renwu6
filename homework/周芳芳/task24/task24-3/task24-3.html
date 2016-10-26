@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task24-3</title>
+	<style>
+	body{
+		font-size: 14px;
+	}
+	#register{
+		margin:30px;
+	}
+	.register-ct dt{
+		width: 86px;
+		height: 24px;
+		line-height: 24px;
+		float: left;
+	}
+	.register-ct dd{
+		margin-left: 86px;
+	}
+	.register-ct input{
+		height: 24px;
+		line-height: 24px;
+		padding-left: 10px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+	}
+	.register-ct .msg{
+		margin-top:10px;
+		margin-bottom: 10px;
+		color: #ccc;
+		font-size: 12px;
+		line-height: 12px;
+	}
+	button{
+		padding: 1px 6px;
+	}
+	</style>
+</head>
+<body>
+	<div id="register">
+		<h3>注册</h3>
+		<form action="" id="register-form">
+			<dl class="register-ct">
+				<dt>用户名：</dt>
+				<dd>
+					<input type="text" id="username" placeholder="用户名（hunger被注册过了）">
+				</dd>
+				<dd class="msg">用户名可用</dd>
+				<dt>密码：</dt>
+				<dd>
+					<input type="password" id="password1" placeholder="密码">
+				</dd>
+				<dd class="msg"></dd>
+				<dt>再输一次：</dt>
+				<dd>
+					<input type="password" id="password1" placeholder="再输入一次">
+				</dd>
+				<dd class="msg"></dd>
+				<dd>
+					<button id="btn-register">注册</button>
+				</dd>
+			</dl>
+		</form>
+	</div>
+</body>
+</html>
