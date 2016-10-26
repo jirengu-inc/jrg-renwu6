@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task28-1</title>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<style>
+	#header{
+		background-color: red;
+		height: 80px;
+		text-align: center;
+		line-height: 80px;
+	}
+	#nav{
+		background-color: blue;
+		height: 40px;
+		margin-top: 20px;
+	}
+	#content{
+		background-color: #ccc;
+		padding: 10px;
+	}
+	#content .aside{
+		float: left;
+		background-color: green;
+		width: 100px;
+		min-height: 400px;
+	}
+	#content .main{
+		background-color: #fff;
+		min-height: 800px;
+		margin-left: 100px;
+	}
+	#footer{
+		background-color: #333;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+	}
+</style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="nav">nav</div>
+	<div id="content">
+		<div class="aside">aside</div>
+		<div class="main">main</div>
+	</div>
+	<div id="footer">footer</div>
+	<script>
+		$(function(){
+			$.fn.stickup = function(){  //给每一个jQuery对象绑定stickup函数，这就是插件的写法
+				var $cur = this,
+					curH = $cur.height(),  //获取该对象的高度
+					curW = $cur.width(),  //获取该对象的宽度
+					offsetTop = $cur.offset().top,  //获取对象相对document的上偏移
+					offsetLeft = $cur.offset().left;  //获取对象相对document的左偏移
+
+				var $curClone = $cur.clone()  //对clone出来的对象进行链式操作
+								.css({ 
+									'opacity': 0, 
+									'display': 'none'
+								})
+								.insertBefore($cur);
+				/*
+				上一步是jQuery的链式操作，相当于如下代码
+				var $curClone = $cur.clone();  //clone一个当前对象
+				$curClone.insertBefore($cur);  //将clone的对象插入到该对象前面
+				$curClone.css({
+					"display": "none",
+					"opacity": 0  //这里可以防止页面卡顿时始终只显示一个
+				});  //一开始将clone的对象隐藏，等需要的时候再展示出来
+				*/
+
+				$(window).on('scroll', function(){
+					var scrollTop = $(this).scrollTop();  //获取窗口滚动的距离
+					if(scrollTop >= offsetTop){
+						$cur.css({  //将该元素设置为固定定位
+							"position": "fixed",
+							"top": 0,
+							"left": offsetLeft,
+							"width": curW,
+							"margin": 0,
+						});
+						$curClone.show(); //此时要将clone的对象展示，在文档流中占据原来那个元素的位置，这样就能解决跳动的问题了
+					}else{
+						$cur.removeAttr("style");
+						$curClone.hide();  //将clone的对象隐藏
+					}
+				});
+			}
+			$("#nav").stickup();
+		});
+	</script>
+    
+</body>
+</html>

@@ -1,0 +1,391 @@
+/*初始化 start*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+ul, li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    font-size: 14px;
+}
+.wrap {
+    width: 1170px;
+    margin: 0 auto;
+}
+.text-center {
+    text-align: center;
+}
+.clearfix:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+p {
+    line-height: 1.75;
+    font-size: 14px;
+}
+img {
+    border: none;
+}
+section {
+    padding: 150px 0;
+}
+/*初始化 end*/
+/*head start*/
+#header {
+    background: url("../img/header-bg.jpg") center;
+    background-size: cover;
+}
+#header .navbar-tit {
+    padding: 25px 0;
+}
+#header a.ico-logo {
+    color: #fed136;
+    height: 50px;
+    line-height: 50px;
+    padding: 15px 15px 15px -15px;
+    font-size: 2em;
+    font-style: italic;
+}
+#header ul.navbar-right {
+    margin-right: -15px;
+}
+#header ul li {
+    float: left;
+}
+#header ul li a {
+    color: #fff;
+    display: block;
+    padding: 15px;
+    font-weight: 400;
+}
+#header ul li a:hover {
+    color: #fed136;
+}
+#header .intro-text {
+    padding: 200px 0;
+    color: #fff;
+}
+#header .intro-text h2.intro-lead {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 25px;
+}
+#header .intro-text h1.intro-head {
+    font-size: 75px;
+    line-height: 75px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+#header .intro-text a.btn {
+    padding: 20px 40px;
+    background: #fec503;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    display: inline-block;
+}
+#header .intro-text a.btn:hover {
+    background-color: #f5c728;
+}
+/*head end*/
+/*services start*/
+h2.section-head {
+    font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+h3.section-tit {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 75px;
+    color: #777;
+    font-style: italic;
+}
+.row-list li {
+    float: left;
+    width: 33.33%;
+}
+#service .row-list li i {
+    font-size: 40px;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    background-color: #fed136;
+    color: white;
+}
+h4.service-eco {
+    padding: 15px 0;
+}
+p.service-text {
+    color: #777;
+}
+/*services end*/
+/*portfolio start*/
+.bg-gray {
+    background-color: rgb(247, 247, 247)
+}
+#portfolio .portfolio-list li.first-list {
+    margin-left: 0;
+}
+#portfolio .portfolio-list li {
+    width: 360px;
+    margin: 0 0 20px 45px;
+    padding-bottom: 25px;
+    background: #fff;
+    text-align: center;
+    float: left;
+}
+#portfolio .portfolio-list li img {
+    width: 360px;
+    height: 289px;
+}
+#portfolio .portfolio-list li span.yellow-hover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 360px;
+    height: 289px;
+    background-color: #fed136;
+    display: none;
+}
+#portfolio .portfolio-list li span.yellow-hover i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    font-size: 60px;
+    margin-left: -25px;
+    margin-top: -30px;
+}
+#portfolio .portfolio-list li a {
+    position: relative;
+    display: block;
+}
+#portfolio .portfolio-list li a:hover .yellow-hover {
+    opacity: 0.9;
+    transition: 0.3s;
+    display: block;
+}
+#portfolio p.service-text {
+    font-style: italic;
+}
+/*portfolio end*/
+/*about start*/
+#about .timeline {
+    position: relative;
+}
+#about .timeline img {
+    display: block;
+    width: 160px;
+    height: 160px;
+    border: 10px solid #f1f1f1;
+    border-radius: 50%;
+}
+#about .clearfix > span {
+    width: 2px;
+    height: 1200px;
+    background-color: #eee;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+#about .timeline li:nth-child(odd) {
+    float: right;
+    width: 40%;
+    margin-left: 500px;
+    margin-bottom: 100px;
+    text-align: left;
+}
+#about .timeline li:nth-child(even) {
+    float: left;
+    width: 40%;
+    margin-bottom: 100px;
+    text-align: right;
+}
+#about .timeline li img {
+    position: absolute;
+    left: 51%;
+    margin-left: -90px;
+}
+#about .timeline li h4 {
+    padding: 15px 0;
+}
+#about .last-timeline p {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    font-size: 18px;
+    margin-right: -200px;
+    background: #fed136;
+    color: white;
+    border: 10px solid #f1f1f1;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 25px;
+}
+/*about end*/
+/*team start*/
+#team img {
+    display: block;
+    width: 200x;
+    height: 200px;
+    border: 10px solid #f1f1f1;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+#team li i {
+    font-size: 20px;
+    color: white;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #000;
+    border-radius: 100%;
+}
+#team li i:hover {
+    background-color: #f5c728;
+}
+#team ul > li:first-child {
+    margin-left: 0;
+}
+#team ul > li {
+    text-align: center;
+    float: left;
+    width: 360px;
+    margin: 0 0 20px 45px;
+}
+#team p.team-text {
+    padding: 30px 0;
+    color: #777;
+}
+/*team end*/
+/*logo start*/
+#logo-icon {
+    padding: 0;
+    margin: 0;
+}
+#logo-icon ul {
+    padding: 50px 0;
+}
+#logo-icon li {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+/*logo end*/
+/*contact start*/
+#contact {
+    background: url("../img/map-image.png") no-repeat center;
+    background-color: rgb(34, 34, 34);
+}
+#contact h2.section-head {
+    color: #fff;
+}
+/*contact start*/
+#contact .user-info {
+    float: left;
+    width: 550px;
+}
+#contact .user-message {
+    float: right;
+}
+#contact .user-info input {
+    border-radius: 8px;
+    width: 550px;
+    height: 40px;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#contact textarea {
+    float: left;
+    height: 200px;
+    width: 550px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#contact .form-button {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+}
+#contact .submit {
+    padding: 20px 30px;
+    font: 16px Arial;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #FED136;
+    border: none;
+}
+#contact .submit:hover {
+    background-color: #f5c728;
+}
+/*contact end*/
+/*foot start*/
+#foot {
+    padding: 0;
+}
+#foot li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+#foot .foot-copy {
+    width: 33.3%;
+    padding: 25px 0;
+    text-align: center;
+}
+#foot li i {
+    display: block;
+    background-color: #222;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    color: #fff;
+    outline: 0;
+}
+#foot span {
+    height: 40px;
+    line-height: 40px;
+}
+#foot li i:hover {
+    background-color: #f5c728;
+}
+#foot span a {
+    color: #fec503;
+    margin-right: 8px;
+}
+#foot span a:hover {
+    text-decoration: underline;
+}
+/*foot end*/

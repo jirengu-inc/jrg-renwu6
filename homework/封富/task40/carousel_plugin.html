@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <title>轮播</title>
+  <style>
+    #carousel {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      margin:100px;
+    }
+    #carousel .C-section {
+      float: left;
+    }
+    #carousel img {
+      width: 300px;
+      height: 200px;
+    }
+    #carousel .turn {
+      width: 0;
+      height: 0;
+      border-width: 5px;
+      border-style: solid;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%);
+    }
+    #carousel .C-up {
+      left: 10px;
+      border-color: transparent green transparent transparent;
+    }
+    #carousel .C-down {
+      right: 10px;
+      border-color: transparent transparent transparent green;
+    }
+    #carousel ul {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #carousel .C-index {
+      width: 10px;
+      height: 4px;
+      float: left;
+      background-color: #fff;
+      border-radius: 2px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+    #carousel .C-ct {
+      position: absolute;
+    }
+    #carousel .C-index.active {
+      background-color: #f0f;
+    }
+    li {
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+<div id="carousel" class="carousel">
+  <div class="C-ct clearfix">
+    <div class="C-section"><img src="1.png" alt=""></div>
+    <div class="C-section"><img src="2.png" alt=""></div>
+    <div class="C-section"><img src="3.png" alt=""></div>
+  </div>
+  <div class="turn C-up"></div>
+  <div class="turn C-down"></div>
+  <ul class="clearfix">
+    <li class="C-index active"></li>
+    <li class="C-index"></li>
+    <li class="C-index"></li>
+  </ul>
+</div>
+<div id="carousel" class="carousel">
+  <div class="C-ct clearfix">
+    <div class="C-section"><img src="1.png" alt=""></div>
+    <div class="C-section"><img src="2.png" alt=""></div>
+    <div class="C-section"><img src="3.png" alt=""></div>
+  </div>
+  <div class="turn C-up"></div>
+  <div class="turn C-down"></div>
+  <ul class="clearfix">
+    <li class="C-index active"></li>
+    <li class="C-index"></li>
+    <li class="C-index"></li>
+  </ul>
+</div>
+  <script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+  // structor div>(.C-ct>carousel) + (.C-up + .C-down)turn + (.C-index)index
+    $.fn.Carousel = function(){
+      var $ct = this.find(".C-ct"),
+          Swidth = $ct.children().width(),
+          $up = this.find(".C-up"),
+          $down = this.find(".C-down"),
+          $index = this.find(".C-index"),
+          idxNum = $index.size(),
+          $section = $ct.children(),
+          $last = $section.last().clone(),
+          $first = $section.first().clone(),
+          clock,
+          lock = false;
+      $ct.append($first);
+      $ct.prepend($last);
+      var secNum = $ct.children().size();
+      $ct.css({
+        "width":Swidth * secNum,
+        "left":-Swidth
+    });
+      function playNext(idx){
+        if(lock) return;
+        lock = true;
+        var idx = idx || 1;
+        var curIdx = activeIdx();
+        $ct.animate({
+          "left": "-=" + (idx * Swidth)},
+          function(){
+            var idxNow = (curIdx + idx)%idxNum;
+            changeIndex(curIdx,idxNow);
+            if((idx + curIdx)%idxNum === 0){
+              $ct.css("left",-Swidth);
+            }
+          lock = false;
+        });
+      }
+      function playPre(idx){
+        if(lock) return;
+        lock = true;
+        var idx = idx || 1;
+        var curIdx = activeIdx();
+        $ct.animate({
+          "left": "+=" + idx * Swidth},
+          function(){
+            var idxNow = (curIdx - idx + idxNum)%idxNum;
+            changeIndex(curIdx,idxNow);
+            if(curIdx - idx === -1){
+              $ct.css("left",-idxNum * Swidth);
+            }
+          lock = false;
+        });
+      }
+      function changeIndex(curIdx,idxNow){
+        $index.removeClass('active');
+        $index.eq(idxNow).addClass('active');
+      }
+      function activeIdx(){
+        for(var i = 0;i < idxNum;i++){
+          if($index.eq(i).hasClass('active')){
+            return i;
+          }
+        }
+      }
+      $up.on("click",function(){
+        playPre();
+      })
+      $down.on("click",function(){
+        playNext();
+      })
+      $index.on("click",function(){
+        var idx = $(this).index();
+        var recIdx = activeIdx();
+        if(recIdx > idx){
+          playPre(recIdx - idx);
+        }else if(idx > recIdx){
+          playNext(idx - recIdx);
+        }
+      })
+      function autoPlay(){
+        clock = setInterval(function(){
+          playNext();
+        },3000);
+      }
+      function stopPlay(){
+        clearInterval(clock);
+      }
+      autoPlay();
+    };
+  function Carousel($node){
+    this.$ct = this.find(".C-ct");
+    this.$width = $ct.children().width();
+    this.$up = this.find(".C-up");
+    this.$down = this.find(".C-down");
+    this.$index = this.find(".C-index");
+    this.idxNum = $index.size();
+    this.$section = $ct.children();
+    this.lock = false;
+    var $last = $section.last().clone(),
+        $first = $section.first().clone();
+    this.$ct.append($first);
+    this.$ct.prepend($last);
+    this.secNum = $ct.children().size();
+    $ct.css({
+      "width":this.$width * this.secNum,
+      "left":-this.$width
+    });
+  }
+  Carousel.prototype = {
+    constructor:Carousel,
+    playPre:function(idx){
+      if(this.clock) return;
+      this.clock = true;
+      var idx = idx || 1;
+      var self = this;
+      curIdx = this.getIndex();
+      this.node.animate({
+        "left":"-="+idx * self.$width
+      },function(){
+        var idxNow = (idx + curIdx)%self.idxNum;
+        self.changeIndex(idxNow);
+        if(idx + curIdx === idxNow){
+          self.node.css("left",-self.$width);
+        }
+        self.lock = false;
+      })
+    }
+  }
+  // $("#carousel1").Carousel();
+  $(".carousel").each(function(){
+    $(this).Carousel();
+  });
+  // function Carousel($node){
+  //   this.node = $node;
+  //   this.nav = this.node.find("ul");
+  //   var first = this.nav.children().first(),
+  //       last = this.nav.children().last();
+  //   first.clone().appendTo(this.nav);
+  //   last.clone().prependTo(this.nav);
+  //   this.list = this.nav.children();
+  //   this.col = this.list.size();
+  //   this.width = this.list.width();
+  //   this.$pre = this.node.find(".up");
+  //   this.$next = this.node.find(".down");
+
+  //   this.nav.css({
+  //     "width":this.col * this.width,
+  //     "left":-this.width
+  //   })
+  //   this.bind()
+  // }
+
+  // Carousel.prototype = {
+  //   constructor:Carousel,
+  //   playNext : function(){
+  //     var width = this.width,
+  //       col = this.col;
+  //     this.nav.animate({
+  //       "left":"-=" + width
+  //     },function(){
+  //       $this = $(this);
+  //       if(parseInt($this.css("left")) === -width * (col - 1)){
+  //         $this.css("left",-width);
+  //       }
+  //     })
+  //   },
+  //   playPre : function(){
+  //     var width = this.width,
+  //       col = this.col;
+  //     this.nav.animate({
+  //       "left":"+=" + width
+  //     },function(){
+  //       $this = $(this);
+  //       if(parseInt($this.css("left")) === 0){
+  //         $this.css("left",-width * (col - 2));
+  //       }
+  //     })
+  //   },
+  //   bind:function(){
+  //     var _this = this;
+  //     _this.$pre.on("click",function(){
+  //       _this.playPre();
+  //     });
+  //     _this.$next.on("click",function(){
+  //       _this.playNext();
+  //     })
+  //   }
+  // }
+
+  </script>
+</body>
+</html>

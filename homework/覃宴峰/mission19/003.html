@@ -1,0 +1,139 @@
+<script>
+//----------计算离指定日期有多少天多少小时多少分钟
+function timer(i){
+  var newstr;
+  var timenow=new Date().getTime();
+  var timebase=Date.parse(i);
+  var timecal=Math.abs((timebase-timenow));
+  // var year=Math.floor(timecal/1000/60/60/24/365);//计算年
+  // var month=Math.floor(timecal/1000/60/60/24/30%12)-1;//计算月
+  var day=Math.floor(timecal/1000/60/60/24);//计算日
+  var hour=Math.floor(timecal/1000/60/60%24);//计算月小时
+  var min=Math.floor(timecal/1000/60%60);//计算分钟
+  var sec=Math.floor(timecal/1000%60);//计算秒
+  return newstr="当前时间距离指定时间"+day+"日"+hour+"小时"+min+"分钟"+sec+"秒";
+}
+timer("2016-01-01");
+
+//---------给定日期转中文日期
+function getChsDate(t1){
+  var cnstyle=["零","一","二","三","四","五","六","七","八","九","十"];
+  var timeinput=new Date(t1);
+  var newyear="中文时间",newmonth,newday;
+  //转换年 
+for(var i=0;i<timeinput.getFullYear().toString().length;i++){
+  newyear+=cnstyle[parseInt(timeinput.getFullYear().toString()[i])]
+}
+//转换月份  
+  if((timeinput.getMonth()+1)>10){
+    newmonth="十"+cnstyle[parseInt((timeinput.getMonth()+1).toString().substr(1,1))]
+  } else if((timeinput.getMonth()+1)==10){
+    newmonth="十"
+  }
+  else {
+    newmonth=cnstyle[parseInt((timeinput.getMonth()+1).toString().substr(0,1))]
+  };
+//转换日期
+ if(timeinput.getDate()<10){
+    newday=cnstyle[parseInt((timeinput.getDate()).toString().substr(0,1))]
+ }
+ else if(timeinput.getDate()===10){
+    newday="十"
+ }
+ else if(timeinput.getDate()>10&&timeinput.getDate()<20){
+    newday="十"+cnstyle[parseInt((timeinput.getDate()).toString().substr(1,1))]
+ }
+ else if(timeinput.getDate()===20){
+  newday="二十"
+ }
+ else if(timeinput.getDate()===30){
+  newday="三十"
+ } else {
+    newday=cnstyle[parseInt((timeinput.getDate()).toString().substr(0,1))]+"十"+cnstyle[parseInt((timeinput.getDate()).toString().substr(1,1))]
+ }
+ 
+return newyear+"年"+newmonth+"月"+newday+"日";
+}
+getChsDate("2015-01-22")
+
+//---------计算给定天数前的日期
+function getLastNDays(d){
+	var datecl=new Date((Date.now()-d*24*60*60*1000));
+	var year=datecl.getFullYear();
+	var month=datecl.getMonth()+1;
+	var date=datecl.getDate();
+	return year+"年"+month+"月"+date+"月";
+}
+var lastWeek =  getLastNDays(7);
+console.log(lastWeek);
+var lastMonth = getLastNDays(30);
+console.log(lastMonth);
+
+//----------时间对象方法确定函数执行的时长
+var Runtime = (function(){
+    var startTime,endTime;
+    var obj = {
+        start: function(){
+              startTime=Date.now() //第一次获取当前时间即开始
+        },
+        end: function(){
+             endTime=Date.now() //第二次获取当前时间即结束
+        },
+        get: function(){
+             timecl=endTime-startTime;
+             return timecl;//计算两次记录点间的时间差
+        }
+    };
+return obj;
+}());
+
+Runtime.start();
+for(var i=0;i<500;i++){
+	console.log("测试执行时间");
+};
+Runtime.end();
+console.log(Runtime.get());
+
+//---------递归算法计算（每次走一级或每次走两级的方法）走楼梯1-200级有多少种走法
+function  steps(i){
+	if(i>0&&i<=3){
+		return i;
+	} else {
+		return steps(i-1)+steps(i-2);
+	}
+}
+console.log(steps(1));
+console.log(steps(2));
+console.log(steps(3));
+console.log(steps(5));
+console.log(steps(6));
+console.log(steps(7));
+
+//---------递归算法jason对象深拷贝
+var newjason={
+	"name":"jack",
+	"sex":"man",
+	"age":28,
+	"studens":true,
+	"gamelist":{
+		"pc":"SC2",
+		"PHONE":"LOL",
+	},
+	"address":["yc","hb","china","earth"]
+}
+
+function copyjason(newjason){
+	var copyobj={};
+	for(var key in newjason){
+		if(typeof(newjason[key])==="object"){
+			copyobj[key]=copyjason(newjason[key]);
+		} else{
+			copyobj[key]=newjason[key];
+		}
+	}
+	return copyobj;
+}
+copyjason(newjason);
+
+
+</script>

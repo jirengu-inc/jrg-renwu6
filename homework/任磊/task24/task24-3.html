@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            box-sizing:border-box;
+        }
+        body{
+            font-size:14px;
+        }
+        #register{
+            margin: 20px;
+        }
+        #register dt{
+            float:left;
+            width:80px;
+            height:24px;
+            line-height:24px;
+        }
+        #register dd{
+            margin-left:100px;
+        }
+        #register input{
+            width:250px;
+            height:24px;
+            line-height:24px;
+            padding-left:5px;
+            border:1px solid #ccc;
+            border-radius: 3px;
+        }
+        #register .rule{
+            margin-top:10px;
+            margin-bottom:10px;
+            color:#aaa;
+            height: 12px;
+            font-size:12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="register">
+        <h3>注册</h3>
+            <dl class="login">
+                <dt>用户名：</dt>
+                <dd><input id="username" type="text" placeholder="用户名（hunger被注册过）"/></dd>
+                <dd class="us-check rule">用户名只能是字母、数字、下划线，3-10个字符</dd>
+                <dt>密码：</dt>
+                <dd><input id="password1" type="password"/></dd>
+                <dd class="pwd1-check rule">密码是大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+                <dt>在输一次：</dt>
+                <dd><input id="password2" type="password" placeholder="再输入一次密码"/></dd>
+                <dd class="pwd2-check rule"></dd>
+                <dd><button class="btn">注册</button></dd>
+            </dl>
+    </div>
+    <script>
+        function ajax(opts){
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+                    var json = JSON.parse(xmlhttp.responseText);
+                    opts.success(json);
+                    console.log(json);
+                }
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 404){
+                    opts.error();
+                }
+            };
+            var dataStr = "";
+            for (var key in opts.data) {
+                dataStr += key +'='+ opts.data[key]+ '&';
+            }
+            dataStr = dataStr.substr(0,dataStr.length-1);
+            
+            if(opts.type.toLowerCase() === "get"){
+                xmlhttp.open("GET",opts.url+"?"+dataStr,true);
+                xmlhttp.send();
+            }
+            if(opts.type.toLowerCase() === "post"){
+                xmlhttp.open("POST",opts.url,true);
+                xmlhttp.setRequestHeader("Contenr-type","application/x-www-form-urlencoded");
+                xmlhttp.send(dataStr);
+            }
+        }
+        var username = document.querySelector("#username"),
+            usCheck = document.querySelector(".us-check"),
+            password1 = document.querySelector("#password1"),
+            psw1Check = document.querySelector(".pwd1-check"),
+            password2 = document.querySelector("#password2"),
+            psw2Check = document.querySelector(".pwd2-check");
+            oBtn = document.querySelector(".btn");
+        username.addEventListener("change",function(){
+            var usStr = username.value;
+            ajax({
+                type:"get",
+                url:"task24-3.php",
+                data:{
+                    usInfo:usStr
+                },
+                success:function (json){
+                    onSuccess(json);
+                },
+                error:function(){
+                    onError();
+                }
+            })
+        });
+        password1.addEventListener("change",function(){
+            if(!isValidPassword(password1.value)){
+                psw1Check.innerHTML = "密码格式不正确";
+                password1.style.border ="1px solid red";
+            }else{
+                psw1Check.innerHTML = "";
+                password1.style.border = "1px solid #aaa";
+            }
+        })
+        password2.addEventListener("change",function(){
+            if(!isValidPassword(password2.value)){
+                psw2Check.innerHTML ="密码格式不正确";
+                password2.style.border = "1px solid red";
+            }else if(password1.value !== password2.value){
+                psw2Check.innerHTML = "两次输入的密码不一致";
+                password2.style.border = "1px solid red";
+            }else{
+                psw2Check.innerHTML = "";
+                password2.style.border = "1px solid #aaa";
+            }
+        })
+        oBtn.addEventListener("click",function(){
+            if(usCheck.innerHTML == "用户名可用" && psw1Check.innerHTML == "" && psw2Check.innerHTML == ""){
+                alert("正在注册");
+            }
+            else alert("请填写正确的信息");
+        })
+        function isValidUsername(str){
+            var reg = /^\w{3,10}$/;
+            return reg.test(str);
+        }
+
+        //至少两种的取反是只有一种，排除只有一种的情况即可。
+        function isValidPassword(str){
+            var reg = /^\w{6,15}$/;
+            if(reg.test(str)){
+                if(/^[a-z]+$/.test(str)) return false;
+                else if(/^[A-Z]+$/.test(str)) return false;
+                else if(/^\d+$/.test(str)) return false;
+                else if(/^_+$/.test(str)) return false;
+                else return true;
+            }else return false;
+        }
+
+        function onSuccess(status){
+            if(status == 0){
+                usCheck.innerText = "用户名已经存在";
+                username.style.border = "1px solid red";
+            }
+            if(isValidUsername(username.value) && status == 1){
+                usCheck.innerHTML = "用户名可用";
+                username.style.border = "1px solid #aaa";
+            }
+            if(!isValidUsername(username.value)){
+                usCheck.innerHTML = "用户格式不正确";
+                username.style.border = "1px solid red";
+            }
+        }
+        function onError(){
+            alert("数据错了")
+        };
+
+    </script>
+</body>
+</html>

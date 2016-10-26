@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>两栏布局</title>
+<style>
+html,body{
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei;
+  font-size: 20px;
+}
+
+#header,#footer{
+  background: red;
+  height: 60px;
+}
+
+
+
+#content .aside{
+  float: left;
+  background: #ccc;
+  width: 300px;
+}
+
+#content .main{
+  background: pink;
+  overflow: hidden;
+}
+</style>
+</head>
+<body>
+  <div id="header">header</div>
+    <div id="content">
+        <div class="aside">aside</div>
+        <div class="main">
+            我是main
+            我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瀑布流</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        .contain {
+            position: relative;
+        }
+        .ct {
+            width: 200px;
+            position: absolute;
+            transition: all 1s;
+            margin: 10px;
+        }
+        .ct1 {
+            height:400px;
+            background-color: aliceblue;
+        }
+        .ct2 {
+            height:200px;
+            background-color: green;
+        }
+        .ct3 {
+            height:500px;
+            background-color: aqua;
+        }
+        .ct4 {
+            height:300px;
+            background-color: crimson;
+        }
+        .ct5 {
+            height:600px;
+            background-color: gold;
+        }
+        .ct6 {
+            height: 250px;
+            background-color: peru;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="ct ct1">1</div>
+        <div class="ct ct4">2</div>
+        <div class="ct ct3">3</div>
+        <div class="ct ct5">4</div>
+        <div class="ct ct1">5</div>
+        <div class="ct ct2">6</div>
+        <div class="ct ct6">7</div>
+        <div class="ct ct4">8</div>
+        <div class="ct ct3">9</div>
+        <div class="ct ct1">10</div>
+        <div class="ct ct4">11</div>
+        <div class="ct ct6">12</div>
+        <div class="ct ct3">13</div>
+        <div class="ct ct2">14</div>
+        <div class="ct ct3">15</div>
+        <div class="ct ct1">16</div>
+        <div class="ct ct3">17</div>
+        <div class="ct ct5">18</div>
+        <div class="ct ct4">19</div>
+        <div class="ct ct1">20</div>
+        <div class="ct ct6">21</div>
+        <div class="ct ct2">22</div>
+        <div class="ct ct3">23</div>
+        <div class="ct ct2">24</div>
+        <div class="ct ct5">25</div>
+        <div class="ct ct3">26</div>
+        <div class="ct ct6">27</div>
+        <div class="ct ct2">28</div>
+        <div class="ct ct5">29</div>
+        <div class="ct ct4">30</div>
+    </div>
+    <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+    <script>
+//        var flow = (function(){
+//
+//            var $win = $(window),
+//                $ct = $(".ct");
+//            function bind(){
+//                $win.on("resize",function(){
+//                        reset();
+//                });
+//
+//            }
+//            reset();
+//            function  reset(){
+//                var $winW = $win.width(),
+//                    $ctW = $ct.outerWidth(true),
+//                    cous = Math.floor($winW/$ctW),
+//                    couArr = [];
+//                for(var i = 0;i < cous;i++){
+//                    couArr.push(0);
+//                }
+//                $ct.each(function(){
+//                    var $cur = $(this);
+//                    var minVal = couArr[0];
+//                    var val = 0;
+//                    for(var i = 0;i < couArr.length;i++){
+//                        if(minVal > couArr[i]){
+//                            val = i;
+//                            minVal = couArr[i];
+//                        }
+//                    }
+//                    $cur.css({
+//                        "left":val * $ctW,
+//                        "top":minVal
+//                    })
+//                    couArr[val] = $cur.outerHeight(true) + couArr[val];
+//                })
+//
+//            }
+//            return {
+//                init:bind
+//            }
+//        })()
+//        flow.init();
+//        尝试一下jQuery插件的写法
+        $.fn.flow = function(){
+            var $cur = this,
+                $win = $(window);
+            $win.on("resize",function(){
+                changeFlex();
+            })
+            changeFlex();
+            function changeFlex(){
+                var $this = $cur.children(),
+                    thisW = $this.outerWidth(true),
+                    winW = $win.width(),
+                    count = Math.floor(winW/thisW),
+                    arr = [];
+                for(var i = 0;i < count;i++){
+                    arr.push(0);
+                }
+                $this.each(function(){
+                    var minVal = arr[0],
+                        idx = 0,
+                        $this = $(this);
+                    for(var i = 0;i < arr.length;i++){
+                        if(minVal > arr[i]){
+                            idx = i;
+                            minVal = arr[i];
+                        }
+                    }
+                    $this.css({
+                        "left":idx * thisW,
+                        "top":arr[idx]
+                    });
+                    arr[idx] = $this.outerHeight(true) + minVal;
+                })
+            }
+        }
+        $(".contain").flow();
+    </script>
+</body>
+</html>

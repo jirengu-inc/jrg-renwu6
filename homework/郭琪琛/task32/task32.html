@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task32</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            color: #777371;
+            font-size: 14px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .content {
+            position: relative;
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-item {
+            position: absolute;
+            box-sizing: border-box;
+            display: inline-block;
+            width: 280px;
+            padding: 10px 10px 0;
+            margin-top: 20px;
+            margin-left: 20px;
+            border: 1px solid #DFDFDF;\
+        }
+
+        .content-item>a {
+            display: block;
+        }
+
+        .content-item>h4 {
+            padding: 0.3em 0;
+            border-bottom: 1px solid #DBDBDB;
+            color: #000;
+            font-size: 1.2em;
+        }
+
+        .content-item>p {
+            margin: 1em 0;
+        }
+
+        .content-item img {
+            width: 100%;
+        }
+
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <ul class="content">
+<!--         <li class="content-item">
+            <a href="#!">
+                <img src="image/3.jpg" alt="">
+            </a>
+            <h4>深圳国家基因库相关图片</h4>
+            <p>深圳国家基因库相关图片</p>
+        </li> -->
+    </ul>
+    <div class="load"></div>
+    <script>
+        // 判断元素是否可视
+        var load
+        function isVisible() {
+            var nodeTop = $('.load').offset().top
+            var scrollTop = $(document).scrollTop()
+            var screenHeight = $(window).height()
+            if (nodeTop<scrollTop+screenHeight) {
+                load = true
+            } else {
+                load = false
+            }
+        }
+
+
+
+        //发起ajax请求
+        var count = 1
+        function getData() {
+            isVisible()
+            if (load) {
+                lock = true
+                $.ajax({
+                    url: 'http://platform.sina.com.cn/slide/album_tech',
+                    method: 'get',
+                    data: {
+                        app_key:1271687855,
+                        num:10,
+                        page:count
+                    },
+                    dataType: 'jsonp',
+                    jsonp: 'jsoncallback'
+                }).done(function(){
+                    count++
+                    lock = false
+                },renderData)
+            }
+        }
+        getData()
+
+
+        //懒加载
+        //第二种上锁的方法=>定时器
+        // var clock = 0
+        var lock = false
+        $(document).on('scroll', function(){
+            if (!lock) {
+                getData()
+            }
+            // clearTimeout(clock)
+            // clock = setTimeout(getData,1000)
+        })
+
+
+
+        //根据返回的数据生成dom节点
+        function renderData(res) {
+            $.each(res.data, function(index, item){
+                var title = $('<h4 />').html(item.short_name)
+                var intro = $('<p />').html(item.short_intro)
+                var img = $('<img />').attr('src',item.img_url)
+                var link = $('<a />').attr('href',item.url).append(img)
+                var listItem = $('<li />')
+                                .addClass('content-item')
+                                .append(link,title,intro)
+                                .appendTo($('.content'))
+                img.on('load', function(){
+                    layout()
+                })
+            })
+        }
+
+
+
+
+        //瀑布流布局
+        function layout() {
+            var screenWidth = $('.content').width()
+            var itemWidth = $('.content-item').outerWidth(true)
+            var column = Math.floor(screenWidth/itemWidth)
+            var columnHeight = []
+            for (var i = 0; i < column; i++) {
+                columnHeight.push(0)
+            }
+            $('.content-item').each(function(index, node) {
+                var $node = $(node)
+                var height = $node.outerHeight(true)
+                var minHeight = Math.min.apply(null,columnHeight)
+                var minIndex = columnHeight.indexOf(minHeight)
+                columnHeight[minIndex] += height
+                $node.css({
+                    top: minHeight,
+                    left: minIndex*itemWidth
+                })
+            })
+
+            //设置容器高度实现懒加载
+            function setContentHeight() {
+                var height = Math.min.apply(null, columnHeight)
+                $('.content').height(height)
+            }
+            setContentHeight()
+        }
+
+
+
+    </script>
+</body>
+</html>

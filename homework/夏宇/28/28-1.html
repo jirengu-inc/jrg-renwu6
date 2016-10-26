@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2016 by anonymous (http://js.jirengu.com/kunehivera/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+body{
+  height:2000px;
+}
+#nav{
+  height: 40px;
+  margin-top: 20px;
+  background: blue;
+}
+#header{
+  background: red;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+}
+#content{
+  min-height: 800px;
+  background: #ccc;
+  padding: 10px;
+  overflow: auto;
+}
+#content .aside{
+  float: left;
+  width: 100px;
+  min-height: 400px;
+  background: green;
+}
+#content .main{
+  overflow: auto;
+  background: #fff;
+  padding-left: 20px;
+  min-height: 800px;
+}
+#footer{
+  background: #333;
+}
+</style>
+</head>
+<body>
+<div id="header">header</div>
+<div id="nav">nav</div>
+<div id="content">
+  <div class="aside">aside</div>
+  <div class="main">main</div>
+</div>
+<div id="footer">footer</div>
+<script id="jsbin-javascript">
+
+$.fn.stick=function (){
+  var $t=this;
+      tHeight=$t.height();
+      tWidth=$t.width();
+      tLeft=$t.offset().left;
+      tTop=$t.offset().top;
+      onOff=true;
+  var $tClone=$t.clone();
+  $tClone.insertBefore($t)
+         .css({'opacity':0})   
+         .hide()
+  $(window).on('scroll',function(){
+    if($(window).scrollTop()>=tTop){
+      if(onOff){
+      setStick();}
+    }else{
+      if(!onOff){
+      delStict();
+        }
+    }
+  })
+  function setStick(){
+     $t.css({
+        'position':'fixed',
+        'top':0,
+        'left':tLeft,
+        'height':tHeight,
+        'width':tWidth,
+        'z-index': 100,
+        'margin':0
+      })
+      $tClone.show();
+      onOff=false;
+  }
+  function delStict(){
+    $t.removeAttr('style')
+    $tClone.hide();
+    onOff=true;
+
+  }
+}
+$('#nav').stick()
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <title></title>
+    <style>
+        .active{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .btn{
+            width: 30px;
+            height: 15px;
+            border-radius: 4px;
+            border: 1 solid red;
+            background-color: #0000ff;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    一、写出以下功能对应的 Jq 方法：<br>
+    1、给元素 $node 添加 class active，给元素 $noed  删除 class active<br>
+    <div id="node"></div>
+    <script>
+        $(function(){
+            $('#node').addClass('active');
+            $('#noed').removeClass('active');
+        })
+    </script>
+
+    2、展示元素$node, 隐藏元素$noed<br>
+    <div id="noed" class="active">haha</div>
+    <script>
+        $(function(){
+            $('#noed').hide();
+            $('#noed').show();
+        })
+    </script>
+    3、获取元素$node 的 属性: id、src、title， 修改以上属性<br>
+    <img id="img" src="http://avatar.csdn.net/C/1/1/1_lxpbs8851.jpg" title="title"></div>
+    <script>
+        $(function(){
+           console.log($('#img').attr('id'));
+           console.log($('#img').attr('src'));
+           console.log($('#img').attr('title'));
+
+
+            $('#img').attr('src','http://material.mediav.com/galileo/20160510/72715cb77961aa37996f6d9fe67c1697.jpg');
+            $('#img').attr('title','title_new');
+            $('#img').attr('id','img_new');
+
+            console.log($('#img_new').attr('id'));
+            console.log($('#img_new').attr('src'));
+            console.log($('#img_new').attr('title'));
+        })
+    </script><br>
+    4、给$node 添加自定义属性data-src<br>
+    <img id="data-src" src="http://avatar.csdn.net/C/1/1/1_lxpbs8851.jpg" title="title"></div>
+    <script>
+        $(function(){
+            $('#data-src').attr('data-src','http://material.mediav.com/galileo/20160510/72715cb77961aa37996f6d9fe67c1697.jpg');
+            console.log($('#data-src').attr('data-src'));
+        })
+    </script><br>
+    5、在$ct 内部最开头添加元素$node<br>
+    <div id="ct"></div>
+    <script>
+        $(function(){
+            $('#ct').prepend('<h1>test</h1>');
+
+        })
+    </script>
+    6、在$ct 内部最末尾添加元素$node<br>
+    <div id="ct2"><h2>first</h2></div>
+    <script>
+        $(function(){
+            $('#ct2').append('<h1>test</h1>');
+
+        })
+    </script>
+    7、删除$node<br>
+    <div id="ct3"><h2>three</h2></div>
+    <script>
+        $(function(){
+            $('#ct3').remove();
+        })
+    </script>
+    8、把$ct里内容清空<br>
+    <div id="ct4"><h2>three</h2></div>
+    <script>
+        $(function(){
+            $('#ct4').empty();
+        })
+    </script>
+    9、在$ct 里设置 html<br>
+    <div id="ct5"><h2>three</h2></div>
+    <script>
+        $(function(){
+            $('#ct5').html('<div class="btn"></div>');
+        })
+    </script>
+    10、获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)<br>
+    <div id="ct6"><h2>three</h2></div>
+    <script>
+        $(function(){
+            $node =  $('#ct6');
+            console.log($node.width());
+            console.log($node.innerWidth());
+            console.log($node.outerWidth());
+            console.log( $node.outerWidth(true));
+            console.log($node.height());
+            console.log($node.innerHeight());
+            console.log($node.outerHeight());
+            console.log($node.outerHeight(true));
+        })
+    </script>
+    11、获取窗口滚动条垂直滚动距离<br>
+    <script>
+        $(function(){
+            console.log($(window).scrollTop());
+        })
+    </script>
+
+    12、获取$node 到根节点水平、垂直偏移距离<br>
+    <div class="offset-div">
+        <div class="offset">
+        	offset
+        </div>
+    	<div class="offset-show">	
+    	</div>
+    </div>
+    <script>
+        $(function(){
+             $('.offset-show').html('竖直距离为：'+$('.offset').offset().top+'px'+'<br/>'+'水平位置为：'+$('.offset').offset().left+'px')          
+        })
+    </script>
+    13、修改$node 的样式，字体颜色设置红色，字体大小设置14px<br>
+    <div class="style">
+    	你好啊
+    </div>
+    <script>
+        $(function(){
+            $('.style').css({
+                'font-size':'14px',
+                'color':'red'
+            })
+        })
+    </script>
+
+    14、遍历节点，把每个节点里面的文本内容重复一遍<br>
+    <script>
+        $(function(){
+            $('.each-btn').on('click',function(){
+                $('.each li').each(function(idx,el){
+                    $('.each2').append($(this).clone());
+                })
+            })
+        })
+    </script>
+    15、从$ct 里查找 class 为 .item的子元素<br>
+    <div class="ct1">
+    	<ul>
+    		<li class="item">item 1</li>
+    		<li class="item">item 2</li>
+    		<li class="item">item 3</li>
+    	</ul>
+    </div>
+    <script>
+        $(function(){
+            console.log($('.ct1').find('.item').text());
+        })
+    </script>
+    16、获取$ct 里面的所有孩子<br>
+    <div class="ct2">
+    	<ul class="child">
+    		<li class="item">item 1</li>
+    		<li class="item">item 2</li>
+    		<li class="item">item 3</li>
+    	</ul>
+    </div>
+    <script>
+        $(function(){
+            console.log($('.child').children());
+        })
+    </script>
+    17、对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子<br>
+	<div class="ct-p1">
+		<div class="ct-p2">
+			<div class="curr-node">curr node</div>
+		</div>
+		<div class="panel">panel 1</div>
+		<div class="panel">panel 2</div>
+	</div>
+    <script>
+        $(function(){
+
+			$('.curr-node').parents('.ct-p1').find('.panel').css('background-color', 'red');
+
+        })
+    </script>
+    18、获取选择元素的数量<br>
+    <ul id="e-nums">
+    	<li>1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    </ul>
+    <script>
+        $(function(){
+            console.log('element len:'+$('#e-nums').children().length);
+        })
+    </script>
+    19、获取当前元素在兄弟中的排行<br>
+    <ul id="sibling-test">
+    	<li>1qqq</li>
+    	<li>2qqq</li>
+    	<li>3qqq</li>
+    	<li>4qqq</li>
+    </ul>
+    <div id="sibling-text"></div><br><br><br>
+    <script>
+        $(function(){
+            $('#sibling-test').on('click','li',function(){
+                $('#sibling-text').text('元素排行为：'+$(this).index())
+            })
+        })
+    </script>
+
+</body>
+</html>
+
+
+

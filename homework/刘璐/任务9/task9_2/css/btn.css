@@ -1,0 +1,36 @@
+﻿li {
+    width: 55px;
+    padding: 10px;
+    display: inline-block;
+    text-align: right;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+.process {
+    background: url(spritesheet.png) 0px 0px no-repeat;
+}
+
+.start {
+    background: url(spritesheet.png) 0px -43px no-repeat;
+}
+
+.stop {
+    background: url(spritesheet.png) 0px -88px no-repeat;
+}
+
+li:hover {
+    color: #AE00AE;
+}
+
+.process:hover {
+    background: url(spritesheet.png) -1px -135px no-repeat;
+}
+
+.start:hover {
+    background: url(spritesheet.png) -5px -184px no-repeat;
+}
+
+.stop:hover {
+    background: url(spritesheet.png) 4px -226px no-repeat;
+}

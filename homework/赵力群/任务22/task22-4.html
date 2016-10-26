@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task22-4</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        float: left;
+        list-style: none;
+        padding: 0 auto;
+        width: 200px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+        cursor: pointer;
+      }
+      li:first-child {
+        background-color: #eee;
+      }
+      .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      #ct2 {
+        width: 601px;
+        height: 200px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="ct1" class="clearfix">
+      <li>tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <div id="ct2">内容1</div>
+    <script>
+      var ct1 = document.querySelector('#ct1'),
+          ct2 = document.querySelector('#ct2');
+      ct1.addEventListener('click', function(event) {
+        var txt = event.target.innerText;
+        for(var i = 0; i < ct1.children.length; i++) {
+          ct1.children[i].style.backgroundColor = "#fff";
+        }
+        event.target.style.backgroundColor = "#eee";
+        ct2.innerText = '内容' + txt[txt.length-1];
+      });
+    </script>
+  </body>
+</html>

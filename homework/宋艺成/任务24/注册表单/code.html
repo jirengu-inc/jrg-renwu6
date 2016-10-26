@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册验证</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="register">
+    <h3>注册</h3>
+    <form>
+        <div class="user">
+            <span>输入用户名：</span>
+            <input class="username" type="text" placeholder="用户名" maxlength="10"><br>
+            <p class="nameprompt">只能是字母、数字、下划线，3-10个字符</p>
+        </div>
+        <div class="pwd">
+            <span>请输入密码：</span>
+            <input class="password" type="password" placeholder="请输入密码" maxlength="15"><br/>
+            <p class="pwdprompt">大写、小写字母、数字、下划线最少两种，6-15个字符</p>
+        </div>
+        <div class="putagain">
+            <span>请再输入一次：</span>
+            <input class="inputagain" type="password" placeholder="再输入一次"><br/>
+            <p class="checkagain"></p>
+        </div>
+        <button class="sub-btn">注册</button>
+    </form>
+</div>
+<script>
+    var user = document.getElementsByClassName("username")[0],
+            userLog = document.getElementsByClassName("nameprompt")[0],
+            pwd = document.getElementsByClassName("password")[0],
+            pwdLog = document.getElementsByClassName("pwdprompt")[0],
+            mksr = document.getElementsByClassName("inputagain")[0],
+            mksrLog = document.getElementsByClassName("checkagain")[0],
+            sub = document.getElementsByClassName("sub-btn")[0];
+    user.addEventListener("change",function(){
+        var judge = nameCheck(user.value);
+        if(!judge){
+            userLog.innerHTML = "格式错误，请重新输入";
+        }else{
+            ajax({
+                url:"data.php",
+                type:"get",
+                data:{
+                    username:user.value,
+                },
+                success:function(o){
+                    if(o === 0){
+                        userLog.innerHTML = "用户名可用";
+                    }
+                    if(o === 1){
+                        userLog.innerHTML = "用户名已存在";
+                    }},
+                error:function(){
+                    error();
+                }
+            });
+        }
+    });
+
+    function error(){
+        alert("something is error...");
+    }
+    pwd.addEventListener("change",function(){
+        var judge = passCheck(pwd.value);
+        if(!judge){
+            pwdLog.innerHTML = "格式错误，请重新输入";
+        }else{
+            pwdLog.innerHTML = " ";
+        }
+    });
+    mksr.addEventListener("change",function(){
+        var judge = passCheck(mksr.value);
+        if(!judge){
+            mksrLog.innerHTML = "格式错误，请重新输入";
+        }else{
+            if(mksr.value === pwd.value){
+                mksrLog.innerHTML = "输入正确";
+            }else{
+                mksrLog.innerHTML = "两次输入不一致，请重新输入";
+            }
+        }
+    })
+    function ajax(opts){
+        var xml = new XMLHttpRequest();
+        xml.onreadystatechange = function(){
+            if(xml.readyState === 4){
+                if(xml.status === 200){
+                    var json = JSON.parse(xml.responseText);
+                    opts.success(json);
+                }
+                if(xml.status === 404){
+                    opts.error();
+                }
+            }
+        }
+        var strdata = "";
+        for(var key in opts.data){
+            strdata += key + "=" + opts.data[key] + "&";
+        }
+        strdata = strdata.replace(/&$/,"");
+        if(opts.type.toLowerCase() === "get"){
+            xml.open(opts.type.toLowerCase(),opts.url + "?" + strdata,true);
+            xml.send();
+        }
+        if(opts.type.toLowerCase() === "post"){
+            xml.open(opts.type.toLowerCase(),opts.url,true);
+            xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xml.send(strdata);
+        }
+    }
+    function nameCheck(value){
+        return /^[A-z0-9_]{3,10}$/.test(value);
+    }
+    function passCheck(value){
+        if(/^[A-z0-9_]{6,15}$/.test(value)){
+            var i = 0;
+            if(/[A-Z]/.test(value)){
+                i += 1;
+            }
+            if(/[a-z]/.test(value)){
+                i += 1;
+            }
+            if(/[0-9]/.test(value)){
+                i += 1;
+            }
+            if(/[_]/.test(value)){
+                i += 1;
+            }
+        }
+        if(i >= 2){
+            return true;
+        }
+        return false;
+    };
+    sub.addEventListener("click",function(e){
+        e.preventDefault();
+        if(userLog.innerText === "用户名可用" && pwdLog.innerText === "" && mksrLog.innerText === "输入正确") {
+            alert("正在注册，请稍后...")
+        }else{
+            alert("信息填写不完善，请完善");
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>loadMore</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        li {
+            list-style:none;
+            padding:10px 0;
+            margin: 0 10px 10px;
+            background-color: maroon;
+            -webkit-border-radius:5px;
+            -moz-border-radius:5px;
+            border-radius:5px;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            background-color: darkslategrey;
+            padding:10px 0;
+            text-align: center;
+            width: 100px;
+            text-align: center;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+        li:hover {
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+<ul class="nav">
+    <li>内容1</li>
+    <li>内容2</li>
+</ul>
+<a href="#">加载更多</a>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+    var lazyLoad = (function(){
+        var $win = $(window),
+            start = 3,
+            len = 15,
+            $cur = $("a");
+            var clock;
+        $cur.data("loading",false);
+        function init(){
+            load();
+            $win.on("scroll",function(){
+                if(clock){
+                    console.log(1);
+                    clearTimeout(clock);
+                }
+                clock = setTimeout(function(){
+                    console.log(visible($cur));
+                    if(!visible($cur)) return;
+                    load();
+                },300);
+            })
+        }
+        function visible($node){
+            var $winH = $win.height(),
+                $srcT = $win.scrollTop(),
+                $nodeT = $node.offset().top;
+            if($winH + $srcT > $nodeT && $nodeT > $srcT){
+                return true;
+            }else{
+                return false;
+            } 
+        }
+        function load(){
+            if($cur.data("loading")) return;
+            $.ajax({
+                url:"a.php",
+                dataType:"json",
+                type:"get",
+                data:{
+                    start:start,
+                    len:len
+                },
+                success:function(json){
+                    success(json);
+                },
+                error:function(){
+                    alert("error");
+                    $cur.data("loading",false);
+                }
+            })
+        }
+        function success(json){
+            if(json.status === 1){
+                for(var i = 0;i < json.data.length;i++){
+                    var $node = $("<li></li>");
+                    $node.text(json.data[i]).appendTo(".nav");
+                }
+            }else{
+                alert("数据错误");
+            }
+            start += len;
+            $cur.data("loading",false);
+        }
+        return {
+            init:init
+        }
+    })();
+    lazyLoad.init();
+    // var $window = $(window),
+    //     start = 3,
+    //     len = 15;
+    // $("a").data("load",false);
+    // // $window.on("scroll",function(){
+    // //     if(judge("a")){
+    // //         load();
+    // //     }
+    // // });
+    // $window.on("scroll",function(){
+    //     var clock;
+    //     if(clock) clearTimeout(clock);
+    //     clock = setTimeout(function(){
+    //         if(!judge("a")) return;
+    //             load();
+    //     },300);
+    // })
+    // function judge(node){
+    //     var $height = $window.height();
+    //     var $scrollTop = $window.scrollTop();
+    //     var $top = $(node).offset().top;
+    //     if(($height + $scrollTop > $top) && ($top > $scrollTop)){
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    // load();
+    // function load(){
+    //     if($("a").data("load")) return;
+    //     $("a").data("load",true);
+    //     $.ajax({
+    //         url:"a.php",
+    //         type:"get",
+    //         dataType:"json",
+    //         data:{
+    //             start:start,
+    //             len:len
+    //         },
+    //         success:function(dat){
+    //             success(dat);
+    //         },
+    //         error:function(){
+    //             alert("something is wrong...");
+    //         }
+    //     })
+    // }
+    // function success(dat){
+    //     if(dat.status === 1){
+    //         for(var i = 0;i < dat.data.length;i++){
+    //             var $node = $("<li></li>");
+    //             $node.text(dat.data[i]);
+    //             $("ul").append($node);
+    //         }
+    //         start += len;
+    //     }else{
+    //         alert("数据错误");
+    //     }
+    //    $("a").data("load",false); 
+    // }
+</script>
+
+</body>
+</html>

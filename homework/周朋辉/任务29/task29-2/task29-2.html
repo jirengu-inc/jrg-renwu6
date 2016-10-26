@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task29-2</title>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	ul{
+		width: 800px;
+		margin: 0 auto;
+	}
+	ul::after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	li{
+		float: left;
+		margin: 10px;
+		list-style-type: none;
+	}
+	li img{
+		width: 220px;
+		height: 400px;
+	}
+</style>
+</head>
+<body>
+    <ul class="container">
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/1.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/1.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/1.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/2.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/2.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/2.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/2.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/2.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/2.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/3.jpg" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    	<li><a href="#"><img src="img/loading.gif" data-src="img/4.png" alt=""></a></li>
+    </ul>
+    <script>
+    /*
+    	$(function(){
+    		var clock;  //声明一个计时器
+    		$(window).on('scroll', function(){
+    			if(clock){  //一开始clock为undefined执行下面的clock赋值运算
+    				clearTimeout(clock);
+    			}
+    			//设置一个延时函数，400ms内如果鼠标不动则执行延时函数里面的函数；如果在400ms内鼠标滚动，那么if判断为true则执行清除延时函数，然后又执行赋值运算，如此反复 
+    			clock = setTimeout(function(){
+    				console.log("测试");
+    				checkShow();
+    			},400);
+    		});
+    		checkShow();  //窗口未滚动前执行一次，展示已经出现在窗口的图片
+    		function checkShow(){
+    			$("img").each(function(){
+    				var $cur = $(this);
+    				if($cur.attr('isloaded')){
+    					return;  //如果有这个属性代表无需再次去遍历了，减少资源浪费
+    				}
+    				if(isShow($cur)){
+    					showImg($cur);
+    				}
+    			});
+    		}
+    		function isShow($element){
+    			var scrollTop = $(window).scrollTop(),
+    				winH = $(window).height(),
+    				eleH = $element.offset().top;
+    			if( scrollTop+winH > eleH ){
+    				return true;
+    			}else{
+    				return false;
+    			}
+    		}
+    		function showImg($element){
+    			$element.attr('src', $element.attr('data-src'));
+    			$element.attr('isloaded', 'true');  //元素被属性被重新设置之后，添加一个新标记属性，代表已经加载了
+    			//这里true要不要引号，手册上好像没有boolean类型
+    		}
+    	});
+    	*/
+
+    	//模块化设计代码
+    	$(function(){
+    		var lazyLoad = {
+    			inint: function($imgs){
+    				var lazyLoadSelf = this; 
+    				this.$target = $imgs;
+    				this.bind();
+    				lazyLoadSelf.checkShow();
+    			},
+    			bind: function(){
+    				var lazyLoadSelf = this;
+    				$(window).on('scroll', function(){
+    					lazyLoadSelf.checkShow();
+    				});
+    			},
+    			checkShow: function(){
+    				var lazyLoadSelf = this;
+    				this.$target.each(function(){
+    					var $cur = $(this);
+    					if($cur.attr('isloaded')){
+    						return;
+    					}
+    					if(lazyLoadSelf.isShow($cur)){
+    						setTimeout(function(){
+    							lazyLoadSelf.showImg($cur);
+    						}, 400);
+    					}
+    				});
+    			},
+    			isShow: function($element){
+    				var scrollTop = $(window).scrollTop(),
+    					winH = $(window).height(),
+    					eleH = $element.offset().top;
+    				if(eleH < winH+scrollTop){
+    					return true;
+    				}else{
+    					return false;
+    				}
+    			},
+    			showImg: function($element){
+    				$element.attr('src', $element.attr('data-src'));
+    				$element.attr('isloaded', 'true');
+    			}
+    		}
+
+    		lazyLoad.inint( $("img") );
+    	});
+    </script>
+</body>
+</html>

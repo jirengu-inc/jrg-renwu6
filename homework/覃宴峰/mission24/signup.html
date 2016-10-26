@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>signup</title>
+	<style type="text/css">
+		body,html{
+			margin:0px;
+			padding:0px;
+			font-size:14px;
+		}
+
+		*{
+			box-sizing:border-box;
+		}
+
+		input:focus{
+			outline:none
+		}
+
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		.input_table>dt{
+			float:left;
+			line-height:30px;
+		}
+
+		.input_table dd{
+			margin-left:100px;
+
+		}
+
+		.input_name,.input_psw01,.input_psw02{
+			width:300px;
+			height:30px;
+			border:1px solid #ccc;
+			border-radius:5px;
+		}
+
+		.input_text_name,.input_text_password{
+			margin:10px 0px 10px;
+			color:#ccc;
+		}
+
+		.sub{
+			margin-left:200px;
+		}
+
+
+	</style>
+</head>
+<body>
+<h3>用户注册</h3>
+<form id="signup" action="#">
+	<dl class="input_table clearfix">
+		<dt>用户名:</dt>
+			<dd><input class="input_name" type="text" name="user" placeholder="输入用户名"></dd>
+			<dd class="input_text_name">只能是字母、数字、下划线，3-10个字符</dd>
+		
+		<dt>密码:</dt>
+			<dd><input class="input_psw01" type="password" name="user" placeholder="输入密码"></dd>
+			<dd class="input_text_password">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+		
+		<dt>确认密码:</dt>
+			<dd><input class="input_psw02" type="password" name="user" placeholder="再次输入密码"></dd>
+		
+	</dl>
+	<button class="sub">注册</button>
+</form>
+
+<script type="text/javascript">//封装ajax
+	function ajax(opts){
+		var xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState===4 && xmlhttp.status===200){
+				var json=JSON.parse(xmlhttp.responseText)
+				opts.success(json)
+			} else if(xmlhttp.status===404){
+				opts.error();
+			}
+		}
+
+		var data_str="";
+		for(var key in opts.data){
+			data_str += key + "=" +opts.data[key]+"&";
+		}
+		data_str=data_str.substr(0,data_str.length-1);
+
+		if(opts.type.toLowerCase()==="get"){
+			xmlhttp.open("GET",opts.url+"?"+data_str,true);
+			xmlhttp.send();
+		}
+
+		if(opts.type.toLowerCase()==="post"){
+			xml.http.open("POST",opts.url,true)
+			xml.http.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+			xmlhttp.send(data_str)
+		}
+
+	}
+</script>
+
+<script type="text/javascript">
+
+	function checkname(str){//检查用户名
+		var regname=new RegExp('^\\w{3,10}$','g')
+		return regname.test(str)
+	}
+
+	function onsuccess(json){
+		if(json===0){
+			ipttx.innerText="用户名已存在";
+			iptname.style.border="1px solid red"
+		}
+
+		if(checkname(iptname.value) && json===1){//判断用户名是否已存在，判断用户名是否符合约定规则
+			ipttx.innerText="用户名可用";
+			iptname.style.border="1px solid #ccc"
+		}
+
+		if(!checkname(iptname.value)){//为什么不能用this.usrnm????  
+			ipttx.innerText="用户名格式错误";
+			iptname.style.border="1px solid red"
+		}
+	}
+
+	function onerror(){
+		alert("获取数据错误")
+	}
+
+	var iptname=document.querySelector(".input_name"),
+	ipttx=document.querySelector(".input_text_name"),
+	iptps1=document.querySelector(".input_psw01"),
+	iptps2=document.querySelector(".input_psw02"),
+	iptpstx=document.querySelector(".input_text_password"),
+	subm=document.querySelector(".sub")
+
+	iptname.addEventListener("change",function(mousev){
+		var usrnm=iptname.value
+		ajax({
+			url:"task24-3.php",
+			type:"get",
+			data:{
+				usInfo:usrnm
+			},
+			success:function(json){
+				onsuccess(json)
+			},
+			error:function(){
+				onerror()
+			}
+		})
+	},false)
+
+	function checkpassword(str){
+		var regpsw=/^\w{6,15}$/
+		if(regpsw.test(str)){
+                if(/^[a-z]+$/.test(str)) return false;
+                else if(/^[A-Z]+$/.test(str)) return false;
+                else if(/^\d+$/.test(str)) return false;
+                else if(/^_+$/.test(str)) return false;
+                else return true;
+            }else return false;
+	}
+
+	iptps1.addEventListener("change",function(mousev){//第一次验证密码格式
+		if(!checkpassword(iptps1.value)){
+			iptpstx.innerText="密码格式错误"
+			iptps1.style.border="1px solid red"
+		} else{
+			iptpstx.innerText="";
+			iptps1.style.border="1px solid #ccc"
+		}
+	},false)
+
+	iptps2.addEventListener("change",function(mousev){//第二次验证密码格式，验证两次输入是否一致
+		if(!checkpassword(iptps2.value)){
+			iptpstx.innerText="密码格式错误"
+			iptps1.style.border="1px solid red"
+		} else if(iptps1.value!==iptps2.value){
+			iptpstx.innerText="两次输入密码不一致"
+			iptps2.style.border="1px solid red"
+		} else{
+			iptpstx.innerText=""
+			iptps1.style.border="1px solid #ccc"
+		}
+	},false)
+
+	subm.addEventListener("click",function(mousev){
+		mousev.preventDefault();
+		if(checkname(iptname.value) && iptps1.value==iptps2.value){
+			alert("注册中...")
+		} else{
+			alert("请重新填写")
+		}
+	},false)
+</script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2016 by anonymous (http://js.jirengu.com/nohemaxiha/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+*{
+  margin:0;
+  padding:0;
+}
+ul,li{
+  list-style:none;
+}
+a{
+  text-decoration:none;
+  font:inherit;
+  color:inherit;
+}
+.clearfix:after{
+  content:'';
+  clear:both;
+  display:block;
+}
+.nav-list{
+  float:left;
+  padding:5px 0px;
+  font-size:14px;
+}
+.nav-list a{
+  border-right:1px solid #ccc;
+  padding:0 10px;
+
+}
+.wrapper :last-child a{
+  border:none;
+}
+.wrapper{
+  border:2px solid #ccc;
+  border-bottom:none;
+  display:inline-block;
+  vertical-align:middle;
+}
+li.active{
+  background:#ccc;
+  color:#c81623;
+}
+.a{
+  width:680px;
+  border: 1px solid #ccc;
+  display:none;
+}
+
+.goodWrapper{
+  margin-right:-10px;
+  margin-bottom:-10px;
+
+}
+.goodsList{
+  width:220px;
+  text-align:center;
+  box-sizing:border-box;
+  padding:0 10px;
+  position:relative;
+  float:left;
+  margin:0 10px 10px 0;
+    border: 1px solid #eee;
+
+}
+.goodsList p{
+  text-align:left;
+}
+.cover{
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background: rgba(0,0,0, 0.3);
+    transition: all 0.3s;
+transition: all 0.3s;
+  opacity: 0;
+
+}
+.cover:hover{
+  opacity:1;
+}
+.cover .btn{
+  position:absolute;
+  left:50%;
+  top:50%;
+  padding:10px 15px;
+  border: 1px solid #c81623;
+  color: #c81623;
+  border-radius: 3px;
+  margin-left:-48px;
+  margin-top:-20px;
+    background: #fff;
+}
+.goodsName{
+  text-align: left;
+  font-weight: normal;
+  font-size: 12px;
+  color: #666;
+
+}
+.goodsPrice{
+  text-align: left;
+  color: #c81623;
+}
+div.active{
+  display:block;
+}
+.btn-add{
+	margin-top: 20px;
+}
+
+
+
+
+
+
+</style>
+</head>
+<body>
+ <div>
+            <ul class="wrapper clearfix">
+                <li class="nav-list active"><a href="#">关键词</a></li>
+            </ul>
+        </div>
+        <div class="a active">
+            <ul class="goodWrapper clearfix">
+                <li class="goodsList">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <p class="goodsName">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="goodsPrice">￥1699.00</p>
+                    <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                </li>
+                <li class="goodsList">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <p class="goodsName">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="goodsPrice">￥1699.00</p>
+                    <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                </li>
+                <li class="goodsList">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <p class="goodsName">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="goodsPrice">￥1699.00</p>
+                    <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                </li>
+                <li class="goodsList">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <p class="goodsName">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="goodsPrice">￥1699.00</p>
+                    <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                </li>
+                <li class="goodsList">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <p class="goodsName">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="goodsPrice">￥1699.00</p>
+                    <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                </li>
+                <li class="goodsList">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <p class="goodsName">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="goodsPrice">￥1699.00</p>
+                    <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                </li>
+            </ul>
+
+
+        </div>
+            <a href="#" class="btn btn-add">添加</a>
+<script id="jsbin-javascript">
+var products = [
+	{
+		img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+		name: '珂兰 黄金手 猴哥款',
+		price: '￥405.00'
+	},{
+		img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+		name: '珂兰 黄金转运珠 猴哥款',
+		price: '￥100.00'
+	},{
+		img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+		name: '珂兰 黄金手链 3D猴哥款',
+		price: '￥45.00'
+	}
+];
+function getProdHtml(prod){
+	var html = '';
+	html += '<li class="goodsList">';
+	html +=   '<img src="'+prod.img+'" alt="">'
+	html +=   '<p class="goodsName">'+prod.name+'</p>'
+	html +=   '<p class="goodsPrice">'+prod.price+'</p>'
+	html +=   '<div class="cover"><a class="btn" href="#">立即抢购</a></div>'
+	html += '</li>'
+	return html;
+}
+$('.btn-add').on('click',function(ev){
+  ev.preventDefault();
+  $.each(products,function(i,v){
+    var html=getProdHtml(v)
+    $('.goodWrapper').append(html)
+  })
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>任务25-1</title>
+  <style>
+  html,body,ul,li{
+  padding: 0;
+  margin: 0;
+}
+ul,li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: #000;
+}
+.catalog{
+  position: relative;
+}
+.nav-font{
+  display: inline-block;
+  background: #ab0606;
+  color: #fff;
+  padding: 10px;
+}
+.icon-font{
+  margin-left: 80px;
+}
+.child-ul{
+  display: none;
+  border: 1px solid;
+  width: 200px;
+  position: absolute;
+  top: 0px;
+  left: 180px;
+}
+.child-ul li{
+  float: left;
+  margin: 8px 60px 8px 8px;
+  font-size: 14px;
+}
+.child-ul:after{
+  content: "";
+  clear: both;
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <ul>
+  <li class="catalog">
+    <a href="#" class="nav-font">珠宝玉器
+      <span class="icon-font"> > </span>
+     </a>
+  <ul class="child-ul">
+    <li><a href="">翡翠</a></li>
+    <li><a href="">玉石</a></li>
+    <li><a href="">宝石</a></li>
+    <li><a href="">水晶</a></li>
+    <li><a href="">玛瑙</a></li>
+    <li><a href="">珍珠</a></li>
+  </ul>
+</li>
+<li class="catalog">
+  <a href="#" class="nav-font">珠宝玉器
+    <span class="icon-font"> > </span>
+   </a>
+<ul class="child-ul">
+  <li><a href="">翡翠</a></li>
+  <li><a href="">玉石</a></li>
+  <li><a href="">宝石</a></li>
+  <li><a href="">水晶</a></li>
+  <li><a href="">玛瑙</a></li>
+  <li><a href="">珍珠</a></li>
+</ul>
+</li>
+<li class="catalog">
+  <a href="#" class="nav-font">珠宝玉器
+    <span class="icon-font"> > </span>
+   </a>
+<ul class="child-ul">
+  <li><a href="">翡翠</a></li>
+  <li><a href="">水晶</a></li>
+  <li><a href="">玛瑙</a></li>
+  <li><a href="">珍珠</a></li>
+</ul>
+</li>
+<li class="catalog">
+  <a href="#" class="nav-font">珠宝玉器
+    <span class="icon-font"> > </span>
+   </a>
+<ul class="child-ul">
+  <li><a href="">翡翠</a></li>
+  <li><a href="">玉石</a></li>
+  <li><a href="">宝石</a></li>
+  <li><a href="">水晶</a></li>
+</ul>
+</li>
+<li class="catalog">
+  <a href="#" class="nav-font">珠宝玉器
+    <span class="icon-font"> > </span>
+   </a>
+<ul class="child-ul">
+  <li><a href="">水晶</a></li>
+  <li><a href="">玛瑙</a></li>
+  <li><a href="">珍珠</a></li>
+</ul>
+</li>
+  </ul>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script>
+  $(".catalog").on('mouseenter',function(){
+    $(this).find('.child-ul').show()
+  });
+  $(".catalog").on('mouseout',function(){
+    $(this).find('.child-ul').hide()
+  });
+  </script>
+</body>
+</html>

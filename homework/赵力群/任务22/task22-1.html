@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task22-1</title>
+  </head>
+  <body>
+    <ul class="ct">
+      <li>这里是</li>
+      <li>饥人谷</li>
+      <li>任务6班</li>
+    </ul>
+    <script>
+      var el = document.getElementsByClassName('ct');
+      function handler(event) {
+        console.log(event.target.innerHTML);
+      }
+      el[0].addEventListener('click', handler);
+    </script>
+  </body>
+</html>

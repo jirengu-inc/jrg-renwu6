@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task22-3</title>
+  </head>
+  <body>
+    <ul class="ct">
+      <li data-img="img/1.jpg">鼠标防止查看图片1</li>
+      <li data-img="img/2.jpg">鼠标防止查看图片2</li>
+      <li data-img="img/3.jpg">鼠标防止查看图片3</li>
+    </ul>
+    <div class="img-preview"></div>
+    <script>
+      var ct = document.querySelector('.ct'),
+          imgPreview = document.querySelector('.img-preview'),
+          dataImg = document.createElement('img');
+      ct.addEventListener('mouseover', function(event) {
+        var txt = event.target.getAttribute('data-img');
+        dataImg.setAttribute('src', txt);
+        imgPreview.appendChild(dataImg);
+      });
+    </script>
+  </body>
+</html>

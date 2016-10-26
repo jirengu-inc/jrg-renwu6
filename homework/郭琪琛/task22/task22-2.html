@@ -35,6 +35,8 @@ end.addEventListener('click',function(){
     }
 })
 ct.addEventListener('click',function(e){
-    console.log(e.target.innerText)
+    if (e.target.nodeName === 'LI') {
+        console.log(e.target.innerText)
+    }
 })
 </script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务3-2</title>
+</head>
+<body>
+<ul class="ct">
+    <li data-img="1.jpg">鼠标放置查看图片1</li>
+    <li data-img="2.jpg">鼠标放置查看图片2</li>
+    <li data-img="3.jpg">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview"></div>
+<script>
+    var oDiv = document.querySelector(".img-preview"),
+        newImg = document.createElement("img");
+    oDiv.appendChild(newImg);
+    var oUl = document.querySelector(".ct");
+    oUl.addEventListener("mouseover",function(ev){
+        var source = ev.target.getAttribute("data-img");
+        newImg.setAttribute("src",source);
+    },false);
+</script>
+</body>
+</html>

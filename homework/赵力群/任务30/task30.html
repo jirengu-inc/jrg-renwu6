@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task30</title>
+    <style type="text/css">
+      html, body, div {
+        margin: 0;
+        padding: 0;
+      }
+      .ct {
+        position: relative;
+      }
+      .item {
+        position: absolute;
+        width: 200px;
+        margin: 10px 10px 0 0;
+        transition: all 1s;
+      }
+      .h1 {
+        height: 200px;
+        background-color: rgba(255, 0, 0, 0.5);
+      }
+      .h2 {
+        height: 400px;
+        background-color: rgba(0, 0, 255, 0.5);
+      }
+      .h3 {
+        height: 300px;
+        background-color: rgba(0, 255, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ct">
+      <div class="item h1">1</div>
+      <div class="item h2">2</div>
+      <div class="item h1">3</div>
+      <div class="item h3">4</div>
+      <div class="item h2">5</div>
+      <div class="item h1">6</div>
+      <div class="item h1">7</div>
+      <div class="item h2">8</div>
+      <div class="item h3">9</div>
+      <div class="item h2">10</div>
+      <div class="item h2">11</div>
+      <div class="item h3">12</div>
+      <div class="item h1">13</div>
+      <div class="item h3">14</div>
+      <div class="item h1">15</div>
+      <div class="item h1">16</div>
+      <div class="item h2">17</div>
+      <div class="item h1">18</div>
+      <div class="item h3">19</div>
+      <div class="item h3">20</div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      // 按思路实现
+
+      function waterFall() {
+
+        var nodeW = $('.item').outerWidth(true),
+            colNum = parseInt($(window).width() / nodeW),
+            colSumHeight = [];
+
+        for(var i = 0; i < colNum; i++) {
+          colSumHeight.push(0);
+        }
+
+        $('.item').each(function() {
+          var $cur = $(this);
+          var idx = 0,
+              colMinHeight = colSumHeight[0];
+          for(var i = 0; i < colSumHeight.length; i++) {
+            if(colSumHeight[i] < colMinHeight) {
+              idx = i;
+              colMinHeight = colSumHeight[i];
+            }
+          }
+          $cur.css({
+            'top': colMinHeight,
+            'left': nodeW * idx
+          });
+          colSumHeight[idx] += $cur.outerHeight(true);
+        });
+      }
+      waterFall();
+      $(window).on('resize', function() {
+        waterFall();
+      });
+
+      // 闭包封装函数，保证函数的安全性
+
+      /*
+      var falls = (function() {
+
+        function waterFall() {
+
+          var nodeW = $('.item').outerWidth(true),
+              colNum = parseInt($(window).width() / nodeW),
+              colSumHeight = [];
+
+          for(var i = 0; i < colNum; i++) {
+            colSumHeight.push(0);
+          }
+
+          $('.item').each(function() {
+            var $cur = $(this);
+            var idx = 0,
+                colMinHeight = colSumHeight[0];
+            for(var i = 0; i < colSumHeight.length; i++) {
+              if(colSumHeight[i] < colMinHeight) {
+                idx = i;
+                colMinHeight = colSumHeight[i];
+              }
+            }
+            $cur.css({
+              'top': colMinHeight,
+              'left': nodeW * idx
+            });
+            colSumHeight[idx] += $cur.outerHeight(true);
+          });
+        }
+        waterFall();
+        $(window).on('resize', function() {
+          waterFall();
+        });
+
+        return {
+          init: waterFall
+          }
+        }
+      })();
+      falls.init();
+      */
+    </script>
+  </body>
+</html>

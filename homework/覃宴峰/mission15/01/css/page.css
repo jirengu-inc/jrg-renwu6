@@ -1,0 +1,143 @@
+html, body, p, h1, h2, ul, li {
+    margin: 0px;
+    padding: 0px;
+    color: #666666;
+}
+a {
+    text-decoration: none;
+    color: #666666;
+}
+ul {
+    list-style: none;
+}
+.wrap {
+    width: 1000px;
+    margin: 0 auto;
+}
+.fixclear:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.mark {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #666;
+    border-bottom: 5px solid transparent;
+}
+ul.nav-child {
+    background: #fff;
+    font-size: 16px;
+    line-height: 100%;
+    margin-left: -10px;
+    position: absolute;
+    border: 1px solid #ccc;
+    display: none;
+}
+ul.nav-child li {
+    border-bottom: 1px dashed #ccc;
+    padding: 10px;
+}
+.nav-hover:hover .nav-child {
+    display: block;
+}
+.nav-child li:hover {
+    background: #eee;
+}
+.nav>.wrap>.fixclear>li, .nav>.wrap>.fixclear>li i {
+    float: left;
+    line-height: 60px;
+    padding-right: 15px;
+}
+.nav a:hover {
+    color: #000;
+}
+#header>.nav>.wrap>ul {
+    height: 60px;
+}
+#banner {
+    background: #B84D45;
+}
+#banner .text-title {
+    padding: 30px 0px;
+}
+#banner .text-title h2, #banner .text-title p {
+    color: white;
+    padding-top: 5px;
+}
+#main .top-bar {
+    background: #ccc;
+    margin: 40px 0px;
+    height: 40px;
+}
+#main .top-bar a {
+    line-height: 40px;
+    color: #B84D45;
+    padding-left: 10px;
+}
+.footer-banner {
+    background: #B84D45;
+}
+.footer-banner h2, .footer-banner p, .footer-banner a {
+    color: #fff;
+}
+#footer .wrap {
+    text-align: center;
+}
+.center {
+    display: inline-block;
+}
+.center h2 {
+    margin-top: 20px;
+}
+.center p {
+    margin: 10px 0px;
+}
+.center a {
+    display: inline-block;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+hr {
+    margin: 40px 0px;
+    border: 0.5px solid #eee;
+}
+hr+p {
+    font-size: 12px;
+    padding-bottom: 50px;
+}
+.main-list {
+    margin-left: -40px;
+    /*ul整体向左移动40px,这里的40px是li的左右间隔距离*/
+}
+.main-list>li {
+    border: 1px solid #eee;
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    /*每个li向左移动40px，正好等于ul向左整体移动的距离*/
+}
+.main-list-img img {
+    height: 200px;
+    width: 300px;
+}
+.main-list-img {
+    text-align: center;
+}
+.main-list-img a {
+    display: inline-block;
+    margin: 10px 0px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.main-list-img a:hover {
+    color: #000;
+}
