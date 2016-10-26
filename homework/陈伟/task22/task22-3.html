@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>task22-3</title>
+</head>
+<body>
+  <ul class="ct">
+    <li data-img="http://cms-bucket.nosdn.127.net/d2ea964c1a694988a1d3719c0faacd7820160914114648.jpeg?imageView&thumbnail=550x0">鼠标放置查看图片1</li>
+    <li data-img="http://www.hinews.cn/pic/003/012/637/00301263743_2baf12cb.jpg">鼠标放置查看图片2</li>
+    <li data-img="http://www.cntvan.com/newimg/2016/0831/20160831121200243.jpg">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview"></div>
+<script type="text/javascript">
+var ct = document.querySelector(".ct"),
+  previewImg = document.querySelector(".img-preview"),
+  img = document.createElement("img");
+ct.addEventListener("mouseover",function (event){
+
+    var imgSrc = event.target.getAttribute("data-img");
+   img.setAttribute("src",imgSrc);
+previewImg.appendChild(img);
+});
+</script>
+</body>
+</html>
