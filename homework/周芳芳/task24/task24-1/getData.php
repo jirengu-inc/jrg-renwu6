@@ -1,5 +1,5 @@
 <?php
-      header("Content-type:")
+      header("Content-type:");
       $username = $_GET['username'];
       if($username === 'xiaoming'){
       	$ret = array('username'=>'xioaming','password'=>'abcd1234');
@@ -8,3 +8,9 @@
       }
       echo json_encode($ret);
 ?>
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task22-4</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            box-sizing: border-box;
+        }
+
+        ul {
+            font-size: 0;
+        }
+
+        li {
+            list-style: none;
+            font-size: 18px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid black;
+            width: 30%;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        #tab:nth-child(2) {
+            border-left: none;
+            border-right: none;
+        }
+
+        .content {
+            border: 1px solid black;
+            font-size: 18px;
+            line-height: 30px;
+            height: 200px;
+            width: 90%;
+            border-top: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id=tab>
+        <li>tab1</li>
+        <li>tab2</li>
+        <li>tab3</li>
+    </ul>
+    <div class="content">
+    </div>
+    <script type="text/javascript">
+        var tab = document.querySelector("#tab"),
+            content = document.querySelector(".content");
+        tab.addEventListener("click", function(event) {
+            for (var i = 0; i < tab.children.length; i++) {
+                tab.children[i].style.backgroundColor = "	transparent";
+            }
+            event.target.style.backgroundColor = "#ccc";
+            var text = event.target.innerText.match(/\d/)[0];
+            content.innerText = "内容" + text;
+        });
+    </script>
+</body>
+
+</html>
