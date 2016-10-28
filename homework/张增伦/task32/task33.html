@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        html,body,ul,li,p,div{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        .wrap{
+            width: 900px;
+            margin: 0 auto;
+        }
+
+        #pic-ct{
+            position: relative;
+        }
+
+        #pic-ct li{
+            position: absolute;
+            padding: 0 0 10px 0;
+            width: 280px;
+            margin: 10px;
+            border: 1px solid #DFDFDF;
+            background: #FFF;
+            opacity: 0;
+            transition: all .8s;
+        }
+
+        #pic-ct li img{
+            margin: 10px;
+            width: 260px;
+        }
+
+        #pic-ct li p{
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 10px 15px 0;
+            color: #777371;
+        }
+
+        #pic-ct li h4{
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+
+        #load{
+            visibility: hidden;
+            height: 20px;
+        }
+
+        .hide{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div id="pic-ct">
+            <ul>
+                <li class="hide"></li>
+            </ul>
+            <div style="clear:both"></div>
+            <div id="load">我是看不见的</div>
+        </div>
+    </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+
+    var Waterfull =  (function(){
+
+        var picCt = '#pic-ct';
+        function checkShow(){
+            if(isShow($('#load'))){
+
+                load();
+            }
+        }
+        function isShow($el){
+            var scrollH = $(window).scrollTop(),
+                    winH = $(window).height(),
+                    top = $el.offset().top;
+
+            if(top < winH + scrollH){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function load(){
+            var curPage = 1, pageSize = 9;
+            $.ajax({
+                url: 'http://platform.sina.com.cn/slide/album_tech',
+                dataType: 'jsonp',
+                jsonp:"jsoncallback",
+                data: {
+                    app_key: '1271687855',
+                    num: pageSize,
+                    page: curPage
+                }
+            }).done(function(ret){
+                if(ret && ret.status && ret.status.code === "0"){
+                   place(ret.data);
+                }else{
+                    console.log('get error data');
+                }
+            });
+        }
+
+        function place(nodeList){
+            console.log(nodeList);
+            var $nodes = renderData(nodeList);
+
+            var defereds = [];
+            $nodes.find('img').each(function(){
+                var defer = $.Deferred();
+                $(this).load(function(){
+                    defer.resolve();
+                });
+                defereds.push(defer);
+            });
+            $.when.apply(null,defereds).done(function() {
+                console.log('new images all loaded ...');
+                waterFallPlace($nodes);
+            });
+        }
+
+        // 瀑布流
+        var colSumHeight = [],
+                nodeWidth = $('li').outerWidth(true),
+                colNum = parseInt($(picCt).width()/nodeWidth);
+
+        for(var i=0; i<colNum; i++){
+            colSumHeight.push(0)
+        }
+
+        function waterFallPlace($nodes){
+            $nodes.each(function(){
+                var $cur = $(this);
+                var idx = 0,
+                        minSumHeight = colSumHeight[0];
+
+                for(var i=0;i<colSumHeight.length; i++){
+                    if(colSumHeight[i] < minSumHeight){
+                        idx = i;
+                        minSumHeight = colSumHeight[i];
+                    }
+                }
+
+                $cur.css({
+                    left: nodeWidth*idx,
+                    top: minSumHeight,
+                    opacity: 1
+                });
+
+                colSumHeight[idx] = $cur.outerHeight(true) + colSumHeight[idx];
+                $(picCt).height(Math.max.apply(null,colSumHeight));
+            });
+
+        }
+
+        function renderData(items){
+            var tpl = '',
+                    $nodes;
+            for(var i = 0;i<items.length;i++){
+                tpl += '<li class="'+ items[i].url +'">';
+                tpl += '        <a href="#">';
+                tpl += '        <img src="'+ items[i].img_url +'" alt="">';
+                tpl += '       </a>';
+                tpl += '<h4>'+ items[i].short_name +'</h4>';
+                tpl += '<p>';
+                tpl += ''+items[i].short_intro+'';
+                tpl += '</p>';
+                tpl += '</li>';
+            }
+            $nodes = $(tpl);
+            $(picCt).append($nodes);
+            return $nodes;
+        }
+
+        function init() {
+            var clock;
+            $(window).on('scroll', function(){
+                //用户鼠标滚轮滚动一次，有多次事件响应。下面的 setTimeout 主要是为性能考虑，只在最后一次事件响应的时候执行 checkshow
+                if(clock){
+                    clearTimeout(clock);
+                }
+                clock = setTimeout(function(){
+                    checkShow();
+                }, 100);
+            });
+
+            checkShow();
+        }
+
+        return {
+            init: init
+        }
+
+    })();
+
+    Waterfull.init();
+
+    </script>
+
+
+
+</body>
+</html>
