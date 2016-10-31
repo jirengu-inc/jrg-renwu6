@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <style>
+
+        html,body,div,ul,li,a,p{
+            margin:0;padding: 0;
+        }
+        a {text-decoration: none;}
+        ul,li{
+            list-style: none;
+        }
+
+        p{
+            line-height: 3;
+        }
+        #go-top{
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            border: 1px solid red;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+        }
+
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容3</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容4</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容6</p><p>内容1</p>
+<p>内容7</p>
+<p>内容4</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容6</p><p>内容1</p>
+<p>内容7</p>
+<p>内容4</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容1</p><p>内容1</p>
+<p>内容6</p><p>内容1</p>
+<p>内容7</p>
+
+<p>
+    <pre><span style="font-size: 16px;font-weight: bold">首都师范</span><br>1、ssdsdsfs
+    2、sdsdf
+    </pre>
+</p>
+
+
+<script>
+
+    var goTop = (function(){
+        function GoTop(ct,target){
+            this.ct = ct;
+            this.target =target;
+            this.createNode(this.target);
+            this.bindEvent();
+        }
+
+        GoTop.prototype.createNode = function(node) {
+            this.ct.append(node);
+        }
+
+        GoTop.prototype.bindEvent = function(){
+            var self = this;
+            $(window).on('scroll', function(e){
+                var offsetTop = self.ct.scrollTop();
+                console.log(offsetTop);
+                if(offsetTop>100){
+                    self.target.show();
+                }else{
+                    self.target.hide();
+                }
+            })
+            self.target.on('click', function(){
+                $(window).scrollTop(0);
+            });
+        }
+
+        function init(ct,target){
+            return new GoTop(ct,target);
+        }
+
+        return {
+            init: init
+        }
+
+    })();
+
+    goTop.init($('body'),$('<div id="go-top">回到顶部</div>'));
+
+
+</script>
+
+</body>
+</html>
