@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task35-2</title>
+    <style type="text/css">
+      .content {
+        height: 2000px;
+      }
+      .go-top {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 20px;
+        background-color: #ccc;
+      }
+      .go-top:hover {
+        cursor: pointer;
+      }
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      请向下滚动
+    </div>
+    <div class="ct1"></div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+    function GoTop(ct, target) {
+      this.ct = ct;
+    }
+    GoTop.prototype = {
+      constructor: GoTop,
+      bindEvent: function() {
+        var target = this.target;
+        target.addEventListener('click', function() {
+          document.body.scrollTop = 0;
+        });
+        window.addEventListener('scroll', function() {
+          if(document.body.scrollTop >= 200) {
+            target.className += ' show';
+          } else if(document.body.scrollTop < 200) {
+            target.className = 'go-top';
+          }
+        });
+      },
+      createNode: function() {
+        var node = document.createElement('div');
+        node.innerHTML = '回到顶部';
+        node.className = 'go-top';
+        this.target = this.ct.appendChild(node);
+      }
+    };
+
+    var ct1 = document.getElementsByClassName('ct1')[0];
+    var goTop1 = new GoTop(ct1);
+    goTop1.createNode();
+    goTop1.bindEvent();
+    </script>
+  </body>
+</html>
