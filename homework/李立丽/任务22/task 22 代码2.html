@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>代码2</title>
+</head>
+<body>
+	<ul class="ct">
+	    <li>这里是</li>
+	    <li>饥人谷</li>
+	    <li>任务6班</li>
+	</ul>
+	<input class="ipt-add-content" placeholder="添加内容"/>
+	<button id="btn-add-start">开头添加</button>
+	<button id="btn-add-end">结尾添加</button>
+<script>
+    var ct = document.querySelector(".ct");
+    var startBtn = document.getElementById("btn-add-start");
+    var endBtn = document.getElementById("btn-add-end");
+
+    startBtn.onclick = function(){
+        var newLi = document.createElement('li');
+        newLi.innerHTML = "hello";
+        ct.insertBefore(newLi,ct.firstChild);
+    
+    }
+    endBtn.onclick = function(){
+    	var newLi = document.createElement('li');
+    	newLi.innerHTML = "hunger";
+    	ct.appendChild(newLi);
+    }
+
+    ct.addEventListener('click',function(e){
+    	console.log(e.target.innerText);
+    })
+  
+
+</script>
+</body>
+</html>
