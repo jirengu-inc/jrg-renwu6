@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>mission25-001</title>
+	<style type="text/css">
+		html,body{
+			padding:0px;
+			margin:0px;
+			font-size:12px;
+		}
+		
+		ul,li{
+			list-style:none;
+		}
+		
+		a{
+			text-decoration:none;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		.side-menu{
+			padding:10px;
+		}
+
+		.side-menu-product{
+			position:relative;
+			width:160px;
+			background:#c7171e;
+			line-height:12px;
+			padding:0px 20px;
+		}
+
+		.side-menu-title{
+			display:block;
+			color:#fff;
+			border-bottom:1px dotted #de272e;
+			padding:10px 0px 10px;
+
+		}
+
+		.icon{
+			position:absolute;
+			left:180px;
+			top:10px;
+			color:#fff;
+		}
+
+		.child-pannel{
+			position:absolute;
+			left: 200px;
+    		top: 0px;
+    		width:200px;
+    		color:#000;
+    		border:1px solid #ccc;
+    		padding-left:20px;
+    		display:none;
+		}
+
+		.child-pannel li{
+			float:left;
+			padding:10px 75px 10px 0px;
+		}
+
+		.child-pannel li a{
+			color:#000;
+		}
+
+		.active{
+			display:block;
+		}
+
+	</style>
+</head>
+<body>
+<div id="container">
+	<ul class="side-menu">
+		<li class="side-menu-product">
+			<a class="side-menu-title" href="#">珠宝玉器</a>
+			<span class="icon">></span>
+			<ul class="child-pannel clearfix">
+				<li><a href="#">翡翠</a></li>
+				<li><a href="#">玉石</a></li>
+				<li><a href="#">宝石</a></li>
+				<li><a href="#">水晶</a></li>
+				<li><a href="#">玛瑙</a></li>
+				<li><a href="#">珍珠</a></li>
+				<li><a href="#">钻石</a></li>
+				<li><a href="#">琥珀</a></li>
+				<li><a href="#">和田</a></li>
+				<li><a href="#">琥珀</a></li>
+			</ul>
+		</li>
+		<li class="side-menu-product">
+			<a class="side-menu-title" href="#">珠宝玉器</a>
+			<span class="icon">></span>
+			<ul class="child-pannel">
+				<li><a href="">翡翠</a></li>
+				<li><a href="">玉石</a></li>
+				<li><a href="">宝石</a></li>
+				<li><a href="">水晶</a></li>
+				<li><a href="">玛瑙</a></li>
+				<li><a href="">珍珠</a></li>
+			</ul>
+		</li>
+		<li class="side-menu-product">
+			<a class="side-menu-title" href="#">珠宝玉器</a>
+			<span class="icon">></span>
+			<ul class="child-pannel">
+				<li><a href="">翡翠</a></li>
+				<li><a href="">玉石</a></li>
+				<li><a href="">宝石</a></li>
+				<li><a href="">水晶</a></li>
+			</ul>
+		</li>
+		<li class="side-menu-product">
+			<a class="side-menu-title" href="#">珠宝玉器</a>
+			<span class="icon">></span>
+			<ul class="child-pannel">
+				<li><a href="">翡翠</a></li>
+				<li><a href="">玉石</a></li>
+				<li><a href="">宝石</a></li>
+				<li><a href="">水晶</a></li>
+				<li><a href="">玛瑙</a></li>
+				<li><a href="">珍珠</a></li>
+			</ul>
+		</li>
+		<li class="side-menu-product">
+			<a class="side-menu-title" href="#">珠宝玉器</a>
+			<span class="icon">></span>
+			<ul class="child-pannel">
+				<li><a href="">翡翠</a></li>
+				<li><a href="">玉石</a></li>
+				<li><a href="">宝石</a></li>
+				<li><a href="">水晶</a></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+		$(function(){
+		$(".side-menu-product").on("mouseenter",function(){
+			$(this).find(".child-pannel").show()
+			// $(this).find(".child-pannel").addClass("active")//CSS添加类
+		})
+	})
+		$(".side-menu-product").on("mouseleave",function(){
+			$(this).find(".child-pannel").hide()
+			// $(this).find(".child-pannel").removeClass("active")//CSS添加类
+		})
+
+</script>
+
+</body>
+</html>
