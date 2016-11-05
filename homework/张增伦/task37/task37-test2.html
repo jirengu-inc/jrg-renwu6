@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<body>
+
+<style>
+
+    .wrap {
+        border: 1px solid #008000;
+    }
+
+    .wrap .content{
+        background-color: red;
+        width: 200px;
+        height: 200px;
+        display: none;
+    }
+
+    .wrap:hover .content{
+        display: block;
+    }
+</style>
+
+    <div class="wrap">
+        <button id="btn">点我</button>
+        <div class="content"></div>
+    </div>
+
+</body>
+</html>
