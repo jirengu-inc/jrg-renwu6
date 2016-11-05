@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+    obj = {
+        go: function() { console.log(this); }
+    }
+
+    obj.go(); //obj
+
+    (obj.go)(); //obj
+
+    (a = obj.go)(); //window
+
+    (0 || obj.go)(); //window
+
+    function fn0(){
+        function fn(){
+            console.log(this);
+        }
+        fn();
+    }
+
+    fn0();
+
+
+/*
+    function People (name){
+        this.name = name;
+        this.sayName = function(){
+            console.log('my name is:' + this.name);
+        }
+    }
+    People.prototype.walk = function(){
+        console.log(this.name + ' is walking');
+    }
+
+    var p1 = new People('饥人谷');
+    var p2 = new People('前端');
+
+
+    function People (){
+        var age = 1; //私有变量
+        this.age = 10; //成员变量
+    }
+
+    People.age = 20; //静态变量
+    People.prototype.age = 30; //成员变量
+
+    var p3 = new People();
+
+
+
+
+
+    String.prototype.getMostOften = function() {
+        var map = {},max=0;
+        for(var i = 0; i < this.length;i++){
+            var v = this.charAt(i);
+            if(map[v]){
+                map[v]++;
+            }else{
+                map[v] = 1;
+            }
+        }
+
+
+        for(var name in map){
+            console.log(name+':'+map[name]);
+            if(map[name]>max)max=map[name];
+        }
+
+        return max;
+    }
+
+    var str = 'ahbbccdeddddfg';
+    var ch = str.getMostOften();
+    console.log(ch); //d , 因为d 出现了5次
+
+ */
+
+    function Persons(){}
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.sayName = function(){
+        console.log('My name is :' + this.name);
+    }
+    var p = new Person("若愚")
+    p.sayName();
+
+    console.log(isinstanceof(p,Person));
+
+    function isInstanceOf(obj, Class) {
+        do {
+            if (obj.__proto__ === Class.prototype) {
+                return true
+            }
+            if (!obj.__proto__) {
+                return false
+            }
+        }
+        while (obj.__proto__ = obj.__proto__.__proto__)
+        return false
+    }
+
+    function isinstanceof(obj,Class){
+
+        if(obj.__proto__===Class.prototype){
+            return true;
+        }else{
+            if(obj.__proto__){
+                arguments.callee(obj.__proto__,Class);
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
+</script>
+
+</body>
+</html>
