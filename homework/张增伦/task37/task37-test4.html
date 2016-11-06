@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<body>
+
+<style>
+
+    *{margin: 0;padding: 0;}
+    ol{list-style:none}
+
+    /*插件*/
+    x-slides{
+        display: block;
+    }
+    x-slides > .view > ol{
+        position: relative;
+    }
+    x-slides > .view > ol > li {
+        display: none;
+        position: absolute;
+        transition: all 1s;
+    }
+    x-slides > .view > ol > li.right{
+        position: absolute;
+        left: 100%;
+        top: 0;
+        display: block;
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    x-slides > .view > ol > li.active{
+        display: block;
+        left: 0;
+        opacity: 1;
+        transform: translateX(0);
+
+    }
+
+    /**/
+    .view{
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+    }
+    .item{
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+
+
+
+</style>
+
+<x-slides>
+    <div class="view">
+        <ol>
+            <li><div class="item"></div></li>
+            <li><div class="item" style="background:blue;"></div></li>
+            <li><div class="item" style="background: yellow"></div></li>
+        </ol>
+    </div>
+
+</x-slides>
+
+<button id=btn>next</button>
+
+<script>
+
+    $slides = $('x-slides')
+
+    var current = 0
+
+    $slides.find('>.view>ol>li').eq(current).addClass('active')
+
+    var next = function(){
+        var $next = $slides.find('>.view>ol>li').eq(current+1)
+        $next.addClass('right')
+        $next.offset()
+        $next.removeClass('right').addClass('active')
+        current +=1
+    }
+
+
+    btn.onclick = function(){
+
+        next()
+    }
+
+</script>
+
+</body>
+</html>
