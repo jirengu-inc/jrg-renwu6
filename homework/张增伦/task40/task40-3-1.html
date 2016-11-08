@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+<style>
+
+    html,body,div,ul,li,a,p{
+        margin:0;padding: 0;
+    }
+    a {text-decoration: none;}
+    ul,li{
+        list-style: none;
+    }
+
+    .ct{
+        position: relative;
+        width: 310px;
+        height: 206px;
+        overflow: hidden;
+    }
+
+    .ct .img-cnt{
+        position: relative;
+    }
+
+    .ct .img-cnt img{
+        width: 310px;
+        height: 206px;
+    }
+
+    .ct .img-cnt li{
+        position: absolute;
+        display: none;
+    }
+
+    .arrow{
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: #4E443C;
+        color: #fff;
+        border-radius: 30px;
+        opacity: 0.8
+    }
+
+    .pre{
+        left: 10px;
+    }
+    .next{
+        right: 10px;
+    }
+
+    .ct .bullet {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ct .bullet li {
+        width: 16px;
+        height: 4px;
+        border-radius: 2px;
+        background: #fff;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .ct .bullet li.curr {
+        background: #666;
+    }
+
+
+</style>
+
+<div class="ct">
+    <ul class="img-cnt">
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></li>
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></li>
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></li>
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></li>
+    </ul>
+    <a class="pre arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="curr"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<div class="ct">
+    <ul class="img-cnt">
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></li>
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></li>
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></li>
+        <li ><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></li>
+    </ul>
+    <a class="pre arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="curr"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
+<script>
+    $.fn.carousel = function(){
+        function Carousel($node){
+            console.log($node);
+            console.log(this);
+
+            this.$imgCnt = $($node).find('.img-cnt');
+            this.$imgs = this.$imgCnt.children('li');
+            this.$pre = $($node).find('.pre');
+            this.$next = $($node).find('.next');
+            this.$bullet = $($node).find('.bullet');
+
+            this.imgsWidth = this.$imgs.width();
+            this.imgCount = this.$imgs.size();
+            console.log(this.imgCount);
+
+            this.curIdx = 0;
+            this.isAnimate = false;
+            /**/
+            this.bindEvent();
+            this.autoPlay();
+
+
+        }
+
+        Carousel.prototype = {
+            bindEvent:function(){
+                var self = this;
+                self.$next.on('click', function(){
+                    self.playNext();
+                });
+                self.$pre.on('click', function(){
+                    self.playPre();
+                });
+                self.$bullet.find('li').on('click', function(){
+                    var idx = $(this).index();
+                    self.play(idx);
+                });
+            },
+            play:function play(idx){
+                var self = this;
+                if(self.isAnimate) return;
+                self.isAnimate = true;
+                self.$imgs.eq(self.curIdx).fadeOut(500);
+                self.$imgs.eq(idx).fadeIn(500, function(){
+                    self.isAnimate = false;
+                });
+
+                self.curIdx = idx;
+
+                self.$bullet.children().removeClass('curr').eq(self.curIdx).addClass('curr');
+            },
+            playPre:function playPre(){
+                this.play((this.imgCount+this.curIdx-1)%this.imgCount);
+            },
+            playNext:function playNext(){
+                this.play((this.curIdx+1)%this.imgCount);
+            },
+            autoPlay:function autoPlay(){
+                var self = this;
+                self.play(0);
+                setInterval(function(){
+                    self.playNext();
+                }, 2000);
+            }
+        };
+
+        this.each(function(){
+            //console.log($(this));
+            new Carousel($(this))
+        });
+
+    };
+
+     $('.ct').carousel();
+
+
+
+</script>
+
+</body>
+</html>
