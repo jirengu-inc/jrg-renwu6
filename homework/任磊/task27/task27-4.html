@@ -176,17 +176,17 @@
 		$pre.on('click',function(e){
 			e.stopPropagation();
 			playPre();
-//			stopAuto();
+			stopAuto();
 		})
 		$next.on('click',function(e){
 			e.stopPropagation();
 			playNext();
-//			stopAuto();
+			stopAuto();
 		})
 
 		$indicator.find('li').on('click',function(e){
 			var idx = $(e.currentTarget).index();
-//			stopAuto();
+			stopAuto();
 			if(idx > curIdx){
 			    playNext(idx-curIdx);
 			}
