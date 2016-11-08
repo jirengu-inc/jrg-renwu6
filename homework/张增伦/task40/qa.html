@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+    //单例模式范例
+    var  Car = (function(){
+        var instance;
+        function init() {
+            //私有的变量和函数
+            var speed = 0;
+            return {
+                //定义公共的属性和方法
+                getSpeed: function(){
+                    return speed;
+                },
+                setSpeed: function( s ){
+                    speed = s;
+                }
+            };
+        }
+        return {
+            getInstance: function() {
+                if (!instance) {
+                    instance = init();
+                }
+                return instance;
+            }
+        };
+    }());
+    var car = Car.getInstance();
+    var car2 = Car.getInstance();
+    console.log(car === car2);
+
+    //混合模式、模块模式、工厂模式、单例模式、发布订阅模式
+
+    //工厂模式
+    function createPerson(name){
+        var o = new Object();
+        o.name = name;
+        o.sayName = function(){
+            console.log(this.name);
+        }
+
+        return o;
+    }
+
+    var p2 = createPerson('lunzi');
+    p2.sayName();
+
+    //构造函数模式
+    function Person(name){
+        this.name = name;
+    }
+
+    Person.prototype.sayName = function() {
+        console.log(this.name);
+    }
+
+    var p = new Person('skylun');
+    p.sayName();
+
+    //混合模式
+    function People(name,age){
+        Person.call(this,name);
+        this.age = age;
+    }
+
+    People.prototype = Object.create(Person.prototype);
+
+    var p3 = new People('sky',18);
+    p3.sayName();
+
+    //模块模式
+    var p4 = (function(){
+        var name = 'ss';
+        return {
+            sayName: function(){
+                console.log(name);
+            },
+            setName: function(newName){
+                name = newName;
+            }
+        }
+    })();
+
+    p4.sayName();
+
+    //发布订阅模式
+    var EventCenter = (function(){
+        var events = {};//定义事件空集合
+        function on(evt, fn){
+            events[evt] = events[evt] || [];
+            events[evt].push(fn);
+        }
+        function fire(evt){
+            if(!events[evt]){
+                return;
+            }
+            for(var i = 0; i < events[evt].length; i ++ ){
+                events[evt][i]( [].slice.call(arguments, 1) );
+            }
+        }
+        function off(evt){
+            delete events[evt];
+        }
+        return {
+            on: on,
+            fire: fire,
+            off: off
+        }
+    })();
+
+    EventCenter.on('event1', function(){
+        console.log(1);
+    })
+    EventCenter.on('event2', function(){
+        console.log(2);
+    })
+    EventCenter.fire('event1');
+    EventCenter.fire('event2');
+
+</script>
+
+
+</body>
+</html>
