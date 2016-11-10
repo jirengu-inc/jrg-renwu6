@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		#carousel{
+			width: 310px;
+			height: 206px;
+			overflow: hidden;
+			position: relative;
+		}
+		#carousel .img-ct{
+			position: relative;
+		}
+		#carousel img{
+			width: 310px;
+			height: 206px;
+		}
+		#carousel .img-ct:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		#carousel .img-ct li{
+			float: left;
+		}
+		#carousel .arrow{
+			position: absolute;
+			top: 50%;
+			color: #fff;
+			width: 30px;
+			height: 30px;
+			background: #4E443C;
+			text-align: center;
+			line-height: 30px;
+			border-radius: 30px;
+			box-shadow: 0 0 2px #666;
+			opacity: 0.7;
+		}
+		#carousel .arrow:hover{
+			opacity: 1;
+		}
+		#carousel .pre{
+			left: 10px;
+		}
+		#carousel .next{
+			right: 10px;
+		}
+		#carousel .bullet{
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		#carousel .bullet li{
+			width: 14px;
+			height: 4px;
+			background: #fff;
+			border-radius: 2px;
+			display: inline-block;
+			cursor: pointer;
+		}
+		#carousel .bullet .active{
+			background: #666;
+		}
+	</style>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+	<div id="carousel">
+		<ul class="img-ct">
+			<li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt="第一张图片"></a></li>
+			<li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt="第二张图片"></a></li>
+			<li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt="第三张图片"></a></li>
+			<li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt="第四张图片"></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="bullet">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script>
+		var ct=$(".img-ct"), //获取包裹图片的ul;
+			items=ct.children(), //获取ul下面的li
+			pre=$(".pre"), //获取上一个按钮
+			next=$(".next"), //获取下一个按钮
+			bullet=$(".bullet"), //获取包裹导航条的ul
+			imgWidth=items.width(), //获取图片li的宽度
+			imgCount=ct.children().size(); //获取图片li的个数
+		ct.prepend(items.last().clone()); //在ul开头克隆最后一张图片
+		ct.append(items.first().clone()); //在ul结尾克隆第一张图片
+		var imgNewCount=ct.children().length; //获取克隆后li的长度
+		ct.css({
+			left: 0-imgWidth,
+			width: imgNewCount*imgWidth
+		}); //改变图片ul的宽度,并左移
+
+		var curIdx=0;  //初始化变量为0;
+		var isAnimate=false; //给切换行为上锁,当动画正在进行时禁止换图
+
+		next.on("click",function(){
+			playNext();
+		});
+		pre.on("click",function(){
+			playPre();
+		});
+
+		bullet.find("li").on("click",function(){
+			var idx=$(this).index();
+			if(idx>curIdx){ 
+				playNext(idx-curIdx);
+			}else if(idx<curIdx){
+				playPre(curIdx-idx);
+			}
+		});
+
+		autoPlay();
+
+		function playNext(idx){
+			var idx=idx||1;
+			if(!isAnimate){
+				isAnimate=true;
+				ct.animate({left:"-="+(imgWidth*idx)},function(){
+					curIdx++;
+					if(curIdx==imgCount){
+						ct.css({left:0-imgWidth});
+						curIdx=0;
+					}
+					isAnimate=false;
+					setBullet();
+				});
+			}
+		}
+
+		function playPre(idx){
+			var idx=idx||1;
+			if(!isAnimate){
+				isAnimate=true;
+				ct.animate({left:"+="+(imgWidth*idx)},function(){
+					curIdx=(imgCount+curIdx-idx)%imgCount;
+					if(curIdx==imgCount-1){
+						ct.css({left:0-imgWidth*imgCount});
+					}
+					isAnimate=false;
+					setBullet();
+				});
+			}
+		}
+
+		function setBullet(){
+			bullet.find("li").removeClass("active").eq(curIdx).addClass("active");
+		}
+
+		function autoPlay(){
+			setInterval(function(){
+				playNext()
+			},3000)
+		}
+	</script>
+</body>
+</html>
