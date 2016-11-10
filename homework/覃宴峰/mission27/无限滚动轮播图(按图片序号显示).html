@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>轮播图按图片序号显示</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:none;
+			clear:both;
+		}
+
+		#container{
+			width: 310px;
+			height: 206px;
+			position:relative;
+			overflow:hidden;  /*固定窗口*/
+		}
+
+		.ul-cont.clearfix{
+			position:absolute;/*相对于父元素#container绝对定位，以便设置初始状态默认显示第一张图片 left:0-imgWidth*/
+		}
+
+		.ul-cont li img{
+			width: 310px;
+			height: 206px;
+		}
+
+		.ul-cont.clearfix li{
+			float:left;
+		}
+
+		.arrow{
+			position:absolute;
+			top: 50%;
+		    transform: translateY(-50%);
+		    width:30px;
+		    height:30px;
+		    line-height:30px;
+		    text-align:center;
+		    border-radius:30px;
+		    background: #4E443C;
+		    color: #fff;
+		    opacity: 0.8
+		}
+
+		.arrow:hover{
+			opacity:0.5;
+		}
+
+		.next{
+			right:10px;
+		}
+
+		.pre{
+			left:10px;
+		}
+
+		.btn{
+			position:absolute;
+			bottom:10px;
+			left:50%;
+			transform: translateX(-50%);
+		}
+
+		.btn li{
+			width:15px;
+			height:4px;
+			border-radius:3px;
+			background:#fff;
+			display:inline-block;
+			cursor:pointer;
+		}
+
+		.btn .active{
+			background:#999;
+		}
+
+		#container{
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<ul class="ul-cont clearfix">
+		<li data-idx=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+		<li data-idx=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+		<li data-idx=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+		<li data-idx=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+	</ul>
+	<a href="#" class="next arrow">></a>
+	<a href="#" class="pre arrow"><</a>
+	<ul class="btn">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script type="text/javascript" src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js">
+		
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			var $firstNode=$(".ul-cont.clearfix").find("li:first").clone(),
+				$lastNode=$(".ul-cont.clearfix").find("li:last").clone(),
+				$imgWidth=$(".ul-cont.clearfix li a img").width(),/*单张图片宽度*/
+				$imgCount=$(".ul-cont.clearfix").find("li").length/*原始图片个数*/
+
+				$(".ul-cont.clearfix").append($firstNode);
+				$(".ul-cont.clearfix").prepend($lastNode)
+			var $realCount=$(".ul-cont.clearfix").find("li").length/*加首尾后个数*/
+
+			var $window=$(".ul-cont.clearfix")
+			$($window).css({left:0-$imgWidth,width:$realCount*$imgWidth}); /*设置图片组总宽度，图片float所以排成一列，默认显示第一张图片*/
+				console.log(0-$imgWidth)
+				$(".next").on("click",function(){
+						stopauto();
+						playnext();
+				})
+
+				$(".pre").on("click",function(){
+						stopauto();
+						playpre();
+				})
+
+
+				var couIdx=0;/*申明变量记录当前图片的序号*/
+				var locked=false;
+				function playnext(idx){
+					if(locked){
+						return;
+					};
+					locked=true;
+					var idx = idx || 1
+					$($window).animate({left:"-="+(idx*$imgWidth)},function(){
+						couIdx=couIdx+idx;
+						// console.log(couIdx)
+						if(couIdx===4){//到右侧边界时，通过css操作跳到真实第一张index0
+							$($window).css({left:0-$imgWidth})
+							couIdx=0//跳转后将couIdx置为0
+						}
+						ckbutton()//设置滚动按钮
+						locked=false;//这里锁要放到回调函数里面，如果放到外面，动画还没开始执行就立即开锁了，因为动画执行需要时间
+					})
+				}
+
+				function playpre(idx){
+					if(locked===true){
+						return
+					}
+					locked=true
+					var idx = idx || 1
+					$($window).animate({left:"+="+(idx*$imgWidth)},function(){
+						couIdx=couIdx-idx;
+						if(couIdx===-1){//到左侧边界时，通过css操作跳到真实最后一张index3
+							$($window).css({left:0-4*$imgWidth})
+							couIdx=3//跳转后将couIdx置为3
+						}
+						ckbutton()//设置滚动按钮
+						locked=false//这里锁要放到回调函数里面，如果放到外面，动画还没开始执行就立即开锁了，因为动画执行需要时间
+					})
+					// console.log(idx)
+				}
+
+				function ckbutton(){
+					$(".btn").find("li").removeClass("active").eq(couIdx).addClass("active")
+				}
+
+				$(".btn").find("li").on("click",function(mousev){
+					var idx=$(mousev.currentTarget).index()
+					if(idx>couIdx){
+						console.log("idx: "+idx+"couIdx: "+couIdx)
+						playnext(idx-couIdx)
+					}
+					else if(idx<couIdx){
+						console.log("idx: "+idx+"couIdx: "+couIdx)
+						playpre(couIdx-idx)
+						// console.log(couIdx-idx)
+					}
+				})
+
+				function autoplay(){
+					 auto=setInterval(function(){
+						playnext()
+					},3000)
+				}
+				autoplay();
+
+				function stopauto(){
+				clearInterval(auto);
+		};
+
+		})
+	</script>
+</div>
+</body>
+</html>

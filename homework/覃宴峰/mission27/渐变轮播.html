@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>轮播图按图片序号显示</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:none;
+			clear:both;
+		}
+
+		#container{
+			width: 310px;
+			height: 206px;
+			position:relative;
+		}
+
+		.ul-cont.clearfix{
+			position:absolute;/*相对于父元素#container绝对定位，以便设置初始状态默认显示第一张图片 left:0-imgWidth*/
+		}
+
+		.ul-cont li img{
+			width: 310px;
+			height: 206px;
+		}
+
+		.ul-cont.clearfix li{
+			position:absolute;
+    		display:none;
+		}
+
+		.arrow{
+			position:absolute;
+			top: 50%;
+		    transform: translateY(-50%);
+		    width:30px;
+		    height:30px;
+		    line-height:30px;
+		    text-align:center;
+		    border-radius:30px;
+		    background: #4E443C;
+		    color: #fff;
+		    opacity: 0.8
+		}
+
+		.arrow:hover{
+			opacity:0.5;
+		}
+
+		.next{
+			right:10px;
+		}
+
+		.pre{
+			left:10px;
+		}
+
+		.btn{
+			position:absolute;
+			bottom:10px;
+			left:50%;
+			transform: translateX(-50%);
+		}
+
+		.btn li{
+			width:15px;
+			height:4px;
+			border-radius:3px;
+			background:#fff;
+			display:inline-block;
+			cursor:pointer;
+		}
+
+		.btn .active{
+			background:#999;
+		}
+
+		#container{
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<ul class="ul-cont clearfix">
+		<li data-idx=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+		<li data-idx=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+		<li data-idx=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+		<li data-idx=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+	</ul>
+	<a href="#" class="next arrow">></a>
+	<a href="#" class="pre arrow"><</a>
+	<ul class="btn">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script type="text/javascript" src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js">
+	
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			var imgCount=$(".ul-cont.clearfix").find("li").length,
+				conIdx=0,//声明变量记录上一张图片的索引
+				locked=false
+				$(".ul-cont.clearfix").find("li:first").show()
+				//或者 $(".ul-cont.clearfix").find("li").eq(0).show()
+			$(".next").on("click",function(){
+				stopauto()
+				// console.log("imgCount:"+imgCount+" "+"conIdx:"+conIdx+" "+(imgCount+conIdx-1)%imgCount)
+				play((conIdx+1)%imgCount)//核心代码，依次为1%4=1，2%4=2，3%4=3，4%4=0
+			})
+
+			$(".pre").on("click",function(){
+				stopauto()
+				// console.log("imgCount:"+imgCount+" "+"conIdx:"+conIdx+" "+(imgCount+conIdx-1)%imgCount)
+				play((imgCount+conIdx-1)%imgCount)//依次为3%4=3,6%4=2，5%4=1，4%4=0，3%4=3，6%4=2，5%4=1，4%4=0
+			})
+
+			function play(idx){//idx记录下一张图片的索引
+				console.log("conIdx:"+conIdx+" "+"idx:"+idx)
+				if(locked==true){
+					return
+				}
+				locked=true
+				$(".ul-cont.clearfix").find("li").eq(conIdx).fadeOut(500)
+				$(".ul-cont.clearfix").find("li").eq(idx).fadeIn(500,function(){//更改锁状态要放在回调函数中，不然动画还没执行就开锁了
+					locked=false
+				})
+				console.log("conIdx:"+conIdx+" "+"idx:"+idx)
+				conIdx=idx//显示完后在回调函数中将idx的值传递给conIdx即将上一张图片的索引号保存
+				setbutton()
+			}
+
+			function setbutton(){
+				$(".btn").find("li").removeClass()
+				$(".btn").find("li").eq(conIdx).addClass("active")
+			}
+
+			$(".btn").find("li").on("click",function(mousev){
+				play($(mousev.currentTarget).index())
+			})
+
+			function autoplay(){
+				auto=setInterval(function(){
+					play((conIdx+1)%imgCount)
+				},3000)
+			}
+
+			autoplay()
+
+			function stopauto(){
+			clearInterval(auto);
+		}
+
+		})
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>全屏轮播</title>
+	<style type="text/css">
+		html,body,p,h3,div,ul{
+			padding:0px;
+			margin:0px;
+		}
+		a{
+			text-decoration:none;
+		}
+		ul,li{
+			list-style:none;
+		}
+
+		.clearfix{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		.bg-img,.ul-cont li,.ul-cont,#container,body,html{
+			width:100%;
+			height:100%;
+		}
+
+		.ul-cont.clearfix li{
+			float:left;
+		}
+
+		#container{
+			position:relative;
+			overflow:hidden;/*超出部分自动遮盖*/
+		}
+
+		.arrow{
+			position:absolute;
+			top:50%;
+			width: 40px;
+    		height: 40px;
+    		border-radius:40px;
+    		background-color: #666;
+    	    color: #fff;
+    	    opacity: 0.6;
+    	    text-align:center;
+    	    line-height: 40px;
+    	    font-size:40px;
+		}
+
+		.arrow:hover{
+			opacity:1;
+		}
+
+		.next{
+			right:20px;
+		}
+
+		.pre{
+			left:20px;
+		}
+
+		.btn.clearfix li{
+			width:20px;
+			height:20px;
+			float:left;
+			margin-right:10px;
+			border-radius:20px;
+			background-color: red;
+
+		}
+
+		.btn.clearfix .active{
+			background:#666;
+		}
+
+		.btn.clearfix{
+			position:absolute;
+			bottom:50px;
+			left:50%;
+			transform: translateX(-50%);
+		}
+
+		.desc{
+			position:absolute;
+			text-align:center;
+			line-height:100%;
+			border:1px solid red;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+
+		.ul-cont.clearfix .bg-img{
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom:0;
+			left: 0;
+			height:100%;
+			/*background-image:url(http://cdn.jirengu.com/book.jirengu.com/img/2.jpg);*/
+    		background-repeat: no-repeat;/*?????????*/
+    		background-size: cover;/*?????????*/
+    		background-position: center center;/*?????????*/
+		}
+
+	</style>
+	<script type="text/javascript" src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js">
+		
+	</script>
+</head>
+<body>
+<div id="container">
+	<ul class="ul-cont clearfix">
+		<li>
+			<div class="bg-img" bg-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></div>
+				<div class="desc">
+					<h3>标题</h3>
+					<p>文字说明</p>
+				</div>
+		</li>
+		<li>
+			<div class="bg-img" bg-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></div>
+				<div class="desc">
+					<h3>标题</h3>
+					<p>文字说明</p>
+				</div>
+		</li>
+		<li>
+			<div class="bg-img" bg-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></div>
+				<div class="desc">
+					<h3>标题</h3>
+					<p>文字说明</p>
+				</div>
+		</li>
+		<li>
+			<div class="bg-img" bg-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></div>
+				<div class="desc">
+					<h3>标题</h3>
+					<p>文字说明</p>
+				</div>
+		</li>
+	</ul>
+	<a href="#" class="next arrow">></a>
+	<a href="#" class="pre arrow"><</a>
+	<ul class="btn clearfix">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<script type="text/javascript">
+	$(function(){
+		function setbg(idx){//图片懒加载
+		var $node=$("#container").find("li").eq(idx).find(".bg-img"),
+			$url=$node.attr("bg-src");
+			// $bg=$node.find(".bg-img"),
+			// $url=$bg.attr("bg-src")
+			$node.css({'background-img':'url('+$url+')'})
+			console.log($node)
+		}
+
+		var $window=$(".ul-cont.clearfix"),
+		$headnode=$(".ul-cont.clearfix").find("li:first").clone(),
+		$footernode=$(".ul-cont.clearfix").find("li:last").clone()
+		$window.append($headnode)
+		$window.prepend($footernode)
+		// console.log($window.find("li").length)
+		var $imgcount=$window.find("li").length,
+		$imgwidth=$window.find("li").width()
+		// console.log($imgwidth)
+		$window.css({"width":$imgcount*$imgwidth,"left":0-$imgwidth})
+
+		$window.find("li").css({"width":$imgwidth})
+		$(".bg-img").css({"width":$imgwidth})
+		
+		$(".next").on("click",function(){
+			playnext()
+		})
+
+		$(".pre").on("click",function(){
+			playpre()
+		})
+
+		var conIdx=0;
+		function playnext(idx){
+			var idx=idx || 1
+			setbg(conIdx+2)
+			$window.animate({left: "-="+(idx*$imgwidth)},function(){
+				conIdx=conIdx+idx;
+				if(conIdx===4){//到右侧边界时，通过css操作跳到真实第一张index0
+							$($window).css({left:0-$imgwidth})
+							conIdx=0//跳转后将couIdx置为0
+							setbg(0)
+						}
+			})
+		}
+
+		function playpre(idx){
+			var idx=idx || 1
+		}
+	})
+</script>
+</body>
+</html>
