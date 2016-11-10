@@ -84,8 +84,10 @@
         var picCt = '#pic-ct';
         function checkShow(){
             if(isShow($('#load'))){
-
                 load();
+                if(isShow($('#load'))){
+                    load();
+                }
             }
         }
         function isShow($el){
