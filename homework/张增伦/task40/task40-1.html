@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+    function createTimer(){
+        function Timer(){
+            this.start;
+            this.end;
+        }
+        Timer.prototype = {
+                start : function(){
+                    this.start = Date.now();
+                },
+                end : function(){
+                    this.end = Date.now();
+                },
+                get : function(){
+                    return (this.end - this.start);
+                }
+        }
+        return new Timer;
+    }
+    var timer1 = createTimer();
+    var timer2 = createTimer();
+    timer1.start();
+    for(var i=0;i<100;i++){
+        console.log(i);
+    }
+    timer2.start();
+    for(var i=0;i<100;i++){
+        console.log(i);
+    }
+    timer1.end();
+    timer2.end();
+    console.log('timer1:'+timer1.get());
+    console.log('timer2:'+timer2.get());
+
+</script>
+
+
+</body>
+</html>

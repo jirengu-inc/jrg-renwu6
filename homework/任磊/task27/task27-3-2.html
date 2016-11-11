@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>无限轮播</title>
+		<style type="text/css">
+			html,
+			body,
+			ul,
+			li,
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.clearfix:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			.carousel {
+				width: 360px;
+				height: 240px;
+				overflow: hidden;
+				position: relative;
+				margin: 0 auto;
+			}
+			
+			.img-ct {
+				position: absolute;
+			}
+			
+			.img-ct li {
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			
+			.img-ct img {
+				width: 360px;
+				height: 240px;
+			}
+			
+			.carousel .arrow {
+				position: absolute;
+				top: 50%;
+				display: block;
+				width: 40px;
+				height: 40px;
+				margin-top: -20px;
+				line-height: 40px;
+				text-align: center;
+				font-size: larger;
+				border-radius: 40px;
+				background-color: #666;
+				color: #fff;
+				opacity: 0.6;
+			}
+			
+			.arrow:hover {
+				opacity: 1;
+			}
+			
+			.carousel .pre {
+				left: 15px;
+			}
+			
+			.carousel .next {
+				right: 15px;
+			}
+			
+			.carousel .indicator {
+				position: absolute;
+				bottom: 10px;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			
+			.carousel .indicator li {
+				float: left;
+				width: 10px;
+				height: 10px;
+				background-color: #fff;
+				cursor: pointer;
+				border-radius: 100%;
+				margin: 0 5px;
+			}
+			
+			.indicator li.active {
+				background-color: #666;
+			}
+			
+			/*使用CSS3编写轮播效果
+			思路如下：
+			利用jQ添加和删除类名，使图片的translateX属性发生变化;
+			例如点击下一张图片时，使当前的图片的translateX由0变为-100%，使下一张图片的translateX由100%变为0，
+			2张图片一起向左移动，达到轮播效果。
+			其他效果同理。
+			*/
+			
+			.carousel .img-ct li {
+				/*IE 10、Firefox、Opera 和 Chrome 支持 transition 属性
+                 *Safari 支持替代的 -webkit-transition 属性
+                 *Internet Explorer 9 以及更早版本的浏览器不支持 transition 属性
+                
+                 *transition 属性是一个简写属性(默认值：all 0 ease 0)，用于设置四个过渡属性：
+                 *transition-property，定义应用过渡效果的 CSS 属性名称列表，列表以逗号分隔；all 则所有属性都将获得过渡效果
+                 *transition-duration，规定完成过渡效果需要多少秒或毫秒，必须始终设置 transition-duration 属性，否则时长为 0，就不会产生过渡效果
+                 *transition-timing-function，规定速度效果的速度曲线(linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n))
+                 *transition-delay，定义过渡效果何时开始
+                 */
+				transition: transform .5s ease-in-out;
+				-moz-transition: all .5s ease-in-out;
+				/* Firefox 4 */
+				-webkit-transition: transform .5s ease-in-out;
+				/* Safari 和 Chrome */
+				-o-transition: all .5s ease-in-out;
+				/* Opera */
+			}
+			
+			.carousel .img-ct li.active {
+				display: block;
+				/*
+                 *IE 10、Firefox、Opera 支持 transform 属性，IE 9 支持替代的 -ms-transform 属性（仅适用于 2D 转换）
+                 *Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 转换），Opera 只支持 2D 转换
+
+                 *transform: none | rotate | scale | skew | translate | matrix
+                 *如果有多个变换函数的时候，以空格分开
+                 *none: 表示不进行变换
+                 *rotate：旋转。rotate(<angle>) ：通过指定的角度参数对原元素指定一个 2D rotation，需先有 transform-origin 属性的定义
+
+                 *scale：缩放。元素的缩放中心点是元素的中心位置，缩放基数为1，如果其值大于1元素就放大，反之其值小于1，元素缩小；
+                 *scale(x,y)使元素水平方向和垂直方向同时缩放；如果第二个参数未提供，则取与第一个参数一样的值；
+                 *scaleX(x)元素仅水平方向缩放；scaleY(y)元素仅垂直方向缩放；其中 x, y 为数字
+
+                 *skew：扭曲。默认以元素中心为基点，也可以通过transform-origin来改变元素的基点位置；
+                 *skew(x,y)使元素在水平和垂直方向同时扭曲，如果没有设置第二个参数，那么Y轴为0deg；
+                 *skewX(x)仅使元素在水平方向扭曲变形；skewY(y)仅使元素在垂直方向扭曲变形，其中 x, y 为角度
+
+                 *translate：移动。移动物体时基点默认为元素中心点，也可以根据 transform-origin 进行改变基点；
+                 *translate(x,y)水平方向和垂直方向同时移动，如果第二个参数未提供，则以 0 作为其值；
+                 *translateX(x)仅水平方向移动；translateY(y)仅垂直方向移动；其中 x, y 为像素值
+
+                 *matrix：矩阵。
+                 *更多参考：http://www.w3cplus.com/content/css3-transform/
+                 */
+				transform: translateX(0);
+				-webkit-transform: translateX(0);
+				-moz-transform: translateX(0);
+				-o-transform:translateX(0);
+				-ms-transform: translateX(0);
+			}
+			
+			.carousel .img-ct li.right{
+				display: block;
+				
+				transform: translateX(100%);
+				-webkit-transform: translateX(100%);
+				-moz-transform: translateX(100%);
+				-o-transform:translateX(100%);
+				-ms-transform: translateX(100%);
+			}
+
+			.carousel .img-ct li.left{
+				display: block;
+
+				transform: translateX(-100%);
+				-webkit-transform: translateX(-100%);
+				-moz-transform: translateX(-100%);
+				-o-transform:translateX(-100%);
+				-ms-transform: translateX(-100%);
+			}
+		</style>
+		<script src="jquery-3.1.1.min.js"></script>
+	</head>
+
+	<body>
+		<div class="carousel">
+			<ul class="img-ct clearfix">
+				<li data-id="0">
+					<a href="#"><img src="img/task27-3/1.jpg" alt="" /></a>
+				</li>
+				<li data-id="1">
+					<a href="#"><img src="img/task27-3/2.jpg" alt="" /></a>
+				</li>
+				<li data-id="2">
+					<a href="#"><img src="img/task27-3/3.jpg" alt="" /></a>
+				</li>
+				<li data-id="3">
+					<a href="#"><img src="img/task27-3/4.jpg" alt="" /></a>
+				</li>
+			</ul>
+			<a class="pre arrow" href="#">
+				<</a>
+					<a class="next arrow" href="#">></a>
+					<ul class="indicator clearfix">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+		</div>
+		<script>
+			var $ct = $('.img-ct'),
+					$img = $ct.find("li"),
+					imgWidth = $img.width(),
+					imgCount = $img.length,
+					$pre = $('.pre'),
+					$next = $('.next'),
+					$indicator = $('.indicator');
+
+			var curIdx = 0,
+					locked = false;
+
+			$img.eq(curIdx).addClass('active');
+			$next.on('click',function(e){
+				e.stopPropagation();
+				stopAuto();
+				playNext();
+			});
+			$pre.on('click',function(e){
+				e.stopPropagation();
+				stopAuto();
+				playPre();
+			})
+			$indicator.find('li').on('click',function(e){
+				stopAuto();
+				var idx = $(e.currentTarget).index();
+				if(idx > curIdx){
+					playNext(idx-curIdx);
+				}
+				if(idx < curIdx){
+					playPre(curIdx - idx);
+				}
+			});
+
+			function autoPlay(){//自动轮播
+				auto = setInterval(function(){
+					playNext()
+				},2000);
+			};
+			autoPlay();
+
+			function stopAuto(){
+				clearInterval(auto);
+			};
+
+			function playNext(idx){
+				var idx = idx || 1;
+				if(locked){return};
+				locked = true;
+				$img.eq(curIdx).removeClass('active').addClass('left');
+				var nextIdx = (curIdx + idx)%imgCount;
+				$img.eq(nextIdx).addClass('right').offset();//offset获取元素相对于文档的坐标，在这里添加这行代码能够使下一张图片在运动之前定位一下自己的坐标，让CSS运动顺利进行。
+				$img.eq(nextIdx).removeClass('right').addClass('active');
+				curIdx = nextIdx;
+				setTimeout(function(){
+					$img.eq(nextIdx).siblings().removeClass('left');
+					locked = false;
+					setIndicator();
+				},500);
+			};
+
+			function playPre(idx){
+				var idx = idx || 1;
+				if(locked){return};
+				locked = true;
+				$img.eq(curIdx).removeClass('active').addClass('right');
+				var preIdx = (imgCount + curIdx - idx)%imgCount;
+				$img.eq(preIdx).addClass('left').offset();
+				$img.eq(preIdx).removeClass('left').addClass('active');
+				curIdx = preIdx;
+				setTimeout(function(){
+					$img.eq(preIdx).siblings().removeClass('right');
+					locked = false;
+					setIndicator();
+				},500);
+			};
+
+			function setIndicator(){
+				$indicator.find('li').removeClass('active')
+						.eq(curIdx).addClass('active')
+			}
+		</script>
+	</body>
+
+</html>
