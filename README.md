@@ -15,7 +15,7 @@
   2. 如果进入一个奇怪的页面，输入`:wq`。
 
 
-# 在线预览
+# 在线预览仓库
 这个 repo 里的代码可以在 http://book.jirengu.com/jirengu-inc/jrg-renwu6/
 预览。
 
