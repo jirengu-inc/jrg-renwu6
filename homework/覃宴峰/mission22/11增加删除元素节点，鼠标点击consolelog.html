@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title></title>
+</head>
+<body>
+	<ul class="ct">
+	    <li>这里是</li>
+	    <li>饥人谷</li>
+	    <li>前端6班</li>
+	</ul>
+	<input class="ipt-add-content" placeholder="添加内容"/>
+	<button id="btn-add-start">开头添加</button>
+	<button id="btn-add-end">结尾添加</button>
+	<script>
+	var str1=document.querySelector(".ct"),
+	 str2=document.querySelectorAll("li"),
+	str3=document.querySelector(".ipt-add-content"),
+	str4=document.querySelector("#btn-add-start"),
+	str5=document.querySelector("#btn-add-end")
+
+	str5.addEventListener("click",function(mousev){
+		var newnode=document.createElement("li");
+		if(!str3.value){
+			console.log("没输入内容")
+			return
+		}
+			newnode.innerText=str3.value;
+			str1.appendChild(newnode)//目标元素插入到父元素下的最后一个子元素位置处
+	},false)
+
+	str4.addEventListener("click",function(mousev){
+		var newnode=document.createElement("li");
+		if(!str3.value){
+			console.log("没输入内容")
+			return
+		}
+		newnode.innerText=str3.value;
+		str1.insertBefore(newnode,str1.firstChild)//目标元素插入到父元素str1下的指定位置
+	},false)
+
+	str1.addEventListener("click",function(mousev){
+		console.log(mousev.target.innerText)//事件委托，在li父元素ct上添加事件委托就能监听到所有子元素的点击事件
+	},false)
+	</script>
+</body>
+</html>

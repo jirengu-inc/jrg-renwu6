@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+<script>
+
+    //整个立即执行函数被赋值,然后用临时变量保存i的值
+    var fnArr = [];
+    for (var i = 0; i < 10; i ++) {
+
+        fnArr[i] =  (function(){
+            var n = i;
+            return function(){
+                return n;
+            }
+        })();
+    }
+    console.log( fnArr[3]() );  //
+
+</script>
+
+</body>
+</html>

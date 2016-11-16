@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+
+   // 补全代码，实现继承 （难度:****）
+    function Person(name, sex){
+        // todo ...
+        this.name = name;
+        this.sex = sex;
+    }
+
+    Person.prototype.getName = function(){
+        // todo ...
+        console.log(this.name);
+        return this.name;
+    };
+
+    function Male(name, sex, age){
+        //todo ...
+        Person.call(this,name,sex);
+        this.age = age;
+    }
+
+    //todo ...
+   Male.prototype = Object.create(Person.prototype);
+
+    Male.prototype.getAge = function(){
+        //todo ...
+        console.log(this.age);
+        return this.age;
+    };
+
+   Male.prototype.printName = function(){
+       // todo ...
+       alert(this.getName());
+
+   };
+
+    var ruoyu = new Male('若愚', '男', 27);
+    ruoyu.printName();
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

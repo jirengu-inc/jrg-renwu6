@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>load-more</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+			color:#000;
+		}
+		#container{
+			margin:0 20px;
+			text-align:center;
+		}
+		li{
+			height:40px;
+			border:1px solid #ccc;
+			border-radius:5px;
+			margin-bottom:20px;
+			line-height:40px;
+		}
+
+		li:hover{
+			background-color:green;
+			color:white;
+			transition:background-color 0.3s
+		}
+
+		#more{
+			border:1px solid green;
+			border-radius:3px;
+			padding:10px 20px;
+			color:green;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="cont">
+				<li>内容1</li>
+				<li>内容2</li>
+		</ul>
+		<a href="#" id="more">加载更多</a>		
+	</div>
+<script type="text/javascript">	//封装ajax函数！！！！！！！！！！
+function ajax(opts){        //opts即调用ajax函数时传入的参数，这里opts为对象{a:1,b:2,c:3......}
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState===4 && xmlhttp.status===200){
+            var json = JSON.parse(xmlhttp.responseText);      //将服务器响应后传回的文本内容转换为JSON格式
+            opts.success(json);     //rreadyState为4且状态为200时，表示服务器响应已就绪，执行success()函数
+        } else if(xmlhttp.status===404){    
+            opts.error();       //状态为404时执行error()函数
+        }
+    }
+    
+
+    var post_opt='';        //创建XHR.open()方法中传入的第二个参数即?username=zs&password=123.....
+    for(var key in opts.data){      //opts.data即调用ajax函数时预先定义的data参数，这个预先定义的data参数必须是key:value形式
+        post_opt += key+'='+opts.data[key]+'&';//opts.data[key]取出data对象中各成员key对应的value值
+    }
+    post_opt=post_opt.substr(0,post_opt.length-1);//去除生成的post_opt末尾的&符号
+
+
+    if(opts.type.toLowerCase()==='get'){    //调用ajax函数传入的参数type为get时执行GET请求
+        xmlhttp.open("GET",opts.url+'?'+post_opt,true);
+        xmlhttp.send();
+    } else if(opts.type.toLowerCase()==='post'){        //调用ajax函数传入的参数type为post时执行POST请求
+        xmlhttp.open("POST",opts.url,true);
+        xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        xmlhttp.send(post_opt);
+    }    
+}
+</script>
+
+<script type="text/javascript">//事件调用ajax函数
+	var ulcont=document.querySelector("#cont"),
+	loadmore=document.querySelector("#more"),
+	locked=false
+	loadmore.addEventListener("click",function(mousev){
+		mousev.preventDefault();
+		if(locked){
+			return
+		}
+		locked=true;
+		loadmore.innerText="loading"//点击后按钮文本改变
+		ajax({
+			url:"getmore.php",
+			type:"get",
+			data:{
+				count:document.getElementsByTagName("li").length,//当前有多少个li元素
+				// 或者直接写成count:2,
+				leng:6//约定每次加载增加6个li
+			},
+			success:function(json){//封装成功状态执行函数
+				successdo(json)
+			},
+			error:function(){//封装失败状态执行函数
+				errordo()
+			}
+		})
+	},false)
+
+			function  successdo(json){
+				append(json);
+				this.count +=6;// 每次加载6个
+				locked=false;
+				loadmore.innerText="加载更多"
+			}
+
+			function errordo(){
+				alert("网路请求错误")
+				locked=false;
+			}
+
+			function append(opt){
+				for(var i=0;i<opt.length;i++){
+					var newnode=document.createElement("li")
+					newnode.innerText="内容"+opt[i];
+					ulcont.appendChild(newnode)
+				}
+			}
+</script>	
+</body>
+</html>

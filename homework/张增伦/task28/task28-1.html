@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+
+    html,body,div,ul,li,a,p{
+        margin:0;padding: 0;
+    }
+    a {text-decoration: none;}
+    ul,li{
+        list-style: none;
+    }
+
+    header {
+        background-color: red;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 20px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #0000ff;
+    }
+
+    section {
+        min-height: 800px;
+        background: #ccc;
+        padding: 10px;
+        overflow: auto;
+    }
+
+    aside {
+        float: left;
+        background-color: #008000;
+        width: 100px;
+        min-height: 400px;
+    }
+
+    main {
+        overflow:auto;
+        background-color: white;
+        padding-left: 20px;
+        min-height: 800px;
+    }
+
+    footer {
+        background-color:#333;
+        text-align: center;
+    }
+
+
+</style>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+
+
+<header>header</header>
+<nav>nav</nav>
+<section>
+    <aside>aside</aside>
+    <main>main</main>
+</section>
+<footer>footer</footer>
+
+
+<script>
+	$(function(){
+			 
+        var $curr = $('nav');
+        var currHeight = $curr.height();
+        var currWidth = $curr.width();
+        var offsetTop = $curr.offset().top;
+        var offsetLeft = $curr.offset().left;
+        var data_fixed = 'data-fixed';
+
+        var $currClone = $curr.clone().css({visibility:'hidden',display:'none'}).insertBefore($curr);
+
+        $(window).on('scroll',function(e){
+
+            var scrollTop = $(this).scrollTop();
+            if(scrollTop>=offsetTop){
+                if(!isFixed()) setFixed();
+            }else{
+                if(isFixed())unsetFixed();
+            }
+
+        });
+
+        function isFixed(){
+            return $curr.data(data_fixed);
+        }
+
+        function setFixed(){
+            $curr.data(data_fixed,true).css({
+               position:'fixed',
+               top:0,
+               left:offsetLeft,
+               width:currWidth,
+               margin:0,
+               'z-index':999
+            });
+            $currClone.show();
+        }
+
+        function unsetFixed(){
+            $curr.data(data_fixed,false).removeAttr('style');
+            $currClone.hide();
+        }
+
+
+	})
+</script>
+    
+</body>
+</html>

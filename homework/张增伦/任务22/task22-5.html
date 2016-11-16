@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        html,body,div,input,span{
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            border-radius: 3px;
+        }
+
+        .ct {
+            width: 1000px;
+            height: 600px;
+        }
+
+        .bg {
+            background-color: #ccc;
+        }
+
+        .white_bg {
+            background-color: white;
+        }
+
+        .box .title{
+            height: 20px;
+            line-height: 20px;
+          /*  border: 1px solid #0000ff; */
+            border-bottom: 1px solid  #ccc;
+            padding: 10px;
+        }
+
+        .box .content{
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+            height: 100px;
+        }
+
+        .box .footer {
+            padding: 10px;
+        }
+
+        .box .footer a{
+            float: right;
+            margin: 3px;
+            text-decoration:none;
+            color: #333;
+        }
+
+        .box{
+            z-index: 99;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 200px;
+            background-color: white;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .title .close{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+           /* border: 1px solid red; */
+            font-size: 20px;
+            display: inline-block;
+        }
+
+        .title .t{
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .show{
+            display: block;
+        }
+        .hide{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="ct">
+        <input type="button" value="点我1" id="touch_me"/>
+
+        <div class="box" id="box">
+            <div class="title"><span class="t">我是标题</span><span class="close">×</span></div>
+            <div class="content">
+                我是内容<br>
+                我是内容
+            </div>
+            <div class="footer">
+                <a href="#" class="close">取消</a><a href="#">确定</a>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function addClass(el,cls){
+        if(!hasClass(el,cls)){
+            el.className = el.className+" "+cls;
+        }
+    }
+    function hasClass(el,cls){
+        var pattern = new RegExp('(\\s|^)'+cls+'(\\b|$)','g');
+        var bool = pattern.test(el.className);
+        console.log('---bool:'+bool);
+        return bool;
+    }
+    function removeClass(el,cls){
+        var pattern = new RegExp('(\\s|^)'+cls+'(\\b|$)','g');
+        el.className = el.className.replace(pattern,'');
+    }
+
+    var ct = document.querySelector('.ct');
+    var body = document.body;
+    var touch_me = document.getElementById('touch_me');
+    var box = document.getElementById('box');
+    touch_me.onclick = function(){
+        console.log('ct start');
+        removeClass(box,'hide');
+        removeClass(body,'white_bg');
+        addClass(box,'show');
+        addClass(body,'bg');
+        console.log('ct end');
+    }
+
+    box.addEventListener('click',function(e){
+        if(e.target.className === 'close'){
+            console.log('close start');
+             removeClass(this,'show');
+             removeClass(body,'bg');
+             addClass(this,'hide');
+             addClass(body,'white_bg')
+            console.log('close end');
+        }
+    })
+
+</script>
+
+
+</body>
+</html>

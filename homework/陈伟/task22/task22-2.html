@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task22-2</title>
+</head>
+
+<body>
+    <ul class="ct">
+        <li>这里是</li>
+        <li>饥人谷</li>
+        <li>前端6班</li>
+    </ul>
+    <input class="ipt-add-content" placeholder="添加内容" />
+    <button id="btn-add-start">开头添加</button>
+    <button id="btn-add-end">结尾添加</button>
+    <script>
+        var ul = document.getElementsByClassName("ct");
+        ul[0].addEventListener("click", handler);
+
+        function handler() {
+            console.log(event.target.innerText);
+        }
+
+        var iptAddContent = document.getElementsByClassName("ipt-add-content"),
+            btnAddStart = document.getElementById('btn-add-start'),
+            btnAddEnd = document.getElementById('btn-add-end');
+        btnAddStart.addEventListener("click", start)
+
+        function start() {
+            var li = document.createElement("li"),
+                iptText = document.createTextNode(iptAddContent[0].value.replace(/\s*/g, ""));
+            li.appendChild(iptText);
+            ul[0].insertBefore(li, ul[0].firstChild);
+        }
+        btnAddEnd.addEventListener("click", end);
+
+        function end() {
+            var li = document.createElement("li"),
+                iptText = document.createTextNode(iptAddContent[0].value.replace(/\s*/g, ""));
+            li.appendChild(iptText);
+            ul[0].appendChild(li);
+
+        }
+    </script>
+</body>
+
+</html>

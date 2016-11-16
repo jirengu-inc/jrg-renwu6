@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task24-1</title>
+</head>
+<body>
+	<!-- 需求是，在输入框输入用户名，点击按钮，打包请求后发给后台，后台响应对应的性别和年龄 -->
+	<input type="text" id="username" placeholder="请输入用户名" name="username">
+	<button id="btn">获取信息</button>
+	<dl id="ct">
+	  <!-- 后台获取数据后浏览器进行操作，添加html -->
+	</dl>
+
+	<script>
+		//封装的过程其实就是把上面的函数实现一遍而已，考虑的情况多一些，无他
+		function ajax(opts){   //opts是传递的json对象，为什么是json对象呢？因为我们模仿jQuery调用Ajax的写法，将要传递的参数放在一个json对象里面
+		  	var xmlhttp = new XMLHttpRequest();
+
+		  	//将下面要传递的data中json参数转换为字符串格式
+			var dataStr = "";
+			for( var key in opts.data){ 
+			    dataStr += key + "=" +opts.data[key] +"&"  //字符串拼接，如"username=xiaoming&age=23&"
+			}
+			dataStr = dataStr.substr(0, dataStr.length-1);  //字符串截取方法，截取从0到dataStr.length-2位，去掉字符串中最后一个&符号"username=xiaoming&age=23"
+
+			if(opts.type.toLowerCase()==="post"){
+			    xmlhttp.open(opts.type, opts.url,true);
+			    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			    xmlhttp.send(dataStr);
+			}
+			if(opts.type.toLowerCase()==="get"){
+			    xmlhttp.open(opts.type, opts.url+"?"+dataStr,true);
+			    xmlhttp.send();
+			}
+
+		  	xmlhttp.onreadystatechange = function(){ 
+		      	if( xmlhttp.readyState==4 && xmlhttp.status==200 ){ 
+		          	var json = JSON.parse(xmlhttp.responseText);  //把返回的json格式的字符串解析成json对象
+		          	opts.success(json);  //执行success函数
+		      	}
+		      	if( xmlhttp.readyState==4 && xmlhttp.status==404 ){ 
+		          opts.error();
+		      	}
+		  	}
+		}
+		//调用封装函数，实现Ajax，传递的参数默认这种写法， 模仿jQuery的，遵守就是了
+		document.querySelector("#btn").addEventListener('click', function(){
+		   	ajax({   //模拟jQuery的写法，里面的参数是一个json对象
+		      	url: 'task24-1.php',   //接口地址即请求地址
+		      	type: 'get',   // 请求类型， post 或者 get, 
+		      	data: {   //发送给后台的数据
+		          	username: document.querySelector('#username').value
+		      	}, 
+		      	success: function(jsonData){   //响应成功（得到的数据可以是对的也可以是不对的，总之会有一个响应）执行这个函数
+		          	dealwith(jsonData);  //这里的处理函数和上面的一样
+		      	}, 
+		      	error: function(){   //失败（没任何响应，比如服务器宕机了啥的）执行这个函数
+		          	console.log('出错了') 
+		      	} 
+		  	});
+		});
+
+		function dealwith(userInfo){  //对解析出来的JSON对象操作
+		  	//我们可以用从服务器拿到的数据，返回的数据是由后台给的字符串，所以我们还要写php
+		  	var str = '<dt>性别：</dt>';
+		  	str +=  '<dd>'+userInfo.sex+'</dd>';
+		  	str += '<dt>年龄：</dt>';
+		  	str +=  '<dd>'+userInfo.age+'</dd>';
+		  	document.querySelector('#ct').innerHTML = str;
+		}
+	</script>
+    
+</body>
+</html>

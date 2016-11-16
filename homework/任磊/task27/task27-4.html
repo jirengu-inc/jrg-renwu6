@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>大屏轮播</title>
+    <style type="text/css">
+    	html,body,ul,li,p{
+    		margin:0;
+    		padding: 0;
+    	}
+    	ul,li{
+    		list-style: none;
+    	}
+    	a{
+    		text-decoration: none;
+    	}
+    	.clearfix:after{
+    		content:"";
+    		display: block;
+    		clear: both;
+    	}
+    	html,body,.carousel,.carousel .img-ct{
+    		width: 100%;
+    		height: 100%;
+    	}
+    	.carousel{
+    		overflow: hidden;
+    		position: relative;
+    	}
+    	.img-ct{
+    		position: absolute;
+    	}
+    	.img-ct>li{
+			text-align:center;
+    		position: relative;
+    		float: left;
+			width: 100%;
+    		height: 100%;
+    	}
+    	.img-ct .bg{
+    		position: absolute;
+			top: 0;
+			right: 0;
+			bottom:0;
+			left: 0;
+			height:100%;
+			/*background-image:url("img/task27-4/1.jpg");*/
+    		background-repeat: no-repeat;
+    		background-size: cover;
+    		background-position: center center;
+    	}
+		.img-ct .main{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 660px;
+			color: #fff;
+			text-align: center;
+			z-index:11;
+		}
+		.img-ct .main h3{
+			font-size: 36px;
+		}
+		.img-ct .main p{
+			font-size: 18px;
+			line-height: 2;
+		}
+    	.carousel .arrow{
+    		position: absolute;
+    		top: 50%;
+    		display: block;
+    		width: 40px;
+    		height: 40px;
+    		margin-top: -20px;
+    		line-height: 40px;
+    		text-align: center;
+    		font-size: larger;
+    	    border-radius: 40px;
+    	    background-color: #666;
+    	    color: #fff;
+    	    opacity: 0.6;
+    	}
+		.arrow:hover{
+			opacity:1;
+		}
+    	.carousel .pre{
+    		left: 15px;
+    	}
+    	.carousel .next{
+    		right: 15px;
+    	}
+    	.carousel .indicator{
+			position: absolute;
+			bottom: 30px;
+			left: 50%;
+			transform: translateX(-50%);
+    	}
+    	.carousel .indicator li{
+    		float: left;
+    		width: 18px;
+    		height: 18px;
+    		background-color: #fff;
+    		cursor: pointer;
+    		border-radius: 100%;
+    		margin: 0 5px;
+    	}
+    	.indicator li.active{
+    		background-color: #f84e4e;
+    	}
+    </style>
+	<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<div class="carousel">
+		<ul class="img-ct clearfix">
+			<li class="item">
+				<div class="bg" data-bg="img/task27-4/1.jpg"></div>
+				<div class="main">
+					<h3>撼地者加入战斗</h3>
+					<p>让我们一起撼动万物！</p>
+				</div>
+			</li>
+			<li class="item">
+				<div class="bg" data-bg="img/task27-4/2.jpg"></div>
+				<div class="main">
+					<h3>祈求者加入战斗</h3>
+					<p>如此开启知识的纪元！</p>
+				</div>
+			</li>
+			<li class="item">
+				<div class="bg" data-bg="img/task27-4/3.jpg"></div>
+				<div class="main">
+					<h3>暗影刺客加入战斗</h3>
+					<p>我的暗杀名单上有5个名字！</p>
+				</div>
+			</li>
+			<li class="item">
+				<div class="bg" data-bg="img/task27-4/4.jpg"></div>
+				<div class="main">
+					<h3>斧王加入战斗</h3>
+					<p>战，无需多言。死，无关血统。杀，绝不留情！</p>
+				</div>
+			</li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="indicator clearfix">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script>
+		var $ct = $('.img-ct'),
+			$items = $ct.find(".item"),
+			imgWidth = $items.width(),//如果CSS里不设置.items的width为100%，这里可以改写为$(window).width()；但无论哪种写法，都要在下面用JQ给每个item重新加上width属性。所以从逻辑上来说，老师的写法是更合理的。
+			imgCount = $items.length,
+			$pre = $('.pre'),
+			$next = $('.next'),
+			$indicator = $('.indicator');
+
+		$ct.prepend($items.last().clone());
+		$ct.append($items.first().clone());
+		$ct.find('.item').css('width',imgWidth);
+		$ct.find('.bg').css('width',imgWidth);
+		imgRealCount = $ct.find('.item').length;
+		console.log(imgRealCount);
+		$ct.css({
+			'width':imgRealCount*imgWidth,
+			'left': 0-imgWidth
+		})
+		var curIdx = 0;
+		var locked = false;
+		$pre.on('click',function(e){
+			e.stopPropagation();
+			playPre();
+			stopAuto();
+		})
+		$next.on('click',function(e){
+			e.stopPropagation();
+			playNext();
+			stopAuto();
+		})
+
+		$indicator.find('li').on('click',function(e){
+			var idx = $(e.currentTarget).index();
+			stopAuto();
+			if(idx > curIdx){
+			    playNext(idx-curIdx);
+			}
+			if(idx < curIdx){
+			    playPre(curIdx - idx);
+			}
+		});
+
+		function autoPlay(){
+			auto = setInterval(function(){
+				playNext()
+			},2000);
+		};
+		setBg(1);
+		autoPlay();
+
+		function stopAuto(){
+			clearInterval(auto);
+		};
+
+		function playNext(idx){
+			var idx = idx || 1;
+			if(locked){
+			    return;
+			};
+			locked = true;
+			if(idx === 2){
+			    setBg(imgCount-1)
+			};
+			if(idx === 3){
+				setBg(imgCount)
+			};//原例子有BUG，如果下面的按钮直接点到第三格或第4格，背景图片无法加载出来，加上这些代码即可。
+			setBg(curIdx+2);
+			$ct.animate({left: '-='+ (idx*imgWidth)},function(){
+				curIdx = (curIdx + idx) % imgCount;
+				if(curIdx == 0){
+					$ct.css({
+						'left':0-imgWidth
+					});
+					setBg(0);
+				};
+				locked = false;
+				setIndicator();
+				console.log(curIdx);
+		});
+		};
+
+		function playPre(idx){
+			var idx = idx || 1;
+			if(locked){
+			    return;
+			};
+			locked = true;
+			setBg(curIdx);
+			$ct.animate({left:'+='+(idx*imgWidth)},function(){
+				curIdx = (imgCount + curIdx - idx)%imgCount;
+				if(curIdx === (imgCount - 1)){
+				    $ct.css({
+						'left':0-imgCount*imgWidth
+					});
+					setBg(imgCount);//如果一开始页面就点击上一页，会导致背景图片加载不出，加上这行代码即可。
+			}
+				locked = false;
+				setIndicator();
+			})
+		}
+		function setIndicator(){
+			$indicator.find('li').removeClass('active')
+					  .eq(curIdx).addClass('active')
+		}
+		//图片懒加载
+		function setBg(idx){
+			var $node = $ct.find('.item').eq(idx),
+				$bg = $node.find(".bg"),
+				imgUrl = $bg.attr("data-bg");
+			if($node.data('isSetBg')){
+			    return;
+			}
+			$bg.css('background-image','url('+imgUrl+')');
+			$node.data('isSetBg',true);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task24-2</title>
+<style>
+	html,body,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	a{
+		text-decoration: none;
+		color: #008000;
+	}
+	li{
+		list-style-type: none;
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin: 10px;
+	}
+	/*li:hover{
+		background-color: #008000;
+		color: #fff;
+		cursor: pointer;
+	}*/
+	#btn{
+		display: block;
+		width: 80px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		margin: 10px auto;
+		border: 1px solid #008000;
+		border-radius: 5px;
+	}
+	#btn:hover{
+		background-color: #008000;
+		color: #fff;
+	}
+
+</style>
+</head>
+<body>
+    <ul class="ct">
+    	<li>内容1</li>
+    	<li>内容2</li>
+    </ul>
+    <a id="btn" href="#">加载更多</a>
+    <script>
+		//使用事件代理实现鼠标放在li上的效果
+		document.querySelector('.ct').addEventListener('mouseover', function(event){
+			if(event.target.tagName.toLowerCase() === "li"){
+				event.target.style.backgroundColor = "#008000";
+				event.target.style.color = "#fff";
+				event.target.style.cursor = "pointer";
+			}
+			// event.stopPropagation();  这里不需要阻止冒泡
+		});
+		document.querySelector('.ct').addEventListener('mouseout', function(event){
+			if(event.target.tagName.toLowerCase() === "li"){
+				event.target.style.backgroundColor = "#fff";
+				event.target.style.color = "#000";
+			}
+			// event.stopPropagation();
+		});
+
+
+
+
+
+		//定义一个状态锁，用来防止用户重复点击，正在加载的时候让用户的点击效果
+		var isLoading = false;  //是否在加载，一开始设置为false代表没有在加载
+
+		//调用封装函数，实现Ajax
+		document.querySelector("#btn").addEventListener('click', function(event){
+			event.preventDefault();  //阻止a标签的默认行为，不让它跳到顶部
+			if( isLoading === true ){  
+				return;  //如果正在加载数据就直接跳出函数
+			}
+			isLoading = true;  //如果走到这一步了我就上锁了，设置为true，如果用户再点击那么他在上一步就退出函数了
+			document.querySelector("#btn").innerText = '加载中...';
+			//定义传递参数的变量
+			var fromStart = document.querySelector('.ct').children.length+1;  //定义从拿第几个数据，就是要获取目前有多少个li了
+		   	ajax({   //模拟jQuery的写法，里面的参数是一个json对象
+		      	url: 'task24-2.php',   //接口地址即请求地址
+		      	type: 'get',   // 请求类型， post 或者 get, 
+		      	data: {   //发送给后台的数据
+		          	start: fromStart,  //在上面定义传递的变量
+		          	length: 5  //这里由于每次都拿5条数据，所以直接是5了
+
+		      	}, 
+		      	success: function(jsonData){   //响应成功执行这个函数
+					isLoading = false;//数据拿到了，我们要让用户可以接着点击，这是解锁的地方
+		          	dealwith(jsonData);  //这里的处理函数和上面的一样
+					//fromStart +=5;  //数据拿到之后将变量加5，如果上面的声明放外面的话要加上这句
+		      	}, 
+		      	error: function(){   //失败执行这个函数
+					isLoading = false;//尽管系统错误，我们要也让用户可以接着点击，这是解锁的地方
+		          	onError(); 
+		      	} 
+		  	});
+		});
+
+		//状态正确时处理数据的函数
+		function dealwith(jsonData){  //这里的jsonData为{'status': 0, 'backData': ['3的内容', '4的内容', '5的内容', '6的内容', '7的内容']}
+			if(jsonData.status === 0){  //状态为0代表数据正常拿到了
+				for(var i=0;i<jsonData.backData.length;i++){
+					//document.querySelector('.ct').appendChild('<li>'+jsonData.backData[i]+'</li>');  //往li后面继续添加5个li，获取到的数据填在里面,这种写法不对，要先创建一个新节点
+					var newNodes = document.createElement('li');
+					newNodes.innerText = jsonData.backData[i];
+					document.querySelector('.ct').appendChild(newNodes);
+				}
+			}else{
+				alert('获取数据失败');
+			}
+			document.querySelector("#btn").innerText = '加载更多';
+		}
+
+		//系统出错的处理函数
+		function onError(){
+			alert('系统异常'); 
+			document.querySelector("#btn").innerText = '加载更多';
+		}
+
+
+    	//把封装好的Ajax放进来
+    	function ajax(opts){   //opts是传递的json对象
+		  	var xmlhttp = new XMLHttpRequest();
+
+		  	//将下面要传递的data中json参数转换为字符串格式
+		  	var dataStr = "";
+		  	for( var key in opts.data){ 
+		      	dataStr += key + "=" +opts.data[key] +"&"
+		  	}
+		  	dataStr = dataStr.substr(0, dataStr.length-1);  //去掉字符串中最后一个&符号
+
+		  	if(opts.type.toLowerCase()==="post"){
+		      	xmlhttp.open(opts.type, opts.url, true );
+		      	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		      	xmlhttp.send(dataStr);
+		  	}
+		  	if(opts.type.toLowerCase()==="get"){
+		      	xmlhttp.open(opts.type, opts.url+"?"+dataStr, true );
+		      	xmlhttp.send();
+		  	}
+
+		  	xmlhttp.onreadystatechange = function(){ 
+		      	if( xmlhttp.readyState==4 && xmlhttp.status==200 ){ 
+		         	var json = JSON.parse(xmlhttp.responseText);  //把返回的json格式的字符串解析成json对象
+		          	opts.success(json);  //执行success函数
+		      	}
+		      	if( xmlhttp.readyState==4 && xmlhttp.status==404 ){ 
+		          	opts.error()
+		      	}
+		  	}
+		}
+
+    </script>
+</body>
+</html>

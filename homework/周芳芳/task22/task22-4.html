@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>标签切换</title>
+	<style type="text/css">
+	body,ul,li,p{
+    	margin: 0;
+    	padding: 0;
+    	font-size: 14px;
+    	color: #333;
+    	font-family: "Microsoft Yahei";
+    	list-style: none;
+    }
+    #title{
+    	width: 602px;
+    	height: 30px;
+    	margin:0 auto;
+    	border:1px solid #ccc;
+    	overflow: hidden;
+    }
+    #title>li{
+    	cursor: pointer;
+    	float:left;
+    	text-align:center;
+    	width: 200px;
+    	height: 30px;
+    	line-height: 30px;
+    	border-right:1px solid #ccc;
+    }
+    #title>li.active{
+    	background-color: #eee;
+    }
+    #title>li:last-child{
+    	border-right:none;
+    }
+    #contBox{
+    	width: 562px;
+    	height: 1
+
+
+    	60px;
+    	padding:20px;
+    	border:1px solid #ccc;
+    	margin:0 auto;
+    	border-top:none;
+    }
+    .hide{
+    	display: none;
+    }
+    .show{
+    	display: block;
+    }
+	</style>
+</head>
+<body>
+	<ul id="title">
+		<li>tab1</li>
+		<li>tab2</li>
+		<li>tab3</li>
+	</ul>
+	<div id="contBox">
+	    <p>内容1</p>
+	    <p class="hide">内容2</p>
+	    <p class="hide">内容3</p>
+	</div>
+
+	<script>
+		var title=document.getElementById("title");
+		var tli=title.getElementsByTagName("li");
+		var con=document.getElementById("contBox");
+		var p=con.getElementsByTagName("p");
+		for(var i=0;i<tli.length;i++){
+            tli[i].index=i;
+            tli[i].onmouseover=function(){
+            	for(var i=0;i<tli.length;i++){
+            		tli[i].className="";
+            	}
+            	this.className="active";
+            	for(var j=0;j<p.length;j++){
+            		p[j].className="hide";
+            	}
+            	p[this.index].className="show";
+            }
+		}
+	</script>
+</body>
+</html>

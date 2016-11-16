@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Music Player</title>
+  <link rel="shortcut icon" href="./favicon.ico" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1475742909_4830005.css">
+  <style>
+    html,body,header,main,footer,div,ul,li,h1,p {
+      margin: 0;
+      padding: 0;
+    }
+    ul,li {
+      list-style: none;
+    }
+    body,html {
+      height: 100%;
+      min-height: 100%;
+    }
+    body {
+      background: liner-gradient(to bottom,#f6f7fc 0%,#d5e1e8 40%);
+      transform-style: preserve-3d;;
+      transform: perspective(800px);
+      font-family: "微软雅黑",sans-serif;
+    }
+    .clearfix:after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+    .poster {
+      width: 320px;
+      height: 500px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      /*transform: translateX(-50%) translateY(-50%);*/
+      margin-top: -250px;
+      margin-left: -160px;
+      border-radius: 5px;
+      box-shadow: 0 45px 50px rgba(0,0,0,0.4);
+      overflow: hidden;
+      transition: box-shadow 1s;
+    }
+    .poster:hover {
+      box-shadow: 0px 45px 100px rgba(0,0,0,0.8);
+    }
+    header {
+      width: 100%;
+      height: 60px;
+      background-color: #ec5757;
+      text-align: center;
+      position: relative;
+      color: #fff;
+    }
+    header>h1 {
+      padding-top: 10px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    header>p.singer {
+      position: absolute;
+      bottom: 5px;
+      right: 15px;
+      font-size: 12px;
+      color: #fef;
+    }
+    header>p.category {
+      position: absolute;
+      bottom: 5px;
+      left: 15px;
+      font-size: 12px;
+      color: #fef;
+    }
+    main {
+      width: 100%;
+      height: 300px;
+      background-color: #ccc;
+      overflow: hidden;
+      text-align: center;
+      margin-bottom: 30px;
+      background: linear-gradient(to bottom, blue, white);
+    }
+    main>img {
+      height: 330px;
+    }
+    main>.lyric {
+
+    }
+    main>.lyric>li {
+      
+    }
+    main>.lyric>.active {
+
+    }
+    footer {
+      margin-top: 10px;
+      position: relative;
+    }
+    footer>.timer {
+      margin: 0 auto;
+      padding-top: 70px;
+      width: 80px;
+    }
+    footer>.timer>li {
+      float: left;
+    }
+    footer>.timer>li.current {
+      color: #eb5757;
+    }
+    footer>.timer>li.current,footer>.timer>li.all {
+      font-weight: 700;
+    }
+    footer progress {
+      height: 10px;
+      background-color: #ccc;
+      width: 260px;
+      position: absolute;
+      left: 30px;
+      top: 50px;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    footer #player {
+      width: 280px;
+      margin: 0 auto;
+      position: relative;
+      margin-top: -10px;
+    }
+    footer #player>span {
+      display: block;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+      transition: all .5s;
+    }
+    footer #player>a {
+      display: block;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      text-decoration: none;
+      transition: all .5s;
+    }
+    footer #player>a:hover {
+      font-size: 20px;
+      color: #ec5757;
+    }
+    #player>.turn,#player>.share,#player>.next {
+      float: right;
+      margin: 0 15px;
+    }
+    #player>.like {
+      color: #cdd2d7;
+      float: left;
+    }
+    #player>.like:hover {
+      color: #f0f;
+      font-size: 20px;
+    }
+    #player>.like.active {
+      color: #fe8698;
+      font-size: 20px;
+    }
+    #player>.play,#player>.pause {
+      position: absolute;
+      top: 0;
+      left: 50px;
+      display: none;
+    }
+    #player>.play.active,#player>.pause.active {
+      display: block;
+    }
+    #player>.turn:hover,#player>.next:hover,#player>.play:hover,#player>.pause:hover {
+      color: #fc8926;
+      font-weight: 18px;
+    }
+  @media (max-width: 767px) {
+    .poster {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      position: static;
+      margin: 0;
+      overflow: auto;
+    }
+    header {
+      height: 10%;
+    }
+    main {
+      height: 65%;
+    }
+    main>img {
+      height: 100%;
+    }
+    footer {
+      height: 25%;
+    }
+    footer>progress {
+      position: absolute;
+      top: 35%;
+      left: 10%;
+      width: 80%;
+    }
+    footer>.timer {
+      padding-top: 100px;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <header>
+      <h1></h1>
+      <p class="category"></p>
+      <p class="singer"></p>
+    </header>
+    <main>
+      <img src="" alt="">
+      <ul class="lyric"></ul>
+    </main>
+    <footer>
+      <div id="player">
+        <span class="iconfont icon-xihuanxuanzhong like" title="喜欢"></span>
+        <span class="iconfont icon-pause pause active" title="暂停"></span>
+        <span class="iconfont icon-play play" title="播放"></span>
+        <a href="http://service.weibo.com/share/share.php?title=#_loginLayer_1466697157538" target="new" class="iconfont icon-share share" title="分享"></a>
+        <span class="iconfont icon-xiayishou next" title="下一首"></span>
+        <span class="iconfont icon-next turn" title="换个风格"></span>
+      </div>
+      <audio src="" autoplay="autoplay">你的浏览器不支持该文件</audio>
+      <progress max="0" value="0"></progress>
+      <ul class="timer clearfix">
+        <li class="current"></li>
+        <li>/</li>
+        <li class="all"></li>
+      </ul>
+    </footer>
+  </div>
+  <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>mission12-浮动、负margin实现两边无缝隙中间有缝隙</title>
+  <style>
+    html,body,ul,li{
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    #content{
+      width:1000px;
+      background:#ccc;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .ct:after{  /*父元素清除浮动*/
+      content:"";
+      display:block;
+      clear:both;
+    }
+
+    .ct li{
+      width:320px;  /*(1000-40)/3=320,目标效果是中间两条间隙20px+20px，有3个div所以每个div是320px*/
+      background:green;
+      height:60px;
+      float:left;
+      margin-left:20px;
+      margin-top:10px;
+    }
+
+    .ct{
+      margin-left:-20px;/*这里是父元素使用负margin，子元素li会继承负margin属性一起向左移动*/
+    }
+
+  </style>
+</head>
+  <body>
+    <div id="content">
+      <div class="ct">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

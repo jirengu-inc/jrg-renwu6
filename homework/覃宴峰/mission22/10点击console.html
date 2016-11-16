@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title></title>
+</head>
+  <body>
+<ul class="ct">
+<li>这里是</li>
+<li>饥人谷</li>
+<li>前端6班</li>
+</ul>
+<script>
+var str1=document.querySelectorAll("li")//这里str1是类数组对象for(var i=0;i<str1.length;i++){
+    for(var i=0;i<str1.length;i++){
+      str1[i].addEventListener("click",function(mousev){//循环遍历类数组对象成员，为每个成员绑定点击事件console.log(this.innerText)
+      console.log(mousev.target.innerText)
+      },false)
+    }
+
+</script>
+  </body>
+</html>

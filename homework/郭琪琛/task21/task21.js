@@ -5,19 +5,21 @@ function trim(str) {
 
 //2. 使用实现 addClass(el, cls)、hasClass(el, cls)、removeClass(el,cls)，使用正则
 function addClass(el,cls) {
-    el.className+=" "+cls
+    if (!hasClass(el,cls)) {
+        el.className+=" "+cls
+    }
 }
 
 
 function hasClass(el,cls) {
-    var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)","g")
+    var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)")
     return reg.test(el.className)
 }
 
 
 function removeClass(el,cls) {
     var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)","g")
-    el.className.replace(reg,"")
+    el.className = el.className.replace(reg,"").trim()
 }
 
 //3. 写一个函数isEmail(str)，判断用户输入的是不是邮箱
@@ -39,10 +41,10 @@ function isValidUsername(str) {
 //6. 写一个函数isValidPassword(str), 判断用户输入的是不是合法密码
 //（长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种）
 function isValidPassword(str) {
-    if(/(^\d{6,20}$)|(^[A-Z]{6,20}$)|(^[a-z]{6,20})|(^_{6,20}$)|(^\w{0,5}$)/.test(str)) {
+    if(/(^\d{6,20}$)|(^[A-Z]{6,20}$)|(^[a-z]{6,20})|(^_{6,20}$)|(^[a-zA-Z0-9_]{0,5}$)/.test(str)) {
         return "长度6-20个字符，包括大写字母、小写字母、数字、下划线至少两种"
     }
-    if (/\w{6,20}/.test(str)) {
+    if (/^[a-zA-Z0-9_]{6,20}$/.test(str)) {
         return true
     }
 }

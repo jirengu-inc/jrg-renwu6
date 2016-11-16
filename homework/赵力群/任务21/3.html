@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>task-21-3</title>
+</head>
+
+<body>
+  <script>
+    function isEmall(str) {
+      var reg = /^[\w\.-]+@{1}[\w-]+\.[\w\.-]+$/;
+      return reg.test(str);
+    }
+    var str1 = "af1_zhao@qq.com.ck",
+        str2 = "1235!~@163.com";
+    console.log(isEmall(str1));
+    console.log(isEmall(str2));
+  </script>
+</body>
+
+</html>

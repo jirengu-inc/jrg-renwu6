@@ -1,0 +1,170 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Pierce Chou
+ * @date    2016-08-25 09:29:40
+ * @version $Id$
+ */
+
+
+/***** 第一部分，重置默认样式 *****/
+html,body,ul,li,h1,h2,h3,h4,p{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: #666;
+}
+li{
+	list-style: none;
+}
+
+/***** 第二部分，设置当前页面公共样式 *****/
+body{
+	font: 14px/1.5 "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* 清除浮动对父元素高度的影响 */
+.clearfix::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+/* 让页面上的内容居中，宽度固定为1000px */
+.layout{
+	width: 1000px;
+	margin: 0 auto;
+}
+.btn{
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+/***** 第三部分，写页面功能区块 *****/
+
+/* 头部导航 */
+.logo{
+	float: left;
+	font-size: 30px;
+	line-height: 50px;
+}
+.logo:hover{
+	color: #333;
+}
+.nav-bar{
+	float: left;
+	margin-left: 20px;
+}
+.nav-bar>li{
+	float: left;
+	line-height: 50px;
+	padding: 0 10px;
+	position: relative;
+}
+.drop-list{
+	display: none;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	position: absolute;
+	left: 0px;
+	top: 100%;
+}
+.drop-list li{
+	border-bottom: 1px dashed #ccc;
+	padding: 10px 10px;
+	line-height: 1;
+}
+.drop-list li:hover{
+	background-color: #ccc;
+}
+.drop-list li:last-child{
+	border: none;
+}
+.nav-bar>li:last-child:hover .drop-list{
+	display: block;
+}
+
+/*** 主内容区域 ***/
+
+/* 我的简介 */
+.brief{
+	background-color: #B84D45;
+	color: #fff;
+	padding: 30px 0;
+}
+
+/* 作品面包屑导航 */
+.crumb-nav{
+	margin-top: 40px;
+	border-radius: 5px;
+}
+.crumb-nav ul{
+	background-color: #eee;
+	color: #666;
+	padding: 10px;
+}
+.crumb-nav ul a{
+	color: #b84d45;
+}
+.crumb-nav ul li{
+	display: inline-block;
+}
+
+/* 作品集部分 */
+.work{
+	margin-top: 10px;
+}
+.work ul li{
+	float: left;/* 加浮动宽度自适应 */
+	text-align: center;
+	border: 1px solid #ccc;
+	margin-top: 20px;
+	margin-left: 40px;
+}
+.work ul{
+	margin-left: -40px;
+}
+.work ul img{
+	width: 304px;
+	height: 200px;
+}
+.work h3{
+	padding: 5px 0;
+}
+.work p{
+	padding-bottom: 10px;
+}
+.work .btn{
+	margin-bottom: 10px;
+}
+.work .btn:hover{
+	opacity: 0.6;
+}
+
+/* 下载简历部分 */
+.down-resume{
+	background-color: #B84D45;
+	text-align: center;
+	margin-top: 30px;
+	padding: 20px;
+	color: #fff;
+}
+.down-resume .btn{
+	color: #fff;
+	border-color: #fff;
+}
+.down-resume p{
+	padding-bottom: 10px;
+}
+
+/* 页脚部分 */
+#footer{
+	margin-top: 40px;
+}
+#footer p{
+	border-top: 1px solid #eee;
+	text-align: center;
+	padding: 20px;
+}

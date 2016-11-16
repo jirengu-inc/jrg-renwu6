@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>10-19</title>
+	<style>
+		.ct {
+			border:1px solid #ccc;
+		}
+		a {
+			padding: 5px 10px;
+			line-height: 30px;
+			text-decoration: none;
+			color: #fff;
+			background-color: #000;
+		}
+		.ct .box.active {
+			background-color: #f00;
+			width: 200px;
+			height: 100px;
+			border:10px solid green;
+			margin: 100px;
+			padding: 100px;
+		}
+		.ct .box {
+			background-color: #f00;
+			width: 200px;
+			height: 100px;			
+		}
+		.ct .box.change {
+			font-size: 20px;
+			width: 200px;
+			height: 100px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct ct1">
+		<h3>10.获取设置node的宽高(分别不包含内边距，包含内边距，包含边框，包含外边框)均设为500px，查看不同效果</h3>
+		<div class="box active">
+			
+		</div>
+		<a href="#" class="width">宽高</a>
+		<a href="#" class="innerwidth">内边距宽高</a>
+		<a href="#" class="outerwidth">边框宽高</a>
+		<a href="#" class="trueowidth">外边距宽高</a>
+	</div>
+	<div class="ct ct2">
+		<h3>11.获取窗口滚动条垂直滚动距离</h3>
+		<div class="box"></div>
+		<a href="#" class="scroll">当前滚动位置</a>
+	</div>
+	<div class="ct ct3">
+		<h3>12.获取到根节点水平垂直偏移距离</h3>
+		<div class="box"></div>
+		<a href="#" class="getPos">获取距离</a>
+	</div>
+	<div class="ct ct4">
+		<h3>13.修改样式，设置字体颜色为红色，大小14px</h3>
+		<div class="box change">我的原始字体大小为20px，背景绿色，字体默认</div>
+		<a href="#" class="recss">修改</a>
+	</div>
+	<div class="ct ct5">
+		<h3>14.遍历节点，将其中文本重复一遍</h3>
+		<div class="box">我是第一个box</div>
+		<div class="box">我是第二个box</div>
+		<a href="#" class="loop">遍历</a>
+	</div>
+	<div class="ct ct6">
+		<h3>15.查找class为.item的子元素</h3>
+		<h3>16.查看父元素所有的孩子</h3>
+		<div class="box">我是box</div>
+		<div class="item">我是item</div>
+		<a href="#" class="seaChild">查找item</a>
+		<a href="#" class="seaAll">查找所有</a>
+	</div>
+	<div class="ct ct7">
+		<h3>17.向上找到.ct，再向下找到.panel</h3>
+		<div class="panel">我是panel</div>
+		<a href="#" class="find">查找子元素</a>
+	</div>
+	<div class="ct ct8">
+		<h3>18.获得所有选择元素的数量</h3>
+		<div class="box"></div>
+		<a href="#" class="getCount">获取数量</a>
+	</div>
+	<div class="ct ct9">
+		<h3>19.获得当前元素在兄弟元素中的排行</h3>
+		<div class="box"></div>
+		<a href="#" class="getRange">获取排行</a>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<script>
+		$("a").on("click",function(e){
+			e.preventDefault();
+		})
+		$(".width").on("click",function(){
+			var $box = $(this).parent().find(".box");
+			$box.width("500px");
+			$box.height("500px");
+		})
+		$(".innerwidth").on("click",function(){
+			var $box = $(this).parent().find(".box");
+			$box.innerWidth("500px");
+			$box.innerHeight("500px");
+		})
+		$(".outerwidth").on("click",function(){
+			var $box = $(this).parent().find(".box");
+			$box.outerWidth("500px");
+			$box.outerHeight("500px");
+		})
+		$(".trueowidth").on("click",function(){
+			var $box = $(this).parent().find(".box");
+			$box.text("好像没有提供能设置包含外边距宽高的方法，它现在包含外边距的宽度是：" + $box.outerWidth(true) + "px,高度是" + $box.outerHeight(true)) + "px";
+		})
+		$(".scroll").on("click",function(){
+			$(this).parent().find(".box").text($("body").scrollTop());
+		})
+		$(".getPos").on("click",function(){
+			var $box = $(this).parent().find(".box");
+			$box.text("到水平根节点的位置是" + $box.offset().top + "垂直偏移距离是" + $box.offset().left);
+		})
+		$(".recss").on("click",function(){
+			$(this).parent().find(".box").css({
+				"font-size":"14px",
+				"color":"red"
+			});
+		})
+		$(".loop").on("click",function(){
+			$(this).parent().children().each(function(){
+				console.log($(this));
+				$(this).text($(this).text() + $(this).text());
+			})
+		})
+		$(".seaChild").on("click",function(){
+			var $item = $(this).parent().find(".item");
+			$('<p>item中的文字是' + $item.text() +　"</p>").appendTo($(this).parent());
+		})
+		$(".seaAll").on("click",function(){
+			var $all = $(this).parent().children();
+			$('<p>所有节点的文字是' + $all.text() +　"</p>").appendTo($(this).parent());
+		})
+		$(".find").on("click",function(){
+			var $panel = $(this).parent().find(".panel");
+			$('<p>panel中的文字是' + $panel.text() +　"</p>").appendTo($(this).parent());
+		})
+		$(".getCount").on("click",function(){
+			$length = $(this).parents("body").children().length;
+			$(this).parent().find(".box").text("body下一共有" + $length + "个子节点");
+		})
+		$(".getRange").on("click",function(){
+			$range = $(this).parent().index();
+			$(this).parent().find(".box").text("这时body下的第" + $range + "个子节点");
+		})
+	</script>
+
+
+
+</body>
+</html>

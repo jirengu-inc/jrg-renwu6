@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务25-2</title>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    a{
+        list-style: none;
+        text-decoration: none;
+        color: #8b0000;
+        border: 1px solid #8b0000;
+        border-radius: 3px;
+        padding: 10px;
+        margin: 10px auto;
+        display: inline-block;
+    }
+    .box{
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+    }
+    .btn-box{
+        text-align: center;
+    }
+    .active{
+        background: #228b22;
+        color: #fff;
+    }
+</style>
+<body>
+<div class="ct">
+    <div class="box">内容1</div>
+    <div class="box">内容2</div>
+    <div class="box">内容3</div>
+</div>
+<div class="btn-box"><a href="#" class="btn">加载更多</a></div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+    $('.ct').on('mouseenter','.box',function () {
+        $(this).addClass('active')
+    }).on('mouseleave','.box',function () {
+        $(this).removeClass('active')
+    });
+
+    var start = 4;
+    $('.btn').on('click',function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        if($this.data('btn')){return}
+        $this.data('btn',true).text('loading...');
+        $.ajax({
+            url: 'myPHP.php',
+            dataType: 'json',
+            type: 'get',
+            data: {
+                start: start,
+                len: 5
+            },
+            success: function (json) {
+                onSuccess(json);
+                $this.data('btn',false).text('loading...');
+            },
+            error: function () {
+                alert('出错了');
+                $this.data('btn',false).text('loading...');
+            }
+        })
+    });
+        function onSuccess(e) {
+            for(var i=0; i < e.data.length; i++){
+                var $node = $('<div class="box"></div>');
+                $node.text(e.data[i]).appendTo( $('.ct') );
+            }
+            strart += 5;
+        }
+
+</script>
+</body>
+</html>

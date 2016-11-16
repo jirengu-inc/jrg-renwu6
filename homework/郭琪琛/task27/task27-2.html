@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-1</title>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .slide,.slide2,.slide3 {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+
+        .slide-img-wrap>a {
+            position: absolute;
+            top: 0;
+            display: none;
+        }
+
+        .slide-img-wrap>a:first-child {
+            display: block;
+        }
+
+        .slide-img-wrap img {
+            vertical-align: bottom;
+        }
+
+        .slide-btn-dot {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+
+        .btn-dot-item {
+            float: left;
+            padding: 10px 0;
+        }
+
+        .btn-dot-item:hover {
+            cursor: pointer;
+        }
+
+        .btn-dot-item>a{
+            display: block;
+            width: 20px;
+            height: 2px;
+            border-radius: 20%;
+            margin: 0 5px;
+            background-color: #ccc;
+        }
+
+        .slide-btn-move {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 30px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .slide-btn-move:active {
+            color: #000;
+        }
+
+        .move-next {
+            right: 0;
+        }
+
+        .active>a {
+            background-color: #000;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <div class="slide">
+        <div class="slide-img-wrap">
+            <a href="#!"><img src="img/nature1.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature2.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature3.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature4.jpg" alt=""></a>
+        </div>
+        <ul class="slide-btn-dot">
+            <li class="btn-dot-item active"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+        </ul>
+        <a href="#!" class="slide-btn-move move-pre">&lt;</a>
+        <a href="#!" class="slide-btn-move move-next">&gt;</a>
+    </div>
+
+    <div class="slide2">
+        <div class="slide-img-wrap">
+            <a href="#!"><img src="img/nature1.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature2.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature3.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature4.jpg" alt=""></a>
+        </div>
+        <ul class="slide-btn-dot">
+            <li class="btn-dot-item active"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+        </ul>
+        <a href="#!" class="slide-btn-move move-pre">&lt;</a>
+        <a href="#!" class="slide-btn-move move-next">&gt;</a>
+    </div>
+
+    <div class="slide3">
+        <div class="slide-img-wrap">
+            <a href="#!"><img src="img/nature1.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature2.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature3.jpg" alt=""></a>
+            <a href="#!"><img src="img/nature4.jpg" alt=""></a>
+        </div>
+        <ul class="slide-btn-dot">
+            <li class="btn-dot-item active"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+            <li class="btn-dot-item"><a href="#!"></a></li>
+        </ul>
+        <a href="#!" class="slide-btn-move move-pre">&lt;</a>
+        <a href="#!" class="slide-btn-move move-next">&gt;</a>
+    </div>
+    <script>
+        jQuery.fn.slide = function(){
+            var $slide = this,
+                $imgItem = $slide.find('.slide-img-wrap>a'),
+                $btnDot = $slide.children('.slide-btn-dot'),
+                $dotItem = $slide.find('.btn-dot-item'),
+                $next = $slide.children('.move-next'),
+                $pre = $slide.children('.move-pre'),
+                index = -1
+
+            function move(next) {
+                $imgItem.eq(index).stop(true,true).fadeOut()
+                if (next) {
+                    if (index === 3) {
+                        index = 0
+                    } else {
+                        index ++
+                    }
+                } else {
+                    if (index === 0) {
+                        index = 3
+                    } else {
+                        index --
+                    }
+                }
+                $imgItem.eq(index).stop(true,true).fadeIn()
+                selected(index)
+            }
+
+            function selected(index) {
+                $dotItem.eq(index).addClass('active').siblings().removeClass('active')
+            }
+
+            function autoPlay() {
+                move(true)
+                setTimeout(autoPlay,3000)
+            }
+
+            function btnMove(btnIndex) {
+                $imgItem.eq(index).stop(true,true).fadeOut()
+                $imgItem.eq(btnIndex).stop(true,true).fadeIn()
+                index = btnIndex
+            }
+
+            autoPlay()
+
+            $next.on('click',function(){
+                move(true)
+            })
+
+            $pre.on('click',function(){
+                move(false)
+            })
+
+            $btnDot.on('click','li',function(){
+                var btnIndex = $(this).index()
+                btnMove(btnIndex)
+                selected(index)
+            })
+        }
+
+        $('.slide').slide()
+        $('.slide2').slide()
+        $('.slide3').slide()
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- 1. 有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容 -->
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+</ul>
+<script>
+//DOM0级事件监听
+    // var lst = document.getElementsByTagName('li')
+    // for (var i = 0; i < lst.length; i++) {
+    //     lst[i].onclick = function () {
+    //         console.log(this.innerText)
+    //     }
+    // }
+//DOM2级事件监听
+    // var lst = document.getElementsByTagName('li')
+    // function clickLst(e) {
+    //     console.log(this.innerText)
+    // }
+    // for (var i = 0; i < lst.length; i++) {
+    //     lst[i].addEventListener('click',clickLst)
+    // }
+//DOM2级事件委托
+    var ct = document.getElementsByClassName('ct')[0]
+    function clickLst(e) {
+        if (e.target.nodeName === 'LI') {
+            console.log(e.target.innerText)
+        }
+    }
+    ct.addEventListener('click',clickLst)
+</script>
