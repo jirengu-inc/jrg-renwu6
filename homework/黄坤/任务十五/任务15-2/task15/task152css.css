@@ -67,11 +67,12 @@ body{
 	position: relative;
 }
 .studio .layout{
-	width: 900px;height: 200px;
+	/*width: 900px;height: 200px;*/
 	position: absolute;
 	top: 50%; left: 50%;
-	margin-top:-100px;
-	margin-left: -450px; 
+	transform: translate(-50%,-50%);
+	/*margin-top:-100px;
+	margin-left: -450px; */
 }
 .studio p{
 	font-size: 75px;
