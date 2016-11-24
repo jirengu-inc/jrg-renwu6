@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#ct{
+			position: relative;
+		}
+		.item{
+			position: absolute;
+			width: 200px;
+			margin-right: 10px;
+			margin-top: 10px;
+			transition: all 1s;
+		}
+		.wrap1{
+			background: pink;
+			height: 320px;
+		}
+		.wrap2{
+			background: green;
+			height: 200px;
+		}
+		.wrap3{
+			background: blue;
+			height: 380px;
+		}
+	</style>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+</head>
+<body>
+	<div id="ct">
+		<div class="item wrap1">1</div>
+		<div class="item wrap2">2</div>
+		<div class="item wrap3">3</div>
+		<div class="item wrap2">4</div>
+		<div class="item wrap1">5</div>
+		<div class="item wrap3">6</div>
+		<div class="item wrap1">7</div>
+		<div class="item wrap3">8</div>
+		<div class="item wrap2">9</div>
+		<div class="item wrap3">10</div>
+		<div class="item wrap1">11</div>
+		<div class="item wrap1">12</div>
+		<div class="item wrap3">13</div>
+		<div class="item wrap3">14</div>
+		<div class="item wrap1">15</div>
+		<div class="item wrap2">16</div>
+		<div class="item wrap3">17</div>
+		<div class="item wrap2">18</div>
+		<div class="item wrap3">19</div>
+		<div class="item wrap1">20</div>
+		<div class="item wrap2">21</div>
+	</div>
+	<script>
+		$(window).on("load",function(){
+			var $items=$(".item"),
+				$itemWidth=$items.eq(0).outerWidth(true),
+				$cols=parseInt($(window).width()/$itemWidth),
+				$colSumHeight=[];
+
+			for(var i=0;i<$cols;i++){
+				$colSumHeight[i]=0;
+			}
+			
+			$items.each(function(){
+				var $cur=$(this),
+				    idx=0,
+				    minHeight=$colSumHeight[0];
+				for(var i=0;i<$colSumHeight.length;i++){
+					if(minHeight>$colSumHeight[i]){
+						minHeight=$colSumHeight[i];
+						idx=i;
+					}
+				}
+				$cur.css({
+					"left":$itemWidth*idx,
+					"top":minHeight
+				});
+
+				$colSumHeight[idx]=$colSumHeight[idx]+$cur.outerHeight(true);
+			});
+		});
+	</script>
+</body>
+</html>
