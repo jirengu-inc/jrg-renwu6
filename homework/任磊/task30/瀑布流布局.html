@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset=UTF-8" />
+	<meta charset="UTF-8">
 	<title>瀑布流布局</title>
 	<style type="text/css">
 		* {
@@ -18,12 +18,6 @@
 			margin-top: 15px;
 			margin-right: 15px;
 			transition: all 1s;
-			-moz-transition: all 1s;
-			/* Firefox 4 */
-			-webkit-transition: all 1s;
-			/* Safari 和 Chrome */
-			-o-transition: all 1s;
-			/* Opera */
 		}
 
 		.box {
@@ -145,7 +139,16 @@
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
+	$(window).on('load',function(){
+		//这里有一个巨大的坑，我花了半天的时间才搞明白，如果你的实例有图片，就不要使用$(document).ready()方法来替代window.onload方法，原因是$(document).ready()方法不会等到图片加载完成才执行js代码，这会导致这段代码在浏览器下必须刷新好几次才能正常显示瀑布流布局。结果就是这一个小知识点，我半天的时间就没了.....基础很重要啊....
+//		waterfall();
+//		$(window).on('resize',function(){ //当页面大小发生改变时，重新布局。
+//			waterfall();
+//		});
+		WaterFall.init($('#container'),$('#container>.item'));//绑定到一个对象上。
+
+	})
 	function waterfall(){
 		var $item = $('.item');
 		var nodeW = $item.outerWidth(true);//使用outerWidth(ture)方法返回匹配元素带有margin值的宽度。
@@ -158,10 +161,10 @@
 		//定义一个数组用来储存每列中元素相加的高度。
 		var itemHArr= [];
 		$item.each(function(index,value){
-			var itemH =$item.eq(index).outerHeight(true);
+			var $cur = $(this);
+			var itemH = $cur.outerHeight(true);
 			if(index < colNum){
-				$(value).css({			//将第一行的元素放在页面的顶部
-					'position':'absolute',
+				$cur.css({			//将第一行的元素放在页面的顶部
 					'top':'0px',
 					'left': index*nodeW
 				});
@@ -170,22 +173,19 @@
 				//min方法接受的是列表形式的参数（argument list），所以直接传入数组是无法生效的，这里使用apply方法不是为了改变context，而是利用apply方法将原来接受列表形式参数的函数变的可以接受数组形式的参数（argument array），这里也能理解出call方法和apply方法的区别。
 				var minH = Math.min.apply(null,itemHArr);
 				var minHIndex = $.inArray(minH,itemHArr);//inArray方法可以在数组中查找指定值并返回它的索引。
-				$(value).css({		//找到数组中高度最小的值，也就是找到了第一行高度最小的元素，将下一个元素定位在这个最小高度元素下面
-					'position':'absolute',
-					'top':minH,
+				$cur.css({		//找到数组中高度最小的值，也就是找到了第一行高度最小的元素，将下一个元素定位在这个最小高度元素下面
+					'top': minH,
 					'left': minHIndex * nodeW
-					//'left':$item.eq(minHIndex).position().left
+					//					'left':$item.eq(minHIndex).position().left
 					//上面是另一种写法，position()方法可以获取匹配元素相对于被定位过的祖先元素的坐标。
 				});
-				itemHArr[minHIndex] += $item.eq(index).outerHeight(true);
+				itemHArr[minHIndex] += itemH;
 				//定位之后的元素的高度与itemHArr数组中的最小高度相加，更新数组。换一句话说就是每次元素定位之后，数组中的最小高度就会发生变化，这样下一个元素就会寻找更新之后的最小高度元素来定位，这样不断的遍历就完成了瀑布流布局。
 			}
 		});
 	}
-//	waterfall();
-//	$(window).on('resize',function(){ //当页面大小发生改变时，重新布局。
-//		waterfall()
-//	})
+
+
 
 	//绑定到一个对象上
 	var WaterFall= {
@@ -220,7 +220,7 @@
 						'top': '0px',
 						'left':index*_this.nodeW
 					});
-				    _this.colHArr[index] = _this.nodeH;
+					_this.colHArr[index] = _this.nodeH;
 				}else{
 					_this.minH = Math.min.apply(null,_this.colHArr);
 					_this.minHIndex = $.inArray(_this.minH,_this.colHArr);
@@ -234,10 +234,6 @@
 			})
 		}
 	};
-	
-	WaterFall.init($('#container'),$('#container>.item'));
-
-
 </script>
 </body>
 
