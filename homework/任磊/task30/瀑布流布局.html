@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流布局</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		#container {
+			position: relative;
+		}
+
+		.item {
+			position:absolute;
+			margin-top: 15px;
+			margin-right: 15px;
+			transition: all 1s;
+		}
+
+		.box {
+			padding: 10px;
+			border: 1px solid #ccc;
+			box-shadow: 0 0 6px #ccc;
+			border-radius: 5px;
+		}
+
+		.box img {
+			width: 160px;
+			height: auto;
+		}
+	</style>
+	<script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+<div id="container">
+	<div class="item">
+		<div class="box">
+			<img src="./images/1.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/2.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/3.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/4.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/5.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/6.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/7.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/8.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/9.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/10.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/11.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/12.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/13.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/14.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/15.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/16.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/17.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/18.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/19.jpg" />
+		</div>
+	</div>
+	<div class="item">
+		<div class="box">
+			<img src="./images/20.jpg" />
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(window).on('load',function(){
+		//这里有一个巨大的坑，我花了半天的时间才搞明白，如果你的实例有图片，就不要使用$(document).ready()方法来替代window.onload方法，原因是$(document).ready()方法不会等到图片加载完成才执行js代码，这会导致这段代码在浏览器下必须刷新好几次才能正常显示瀑布流布局。结果就是这一个小知识点，我半天的时间就没了.....基础很重要啊....
+//		waterfall();
+//		$(window).on('resize',function(){ //当页面大小发生改变时，重新布局。
+//			waterfall();
+//		});
+		WaterFall.init($('#container'),$('#container>.item'));//绑定到一个对象上。
+
+	})
+	function waterfall(){
+		var $item = $('.item');
+		var nodeW = $item.outerWidth(true);//使用outerWidth(ture)方法返回匹配元素带有margin值的宽度。
+		var colNum = Math.floor($(window).width()/nodeW); //计算出每行能容纳的列数
+		//根据列数计算出容器的宽度，使容器居中显示。
+		$('#container').css({
+			'width': nodeW*colNum,
+			'margin':'0 auto'
+		});
+		//定义一个数组用来储存每列中元素相加的高度。
+		var itemHArr= [];
+		$item.each(function(index,value){
+			var $cur = $(this);
+			var itemH = $cur.outerHeight(true);
+			if(index < colNum){
+				$cur.css({			//将第一行的元素放在页面的顶部
+					'top':'0px',
+					'left': index*nodeW
+				});
+				itemHArr.push(itemH); //将第一行的元素的高度都push到数组里面。
+			}else{                    //剩下的元素根据不同的高度放在不同的位置。
+				//min方法接受的是列表形式的参数（argument list），所以直接传入数组是无法生效的，这里使用apply方法不是为了改变context，而是利用apply方法将原来接受列表形式参数的函数变的可以接受数组形式的参数（argument array），这里也能理解出call方法和apply方法的区别。
+				var minH = Math.min.apply(null,itemHArr);
+				var minHIndex = $.inArray(minH,itemHArr);//inArray方法可以在数组中查找指定值并返回它的索引。
+				$cur.css({		//找到数组中高度最小的值，也就是找到了第一行高度最小的元素，将下一个元素定位在这个最小高度元素下面
+					'top': minH,
+					'left': minHIndex * nodeW
+					//					'left':$item.eq(minHIndex).position().left
+					//上面是另一种写法，position()方法可以获取匹配元素相对于被定位过的祖先元素的坐标。
+				});
+				itemHArr[minHIndex] += itemH;
+				//定位之后的元素的高度与itemHArr数组中的最小高度相加，更新数组。换一句话说就是每次元素定位之后，数组中的最小高度就会发生变化，这样下一个元素就会寻找更新之后的最小高度元素来定位，这样不断的遍历就完成了瀑布流布局。
+			}
+		});
+	}
+
+
+
+	//绑定到一个对象上
+	var WaterFall= {
+		init:function($parent,$child){
+			this.$item = $child,
+					this.nodeW = this.$item.outerWidth(true);
+			this.layout($parent);
+			this.resize($parent);
+		},
+
+		resize: function($ct){
+			var _this = this;
+			$(window).on('resize',function(){
+				_this.layout($ct);
+			})
+		},
+
+		layout:function($ct){
+
+			this.colNum = Math.floor($(window).width()/this.nodeW);
+			console.log(Math.floor($(window).width()/this.nodeW));
+			$ct.css({
+				'width':this.colNum*this.nodeW,
+				'margin':"0 auto"
+			});
+			this.colHArr = [];
+			var _this = this;
+			this.$item.each(function(index,value){
+				_this.nodeH = _this.$item.eq(index).outerHeight(true);
+				if(index < _this.colNum){
+					$(value).css({
+						'top': '0px',
+						'left':index*_this.nodeW
+					});
+					_this.colHArr[index] = _this.nodeH;
+				}else{
+					_this.minH = Math.min.apply(null,_this.colHArr);
+					_this.minHIndex = $.inArray(_this.minH,_this.colHArr);
+					$(value).css({
+						'position': 'absolute',
+						'top':_this.minH,
+						'left':_this.minHIndex*_this.nodeW
+					});
+					_this.colHArr[_this.minHIndex] += _this.$item.eq(index).outerHeight(true);
+				}
+			})
+		}
+	};
+</script>
+</body>
+
+</html>
