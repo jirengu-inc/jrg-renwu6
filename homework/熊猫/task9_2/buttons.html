@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>点按钮变色</title>
+	<style type="text/css">
+	div{
+ display:inline-block;
+}
+p{
+	display: inline;
+}
+	/*.wrapper{
+
+	}*/
+	/*.qianjinwrapper{
+		/*text-align: center;
+		display: table-cell;
+		vertical-align: middle;
+		/*margin: 0 auto*/
+		/*line-height:15px;
+		height: 30px;
+	}*/
+	.forward{
+		background: url('black2.png') 0 0 no-repeat;
+		background-size: contain;
+		/*height: 50px;
+		float: left;
+		width: 70px;*/
+		padding-left:16px;
+		
+		/*border: 1px solid red;*/
+	}
+	.forward:hover{
+		background: url('purple2.png') 0 0 no-repeat;
+		background-size: contain;
+		color: purple;
+		cursor: pointer;
+	}
+	
+	.start{
+		background: url('black1.png') 0 0 no-repeat;
+		background-size: contain;
+		/*float: left;*/
+		padding-left:16px;
+	}
+	.start:hover{
+		background: url('purple1.png') 0 0 no-repeat;
+		background-size: contain;
+		color: purple;
+		cursor: pointer;
+	}
+
+	.end{
+		background: url('black3.png') 0 0 no-repeat;
+		background-size: contain;
+		padding-left:16px;
+	}
+	.end:hover{
+		background: url('purple3.png') 0 0 no-repeat;
+		background-size: contain;
+		color: purple;
+		cursor: pointer;
+	}
+	
+	/*.a{
+		font-size: 28px;
+		line-height: 30px;
+		float: left;
+		/*border: 1px solid red;
+	}
+	.qianjinwrapper:hover{
+		color: purple;
+	}*/
+	</style>
+</head>
+<body>
+<h1>需求图片</h1>
+<img src="result.gif">
+<h1>作业</h1>
+<!--<div class="wrapper">
+	这样不行 因为要点鼠标滑过控制两个元素的变化,所以必须考虑给他们弄一个东西里面 <div class="qianjinwrapper">
+		<div class="qianjin"></div>
+		<div class="a">前进</div>
+	</div>	
+		<div class="kaishi"></div>
+		<div class="a">开始</div>
+
+		<div class="tingzhi"></div>
+		<div class="a">停止</div>
+ </div>  -->
+ 	<div class="forward">
+ 		<p>前进</p>
+ 	</div>
+ 	<div class="start">
+ 		<p>开始</p>
+ 	</div>
+ 	<div class="end">
+ 		<p>结束</p>
+ 	</div>
+
+ 	<br/>加上display: inline-block;
+		line-height: 0px;可以在一行 但是大小又乱了 图片和文字不在一行了
+
+		所以想了一个粗暴的招儿:把三个div弄成inline-block 然后把p弄成inline
+</body>
+</html>

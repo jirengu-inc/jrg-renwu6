@@ -4,175 +4,187 @@
     <meta charset="utf-8">
     <title>task32</title>
     <style type="text/css">
-      html, body, ul, li, p, div{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      ul, li {
-        list-style: none;
-      }
-      a {
-        text-decoration: none;
-      }
-      .clearfix:after {
-        content: '';
-        clear: both;
-        display: block;
-      }
-      .wrap {
-        width: 900px;
-        margin: 0 auto;
-      }
-      #pic-ct {
-        position: relative;
-      }
-      #pic-ct .item {
-        position: absolute;
-        padding-bottom: 10px;
-        width: 280px;
-        margin: 10px;
-        border: 1px solid #eee;
-        opacity: 0;
-        transition: all 0.8s;
-      }
-      #pic-ct .item img {
-        margin: 10px;
-        width: 260px;
-      }
-      #pic-ct .item .header {
-        margin: 0 12px;
-        height: 25px;
-        border-bottom: 1px solid #eee;
-      }
-      #pic-ct .item .des {
-        margin: 10px 15px 0;
-        color: #333;
-        font-size: 12px;
-        line-height: 1.8;
-      }
-      #load {
-        height: 20px;
-        visibility: hidden;
-      }
-      .hide {
-        display: none;
-      }
+    html, body, ul, li, p, div{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    ul, li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+    }
+    .clearfix:after {
+      content: '';
+      clear: both;
+      display: block;
+    }
+    .wrap {
+      width: 900px;
+      margin: 0 auto;
+    }
+    .pic-ct {
+      position: relative;
+    }
+    .pic-ct .item {
+      position: absolute;
+      padding-bottom: 10px;
+      width: 280px;
+      margin: 10px;
+      border: 1px solid #eee;
+      opacity: 0;
+      transition: all 0.8s;
+    }
+    .pic-ct .item img {
+      margin: 10px;
+      width: 260px;
+    }
+    .pic-ct .item .header {
+      margin: 0 12px;
+      height: 25px;
+      border-bottom: 1px solid #eee;
+    }
+    .pic-ct .item .des {
+      margin: 10px 15px 0;
+      color: #333;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .btn {
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 3px;
+      font-size: 18px;
+      font-weight: bold;
+      background: #fed136;
+      cursor: pointer;
+    }
+    .hide {
+      display: none;
+    }
     </style>
   </head>
   <body>
     <div class="wrap">
-      <ul id="pic-ct" class="clearfix">
+      <ul class="pic-ct clearfix">
         <li class="item hide"></li>
       </ul>
-      <div id="load">加载图片节点</div>
+      <div id="load" class="btn">Load More</div>
     </div>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
-      var clock;
-      $(window).on('scroll', function() {
-        if(clock) {
-          clearTimeout(clock);
-        }
-        clock = setTimeout(function() {
-          checkShow();
-        }, 200);
-      });
-      // 懒加载
-      checkShow();
-
-      function checkShow() {
-        if(isShow($('#load'))) {
-          showPic();
-        }
+      function Addmore($node) {
+        this.getData();
+        this.click($node);
+        this.perPageCount = 9;
+        this.list = $node.find('.portfolio-wrap');
       }
-      function isShow($el) {
-        var winH = $(window).height(),
-            scrollH = $(window).scrollTop(),
-            top = $el.offset().top;
-        if(top < winH + scrollH) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      // 请求数据，获取数据，拼装成DOM
-      var curPage = 1,
-          perPageCount = 9;
-      function showPic() {
-        $.ajax({
-          url: 'http://platform.sina.com.cn/slide/album_tech',
-          dataType: 'jsonp',
-          jsonp: 'jsoncallback',
-          data: {
-            app_key: '1271687855',
-            num: perPageCount,
-            page: curPage
-          }
-        }).done(function(ret) {
-          if(ret && ret.status && ret.status.code === "0") {
-            place(ret.data);
-          } else {
-            alert('获取数据失败');
-          }
-        });
-      }
-      function place(nodeData) {
-        console.log(nodeData);  // 查看得到的数据
-        var $nodes = renderData(nodeData),
-            deferreds = [];
-        $nodes.find('img').each(function() {
-          var defer = $.Deferred();
-          $(this).load(function() {
-            defer.resolve();
-          });
-          deferreds.push(defer);
-        });
-        $.when.apply(null, deferreds).done(function() {
-          water($nodes);
-        });
-      }
-      function renderData(items) {
-        var str = '';
-        for(var i = 0; i < items.length; i++) {
-          str += '<li class="item">';
-          str += ' <a href="' + items[i].url + '" class="link"><img src="' + items[i].img_url + '" alt="pic"></a>';
-          str += ' <h4 class="header">' + items[i].short_name + '</h4>';
-          str += ' <p class="des">' + items[i].short_intro + '</p>';
-          str += '</li>';
-        }
-        $nodes = $(str);
-        $('#pic-ct').append($nodes);
-        return $nodes;
-      }
-
-      // 瀑布流
-      var colSumHeight = [],
-          itemWidth = $('.item').outerWidth(true),
-          colNum = parseInt($('#pic-ct').width()/itemWidth);
-      for(var i = 0; i < colNum; i++) {
-        colSumHeight.push(0);
-      }
-      function water($nodes) {
-        $nodes.each(function() {
-          var $cur = $(this),
-              idx = 0,
-              minSumHeight = colSumHeight[0];
-          for(var i = 0; i < colSumHeight.length; i++) {
-            if(colSumHeight[i] < minSumHeight) {
-              idx = i;
-              minSumHeight = colSumHeight[i];
+      Addmore.prototype = {
+        getData: function() {
+          var that = this;
+          $.ajax({
+            url: './php/getData.php',
+            dataType: 'json',
+            type: 'get',
+            data: {
+              num: that.perPageCount
             }
-          }
-          $cur.css({
-            left: itemWidth * idx,
-            top: minSumHeight,
-            opacity: 1
+          }).done(function(ret) {
+            that.place(ret, $ct);
+          }).fail(function() {
+            alert('获取数据失败');
           });
-          colSumHeight[idx] = colSumHeight[idx] + $cur.outerHeight(true);
-          $('#pic-ct').height(Math.max.apply(null, colSumHeight));
-        });
+        },
+        click: function($node) {
+          var that = this;
+          $node.find('#load').on('click', function() {
+            that.getData();
+          });
+        },
+        place: function(ret) {
+          var $nodes = this.renderData(ret),
+              deferreds = [];
+          $nodes.find('img').each(function() {
+            var defer = $.Deferred();
+            $(this).on('load', function() {
+              defer.resolve();
+            });
+            deferreds.push(defer);
+          });
+          $.when.apply(null, deferreds).done(function() {
+            new Waterfall($('.portfolio'));
+          });
+        },
+        renderData: function(data) {
+          var str = '';
+          for(var i = 0; i < data.length; i++) {
+            str += '<li class="item">';
+            str += '  <a class="portfolio-link" href="javascript:void(0)">';
+            str += '   <div class="portfolio-hover"><i class="fa fa-plus"></i></div>';
+            str += '   <img src="' + data[i].img_url + '" alt="roundicons">';
+            str += '  </a>';
+            str += '  <div class="portfolio-desp">';
+            str += '  <h3>' + data[i].short_name + '</h3>';
+            str += '  <p class="text-muted">' + data[i].short_intro + '</p>';
+            str += '  </div>';
+            str += '</li>';
+          }
+          var $nodes = $(str);
+          this.list.append($nodes);
+          return $nodes;
+        }
+      };
+
+      function Waterfall($node) {
+        this.$node = $node;
+        this.init();
       }
+      Waterfall.prototype = {
+        init: function() {
+          this.render(this.$node);
+          this.bind(this.$node);
+        },
+        bind: function($node) {
+          var that = this;
+          $(window).on('resize', function() {
+            that.render($node);
+          });
+        },
+        render: function($node) {
+          var ctWidth = $node.find('.portfolio-wrap').width();
+          var $item = $node.find('.portfolio-wrap li');
+          var itemWidth = $item.outerWidth(true);
+          var colNum = parseInt(ctWidth / itemWidth);
+          var colSumHeight = [];
+
+          for(var i = 0; i < colNum; i++) {
+            colSumHeight.push(0);
+          }
+          $item.each(function() {
+            var $cur = $(this);
+            var idx = 0,
+                minSumHeight = colSumHeight[idx];
+            for(var j = 0; j < colSumHeight.length; j++) {
+              if(colSumHeight[j] < minSumHeight) {
+                idx = j;
+                minSumHeight = colSumHeight[idx];
+              }
+            }
+            $cur.css({
+              top: minSumHeight,
+              left: itemWidth * idx,
+              opacity: 1
+            });
+            colSumHeight[idx] += $cur.outerHeight(true);
+          });
+          $node.find('.portfolio-wrap').css({
+            height: Math.max.apply(null, colSumHeight)
+          });
+        }
+      };
+
+      new Addmore($('.wrap'));
     </script>
   </body>
 </html>

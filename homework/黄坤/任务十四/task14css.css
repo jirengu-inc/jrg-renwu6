@@ -42,10 +42,11 @@ hr{
 }
 #header .myname{
 	position: absolute;
-	width: 180px;height: 180px;
+	/*width: 180px;height: 180px;*/
 	top:50%;left:50%;
-	margin-left: -90px;
-	margin-top: -90px;
+	/*margin-left: -90px;
+	margin-top: -90px;*/
+	transform: translate(-50%,-50%);
     text-align: center;
 }
 .myname h1{
@@ -152,7 +153,7 @@ hr{
 .works ul{
 	overflow: auto;
 }
-li:nth-child(2n+1){
+.works li:nth-child(2n+1){
 	margin-right: 30px;
 }
 .works .more{
@@ -211,24 +212,24 @@ li:nth-child(2n+1){
 }
 .address li{
     display: inline-block;
-    padding: 0px 30px;
+    padding: 0px 10px;
     position: relative;
+    vertical-align: middle;
 }
-.address a{
+.address>li a{
+	display: inline-block;
 	color: #337ab7;
 	font-size: 35px;
+	vertical-align: middle;
 }
 .address a:hover{
 	color: #333;
 }
 .address>li:nth-child(1){
-	left: 60px;top: -4px;
+	left: 0px;top: -3px;
 }
 .address>li:nth-child(2){
-	left: 10px;top:2px;
-}
-.address>li:nth-child(3){
-	left: -10px;top:-1px;
+	left: 2px;top:3px;
 }
  h5,.foots p,.contacts,.address,hr{
 	margin-bottom: 20px;
