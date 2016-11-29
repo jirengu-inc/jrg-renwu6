@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<style>
+		div,ul,li,a,h1{
+			margin: 0;
+			padding: 0;
+		}
+		a{
+			text-decoration: none;
+			color: #333;
+		}
+		ul,li{
+			list-style: none;
+		}
+		.ct .pages{
+			width: 688px;
+			height: 418px;
+		}
+		.pages li{
+			float: left;
+			font-size: 12px;
+			border:1px solid #eee;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			text-align: center;		
+			position: relative;	
+			width: 214px;
+			height: 197px;
+		}
+		.pages li p{
+			text-align: left;
+			padding: 0 10px;
+			margin:3px auto;
+		}
+		.pages li span{
+			text-align: left;
+			display: block;
+			padding-bottom: 10px;
+			padding-left: 10px;
+			color: #e29393;
+			font-weight: bold;
+		}
+		.pages ul>li:nth-child(3n){
+			margin-left: -40px;
+			position: relative;
+			right: -40px;
+		}
+		.pages ul>li a{
+			position: absolute;
+			padding:10px;
+			border:1.5px solid #c15858;
+			border-radius: 4px;
+			color:  #c15858;
+			top:50%;
+			left:50%;
+			transform: translate(-50%,-50%);
+			display: none;
+			background: #fff;
+		}
+		.pages ul>li .buy-fast{
+			position: absolute;
+			width: 214px;
+			height: 197px;
+			background:rgba(123, 101, 101, 0.3);
+			top:50%;
+			left:50%;
+			transform: translate(-50%,-50%);
+			display: none;
+		}
+		.ct h1,.ct .btn,.ct .pages{
+			margin:0 auto;
+		}
+		.ct h1{
+			font-size: 24px;
+			width: 688px;
+			margin-bottom: 10px;
+		}
+		.ct .btn{
+			width: 688px;
+			display: flex;
+			align-items:center;
+		}
+		.ct>.btn a{
+			display: inline-block;
+			border:1px solid #da1c1c;
+			color: #da1c1c;
+			border-radius: 2px;
+			padding: 8px 10px;
+			font-size: 14px;			
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<h1>珠宝首饰</h1>
+		<div class="pages">
+			<ul>
+				<li>
+					<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+		    		<p>藏美千足金和田玉金镶玉路路通吊坠</p>
+		    		<span>￥1699.00</span>
+		    		<div class="buy-fast"><a href="#">立即抢购</a></div>
+				</li>
+				<li>
+					<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+		    		<p>藏美千足金和田玉金镶玉路路通吊坠</p>
+		    		<span>￥1699.00</span>
+		    		<div class="buy-fast"><a href="#">立即抢购</a></div>					
+				</li>
+				<li>
+					<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+		    		<p>藏美千足金和田玉金镶玉路路通吊坠</p>
+		    		<span>￥1699.00</span>
+		    		<div class="buy-fast"><a href="#">立即抢购</a></div>					
+				</li>
+				<li>
+					<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+		    		<p>藏美千足金和田玉金镶玉路路通吊坠</p>
+		    		<span>￥1699.00</span>
+		    		<div class="buy-fast"><a href="#">立即抢购</a></div>					
+				</li>
+				<li>
+					<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+		    		<p>藏美千足金和田玉金镶玉路路通吊坠</p>
+		    		<span>￥1699.00</span>
+		    		<div class="buy-fast"><a href="#">立即抢购</a></div>				
+				</li>
+				<li>
+					<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+		    		<p>藏美千足金和田玉金镶玉路路通吊坠</p>
+		    		<span>￥1699.00</span>
+		    		<div class="buy-fast"><a href="#">立即抢购</a></div>					
+				</li>
+			</ul>
+		</div>
+		<div class="btn"><a href="#">添加</a></div>
+	</div>
+
+     <script>
+	 var products = [
+	    {
+	        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+	        name: '珂兰 黄金手 猴哥款',
+	        price: '￥405.00'
+	    },{
+	        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+	        name: '珂兰 黄金转运珠 猴哥款',
+	        price: '￥100.00'
+	    },{
+	        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+	        name: '珂兰 黄金手链 3D猴哥款',
+	        price: '￥45.00'
+	    }
+	];     	
+
+	function getMore(obj){
+		var html = '';
+		html += '<li>';
+		html +=  	'<img src="'+obj.img+'" alt="">';
+		html +=     '<p>'+obj.name+'</p>';
+		html +=     '<span>'+obj.price+'</span>';
+		html +=     '<div class="buy-fast"><a href="">立即抢购</a></div>';
+		html += '</li>';
+		return html;
+	}
+
+	$('.ct .btn').on('click',function(e){
+		e.preventDefault();
+		$.each(products,function(idx,obj){
+			var html =getMore(obj);
+			$('.pages ul').append(html);
+		});
+	});
+
+	$('.pages ul').on('mouseenter','li',function(){
+    	$(this).find('.buy-fast').show();
+    	$(this).find('.buy-fast>a').show();
+    });
+    $('.pages ul').on('mouseleave','li',function(){
+    	$(this).find('.buy-fast').hide();
+    	$(this).find('.buy-fast>a').hide();
+    });  	
+    </script>   
+</body>
+</html>

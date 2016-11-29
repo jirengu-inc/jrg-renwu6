@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>stickup</title>
+	<style type="text/css">
+	html,body,div{
+		margin:0px;
+		padding:0px;
+		font-size:20px;
+	}
+
+	.clearfix{
+		content:"";
+		display:block;
+		clear:both;
+	}
+		#header{
+			height:30px;
+			background:red;
+			line-height:30px;
+			margin-bottom:20px;
+		}
+
+		#container{
+			margin-left:150px;
+			margin-right:150px;
+		}
+
+		.nav{
+			height:20px;
+			background:blue;
+			line-height:20px;
+		}
+
+		.main{
+			height:380px;
+			margin-bottom:10px;
+		}
+
+		.aside{
+			width:200px;
+			height:350px;
+			background:green;
+			float:left;
+			margin-right:10px;
+		}
+
+		.rside{
+			float:right;
+			width:830px;
+			height:350px;
+			background:pink;
+		}
+
+		#footer{
+			height:20px;
+			background:#333;
+		}
+
+
+	</style>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="container">
+	<div id="header">header</div>
+		<div class="main" class="clearfix">
+			<div class="nav">nav1</div>
+			<div class="aside">aside</div>
+			<div class="rside">main1</div>
+		</div>
+		<div class="main" class="clearfix">
+			<div class="nav">nav2</div>
+			<div class="aside">aside</div>
+			<div class="rside">main1</div>
+		</div>
+		<div class="main" class="clearfix">
+			<div class="nav">nav3</div>
+			<div class="aside">aside</div>
+			<div class="rside">main1</div>
+		</div>
+		<div class="main" class="clearfix">
+			<div class="nav">nav4</div>
+			<div class="aside">aside</div>
+			<div class="rside">main1</div>
+		</div>
+		<div id="footer">footer</div>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		$.fn.stickup=function(){
+			var $cur=this,
+			$width=$cur.width(),
+			$height=$cur.height(),
+			$offsetTop=$cur.offset().top,
+			$offsetLeft=$cur.offset().left,
+			$clone_node=$cur.clone().insertBefore($(".main")).css({'opacity':'0.2'}).hide()
+
+			$(window).on('scroll',function(){
+				var $scrollTop=$(window).scrollTop()
+				console.log($scrollTop)
+				if($scrollTop>=$offsetTop){
+					if(!isFixed()){
+						setFixed()
+					}
+				} else{
+					if(isFixed()){
+						removeFixed()
+					}
+				}
+			})
+
+			function isFixed(){
+				return $clone_node.data('fixed_mark')
+			}
+
+			function setFixed(){
+				$clone_node.data('fixed_mark',true)
+				.css({'opacity':'1',
+				'position':'fixed',
+				'width':$width,
+				'height':$height,
+				'top':'0',
+				'left':$offsetLeft,
+				'z-index':999
+				})
+				.show()
+			}
+
+			function removeFixed(){
+				$clone_node.data('fixed_mark',false)
+				.removeAttr('style')
+				.hide()
+			}
+		}
+
+		$('.nav').each(function(){/*用each函数遍历.nav jquery集合中的所有成员，每个成员运行一次绑定插件的函数*/
+			$(this).stickup()
+		})
+	})
+	</script>
+</body>
+</html>

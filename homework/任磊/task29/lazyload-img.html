@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>lazyload</title>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+    <style type="text/css">
+        ul,li{
+            list-style-type: none;
+        }
+        .container{
+            width: 800px;
+            margin: 0 auto;
+        }
+        .container li{
+            float: left;
+            margin: 10px;
+        }
+        .container li img{
+            width: 200px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+	<ul class="container">
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+		<li><a href="#"><img src="img/blank.jpg" alt="" data-img="img/girl.jpg" /></a></li>
+	</ul>
+<script>
+//    checkShow();
+//    var clock;
+//    $(window).on("scroll",function(){
+//        if(clock){
+//            clearTimeout(clock);
+//        }
+//        clock = setTimeout(function(){
+//            checkShow();
+//        },300)
+//    });
+//
+//    function checkShow(){
+//        $('.container').find('img').each(function(){
+//            var $curImg = $(this);
+//
+//            if(isVisible($curImg) && !$curImg.attr("isLoad")){
+//                showImg($curImg);
+//            }
+//        })
+//    };
+//
+//    function isVisible($img){
+//        var nodeH = $img.offset().top,
+//                scrollTop = $(window).scrollTop(),
+//                winH = $(window).height();
+//
+//        return (nodeH < scrollTop + winH) ? true : false;
+//    }
+//
+//    function showImg($img){
+//        $img.attr("src",$img.attr("data-img"));
+//        $img.attr("isLoad",true);
+//    }
+
+
+/*
+* 使用面向对象的方法来实现懒加载
+* */
+    function Lazyload($ct){
+        var $img = this.$img = $ct.find("img"),
+            _this = this;      //构造函数的this指向其创建的实例，这里是为了防止与onScoll事件的this混淆。
+        this.bind($img);       //在页面滚动的时候加载一次
+        this.clock;
+        $(window).on('scroll',function(){
+            if(_this.clock){    //优化性能，当页面滚动的时候就会不停的清除clock，直到最后一次滚动后的300ms之后再执行图片懒加载。
+                clearTimeout(_this.clock);
+            };
+            _this.clock = setTimeout(function(){
+                _this.bind($img);
+            },300)
+        })
+    };
+
+    Lazyload.prototype = {
+        bind:function($node){
+            var _this = this;               //构造函数原型里的this也是指向实例。
+            $node.each(function(){
+                var $curImg = $(this);      //each()方法的this指向当前正在遍历的函数，不要与原型的中的this混淆。
+                if(_this.isVisible($curImg) && !$curImg.attr("isLoaded")){//如果图片加载过了，就无需再加载。
+                    _this.showImg($curImg);
+                }
+            })
+        },
+        isVisible:function($img){
+            var nodeH = $img.offset().top;//获取元素在文档中的高度
+            var scrollTop = $(window).scrollTop();//获取滚动条滚动的距离
+            var winH = $(window).height();//获取窗口的高度。
+            console.log(nodeH,scrollTop,winH);
+            console.log("我是分割线");
+            return (nodeH < scrollTop + winH) ? true : false;
+        },
+        showImg:function($img){
+            $img.attr("src",$img.attr('data-img'));//获取图片真实地址
+            $img.attr("isLoaded",true);
+        }
+    };
+
+    var oLaod = new Lazyload($('.container'));
+</script>
+</body>
+</html>
