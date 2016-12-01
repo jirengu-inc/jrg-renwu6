@@ -19,7 +19,7 @@
 	a{
 		text-decoration: none;
 	}
-    html,body,#header,.carousel,.img-ct{
+    html,body,#header,.carousel,.img-ct,.item,.cover{
         height: 100%;
         width:100%;
     }
@@ -28,17 +28,11 @@
 		overflow: hidden;
 	}
 	.carousel .img-ct{
-		position: absolute;
+		position: relative;
 	}
 	.carousel .img-ct li{
-        position: relative;
-		float: left;
-        height: 100%;
-	}
-	.carousel .img-ct:after{
-		content: " ";
-		display: block;
-		clear: both;
+        position: absolute;
+        display: none;
 	}
     #header .main{
         position: absolute;
@@ -75,8 +69,8 @@
 		transform: translate(-50%);
 	}
 	ul.bullet li{
-		width: 16px;
-		height: 4px;
+		width: 26px;
+		height: 8px;
 		border-radius: 2px;
 		background: #fff;
 		display: inline-block;
@@ -85,7 +79,6 @@
 	ul.bullet li.active{
 		background: #666;
 	}
-
 </style>
 </head>
 <body>
@@ -132,64 +125,38 @@
         <script>
             var $ct = $('.img-ct');
                 $items = $ct.children();
+                $pre = $('.pre'),
+                $next = $('.next'),  
                 $bullet = $('.bullet');
                 imgWidth = $(window).width();
                 imgCount = $items.size();
 
-            $ct.append($items.first().clone());
-            $ct.prepend($items.last().clone());
-            $ct.find('.item').css('width',imgWidth);
-            $ct.find('.cover').css('width',imgWidth);
-            imgRealCount = $ct.children().size();
-            $ct.css({left:0-imgWidth,width:imgRealCount*imgWidth});
-
-
-            var curIdx = 0,
-                isAnimate = false;
+            var curIdx = 0;                 
+                setBg(0);
 
             $bullet.find('li').on('click',function(){
-                var idx = $(this).index;
-                if (idx > curIdx) {
-                    playNext(idx-curIdx);
-                }else if (idx < curIdx) {
-                    playPre(curIdx-idx);
-                }
-            })
+                var idx = $(this).index();
+                play(idx); 
+                setBg(idx);                             
+            });
 
-            setBg(1);
-
-            function playNext(idx){
-                var idx = idx || 1;
-                if (!isAnimate) {
-                    isAnimate = true;
-                    $ct.animate({left:'-=' + (imgWidth*idx)},function(){
-                        curIdx = (curIdx + idx)%imgCount;
-                        if (curIdx === 0) {
-                            $ct.css({left: 0-imgWidth});
-                        }
-                        setBg(curIdx+1);
-                        setBullet();
-                        isAnimate = false;
-                    });
-                }
+            function playNext(){
+                play((curIdx+1)%imgCount);
             }
 
-            function playPre(idx){
-                var idx = idx || 1;
-                if (!isAnimate) {
-                    isAnimate = true;
-                    $ct.animate({left:'+='+(imgWidth*idx)},function(){
-                        curIdx = (curIdx+imgCount-idx)%imgCount;
-                        if (curIdx===(imgCount-1)) {
-                            $ct.css({left:0-imgCount*imgWidth});
-                        } 
-                        setBg(curIdx+1);
-                        setBullet();
-                        isAnimate = false;
-                    });
-                }
+            function playPre(){        
+                play((imgCount+curIdx-1) % imgCount);       
             }
 
+            function play(idx){
+                setBg(idx); 
+                $items.eq(curIdx).fadeOut(500);
+                $items.eq(idx).fadeIn(500);
+                curIdx = idx;  
+                setBullet();
+              
+            }
+            play(0);  
             //图片用了懒加载
             function setBg(idx){
                 var idx = idx || 0,
@@ -208,15 +175,13 @@
                 $bullet.children().removeClass('active')
                                   .eq(curIdx).addClass('active');
             }
-
-            
+        
             autoPlay();
             function autoPlay(){
                 clock = setInterval(function(){
-                    playNext();
+                    playPre();
                 },2000)
             }
-
             function stopAuto(){
                 clearInterval(clock);
             }
