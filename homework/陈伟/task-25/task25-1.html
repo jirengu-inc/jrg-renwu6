@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <title>task25-1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        a{
+
+          text-decoration: none;
+          color:inherit;
+
+        }
+
+        .list> li {
+            cursor: pointer;
+            position: relative;
+            background-color: #c7171e;
+            width: 160px;
+            padding: 10px;
+            color: #fff;
+            border-bottom: 1px dotted;
+        }
+
+        .list> li> span {
+            display: block;
+            float: right
+        }
+
+        .list> li> ul {
+            width: 160px;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            border: 1px solid #ccc;
+            color: black;
+            display: none;
+        }
+
+        .list> li>ul>li {
+          cursor: auto;
+            width: 60px;
+            padding: 10px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class='list clearfix'>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+        <li><a href="#">珠宝玉器</a><span>></span>
+            <ul>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">翡翠</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script type="text/javascript">
+        $('.list>li').on('mouseenter', function() {
+            $(this).find('ul').show();
+        });
+        $('.list>li').on('mouseleave', function() {
+            $(this).find('ul').hide();
+        });
+    </script>
+
+</body>
+
+</html>
