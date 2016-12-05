@@ -1,0 +1,196 @@
+
+        html,body,ul,li{
+            margin:0;
+            padding:0;
+            font-family: "Microsoft Yahei";
+            height:100%;
+           
+
+        }
+    #header{ width:100%;
+             height:100%;
+             background: url(../img/bg.jpg) no-repeat;
+             background-size:cover;
+
+    }
+    #header .wrap{ display: table;
+            height: 100%;
+            vertical-align: middle;
+            margin: 0 auto;}
+    .container{  width:960px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+          }
+   .wrap .container .btn{
+            text-decoration:none;
+            display:block;
+            width:130px;
+            height:50px;
+            line-height:50px;
+            background: rgba(113,126,132,1);
+            color: white;
+            margin: 0 auto;}
+    .wrap .container .btn:hover{background: rgba(57,62,66, 0.9);}
+    #main .main-headline{ padding:50px 0;
+                          text-align: center;}
+    #main .main-headline a{color:#706f8f;
+                           text-decoration:none;}
+    #main .main-headline a:hover{color:#8ca1bc;
+                                 text-decoration:underline;}
+    #main .main-skill{
+            padding:50px 0;
+            background-color: #347ab6;
+            margin: 0 auto;
+        }
+     #main .main-skill-detail{
+            text-align: center;
+            color: white;
+            margin: 0 auto;
+            width:800px;
+        }
+     #main .icon{
+            font-size: 70px;
+           font-family:"iconfont" !important;
+
+        }
+        #main .main-skill-detail>hr{
+            width:90px;
+          }
+        #main .main-skill-detail>ul{
+            padding-top:25px;
+        }
+        #main .main-skill-detail>ul:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+    #main  .main-skill-detail .skill-item{
+            float:left;
+            width:25%;
+            list-style-type: none;
+            padding:10px;
+            box-sizing: border-box;
+        }
+       #main  .main-skill-detail li>a{
+            display: inline-block;
+            color:black;
+            text-decoration: none;
+            width:100px;
+            height:30px;
+            line-height: 30px;
+            background-color: white;
+            text-align: center;
+        }
+        #main  .main-skill-detail li>a:hover{
+            background-color: #eeeeee;
+        }
+    #main .main-wrap{color:white;
+                     background:url(http://book.jirengu.com/jirengu-inc/task/%E4%BB%BB%E5%8A%A119-%E5%AE%9E%E6%88%983/img/callout.jpg) 0 0 no-repeat;
+                     padding:200px;
+                     text-align:center;
+                     background-size:cover;}
+     #main .main-works{
+            padding:50px 0;
+        }
+        #main .works-wrap{
+            width:960px;
+            margin:0 auto;
+            text-align: center;
+        }
+        #main .works-wrap>hr{
+            width:100px;
+        }
+        #main .works-wrap>ul{
+            margin-right: -30px;
+        }
+        #main .works-wrap>ul:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        #main .works-wrap>ul>li{
+            list-style-type: none;
+            float:left;
+            margin-right: 30px;
+            margin-top:20px;
+        }
+     #main .works-wrap>a{
+            margin:20px 0;
+            display: inline-block;
+            width:130px;
+            height:30px;
+            line-height:30px;
+            background:#999999;
+            color:white;
+            text-decoration:none;
+        }
+        #main .works-wrap>a:hover{
+            background-color: #4c4c4c;
+         }
+     #main .introduce{
+            background-color: #347ab6;
+            color:white;
+            text-align:center;
+            padding:50px 0;
+            margin-top:10px;
+        }
+        #main .introduce .introduce_white{
+            display: inline-block;
+            width:100px;
+            height:40px;
+            line-height:40px;
+            background-color: white;
+            color:black;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        #main .introduce .introduce_white:hover{
+            background-color: #eeeeee;
+        }
+        #main .introduce .introduce_blue{
+            display: inline-block;
+            width:100px;
+            height:40px;
+            line-height:40px;
+            background-color:#1f496f;
+            color:white;
+            text-decoration: none;
+        }
+        #main .introduce .introduce_blue:hover{
+            background-color: #0f2437;
+        }
+      #footer{
+		padding-top:80px;
+		padding-bottom: 80px;
+		text-align: center; 
+	}
+	#footer .icon-link li{
+		display: inline-block;
+		padding: 10px;
+		bottom: 10px£»
+	}
+	#footer .icon-link a{
+		color: #117cb0;
+	}
+	#footer .icon-link a:hover{
+		color: #235;
+	}
+	#footer hr{
+		max-width: 100px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+		border:1px solid #ccc;
+	}
+	#footer span{
+		font-size: 0.8rem;
+	}
+	#footer .btn1{
+		color: #117cb0;
+	}
+	#footer .btn1:hover{
+		text-decoration: underline;
+	}
+
+   
+    

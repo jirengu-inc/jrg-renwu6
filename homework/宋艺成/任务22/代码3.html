@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代码3</title>
+</head>
+<body>
+<ul class="ct">
+    <li data-img="http://img.mukewang.com/56a0932200014c4d06000338-228-128.jpg">鼠标放置查看图片2</li>
+    <li data-img="http://img.mukewang.com/574669dc0001993606000338-228-128.jpg">鼠标放置查看图片2</li>
+    <li data-img="http://img.mukewang.com/56e10de50001f0b606000338-228-128.jpg">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview"></div>
+<script>
+    var ct = document.querySelector(".ct")
+        img = ct.querySelectorAll("li")
+        preview = document.querySelector(".img-preview")
+    for (var i=0;i<img.length;i++){
+        img[i].addEventListener("mouseenter",function(){
+            var dataImg = this.getAttribute('data-img')
+            preview.innerHTML = '<img src="'+ dataImg +'">'
+        })
+    }
+</script>
+
+</body>
+</html>

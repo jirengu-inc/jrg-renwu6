@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+html,body,ul,li{
+	padding:0px;
+	margin:0px;
+}
+	ul,li{
+	list-style: none;
+	}
+	#container{
+		margin:0 auto;
+		width:604px;
+		min-width:400px;
+		border-left:1px solid #ccc;
+
+	}
+	.tabs>li{
+		height:30px;
+		width:200px;
+		float:left;
+		text-align:center;
+		border-right:1px solid #ccc;
+		border-left:none;
+		line-height:24px;
+		cursor: pointer;
+	}
+
+	.tabs>li{
+
+	}
+
+	.clearfix:after{
+    content:"";
+    display: block;
+    clear: both;
+    }
+
+		.tabactive{
+			background:#eee;
+		}
+
+		.cont{
+			border:1px solid #ccc;
+			border-left:none;
+			height:200px;
+			padding-top:20px;
+			padding-left:20px;
+			display:none;
+		}
+
+		.cont.ctactive{
+			display:block;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul class="tabs clearfix">
+			<li class="tabactive">tab1</li>
+			<li>tab2</li>
+			<li>tab3</li>
+		</ul>
+		<div class="cont ctactive">内容1</div>
+		<div class="cont">内容2</div>
+		<div class="cont">内容3</div>
+	</div>
+
+	<script>
+var str1=document.querySelectorAll("li"),
+		str2=document.querySelectorAll(".cont");
+		for(var i=0;i<str1.length;i++){//外层循环后开始，遍历li元素绑定事件
+			//str1[i].count=i;
+			str1[i].addEventListener("click",function(mousev){
+				for(var i=0;i<str1.length;i++){//内层循环先开始，将li,div的样式重置
+					str1[i].className="";
+					str2[i].style.display="none";
+				}
+				mousev.target.className="tabactive";//对事件目标元素修改属性（加背景色）
+				//str2[this.count].style.display="block";
+				//console.log(this)
+				var contindex=parseInt(mousev.target.innerText.match(/\d$/g))//通过事件目标元素找到里面的文本内容匹配返回数字1，2，3作为索引
+				str2[contindex-1].style.display="block"//str2类数组对象中按contindex提供的索引号找到对应的div元素并设置其样式
+			},false);
+		}
+
+	</script>
+</body>
+</html>

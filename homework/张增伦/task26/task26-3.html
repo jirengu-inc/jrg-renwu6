@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style>
+    ul,li{
+        margin: 0;
+        padding: 0;
+    }
+
+    #list li{
+        list-style-type: none;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        cursor:pointer;
+    }
+
+    #more{
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #more img{
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn{
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        width: 80px;
+        border: 1px solid #E27272;
+        border-radius: 3px;
+        text-align: center;
+        text-decoration: none;
+        color: #E27272;
+    }
+
+    .btn:hover{
+        color: red;
+    }
+
+    #list li:hover{
+        background: green;
+        color: #fff;
+    }
+
+
+
+</style>
+</head>
+<body>
+
+<ul id="list">
+</ul>
+<a id="more" class="btn" href="#">加载更多</a>
+
+ <script>
+  		$(function(){
+
+		    var cur = 0;
+		    var len = 2;
+		    var isRequesting = false;
+		    var list = $('#list');
+		    var more = $('#more');
+
+		    loadMore();
+		    function loadMore() {
+		        if(isRequesting){
+		            alert('正在请求请耐心等待。。。');
+		            return ;
+		        }
+		        isRequesting = true;
+		        more.html('<img src="loading.gif" />');
+		        console.log(more.html());
+
+		        $.ajax({
+				    url: 'http://zhangzenglun.com/jirengu/task24/loadMore.php',
+				    dataType: 'json',
+				    type: 'get',
+				    data: {
+				      cur: cur,
+		              len: cur>1?6:2
+				    },
+				    success: function(ret){    	
+						console.log('len:'+ret.length);
+		                for(var i = 0; i < ret.length; i++) {   
+		                    list.append('<li>'+ret[i]+'</li>');
+		                }
+				    	cur += cur>1?6:2;
+		                isRequesting = false;
+		                more.html('加载更多');
+				    },
+				    error: function(){
+				    	console.log('出错了');
+		                isRequesting = true;
+		                more.html('加载更多');
+				    }
+				 });
+			}
+
+		    more.on('click',function(e){
+		      	var $this = this;
+		        e.preventDefault();
+		        loadMore();
+		    });   
+            
+        })
+  </script>
+
+    
+</body>
+</html>

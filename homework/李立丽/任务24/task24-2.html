@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task24-2</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		li{
+			list-style: none;
+			padding: 10px;
+			margin:10px;
+			border:1px solid #ccc;
+			border-radius: 5px;
+		}
+		li:hover{
+			background-color: green;
+		}
+		#btn{
+			display: block;
+            width:80px;
+            height:30px;
+            margin:0 auto;
+			text-align: center;
+			border:1px solid red;
+			background-color: #fff;
+			color:red;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+	</style>
+</head>
+<body>
+   <ul id="ul1">
+   	<li>内容1</li>
+   	<li>内容2</li>
+   </ul>
+   <button id="btn">加载更多</button>
+<script>
+	function ajax(opts){
+		var oAjax = new XMLHttpRequest(); 
+		oAjax.onreadystatechange = function(){
+			if(oAjax.readyState===4 && oAjax.status===200){
+				var json = JSON.parse(oAjax.responseText);
+				opts.success(json);
+			}
+			if(oAjax.status===404){
+				opts.error();
+			}
+		}
+		var dataStr='';
+		for (var key in opts.data) {
+			dataStr += key +"="+ opts.data[key]+ "&"
+		}
+		dataStr = dataStr.substr(0, dataStr.length-1);
+ 		dataStr +='t='+new Date().getTime();//制止缓存
+		if (opts.type.toLowerCase()==='get') {
+			oAjax.open(opts.type, opts.url + '?'+dataStr,true);
+			oAjax.send();
+		}
+		if (opts.type.toLowerCase()==='post') {
+			oAjax.open(opts.type, opts.url,true);
+			oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+			oAjax.send(dataStr);
+		}
+	}
+    var oUl=document.querySelector('#ul1');
+    var start = 2;
+    var len = 6;
+	document.querySelector('#btn').addEventListener('click', function(){
+	    ajax({
+	        url: 'task24-2.php',   //接口地址
+	        type: 'get',    // 类型， post 或者 get,
+	        data: {
+	            start:start,//当前有li元素的个数
+	            len:len//规定每次加载就增加的li元素的个数
+	        },
+	        success: function(ret){
+				for (var i=0;i<ret.length; i++) {
+			        var oLi = document.createElement('li');
+			        oLi.innerHTML=ret[i];
+			        oUl.appendChild(oLi);
+			    }
+			    start +=this.data.len;
+	        },
+	        error: function(){
+	           console.log('出错了')
+	        }
+	    })
+	});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>加载更多</title>
+    <style>
+	ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #ccc;
+		text-align: center;
+		margin-bottom: 15px;
+		cursor: pointer;
+	}
+	li:hover{
+		background-color: green;
+	}
+	#load-more{
+		margin: 0 auto;
+		text-align: center;
+		width: 100px;
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #f60;
+		text-decoration: none;
+		border-radius: 3px;
+		color: #f60;
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+	<ul id="ct">
+		<li>这是已有的内容0</li>
+	</ul>
+	<div href="#" id="load-more">加载更多</div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+           var cur=0;
+           var ready=true;
+
+           $('#load-more').on('click',function(){
+           	var me=this;
+           	  if(!ready){
+           	  	return;
+           	  }
+           	  ready=false;//设置状态锁，防止重复点击
+           	  $(me).text('正在加载');
+
+           	  $.ajax({
+           	  	url:'http://zhenai.luckhu.com/loadmore.php',
+				type:'get',
+				data:{
+					start:cur,
+					leng:3
+				},
+				dataType:'json',
+                success:function(ret){
+					for(var i=0;i<ret.length;i++){
+			        		$('#ct').append('<li>'+ret[i]+'</li>');
+			        		console.log(cur)
+			        		cur++;
+        	        }
+        	        ready=true;
+				},
+				error:function(){
+					alert('系统异常');
+					ready=true;
+				}
+               })
+		    })
+        })
+	</script>
+</body>
+</html>

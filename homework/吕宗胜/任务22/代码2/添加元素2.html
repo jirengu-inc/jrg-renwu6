@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <title></title>
+</head>
+<body>
+    <ul id="ct">
+        <li>这里是</li>
+        <li>饥人谷</li>
+        <li>任务6班</li>
+    </ul>
+    <input id="txt" placeholder="添加内容"/>
+    <button id="btns">开头添加</button>
+    <button id="btne">结尾添加</button>
+</body>
+<script>
+    var oBtns=document.getElementById("btns");
+    var oBtne=document.getElementById("btne");
+    var oUl=document.getElementById("ct");
+    var oTxt=document.getElementById("txt");
+    var aLi=oUl.getElementsByTagName("li");
+
+    function oBtn1(){
+        var oLi=document.createElement("li");
+        oLi.innerHTML=oTxt.value;
+        oUl.insertBefore(oLi,aLi[0]);
+        for (var i = 0; i < aLi.length; i++) {
+           aLi[i].onclick = function () {
+               console.log(this.innerText);
+           }
+       }
+    }
+
+    function oBtn2(){
+        var oLi=document.createElement("li");
+        oLi.innerHTML=oTxt.value;
+        oUl.appendChild(oLi);
+        for (var i = 0; i < aLi.length; i++) {
+           aLi[i].onclick = function () {
+               console.log(this.innerText);
+           }
+       }
+    }
+
+    oBtns.addEventListener("click",oBtn1,false);
+    oBtne.addEventListener("click",oBtn2,false);
+
+    for (var i = 0; i < aLi.length; i++) {
+           aLi[i].onclick = function () {
+               console.log(this.innerText);
+           }
+       }
+</script>
+</script>
+</html>

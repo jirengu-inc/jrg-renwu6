@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-3</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .slide,.slide1,.slide2 {
+            margin: 10px auto;
+        }
+
+        .slide-btn-dot {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+
+        .btn-dot-item {
+            float: left;
+            width: 20px;
+            height: 7px;
+            margin: 0 5px;
+            border: 1px solid;
+            border-radius: 3px;
+            background-color: rgba(255,255,255,0.8);
+        }
+
+        .btn-dot-item:hover {
+            cursor: pointer;
+        }
+
+        .slide-btn-dot>.selected {
+            background-color: #000;
+        }
+
+        .slide-btn-move {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .slide-btn-move:active {
+            color: #000;
+        }
+        .move-next {
+            right: 0;
+        }
+
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script src="slide.js"></script>
+</head>
+<body>
+    <div class="slide">
+        <img src="img/nature1.jpg" alt="">
+        <img src="img/nature2.jpg" alt="">
+        <img src="img/nature3.jpg" alt="">
+        <img src="img/nature4.jpg" alt="">
+    </div>
+
+    <div class="slide1">
+        <img src="img/nature1.jpg" alt="">
+        <img src="img/nature2.jpg" alt="">
+        <img src="img/nature3.jpg" alt="">
+        <img src="img/nature4.jpg" alt="">
+    </div>
+
+    <div class="slide2">
+        <img src="img/nature1.jpg" alt="">
+        <img src="img/nature2.jpg" alt="">
+        <img src="img/nature3.jpg" alt="">
+        <img src="img/nature4.jpg" alt="">
+    </div>
+    <script>
+        $('.slide').slide({
+            width: 600,
+            height: 300,
+        })
+        $('.slide1').slide({
+            width: 600,
+            height: 300,
+        })
+        $('.slide2').slide({
+            width: 600,
+            height: 300,
+        })
+    </script>
+</body>
+</html>

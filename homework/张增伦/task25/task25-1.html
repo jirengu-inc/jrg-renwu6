@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div,ul,li,a,span,html,body{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li {list-style: none}
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        .ct {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        .left-aside{
+            background-color: #c7171e;
+            width: 200px;
+        }
+        .left-aside .icon-go{
+            color: white;
+        }
+
+        .left-aside .menu{
+            position: relative;
+        }
+        .menu .m-title {
+            font-size: 14px;
+            padding: 10px;
+            display: block;
+            border-bottom: 1px dotted #de272e;
+            margin: 0 10px;
+        }
+        .menu .icon-go {
+            position: absolute;
+            top:10px;
+            right: 10px;
+        }
+        .menu .child a{
+            font-size: 12px;
+        }
+
+        .menu .child{
+            position: absolute;
+            left: 200px;
+            top: 0;
+            width: 210px;
+            background: #fff;
+            display: none;
+            border: 1px solid #ccc;
+        }
+
+        .menu .child a{
+            color: #000000;
+        }
+
+        .menu .child li{
+            width: 55px;
+            float: left;
+            padding: 10px 25px;
+        }
+
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+
+    <div class="ct">
+         <ul class="left-aside">
+             <li class="menu">
+                 <a class="m-title" href="#">珠宝玉器</a>
+                 <span class="icon-go">></span>
+                 <ul class="child" >
+                     <li><a href="">翡翠</a></li>
+                     <li><a href="">玉石</a></li>
+                     <li><a href="">宝石</a></li>
+                     <li><a href="">水晶</a></li>
+                     <li><a href="">玛瑙</a></li>
+                     <li><a href="">珍珠</a></li>
+                     <li><a href="">钻石</a></li>
+                     <li><a href="">琥珀</a></li>
+                     <li><a href="">和田</a></li>
+                     <li><a href="">琥珀</a></li>
+                 </ul>
+             </li>
+             <li class="menu">
+                 <a class="m-title" href="#">珠宝玉器</a>
+                 <span class="icon-go">></span>
+                 <ul class="child">
+                     <li><a href="">翡翠</a></li>
+                     <li><a href="">玉石</a></li>
+                     <li><a href="">宝石</a></li>
+                     <li><a href="">水晶</a></li>
+                     <li><a href="">玛瑙</a></li>
+                     <li><a href="">珍珠</a></li>
+                 </ul>
+             </li>
+             <li class="menu">
+                 <a class="m-title" href="#">珠宝玉器</a>
+                 <span class="icon-go">></span>
+                 <ul class="child">
+                     <li><a href="">宝石</a></li>
+                     <li><a href="">水晶</a></li>
+                     <li><a href="">玛瑙</a></li>
+                     <li><a href="">珍珠</a></li>
+                 </ul>
+             </li>
+             <li class="menu">
+                 <a class="m-title" href="#">珠宝玉器</a>
+                 <span class="icon-go">></span>
+                 <ul class="child">
+                     <li><a href="">玛瑙</a></li>
+                     <li><a href="">珍珠</a></li>
+                 </ul>
+             </li>
+             <li class="menu">
+                 <a class="m-title" href="#">珠宝玉器</a>
+                 <span class="icon-go">></span>
+                 <ul class="child">
+                     <li><a href="">翡翠</a></li>
+                     <li><a href="">玉石</a></li>
+                     <li><a href="">宝石</a></li>
+                     <li><a href="">珍珠</a></li>
+                 </ul>
+             </li>
+         </ul>
+    </div>
+
+<script>
+    $(function(){
+        $('.menu').on('mouseenter', function(e){
+            $(this).find('.child').show();
+        });
+        $('.menu').on('mouseleave', function(e){
+            $(this).find('.child').hide();
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task25-3</title>
+<style>
+	html,body,ul,li,a,img,h1,h6,p{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font: 12px/150% Arial,Verdana;
+	}
+	*{
+		box-sizing: border-box;
+	}
+	li{
+		list-style-type: none;
+	}
+	a{
+		text-decoration: none;
+		color: #333;
+	}
+	.wrap{
+		margin: 8px;
+		width: 702px;
+		margin: 0 auto;
+	}
+	.clearfix::after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	h1{
+		margin: 20px 0;
+	}
+	ul.prod-ct{
+		text-align: center;
+		margin-left: -20px;
+		margin-top: -20px;
+	}
+	ul.prod-ct>li{
+		float: left;
+		border: 1px solid #eee;
+		padding: 10px 20px;
+		width: 220px;
+		margin-left: 20px;
+		margin-top: 20px;
+		background-color: #fff;
+		position: relative;
+	}
+	h6,p{
+		text-align: left;
+	}
+	h6{
+		height: 36px;
+	}
+	p{
+		color: #c81623;
+	}
+	div.cover{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0, 0.3);
+		opacity: 0;
+	    transition: all 0.3s;
+	}
+	ul.prod-ct>li.hover .cover{
+		opacity: 1;
+	}
+	div.cover a,div.btn a{
+		padding: 10px;
+		border: 1px solid #c81623;
+		color: #c81623;
+		background-color: #fff;
+		border-radius: 5px;
+	}
+	div.cover a{
+		line-height: 211px;
+	}
+	div.btn{
+		margin: 30px 0;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<h1>珠宝首饰</h1>
+		<ul class="prod-ct clearfix">
+			<li>
+				<div class="cover">
+					<a href="#">立即抢购</a>
+				</div>
+				<img src="img/1.jpg" alt="">
+				<h6>藏美千足金和田玉金镶玉路路通吊坠</h6>
+				<p>￥699.00</p>
+			</li>
+			<li>
+				<div class="cover">
+					<a href="#">立即抢购</a>
+				</div>
+				<img src="img/1.jpg" alt="">
+				<h6>藏金镶玉路路通吊坠</h6>
+				<p>￥1699.00</p>
+			</li>
+			<li>
+				<div class="cover">
+					<a href="#">立即抢购</a>
+				</div>
+				<img src="img/1.jpg" alt="">
+				<h6>藏金镶玉路路通吊坠</h6>
+				<p>￥699.00</p>
+			</li>
+			<li>
+				<div class="cover">
+					<a href="#">立即抢购</a>
+				</div>
+				<img src="img/1.jpg" alt="">
+				<h6>藏金镶玉路路通吊坠</h6>
+				<p>￥699.00</p>
+			</li>
+			<li>
+				<div class="cover">
+					<a href="#">立即抢购</a>
+				</div>
+				<img src="img/1.jpg" alt="">
+				<h6>藏金镶玉路路通吊坠</h6>
+				<p>￥699.00</p>
+			</li>
+			<li>
+				<div class="cover">
+					<a href="#">立即抢购</a>
+				</div>
+				<img src="img/1.jpg" alt="">
+				<h6>藏金镶玉路路通吊坠</h6>
+				<p>￥699.00</p>
+			</li>
+		</ul>			
+		<div class="btn">
+			<a href="#">添加</a>
+		</div>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<script>
+		var products = [
+		    {
+		        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+		        name: '珂兰 黄金手 猴哥款',
+		        price: '￥405.00'
+		    },
+		    {
+		        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+		        name: '珂兰 黄金转运珠 猴哥款',
+		        price: '￥100.00'
+		    },
+		    {
+		        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+		        name: '珂兰 黄金手链 3D猴哥款',
+		        price: '￥45.00'
+		    }
+		];
+		function getProdHtml(prod){
+			var html = '';
+			html += '<li>';
+			html += 	'<div class="cover">';
+			html +=			'<a href="#">立即抢购</a>';
+			html +=		'</div>';
+			html +=		'<img src="'+prod.img+'" alt="">';
+			html +=		'<h6>'+prod.name+'</h6>';
+			html +=		'<p>'+prod.price+'</p>';
+			html +=	'</li>';
+			return html;
+		}
+
+		//通过$.each()方法可以遍历对象、数组的属性值，并进行处理
+		// $.each([{“name”:”limeng”,”email”:”xfjylimeng”},{“name”:”hehe”,”email”:”xfjylimeng”}], function(i,n) {
+		// 	alert(“索引:”+i,”对应值为：”+n.name);
+		// });
+		// 参数i为遍历索引值，n为当前的遍历对象.
+
+		$(".btn").on('click', function(event){
+			event.preventDefault();
+			$.each(products, function(index, prod){
+				var html = getProdHtml(prod);
+				$('.prod-ct').append(html); 
+			});
+		});
+
+
+		$(".prod-ct").on('mouseenter', 'li', function(){
+			$(this).addClass('hover');
+		});
+		$(".prod-ct").on('mouseleave', 'li', function(){
+			$(this).removeClass('hover');
+		});
+	</script>
+
+    
+</body>
+</html>

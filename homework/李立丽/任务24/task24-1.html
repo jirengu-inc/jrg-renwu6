@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>task24-1</title>
+</head>
+
+<body>
+    <button id="btn">点我</button>
+</body>
+<script>
+    //封装ajax函数
+    function ajax(opts){
+        //创建ajax对象
+        var oAjax = new XMLHttpRequest();
+        //绑定readystatechange事件进行监听 
+        oAjax.onreadystatechange = function(){
+            if(oAjax.readyState===4 && oAjax.status===200){
+                opts.success(oAjax.responseText);
+            }
+            if(oAjax.status===404){
+                opts.error();
+            }
+        }
+        //创建发送到服务器上的数据，把data转化成key/value的形式拼装成url
+        var dataStr='';
+        for (var key in opts.data) {
+            dataStr += key +"="+ opts.data[key]+ "&"
+        }
+        dataStr = dataStr.substr(0, dataStr.length-1);
+        dataStr +='t='+new Date().getTime();//制止缓存
+        if (opts.type.toLowerCase()==='get') {
+            //连接服务器
+            oAjax.open(opts.type, opts.url + '?'+dataStr,true);
+            //发送请求
+            oAjax.send();
+        }
+        if (opts.type.toLowerCase()==='post') {
+            //连接服务器
+            oAjax.open(opts.type, opts.url,true);
+            //为了是post请求与web表单相同，将Content-Type头部信息设置为application/x-www-form-urlencoded来模仿表单提交功能
+            oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            //发送请求
+            oAjax.send(dataStr);
+        }
+    }
+    document.querySelector('#btn').addEventListener('click', function() {
+        ajax({
+            url: 'getData.php', //接口地址
+            type: 'get', // 类型， post 或者 get,
+            data: {
+                username: 'xiaoming',
+                password: 'abcd1234'
+            },
+            success: function(ret) {
+                console.log(ret); // {status: 0}
+            },
+            error: function() {
+                console.log('出错了')
+            }
+        });
+    });
+</script>
+
+</html>

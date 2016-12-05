@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>大屏轮播</title>
+		<style type="text/css">
+			html,
+			body,
+			ul,
+			li,
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.clearfix:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			html,
+			body,
+			.carousel,
+			.carousel .img-ct {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.carousel {
+				overflow: hidden;
+				position: relative;
+			}
+			
+			.img-ct {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			.img-ct li {
+				text-align: center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: none;
+			}
+			
+			.img-ct li .bg {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				width:100%;
+				height: 100%;
+				/*background-image:url("img/task27-4/1.jpg");*/
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center center;
+			}
+			
+			.img-ct .main {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 660px;
+				color: #fff;
+				text-align: center;
+				z-index: 11;
+			}
+			
+			.img-ct .main h3 {
+				font-size: 36px;
+			}
+			
+			.img-ct .main p {
+				font-size: 18px;
+				line-height: 2;
+			}
+			
+			.carousel .arrow {
+				position: absolute;
+				top: 50%;
+				display: block;
+				width: 40px;
+				height: 40px;
+				margin-top: -20px;
+				line-height: 40px;
+				text-align: center;
+				font-size: larger;
+				border-radius: 40px;
+				background-color: #666;
+				color: #fff;
+				opacity: 0.6;
+			}
+			
+			.arrow:hover {
+				opacity: 1;
+			}
+			
+			.carousel .pre {
+				left: 15px;
+			}
+			
+			.carousel .next {
+				right: 15px;
+			}
+			
+			.carousel .indicator {
+				position: absolute;
+				bottom: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			
+			.carousel .indicator li {
+				float: left;
+				width: 18px;
+				height: 18px;
+				background-color: #fff;
+				cursor: pointer;
+				border-radius: 100%;
+				margin: 0 5px;
+			}
+			
+			.indicator li.active {
+				background-color: #f84e4e;
+			}
+			
+			
+			/*轮播效果*/
+			.carousel .img-ct li {
+				transition: transform .5s ease-in-out;
+				-moz-transition: all .5s ease-in-out;
+				/* Firefox 4 */
+				-webkit-transition: transform .5s ease-in-out;
+				/* Safari 和 Chrome */
+				-o-transition: all .5s ease-in-out;
+				/* Opera */
+			}
+
+			.carousel .img-ct li.active{
+				display:  block;
+
+				transform: translateX(0);
+				-webkit-transform: translateX(0);
+				-moz-transform: translateX(0);
+				-o-transform:translateX(0);
+				-ms-transform: translateX(0);
+			}
+
+			.carousel .img-ct li.right{
+				display: block;
+
+				transform: translateX(100%);
+				-webkit-transform: translateX(100%);
+				-moz-transform: translateX(100%);
+				-o-transform:translateX(100%);
+				-ms-transform: translateX(100%);
+			}
+
+			.carousel .img-ct li.left{
+				display: block;
+
+				transform: translateX(-100%);
+				-webkit-transform: translateX(-100%);
+				-moz-transform: translateX(-100%);
+				-o-transform:translateX(-100%);
+				-ms-transform: translateX(-100%);
+			}
+		</style>
+		<script src="jquery-3.1.1.min.js"></script>
+	</head>
+
+	<body>
+		<div class="carousel">
+			<ul class="img-ct clearfix">
+				<li class="item">
+					<div class="bg" data-bg="img/task27-4/1.jpg"></div>
+					<div class="main">
+						<h3>撼地者加入战斗</h3>
+						<p>让我们一起撼动万物！</p>
+					</div>
+				</li>
+				<li class="item">
+					<div class="bg" data-bg="img/task27-4/2.jpg"></div>
+					<div class="main">
+						<h3>祈求者加入战斗</h3>
+						<p>如此开启知识的纪元！</p>
+					</div>
+				</li>
+				<li class="item">
+					<div class="bg" data-bg="img/task27-4/3.jpg"></div>
+					<div class="main">
+						<h3>暗影刺客加入战斗</h3>
+						<p>我的暗杀名单上有5个名字！</p>
+					</div>
+				</li>
+				<li class="item">
+					<div class="bg" data-bg="img/task27-4/4.jpg"></div>
+					<div class="main">
+						<h3>斧王加入战斗</h3>
+						<p>战，无需多言。死，无关血统。杀，绝不留情！</p>
+					</div>
+				</li>
+			</ul>
+			<a class="pre arrow" href="#"><</a>
+			<a class="next arrow" href="#">></a>
+					<ul class="indicator clearfix">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+		</div>
+		<script>
+			var $ct = $('.img-ct'),
+					$img = $ct.find("li"),
+					imgWidth = $img.width(),
+					imgCount = $img.length,
+					$pre = $('.pre'),
+					$next = $('.next'),
+					$indicator = $('.indicator');
+
+			var curIdx = 0,
+					locked = false;
+			setBg(0);
+			$img.eq(curIdx).addClass('active');
+			$next.on('click',function(e){
+				e.stopPropagation();
+				stopAuto();
+				playNext();
+			});
+			$pre.on('click',function(e){
+				e.stopPropagation();
+				stopAuto();
+				playPre();
+			});
+			$indicator.find('li').on('click',function(e){
+				stopAuto()
+				var idx = $(e.currentTarget).index();
+				if(idx > curIdx){
+				    playNext(idx - curIdx);
+				}
+				if(idx < curIdx){
+				    playPre(curIdx- idx);
+				}
+			});
+			function autoPlay(){//自动轮播
+				auto = setInterval(function(){
+					playNext()
+				},2000);
+			};
+			autoPlay();
+
+			function stopAuto(){
+				clearInterval(auto);
+			};
+			function playNext(idx){
+				var idx = idx || 1;
+				if(locked){return};
+				locked = true;
+				$img.eq(curIdx).removeClass('active').addClass('left');
+				var nextIdx = (curIdx + idx ) % imgCount;
+				$img.eq(nextIdx).addClass('right').offset();
+				$img.eq(nextIdx).removeClass('right').addClass('active');
+				curIdx = nextIdx;
+				setTimeout(function(){
+					$img.eq(nextIdx).siblings().removeClass('left');
+					locked = false;
+					setIndicator();
+				},500);
+				setBg(nextIdx);
+			};
+
+			function playPre(idx){
+				var idx = idx || 1;
+				if(locked){return};
+				locked = true;
+				$img.eq(curIdx).removeClass('active').addClass('right');
+				var preIdx = (imgCount + curIdx - idx)%imgCount;
+				$img.eq(preIdx).addClass('left').offset();
+				$img.eq(preIdx).removeClass('left').addClass('active');
+				curIdx = preIdx;
+				setTimeout(function(){
+					$img.eq(preIdx).siblings().removeClass('right');
+					locked = false;
+					setIndicator();
+				},500);
+				setBg(preIdx);
+			};
+
+			function setIndicator(){
+				$indicator.find('li').removeClass('active')
+						.eq(curIdx).addClass('active')
+			};
+//			图片懒加载
+			function setBg(number) {
+				var $node = $ct.find('.item').eq(number),
+					$bg = $node.find(".bg"),
+					imgUrl = $bg.attr("data-bg");
+				if($node.data('isSetBg')) {
+					return;
+				}
+				$bg.css('background-image', 'url(' + imgUrl + ')');
+				$node.data('isSetBg', true);
+			}
+		</script>
+	</body>
+
+</html>

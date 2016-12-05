@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task30</title>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style>
+	.ct{
+		position: relative;
+	}
+	.item{
+		position: absolute;
+		width: 200px;
+		margin-right: 10px;
+		margin-top: 10px;
+		transition: all 1s;
+	}
+	.h1{
+		height: 200px;
+		background-color: #f4b300;
+	}
+	.h2{
+		height: 300px;
+		background-color: #691BB8;
+	}
+	.h3{
+		height: 400px;
+		background-color: #006ac1;
+	}
+	.h4{
+		height: 500px;
+		background-color: pink;
+	}
+</style>
+</head>
+<body>
+    <div class="ct">
+    	<div class="item h1">1</div>
+    	<div class="item h3">2</div>
+    	<div class="item h2">3</div>
+    	<div class="item h4">4</div>
+    	<div class="item h1">5</div>
+    	<div class="item h2">6</div>
+    	<div class="item h4">7</div>
+    	<div class="item h3">8</div>
+    	<div class="item h2">9</div>
+    	<div class="item h1">10</div>
+    	<div class="item h1">11</div>
+    	<div class="item h3">12</div>
+    	<div class="item h3">13</div>
+    	<div class="item h2">14</div>
+    </div>
+    <script>
+    	$(function(){
+
+    		render();  //初始化页面
+    		$(window).on('resize', function(){
+    			render();
+    		});
+
+    		function render(){
+	    		
+	    		var nodeWidth = $(".item").outerWidth(true),  //节点的宽度
+	    			colNum = parseInt( $(window).width()/nodeWidth );  //窗口的宽度除以节点宽度再取整，计算出页面可以放几列
+	    		var	colSumHeight = [];  //每一列的高度，放在一个数组里
+
+	    		for(var i=0;i<colNum;i++){
+	    			colSumHeight.push(0);  //先在每一列里面放进高度0
+	    		}
+
+	    		$(".item").each(function(){  //对所有的块执行操作，确定它们的位置
+	    			var $cur = $(this);
+
+	    			var idx = 0,
+	    				minSumHeight = colSumHeight[0];  //这里假设数组里第一个数最小
+	    			for(var i=0;i<colSumHeight.length;i++){
+	    				if(colSumHeight[i] < minSumHeight){  //将数组后面的元素依次和第一个比较，从而确定最小的
+	    					idx = i;  //得到最小值的位置
+	    					minSumHeight = colSumHeight[i];  //那么最小值变为该位置对应的值
+	    				}
+	    			}
+
+	    			$cur.css({
+	    				"top": minSumHeight,  //上偏移位置为最小高度列的值
+	    				"left": nodeWidth*idx  //左偏移为列宽*最小列高指数
+	    			});
+	    			colSumHeight[idx] = $cur.outerHeight(true) + colSumHeight[idx];  //最后也就是要将元素放在这个最小高度元素下面
+	    		});    			
+    		}
+    	});
+    </script>
+</body>
+</html>

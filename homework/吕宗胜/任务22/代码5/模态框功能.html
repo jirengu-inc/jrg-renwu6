@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+	html,body,h3,p,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	#div1{
+		width: 300px;
+		height: 200px;
+		border: 1px solid #ccc;
+		margin: 0 auto;
+		border-radius: 5px; 
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -150px 0 0 -150px;
+		display: none;
+	}
+	#header h3{
+		padding: 10px;
+	}
+	span{
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 10px;
+		font-size: 20px;
+		color: black;
+		cursor: pointer;
+	}
+	#cover{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 0.4;
+		background:#000;
+		display: none;
+	}
+	#header,#content{
+		border-bottom: 1px solid #ccc;
+	}
+	#content{
+		height: 100px;
+		line-height: 40px;
+		padding: 10px;
+	}
+	#footer ul li{
+		float: left;
+		margin-right: 5px;
+		padding: 8px 0;
+	}
+	#footer ul li button{
+		columns: pointer;
+		background: none;
+		border: none;
+		font-size: 20px;
+		cursor: pointer;
+	}
+	#footer ul{
+		float: right;
+	}
+	</style>
+</head>
+<body>
+    <input id="btn" type="button" value="点我1">
+    <div id="cover"></div>
+	<div id="div1">
+		<div id="header">
+			<h3>我的标题1</h3>
+			<span>×</span>
+		</div>
+		<div id="content">
+			<p>我的内容1</p>
+			<p>我的内容2</p>
+		</div>
+		<div id="footer">
+			<ul>
+				<li><button id="btn1">取消</button></li>
+				<li><button>确定</button></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+	var oDiv1=document.querySelector("#div1"),
+	    aBtn=document.querySelector("#btn"),
+	    aBtn1=document.querySelector("#btn1"),
+	    aSpan=document.querySelector("span"),
+	    aCover=document.querySelector("#cover");
+	    function handler1(){
+	    	oDiv1.style.display="none";
+	    	aCover.style.display="none";
+	    }
+	    function handler2(){
+	    	oDiv1.style.display="block";
+	    	oDiv1.style.backgroundColor="#fff";
+	    	aCover.style.display="block";
+
+	    }
+	    aBtn.addEventListener("click",handler2);
+	    aSpan.addEventListener("click",handler1);
+	    aBtn1.addEventListener("click",handler1);
+	    aCover.addEventListener("click",handler1);
+	</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+html,body,h1,h3,p,ul,li{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html,body{
+	font-family: Helvetica,'Microsoft YaHei',Arial;
+	font-size: 14px;
+	height: 100%;
+	width: 100%;
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color:#666;
+}
+a:hover{
+	color:#333;
+}
+hr{
+	margin-top: 30px;
+	border-top: 1px solid #eee;
+	max-width: 1200px;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+#header .nav{
+	width: 1000px;
+	margin:0 auto;
+	position: relative;
+}
+#header .triangle{
+	border: 5px solid #666;
+	display:inline-block;
+	height: 0;
+	width: 0;
+	border-color:#666 transparent transparent transparent;
+	vertical-align: middle;
+}
+#header>.nav>ul>li{
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	padding:0 10px;
+}
+#header .droplist{
+	position: absolute;
+    display: none;
+    background:white;
+    top: 100%;
+}
+#header>.nav>ul>li>img{
+	vertical-align:middle;
+}
+#header .droplist>li{
+	padding:5px 10px;
+	border-bottom:1px dashed #ccc;
+}
+#header>.nav>ul>li:hover .droplist{
+	display: block;
+}
+#header .droplist li:hover{
+	background:#eee;
+}
+#header .droplist li:last-child{
+	border:none;
+}
+#header .container{
+	width: 1000px;
+	margin:0 auto;
+	padding:40px 0;
+}
+#header .intro{
+	background:#b54a28; 
+	color:white;
+}
+#main .container{
+	width: 1000px;
+	margin:0 auto;
+	text-align: center;
+}
+#main>.container>p{
+	background: #eee;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	text-align: left;
+	padding:10px 0;
+	margin-top:50px;
+}
+#main>.container>p>a{
+	color:#b54a28;
+}
+#main .container>ul{
+	margin-left: -30px;
+}
+#main .container li{
+	float: left;
+	border:1px solid #ccc;
+    padding:5px 5px;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+#main>.container>ul>li>h3,#main>.container>ul>li>p{
+	padding:5px 10px;
+}
+.btn{
+	display: inline-block;
+	border:1px solid #ccc;
+	border-radius:3px;
+	padding:5px 10px; 
+}
+#main .aboutme{
+	background:#b54a28; 
+	color:white;
+	margin-top:30px;
+	padding:40px 0;
+}
+#main .aboutme a{
+	display: inline-block;
+	color:white;
+	margin-top: 10px;
+	border:1px solid white;
+	border-radius: 3px;
+	padding:5px 10px;
+	margin-top: 10px;
+}
+#main .aboutme a:hover{
+	color:#333;
+}
+#footer p{
+	text-align: center;
+	margin:20px 0;
+}

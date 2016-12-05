@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			p{
+				padding: 20px 0;
+			}
+			.goTop{
+				position: fixed;
+				bottom: 15px;
+				right: 15px;
+				border: 1px solid red;
+				border-radius: 3px;
+				cursor: pointer;
+				padding: 10px 20px;
+				display: none;
+			}
+		</style>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<p>内容1</p>
+		<p>内容2</p>
+		<p>内容3</p>
+		<p>内容4</p>
+		<p>内容5</p>
+		<p>内容6</p>
+		<p>内容7</p>
+		<p>内容8</p>
+		<p>内容9</p>
+		<p>内容10</p>
+		<p>内容11</p>
+		<p>内容12</p>
+		<p>内容13</p>
+		<p>内容14</p>
+		<p>内容15</p>
+		<p>内容16</p>
+		<p>内容17</p>
+		<p>内容18</p>
+		<p>内容19</p>
+		<p>内容20</p>
+		<div class="goTop">回到顶部</div>
+		<script>
+			(function(){
+				var $goTop=$(".goTop");
+				$(window).on("scroll",function(){
+					var $offsetTop=$("body").scrollTop();
+					var $windowHeight=$(window).height();
+					if($offsetTop>$windowHeight){
+						$goTop.show();
+					}else{
+						$goTop.hide();
+					}
+				});
+				$goTop.on("click",function(){
+					$(window).scrollTop(0);
+				});		
+			})()		
+		</script>
+	</body>
+</html>

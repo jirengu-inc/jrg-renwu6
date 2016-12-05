@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task37</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        ul, ol, p, h1, h2, h3, h4, h5, h6 {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            font-size: 14px;
+        }
+
+        .dialog {
+            display: none;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 330px;
+            border-radius: 5px;
+            box-shadow: 0 0 8px #000;
+            background-color: #eee;
+        }
+
+        .dialog-header {
+            position: relative;
+            height: 40px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #676666;
+        }
+
+        .dialog-header>span {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .dialog-header>span:hover {
+            cursor: pointer;
+        }
+
+        .dialog-header>h3 {
+            font-size: inherit;
+        }
+
+        .dialog-body {
+            padding: 10px;
+            margin: 10px;
+            color: #666;
+            font-size: 11px;
+        }
+
+        .dialog-footer {
+            text-align: center;
+        }
+
+        .dialog-btn {
+            display: inline-block;
+            padding: 0.5em 1em;
+            margin: 0 5px 10px 5px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #E33100;
+        }
+
+        .dialog-btn:hover {
+            background-color: #c33100;
+        }
+
+        .active {
+            display: block;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <button class="btn1">打开1</button>
+    <button class="btn2">打开2</button>
+    <button class="btn3">打开3</button>
+    <button class="btn4">打开4</button>
+    <button class="btn5">打开5</button>
+    <!-- 生成的HTML模板 -->
+<!--     <div class="dialog">
+        <div class="dialog-header">
+            <h3>欢迎来到饥人谷</h3>
+            <span class="dialog-close">&times;</span>
+        </div>
+        <div class="dialog-body">
+            <p>hello, 这里是饥人谷</p>
+        </div>
+        <div class="dialog-footer">
+            <a href="#!" class="dialog-btn dialog-confirm">确定</a>
+            <a href="#!" class="dialog-btn dialog-close">取消</a>
+        </div>
+    </div> -->
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script>
+        function Dialog() {
+            this.init()
+            this.bindEvent()
+
+        }
+
+        Dialog.prototype.init = function(){
+            this.$node = $('<div class="dialog"></div>')
+            .addClass('active')
+            .appendTo(document.body)
+        }
+
+        Dialog.prototype.open = function(obj){
+            if (obj.title) {
+                this.setTitle(obj.title)
+            }
+            if (obj.message) {
+                this.setBody(obj.message)
+            }
+            if (obj.isShowConfirmBtn||obj.isShowCloseBtn) {
+                this.setFooter()
+            }
+            if (obj.isShowConfirmBtn) {
+                this.confirmBtn()
+            }
+            if (obj.isShowCloseBtn) {
+                this.closeBtn()
+            }
+            if (typeof obj.onConfirm === 'function') {
+                this.$node.find('.dialog-confirm').on('click', function(){
+                    obj.onConfirm()
+                    $(this).parents('.dialog').removeClass('active')
+                })
+            }
+            if (typeof obj.onClose === 'function') {
+                this.$node.find('.dialog-close').on('click', obj.onClose)
+            }
+
+        }
+
+        Dialog.prototype.setTitle = function(title) {
+            var $title = $('<h3></h3>').text(title)
+            var test = $('<div class="dialog-header"></div>')
+            .html('<span class="dialog-close">&times;</span>')
+            .append($title)
+            .prependTo(this.$node)
+        }
+
+        Dialog.prototype.setBody = function(message) {
+            $('<div class="dialog-body"></div>')
+            .html(message)
+            .appendTo(this.$node)
+        }
+
+        Dialog.prototype.setFooter = function() {
+            this.$node.append('<div class="dialog-footer"></div>')
+        }
+
+        Dialog.prototype.closeBtn = function() {
+            var $footer = this.$node.find('.dialog-footer')
+            $('<a href="#!" class="dialog-btn dialog-close">取消</a>')
+            .appendTo($footer)
+        }
+
+        Dialog.prototype.confirmBtn = function() {
+            var $footer = this.$node.find('.dialog-footer')
+            $('<a href="#!" class="dialog-btn dialog-confirm">确定</a>')
+            .appendTo($footer)
+        }
+
+        Dialog.prototype.bindEvent = function() {
+            $(this.$node).on('mousedown', function(event){
+                var $dialog = $(this)
+                //鼠标位置到dialog的距离
+                var difX = event.clientX - $dialog.offset().left
+                var difY = event.clientY - $dialog.offset().top
+                //dialog的范围
+                var maxX = $(window).width() - $dialog.outerWidth()
+                var maxY = $(window).height() - $dialog.outerHeight()
+                $(document).on('mousemove', function(event){
+                    var posX = event.clientX - difX
+                    var posY = event.clientY - difY
+                    //对dialog移动范围做了限制
+                    if (posX < 0) {posX = 0}
+                    if (posY < 0) {posY = 0}
+                    if (posX > maxX) {posX = maxX}
+                    if (posY > maxY) {posY = maxY}
+                    $dialog.offset({
+                        left: posX,
+                        top: posY
+                    })
+                })
+                $(document).on('mouseup', function(event){
+                    $(this).off('mousemove')
+                })
+            })
+
+            $(this.$node).on('click', function(event) {
+                if ($(event.target).hasClass('dialog-close')) {
+                    $(this).removeClass('active')
+                }
+            })
+        }
+
+        var tpl1 = '<p>hello, 这里是饥人谷</p>';
+        $('.btn1').on('click', function() {
+            var dialog1 = new Dialog()
+            dialog1.open({
+                message: tpl1,
+                isShowCloseBtn: true
+            })
+        })
+
+        var tpl2 = '<a href="#!">饥人谷</a>';
+        $('.btn2').on('click', function() {
+            var dialog2 = new Dialog()
+            dialog2.open({
+                message: tpl2,
+                isShowCloseBtn: true
+            })
+        })
+
+        var tpl3 = '<p>hello</p>';
+        $('.btn3').on('click', function() {
+            var dialog3 = new Dialog()
+            dialog3.open({
+                title: '欢迎来到饥人谷',
+                message: tpl3,
+                isShowCloseBtn: true,
+                isShowConfirmBtn: true,
+                onClose: function(){
+                  alert('close')
+                },
+                onConfirm: function(){
+                  alert('确定');
+                }
+            })
+        })
+
+        var tpl4 = '<ul><li>列表1</li><li>列表2</li><li>列表1</li><li>列表1</li></ul>';
+        $('.btn4').on('click', function() {
+            var dialog4 = new Dialog()
+            dialog4.open({
+                title: '欢迎来到饥人谷',
+                message: tpl4,
+                isShowCloseBtn: true,
+                isShowConfirmBtn: true,
+                onClose: function(){
+                  alert('close')
+                },
+                onConfirm: function(){
+                  alert('确定');
+                }
+            })
+        })
+
+        var tpl5 = '<p>hello</p>';
+        $('.btn5').on('click', function() {
+            var dialog5 = new Dialog()
+            dialog5.open({
+                title: '欢迎来到饥人谷',
+                message: tpl5
+            })
+        })
+
+
+
+
+
+        //面向过程
+        // $('.btn1').on('click', function() {
+        //     $('.dialog').addClass('active')
+        // })
+
+        // $('.dialog').on('mousedown', function(event) {
+        //     var $dialog = $(this)
+        //     var difX = event.clientX - $dialog.offset().left
+        //     var difY = event.clientY - $dialog.offset().top
+
+        //     var maxX = $(window).width() - $dialog.outerWidth()
+        //     var maxY = $(window).height() - $dialog.outerHeight()
+
+        //     $(document).on('mousemove', function(event){
+
+        //         var posX = event.clientX - difX
+        //         var posY = event.clientY - difY
+
+        //         if (posX < 0) {posX = 0}
+        //         if (posY < 0) {posY = 0}
+        //         if (posX > maxX) {posX = maxX}
+        //         if (posY > maxY) {posY = maxY}
+
+        //         $dialog.offset({
+        //             left: posX,
+        //             top: posY
+        //         })
+        //     })
+
+        //     $(document).on('mouseup', function(event){
+        //         $(this).off('mousemove')
+        //     })
+        // })
+
+        // $('.dialog').on('click', function(event) {
+        //     if ($(event.target).hasClass('dialog-close')) {
+        //         $(this).removeClass('active')
+        //     }
+        // })
+
+    </script>
+</body>
+</html>

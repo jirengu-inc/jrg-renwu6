@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>go-up</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 10px 0;
+            border: 1px solid;
+            background-color: #eee;
+        }
+
+        .go-up {
+            display: none;
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            border: 1px solid;
+            font-size: 1em;
+            background-color: #fff;
+        }
+
+        .show-go-up {
+            display: block;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+</head>
+<body>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box-target">我是目标</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <div class="box">hello</div>
+    <button class="go-up">回到顶部</button>
+    <script>
+        var $target = $('.box-target'),
+            targetT = $target.offset().top,
+            timer = 0
+
+        $('.go-up').on('click',function(){
+            $(document).scrollTop(0)
+        })
+
+        function goUp() {
+            var scrollT = $(document).scrollTop()
+            if(scrollT > targetT) {
+                $('.go-up').addClass('show-go-up')
+            } else {
+                $('.go-up').removeClass('show-go-up')
+            }
+        }
+
+        $(document).on('scroll',function(){
+            clearTimeout(timer)
+            timer = setTimeout(function(){
+                goUp()
+            },150)
+
+        })
+    </script>
+</body>
+</html>

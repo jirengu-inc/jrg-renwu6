@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task28-1</title>
+    <style>
+        header {
+            height: 80px;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: #f00;
+        }
+
+        nav {
+            height: 40px;
+            background-color: #00f;
+        }
+
+        section {
+            padding: 10px;
+            background-color: #ccc;
+        }
+
+        aside {
+            float: left;
+            width: 100px;
+            height: 400px;
+            background-color: #008000;
+        }
+
+        main {
+            height: 800px;
+            padding: 0 20px;
+            margin-left: 110px;
+            background-color: #fff;
+        }
+
+        footer {
+            height: 20px;
+            background-color: #333;
+        }
+
+        .stick-up {
+            position: fixed;
+            top: 0;
+            z-index: 99;
+        }
+
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+    <script src="stickUp.js"></script>
+</head>
+<body>
+    <header>header</header>
+    <nav class="nav">nav</nav>
+    </div>
+    <section>
+        <aside>aside</aside>
+        <main>main</main>
+    </section>
+    <footer>footer</footer>
+    <script>
+        $('.nav').stickUp()
+    </script>
+</body>
+</html>

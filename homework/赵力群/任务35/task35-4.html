@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task35-4</title>
+    <style media="screen">
+      html, body, ul, li {
+        margin: 0;
+        padding: 0;
+      }
+      ul, li {
+        list-style: none;
+      }
+      .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .item {
+        float: left;
+        padding: 0 auto;
+        width: 200px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #eee;
+      }
+      .tab-content {
+        display: none;
+        width: 601px;
+        height: 200px;
+        border: 1px solid #ccc;
+      }
+      .selected {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tab1" class="wrap">
+      <ul class="tab-head clearfix">
+        <li class="item active">Tab1</li>
+        <li class="item">Tab2</li>
+        <li class="item">Tab3</li>
+      </ul>
+      <div class="tab-content selected">内容1</div>
+      <div class="tab-content">内容2</div>
+      <div class="tab-content">内容3</div>
+    </div>
+    <div id="tab2" class="wrap">
+      <ul class="tab-head clearfix">
+        <li class="item active">Tab1</li>
+        <li class="item">Tab2</li>
+        <li class="item">Tab3</li>
+      </ul>
+      <div class="tab-content selected">内容1</div>
+      <div class="tab-content">内容2</div>
+      <div class="tab-content">内容3</div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+      function Tab($node) {
+
+        this.$tab = $node.find('.tab-head');
+        this.$content = $node.find('.tab-content');
+
+        this.bind();
+      }
+
+      Tab.prototype = {
+
+        constructor: Tab,
+
+        bind: function() {
+          var _this = this;
+          this.$tab.on('click', 'li', function() {
+            var index = $(this).addClass('active')
+                               .siblings('.active').removeClass('active')
+                               .end().index();
+            _this.$content.eq(index).addClass('selected')
+                                    .siblings('.selected').removeClass('selected');
+          });
+        }
+      }
+
+      $('.wrap').each(function() {
+        new Tab($(this));
+      });
+    </script>
+  </body>
+</html>

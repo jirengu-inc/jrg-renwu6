@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>任务26-1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .ct-color{
+            border: 1px solid #000;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+        }
+        .btn-color{
+            margin-top: 90px;
+        }
+
+        .scroll-hg{
+            width: 100%;
+            background: #0f0;
+            position: fixed;
+            bottom: 0;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .mouse-act{
+            border: 1px solid;
+            height: 300px;
+            text-align: center;
+            line-height: 300px;
+            margin: 30px;
+        }
+
+        .int{
+            outline: none;
+        }
+
+        .box{
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+<div class="ct-color">
+    这里踩了个坑,animate()不能修改背景色,除非使用插件
+    <button class="btn-color">变色</button>
+</div>
+<div class="scroll-hg">
+    你已经滚动了<span class="scroll-number"></span>px
+</div>
+<div class="mouse-act">
+    当鼠标进入变成红色,离开变成白色
+</div>
+请输入内容:
+<input type="text" class="int">
+<select name="hobby" id="hobby">
+    <option value="soccer">足球</option>
+    <option value="basketball">篮球</option>
+    <option value="badminton">羽毛球</option>
+</select>
+<input type="text" id="hobbyIn">
+<div class="box"></div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+//    $('.btn').on('click',function(){
+//        $('.ct').animate({background:red},1000)
+//    })
+      $('.btn-color').on('click',function(){
+        $('.ct-color').css({"background-color":"red"});
+          setTimeout(function(){
+              $('.ct-color').css({"background-color": "blue"});
+          },500);
+      })
+
+      $(window).scroll(function(){
+          $('.scroll-number').text($(window).scrollTop())
+      })
+
+      $('.mouse-act').on('mouseenter',function(){
+          $('.mouse-act').css({"background-color":"red"})
+      })
+      $('.mouse-act').on('mouseleave',function(){
+          $('.mouse-act').css({"background-color":"#fff"})
+      })
+
+      $('.int').on('focus',function(){
+          $(this).css({"border": "1px solid blue"})
+      })
+      $('.int').on('blur',function(){
+          $(this).css({"border": "1px solid #ccc"})
+          console.log($(this).val())
+      })
+      $('.int').on('keyup',function(){
+          $(this).val($(this).val().toUpperCase())
+      })
+
+      $('#hobby').on('change',function(){
+          $('#hobbyIn').val( $("#hobby option:selected").text() )
+      })
+
+      
+
+
+
+
+
+</script>
+</body>
+</html>

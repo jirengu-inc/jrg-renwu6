@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		#div1>.box1{
+			width: 100px;
+			height: 100px;
+	        border: 1px solid #000;
+		}
+		#div1>.active{
+			background: red;
+		}
+		#div2>.box2{
+			width: 100px;
+			height: 100px;
+			background: red;
+			display: none;
+		}
+		#div5>.box5,#div6>.box6{
+			border: 1px solid #000;
+			width: 300px;
+		}
+		#div5>.box5>p,#div6>.box6>p{
+			display: none;
+		}
+		#div8>.box8{
+			border: 1px solid #000;
+			width: 200px;
+			height: 100px;
+			text-align: center;
+		}
+		#div9>h3>xmp{
+			display: inline-block;
+		}
+		#div9>.box9{
+			border: 1px solid #000;
+			width: 200px;
+			height: 100px;
+		}
+		#div10>.box10{
+			border: 1px solid #000;
+			width: 200px;
+			height: 100px;
+			padding: 10px;
+			margin: 10px;
+		}
+		#div11>.box11{
+			border: 1px solid #000;
+			width: 150px;
+			height: 300px;
+			background: pink;
+			text-align: center;
+			position: fixed;
+			top: 50%;
+			margin-top: -150px;
+			right: 0;
+		}
+		#div12>.box12{
+			width: 150px;
+			height: 150px;
+			background: red;
+			color: #fff;
+			text-align: center;
+			margin-left: 30px;
+			line-height: 150px;
+		}
+		#div17>.box17,#div18>.box18{
+			border: 1px solid #000;
+			width: 200px;
+			height: 150px;
+		}
+	</style>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+	<div id="div1">
+		<h3>1.给元素 $node 添加 class active，给元素 $noed 删除 class active</h3>
+		<div class="box1"></div>
+		<button class="btn1">点击增加样式</button>
+		<button class="btn2">点击删除样式</button>
+	</div>
+	<script>
+		$("#div1>.btn1").on("click",function(){
+			$(this).parent().find(".box1").addClass("active");
+		});
+		$("#div1>.btn2").on("click",function(){
+			$("#div1>.box1").removeClass("active");
+		});
+	</script>
+
+	<div id="div2">
+		<h3>2.展示元素$node, 隐藏元素$node</h3>
+		<div class="box2"></div>
+		<button class="btn1">点击展示元素</button>
+		<button class="btn2">点击隐藏元素</button>
+	</div>
+	<script>
+		$("#div2>.btn1").on("click",function(){
+			$(this).parent().find(".box2").show();
+		});
+		$("#div2>.btn2").on("click",function(){
+			$("#div2>.box2").hide();
+		});
+	</script>
+	
+	<div id="div3">
+		<h3>3.获取元素$node 的 属性: id、src、title,修改以上属性</h3>
+		<div class="box3">
+			<img id="img1" src="http://www.gxdxedu.net/upload/img/8NHfhdAdwYOw3hfPpivZJNeyN9NX9-FerzpqX3JACRMEF8voODMgbFCSIpjXsWat.jpg" alt="猪鼻子" title="粉嫩的猪鼻子">
+			<!--img id="img2" src="http://img.qqu.cc/uploads/allimg/150627/1-15062H01042.jpg" alt="猪八戒" title="猪八戒流口水"-->
+		</div>
+		<button class="btn1">点击切换图片</button>
+		<p>自定义图片:</p>
+		<input class="txtid" type="text" placeholder="请输入图片id">
+		<input class="txtsrc" type="text" placeholder="请输入图片src">
+		<input class="txtalt" type="text" placeholder="请输入图片alt">
+		<input class="txttle" type="text" placeholder="请输入图片title">
+		<input class="btn2" type="button" value="提交">
+	</div>
+	<script>
+		$("#div3>.btn1").on("click",function(){
+			$("#div3>.box3>img").attr({
+				"id":"img2",
+				"src":"http://img.qqu.cc/uploads/allimg/150627/1-15062H01042.jpg",
+				"alt":"猪八戒",
+				"title":"猪八戒流口水"
+			});
+		});
+
+		var txtid=$("#div3>.txtid").val();
+		var txtsrc=$("#div3>.txtsrc").val();
+		var txtalt=$("#div3>.txtalt").val();
+		var txttle=$("#div3>.txttle").val();
+		$("#div3>.btn2").on("click",function(){
+			$("#div3>.box3>img").attr({
+				"id":"txtid",
+				"src":"txtsrc",
+				"alt":"txtalt",
+				"title":"txttle"
+			});
+		});
+	</script>
+	
+	<div id="div4">
+		<h3>4.给$node 添加自定义属性data-src</h3>
+		<div class="box4">
+			<input class="txt" type="text" placeholder="请输入data-src的值">
+			<span class="show"><input class="btn" type="button" value="提交"></span>
+			<p></p>
+		</div>
+	</div>
+	<script>
+		$("#div4>.box4>.show>.btn").on("click",function(){
+			$(this).attr("data-src",$("#div4 .txt").val());
+			$("#div4>.box4>p").text($(".show").html());
+		});
+	</script>
+
+	<div id="div5">
+		<h3>5.在$ct 内部最开头添加元素$node</h3>
+		<div class="box5">
+			<p>我是新添加的内容,排在开头。</p>
+			我是ct的内容。
+		</div>
+		<button class="btn">点击在开头增加新内容</button>
+	</div>
+	<script>
+		$("#div5 .btn").on("click",function(){
+			$("#div5 .box5").prepend($("#div5 .box5 p").text()+"</br>");
+		});
+	</script>
+
+	<div id="div6">
+		<h3>6.在$ct 内部最末尾添加元素$node</h3>
+		<div class="box6">
+			<p>我是新添加的内容,排在末尾。</p>
+			我是ct的内容。<br>
+		</div>
+		<button class="btn">点击在末尾增加新内容</button>
+	</div>
+	<script>
+		$("#div6 .btn").on("click",function(){
+			$("#div6 .box6").append($("#div5 .box5 p").text()+"</br>");
+		});
+	</script>
+
+	<div id="div7">
+		<h3>7.删除$node</h3>
+		<div class="box7">
+			<p>点击按钮就可以删除我啦</p>
+		</div>
+		<button class="btn">点击删除元素</button>
+		<script>
+			$("#div7 .btn").on("click",function(){
+				$("#div7 .box7").remove();
+			});
+		</script>
+	</div>
+
+	<div id="div8">
+		<h3>8.把$ct里内容清空</h3>
+		<div class="box8">
+			<p>点击按钮就可以删除清空内容啦</p>
+		</div>
+		<button class="btn">点击删除清空内容</button>
+	</div>
+	<script>
+		$("#div8 .btn").on("click",function(){
+			$("#div8 .box8").empty();
+		});		
+	</script>
+
+	<div id="div9">
+		<h3>9.在$ct里设置html<xmp><div class="btn"></div></xmp></h3>
+		<div class="box9"></div>
+		<button class="btn">点击给div设置html</button>
+	</div>
+	<script>
+		$("#div9 .btn").on("click",function(){
+			$("#div9 .box9").html("<h4>我是新设置的html内容</h4>");
+		});
+	</script>
+
+	<div id="div10">
+		<h3>10.获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)</h3>
+		<div class="box10"></div>
+		<p>盒子的宽度(不包括内边距):<span class="width"></span></p>
+		<p>盒子的宽度(包括内边距):<span class="innerWidth"></span></p>
+		<p>盒子的宽度(包括边框):<span class="outerWidth"></span></p>
+		<p>盒子的宽度(包括外边距):<span class="outerWidthTure"></span></p>
+		<br>
+		<p>盒子的高度(不包括内边距):<span class="height"></span></p>
+		<p>盒子的高度(包括内边距):<span class="innerHeight"></span></p>
+		<p>盒子的高度(包括边框):<span class="outerHeight"></span></p>
+		<p>盒子的高度(包括外边距):<span class="outerHeightTure"></span></p>
+		<button class="btn1">点击获取div的宽高</button>
+		<br>
+		<input class="newWidth" type="text" placeholder="设置盒子的宽度">
+		<input class="newHeight" type="text" placeholder="设置盒子的高度">
+		<input type="button" class="btn2" value="点击提交">
+	</div>
+	<script>
+		var width=$("#div10 .box10").width(),//div的宽度,不包括内边距、边框或外边距
+			innerWidth=$("#div10 .box10").innerWidth(),//div的宽度,包括内边距
+			outerWidth=$("#div10 .box10").outerWidth(),//div的宽地,包括内边距和边框
+			outerWidthTure=$("#div10 .box10").outerWidth(true),//div的宽度,包括内边距,边框,外边距
+
+			height=$("#div10 .box10").height(),//div的高度,不包括内边距、边框或外边距
+			innerHeight=$("#div10 .box10").innerHeight(),//div的高度,包括内边距
+			outerHeight=$("#div10 .box10").outerHeight(),//div的高地,包括内边距和边框
+			outerHeightTure=$("#div10 .box10").outerHeight(true);//div的高度,包括内边距,边框,外边距
+
+		$("#div10 .btn1").on("click",function(){
+			$("#div10 .width").text(width+"px");
+			$("#div10 .innerWidth").text(innerWidth+"px");
+			$("#div10 .outerWidth").text(outerWidth+"px");
+			$("#div10 .outerWidthTure").text(outerWidthTure+"px");
+
+			$("#div10 .height").text(height+"px");
+			$("#div10 .innerHeight").text(innerHeight+"px");
+			$("#div10 .outerHeight").text(outerHeight+"px");
+			$("#div10 .outerHeightTure").text(outerHeightTure+"px")
+		});
+
+		$("#div10 .btn2").on("click",function(){
+			var newWidth=$("#div10 .newWidth").val(),
+				newHeight=$("#div10 .newHeight").val();
+			$("#div10 .box10").width(newWidth);
+			$("#div10 .box10").height(newHeight)
+		});
+	</script>
+
+	<div id="div11">
+		<h3>11.获取窗口滚动条垂直滚动距离</h3>
+		<div class="box11">
+			<p>滚动条垂直的滚动距离为:<span></span></p>
+		</div>
+	</div>
+	<script>
+		$(window).on("scroll",function(){
+			$("#div11 .box11 span").text($(window).scrollTop()+"px");
+		});
+	</script>
+
+	<div id="div12">
+		<h3>12.获取$node 到根节点水平、垂直偏移距离</h3>
+		<div class="box12">DIV</div>
+		<p>div到根节点的垂直距离为:<span class="offsetTop"></span></p>
+		<p>div到根节点的水平距离为:<span class="offsetLeft"></span></p>
+		<button class="btn">点击获取div的偏移</button>
+	</div>
+	<script>
+		$("#div12 .btn").on("click",function(){
+			var offset=$("#div12 .box12").offset();
+			$("#div12 .offsetTop").text(offset.top+"px");
+			$("#div12 .offsetLeft").text(offset.left+"px");
+		});
+	</script>
+
+	<div id="div13">
+		<h3>13.修改$node 的样式，字体颜色设置红色，字体大小设置14px</h3>
+		<p>点击按钮颜色变红,字体大小14px</p>
+		<button class="btn">点击设置文字样式</button>
+	</div>
+	<script>
+		$("#div13 .btn").on("click",function(){
+			$("#div13 p").css({"color":"red","font-size":"14px"});
+		});
+	</script>
+
+	<div id="div14">
+		<h3>14.遍历节点，把每个节点里面的文本内容重复一遍</h3>
+		<ul>
+			<li>我是第一段文本</li>
+			<li>我是第二段文本</li>
+			<li>我是第三段文本</li>
+		</ul>
+		<button class="btn">点击重复以上文本</button>
+		<div></div>
+	</div>
+	<script>
+		$("#div14 .btn").on("click",function(){
+			var eachTxt=$("#div14>ul>li").each(function(){
+				$(this).text();
+			});
+			$(eachTxt).clone(true).insertAfter("#div14 div");
+		});
+	</script>
+
+	<div id="div15">
+		<h3>15.从$ct 里查找 class 为 .item的子元素</h3>
+		<div class="box15">
+			<p>我是内容一</p>
+			<p>我是内容二</p>
+			<p class="item">我是item</p>
+		</div>
+		<button class="btn">点击查找item</button>
+	</div>
+	<script>
+		$("#div15 .btn").on("click",function(){
+			$(this).parent().find(".item").css("color","red");
+		});
+	</script>
+
+	<div id="div16">
+		<h3>16.获取$ct 里面的所有孩子</h3>
+		<div class="box16">
+			<p>我是子元素一</p>
+			<p>我是子元素二</p>
+			<p>我是子元素三</p>
+		</div>
+		<button class="btn">点击获取所有子元素</button>
+	</div>
+	<script>
+		$("#div16 .btn").on("click",function(){
+			 $("#div16 .box16").children().css("color","red");
+		})
+	</script>
+
+	<div id="div17">
+		<h3>17.对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子</h3>
+		<div class="box17">
+			<p class="panel">我是段落</p>
+			<ul class="ct">
+				<li>我是无序列表一</li>
+				<li>我是无序列表二</li>
+			</ul>
+		</div>
+		<button class="btn1">点击向上查找.ct的父亲</button>	
+		<button class="btn2">点击从该父亲查找.panel的孩子</button>	
+	</div>
+	<script>
+		$("#div17 .btn1").on("click",function(){
+			$(".ct").parent().css("border-color","red");
+		});
+		$("#div17 .btn2").on("click",function(){
+			$(".ct").parent().find(".panel").css("color","red");
+		});
+	</script>
+
+	<div id="div18">
+		<h3>18.获取选择元素的数量</h3>
+		<div class="box18">
+			<p>我是内容一</p>
+			<p>我是内容二</p>
+			<p>我是内容三</p>
+		</div>
+		<button class="btn">点击获取div中子元素的数量</button>
+		<p>div中子元素的数量为:<span></span></p>
+	</div>
+	<script>
+		$("#div18 .btn").on("click",function(){
+			$("#div18 p span").text($("#div18 .box18 p").length);
+		});
+	</script>
+
+	<div id="div19">
+		<h3>19.获取当前元素在兄弟中的排行</h3>
+		<p>点击下面的文字获取它们的排行</p>
+		<ol>
+			<li>我是有序列表一</li>
+			<li>我是有序列表二</li>
+			<li>我是有序列表三</li>
+		</ol>
+		当前元素的排行为:<span></span>
+	</div>
+	<script>
+		$("#div19 ol li").on("click",function(){
+			$("#div19 span").text($(this).index()+1);		
+		});
+	</script>
+</body>
+</html>

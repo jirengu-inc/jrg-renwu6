@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task29-1</title>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style>
+	p{
+		line-height: 3;
+	}
+	div{
+		position: fixed;
+		top: 560px;
+		right: 30px;
+		border: 1px solid red;
+		border-radius: 3px;
+		padding: 10px 20px;
+		cursor: pointer;
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<p>内容1</p>
+	<p>内容2</p>
+	<p>内容3</p>
+	<p>内容4</p>
+	<p>内容5</p>
+	<p>内容6</p>
+	<p>内容7</p>
+	<p>内容8</p>
+	<p>内容9</p>
+	<p>内容10</p>
+	<p>内容11</p>
+	<p>内容12</p>
+	<p>内容13</p>
+	<p>内容14</p>
+	<p>内容15</p>
+	<p>内容16</p>
+	<p>内容17</p>
+	<p>内容18</p>
+	<p>内容19</p>
+	<p>内容20</p>
+     <script>
+     	/*
+     	$(function(){
+     		var $goTop = $('<div id="go-top">回到顶部</div>');
+     		$("body").append($goTop);  //这里写body竟然以为不要加引号，body也是html标签，window和document不加
+
+     		$(window).on('scroll', function(){
+     			var scrollTop = $(window).scrollTop();  //获取窗口滚动的距离
+     			if(scrollTop>100){
+     				$goTop.show();
+     			}else{
+     				$goTop.hide();
+     			}
+     		});
+
+     		$goTop.on('click', function(){
+     			$(window).scrollTop(0);
+     		});
+     	});
+     	*/
+
+     	//进行一次封装
+     	$(function(){
+     		var GoTop = {
+     			inint: function(){
+     				if( $("#go-top").length ){  //检查页面中是否已经存在这个元素，避免重复绑定
+     					return;
+     				}
+     				var $goTop = $('<div id="go-top">回到顶部</div>');
+     				$("body").append($goTop); 
+     				this.$go = $goTop;  //给GoTop对象绑定属性，下面的bind函数才可以使用
+     				this.bind();  //调用gotop对象的方法
+     			},
+     			bind: function(){
+     				var goSelf = this;
+     				$(window).on('scroll', function(){
+		     			var scrollTop = $(window).scrollTop();
+		     			if(scrollTop>100){
+		     				goSelf.$go.show();  //这里面不能写this，代表的是window，我们要得到GoTop对象里面的
+		     			}else{
+		     				goSelf.$go.hide();
+		     			}
+		     		});
+		     		this.$go.on('click', function(){  //这里面就可以
+		     			$(window).scrollTop(0);
+		     		});
+     			}
+     		}
+     		GoTop.inint();  //直接调用即可
+     	});
+
+     </script>
+</body>
+</html>

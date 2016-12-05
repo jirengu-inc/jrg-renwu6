@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<ul class="ct">
+    <li data-img="http://hzkq.eetop.com/img/logo.png">鼠标放置查看图片1</li>
+    <li data-img="http://jscode.me/uploads/profile/1-profileimg.png">鼠标放置查看图片2</li>
+    <li data-img="http://hzkq.eetop.com/img/logo.png">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview"></div>
+<script>
+
+    var ct = document.getElementsByTagName('ul');
+    var img_preview = document.getElementsByClassName('img-preview');
+    console.log(img_preview[0]);
+    [].forEach.call(ct[0].children,function(e){
+        e.onmouseover = function(){
+           console.log( e.getAttribute('data-img'));
+          //  var img = document.createElement('img');
+           // img.setAttribute('src', e.getAttribute('data-img'));
+            img_preview[0].innerHTML = '<img src='+e.getAttribute('data-img')+'>';
+        }
+    })
+
+</script>
+
+
+</body>
+</html>
