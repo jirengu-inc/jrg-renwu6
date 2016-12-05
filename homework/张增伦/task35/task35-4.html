@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+
+<style type="text/css">
+
+    div,body,html,ul,li{
+        margin:0;
+        padding:0;
+    }
+
+    div,ul,li{
+        box-sizing: border-box;
+    }
+
+    .clearfix:after{
+        display: block;
+        content: '';
+        clear: both;
+    }
+
+    .ct ul li{
+        float: left;
+        width: 33.33%;
+        height: 35px;
+        line-height: 35px;
+        border: 1px solid #ccc;
+        text-align: center;
+        list-style-type: none;
+    }
+
+    .ct ul li:nth-child(1),.ct ul li:nth-child(2){
+        border-right: none;
+    }
+
+    .ct ul li.curr{
+        background-color: #eee;
+    }
+
+    .panels {
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+
+    .panels .panel{
+        padding: 15px;
+        background-color: #fffdef;
+        height: 200px;
+        display: none;
+    }
+
+    .panel.curr {
+        display: block;
+    }
+
+	.ct {
+		margin-top: 20px;
+		margin-left: 20px;
+		width: 500px;
+        overflow: hidden;
+	}
+
+
+
+</style>
+
+
+
+</head>
+<body>
+
+	<div class="ct">
+
+		<ul class="clearfix">
+			<li class="curr">tab1</li>
+			<li>tab2</li>
+			<li>tab3</li>
+		</ul>
+
+		<div class="panels">
+			<div class="panel curr">内容1</div> 
+			<div class="panel">内容2</div> 
+			<div class="panel">内容3</div> 
+		</div>
+	
+	</div>
+
+    <div class="ct">
+
+        <ul class="clearfix">
+            <li class="curr">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+
+        <div class="panels">
+            <div class="panel curr">内容1</div>
+            <div class="panel">内容2</div>
+            <div class="panel">内容3</div>
+        </div>
+
+    </div>
+
+	<script type="text/javascript">
+
+    function Tab(ct) {
+        this.ct = ct;
+        this.uls = this.ct.getElementsByTagName('ul');
+        this.lis = this.ct.querySelectorAll('li');
+        this.panels = this.ct.querySelectorAll('.panel');
+
+        this.bindEvent();
+    }
+
+    Tab.prototype = {
+        addClass:function addClass(el,cls){
+            if(!this.hasClass(el,cls)){
+                el.className = el.className+" "+cls;
+                console.log( el.className);
+            }else{
+                console.log(cls+' has exists!');
+            }
+        },
+        hasClass:function hasClass(el,cls){
+            var pattern = new RegExp('(\\s|^)'+cls+'(\\b|$)','g');
+            var bool = pattern.test(el.className);
+            console.log('---bool:'+bool);
+            return bool;
+        },
+        removeClass:function removeClass(el,cls){
+            var pattern = new RegExp('(\\s|^)'+cls+'(\\b|$)','g');
+            el.className = el.className.replace(pattern,'');
+            console.log( el.className);
+        },
+        bindEvent:function(){
+            var self = this;
+            this.uls[0].addEventListener('click',function(e){
+                if(e.target.tagName.toLowerCase() === 'li'){
+                    var target = e.target;
+                    var index = [].indexOf.call(self.lis,target);
+                    //alert(index);
+                    console.log('---index:'+index);
+
+                    [].forEach.call(self.lis,function(li){
+                        self.removeClass(li,'curr');
+                    })
+
+                    self.addClass(self.lis[index],'curr');
+
+                    [].forEach.call(self.panels,function(panel){
+                        self.removeClass(panel,'curr');
+                    })
+
+                    self.addClass(self.panels[index],'curr');
+                }
+            });
+        }
+    }
+	
+    new Tab(document.querySelectorAll('.ct')[0]);
+    new Tab(document.querySelectorAll('.ct')[1]);
+
+
+
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>mission25-002</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+			font-size:12px;
+			color:#666;
+		}
+		ul,li{
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+			color:#666;
+		}
+
+		.container{
+			margin-left:20px;
+			margin-top:20px;
+		}
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		.pd-title.clearfix div{
+			float:left;
+			padding:10px 0px 10px;
+		}
+
+		.pd-title.clearfix li span{
+		}
+
+		.pd-title.clearfix li a{
+			margin:0px 10px;
+		}
+
+		.pd-title.clearfix{
+			border:1px solid #ccc;
+			width:180px;
+		}
+
+		.product{
+			border:1px solid #ccc;
+			width:645px;
+			display:none;
+		}
+
+		.product-icon.clearfix{
+			position:relative;
+			margin-left:-21px;
+			margin-bottom:-21px;
+
+		}
+
+		.product-icon.clearfix li{
+			width:200px;
+			float:left;
+			border:1px solid #eee;
+			margin-left:20px;
+			margin-bottom:20px;
+		}
+
+		.cover{
+			position:absolute;
+			width:200px;
+			height:199px;
+			background: rgba(0,0,0, 0.3);/*背景色全黑加apha通道值透明*/
+			opacity:1;/*蒙层透明度不透明*/
+			display:none;
+		}
+
+		.cover a{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			border:1px solid #c81623;
+			border-radius:3px;
+			color:#c81623;
+			background:#fff;/*蒙层上的立即抢购图标*/
+			padding:10px;
+		}
+
+		.pd-fee{
+			color:#c81623;
+		}
+
+		.active-bg{
+			background:#ccc;
+		}
+
+		.active-font-color{
+			color:#c81623;
+		}
+
+		.hover{
+			display:block;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<ul class="pd-title clearfix">
+		<div class="hot"><li><a href="#" class="active-font-color">热门</a><span>|</span></li></div>
+		<div class="jewel"><li><a href="#">珠宝首饰</a><span>|</span></li></div>
+		<div class="Luxury"><li><a href="#">奢侈品</a></li></div>
+	</ul>
+	<div class="product hover"><!-- 因为要先展示某一个product，所以这个product增加了hover类，让其显示为display:block -->
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+	<div class="product">
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+	<div class="product">
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="container">
+	<ul class="pd-title clearfix">
+		<div class="hot"><li><a href="#" class="active-font-color">热门</a><span>|</span></li></div>
+		<div class="jewel"><li><a href="#">珠宝首饰</a><span>|</span></li></div>
+		<div class="Luxury"><li><a href="#">奢侈品</a></li></div>
+	</ul>
+	<div class="product hover"><!-- 因为要先展示某一个product，所以这个product增加了hover类，让其显示为display:block -->
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+	<div class="product">
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+	<div class="product">
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+$(".pd-list").on("mouseenter",function(mousev){
+			$(this).find(".cover").show();
+		});
+
+		$(".pd-list").on("mouseleave",function(mousev){
+			$(this).find(".cover").hide()
+		});
+
+		
+			$(".pd-title.clearfix").find("div").on("click",function(){
+				// 以上代码也可以写成 $(".hot,.jewel,.Luxury").on("click",function(){
+			var $cur=$(this);
+			var idx=$cur.index();
+			$cur.siblings().removeClass('active-bg');//删除点击元素其兄弟元素的背景色，同级的就找兄弟元素
+			$cur.addClass('active-bg');////增加点击元素的背景色
+			$cur.find("a").addClass("active-font-color")//增加点击元素里面a标签的颜色
+			$cur.siblings().find("a").removeClass('active-font-color');//删除点击元素其兄弟元素里面a标签的颜色
+
+			$cur.parents(".container").find(".product").eq(idx).addClass("hover")//找父元素中的.product子元素
+			$cur.parents(".container").find(".product").eq(idx).siblings(".product").removeClass("hover")//找父元素中某个特定序号的.product子元素的兄弟元素
+
+			//!!!!!!!!!因为页面加载时某一个product必须得先展示出来，所以将第一个product的类名写为product hover
+		})
+
+			$("a").on("click",function(mousev){
+			mousev.preventDefault();//注意这里不能成$(this).preventDefault(),this只是指当前的元素，没有preventDefault()方法
+		})
+})
+		
+</script>
+</body>
+</html>

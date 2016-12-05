@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>问答7&8DEMO</title>
+	
+</head>
+<body>
+<fieldset>
+     <legend>html和text设置和获取</legend>
+     <input type="button" id="getHTML" value="获取html">
+     <input type="button" id="setHTML" value="设置html">
+     <input type="button" id="getText" value="获取text">
+     <input type="button" id="setText" value="设置text">
+     <p id="test">这是测试<em>html</em>和<em>text</em>设置和获取。</p>
+</fieldset>
+
+<fieldset>
+     <legend>设置和获取表单内容</legend>
+     <input type="text" id="username" placeholder="测试表单">
+     <input type="button" id="getValue" value="获取内容">
+     <input type="button" id="changeValue" value="改变内容">
+</fieldset>
+
+<fieldset>
+     <legend>获取和设置元素的属性</legend>
+     <a id="test-a" href="http://www.jirengu.com">饥人谷</a>
+     <input type="button" id="changeAttr" value="更换属性">
+</fieldset>
+
+<script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+<script>
+     $(document).ready(function(){
+            /*html和text设置和获取*/
+        $("#getHTML").on("click",function(){
+             alert($("#test").html());
+        })
+        $("#setHTML").on("click",function(){
+             $("#test").html("<span>hunger</span>");
+        }) 
+        $("#getText").on("click",function(){
+             alert($("#test").text());
+        })
+        $("#setText").on("click",function(){
+             $("#test").text("更换text内容");
+        })
+            /*设置和获取表单内容*/
+        $("#getValue").on("click",function(){
+             alert($("#username").val());
+        })
+        $("#changeValue").on("click",function(){
+             $("#username").val("更换用户名");
+        })
+            /*获取和设置元素的属性*/ 
+        $("#changeAttr").on("click",function(){
+             $("#test-a").text("百度");
+             $("#test-a").attr("href","http://www.baidu.com");
+        })     
+     });
+</script>
+</body>
+</html>

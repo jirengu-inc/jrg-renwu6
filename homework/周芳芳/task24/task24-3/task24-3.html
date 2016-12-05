@@ -45,24 +45,138 @@
 			<dl class="register-ct">
 				<dt>用户名：</dt>
 				<dd>
-					<input type="text" id="username" placeholder="用户名（hunger被注册过了）">
+					<input type="text" id="username" placeholder="用户名hunger被注册过了">
 				</dd>
-				<dd class="msg">用户名可用</dd>
+				<dd class="msg msg-un">只能是字母、数字、下划线，3-10个字符</dd>
 				<dt>密码：</dt>
 				<dd>
 					<input type="password" id="password1" placeholder="密码">
 				</dd>
-				<dd class="msg"></dd>
+				<dd class="msg msg-psd1">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
 				<dt>再输一次：</dt>
 				<dd>
-					<input type="password" id="password1" placeholder="再输入一次">
+					<input type="password" id="password2" placeholder="再输入一次">
 				</dd>
-				<dd class="msg"></dd>
+				<dd class="msg msg-psd2"></dd>
 				<dd>
-					<button id="btn-register">注册</button>
+					<button id="btn-register" type="button">注册</button>
 				</dd>
 			</dl>
 		</form>
 	</div>
+	<script src="ajax.js"></script>
+	<script>
+		var unIpt = document.getElementById('username'),
+		    psdIpt1 = document.getElementById('password1'),
+		    psdIpt2 = document.getElementById('password2'),
+		    btn = document.getElementById('btn-register'),
+		    unMsg = document.querySelector('.msg-un'),
+		    psdMsg1 = document.querySelector('.msg-psd1'),
+		    psdMsg2 = document.querySelector('.msg-psd2');
+        
+        unIpt.addEventListener('change',function(){
+        	testName()&&testUnValid();
+        });
+        psdIpt1.addEventListener('change',function(){
+        	testPass1();
+        });
+        psdIpt2.addEventListener('change',function(){
+        	testPass2();
+        });
+        btn.addEventListener('click',function(){
+        	if(testName()&&testPass1()&&testPass2()&&testUnValid()){
+        		alert('正在注册...')
+        	}
+        });
+
+		//判断用户名是否可用
+		function testUnValid(){
+			ajax({
+				url:'http://zhenai.luckhu.com/register.php',
+				type:'get',
+				data:{
+					username:unIpt.value,
+				},
+				success:function(ret){
+					if(ret == '1'){
+						addClass(unIpt,'error');
+						unMsg.innerText = '用户名已经存在';
+					} else{
+						removeClass(unIpt,'error');
+						unMsg.innerText='用户名可用';
+					}
+				},
+				error:function(){
+					console.log('出错了...');
+				}
+			});
+		}
+        
+        //判断用户名、密码格式是否正确
+        function testName(){
+        	if(!isValidUn(unIpt.value)){
+        		addClass(unIpt,'error');
+        		unMsg.innerText='用户名格式不正确';
+        		return false;
+        	}else{
+        		removeClass(unIpt,'error');
+        		unMsg.innerText='用户名可用';
+        		return true;
+        	}
+        }
+
+        function testPass1(){
+        	if(!isValidPass(psdIpt1.value)){
+        		addClass(psdIpt1,'error');
+        		psdMsg1.innerText='密码格式不正确';
+        		return false;
+        	}else{
+        		removeClass(psdIpt1,'error');
+        		psdMsg1.innerText='';
+        		return true;
+        	}
+        }
+
+        function testPass2(){
+        	if(psdIpt2.value !== psdIpt1.value){
+        		addClass(psdIpt2,'error');
+        		psdMsg2.innerText ='两次密码输入不一致';
+        		return false;
+        	}else{
+        		removeClass(psdIpt2,'error');
+        		psdMsg2.innerText = '';
+        		return true;
+        	}
+        }
+        
+		function isValidUn(str){
+			if(/^[A-Za-z_0-9]{3,10}$/.test(str)){
+				return true;
+			}else{
+				return false;
+			}
+		};
+
+		function isValidPass(str){
+			if(str.length<6 || str.length >15){
+				return false;
+			}
+			if(/[^A-Za-z_0-9]/.test(str)){
+				return false;
+			}
+			if(/(^[a-z]+$)|(^[A-Z]+$)|(^_+$)|(^\d+$)/g.test(str)){
+				return false;
+			}
+			return true;
+		}
+
+		//添加删除class
+		function addClass(ele,cls){
+			ele.className+=''+cls;
+		}
+		function removeClass(ele,cls){
+			ele.className=ele.className.replace(new RegExp('\\b'+cls+'\\b','g'),'');
+		}
+	</script>
 </body>
 </html>

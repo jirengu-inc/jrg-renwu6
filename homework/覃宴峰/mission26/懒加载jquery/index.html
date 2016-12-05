@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>懒加载</title>
+	<style type="text/css">
+		html,body{
+			margin:0px;
+			padding:0px;
+		}
+		ul,li{
+			list-style:none;
+		}
+
+		a{
+			text-decoration:none;
+			color:#000;
+			border:1px solid green;
+			padding:10px;
+			border-radius:5px;
+			display:block;
+			width:80px;
+			text-align:center;
+			margin:0 auto;
+		}
+
+
+		ul{
+			margin-left:100px;
+			margin-right:100px;
+		}
+
+		ul li{
+			padding:10px;
+			margin-top:10px;
+			border:1px solid green;
+			border-radius:5px;
+		}
+
+		ul li:hover{
+			background:green;
+			transition:background-color 0.5s
+		}
+
+		.ck img{
+			width:20px;
+			height:20px;
+		}
+	</style>
+</head>
+<body>
+<ul>
+	<li>内容1</li>
+	<li>内容2</li>
+</ul>
+<a class="ck" href="#">加载更多</a>
+<script type="text/javascript" src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js">
+</script>
+
+<script>
+	$(function(){
+
+		function onsucess(json){
+			console.log(json.data)//后代传回数据是json对象，用.data查看该json对象的data属性，data属性后台文件提前写好
+			console.log(json.data.length)
+			for(var i=0;i<json.data.length;i++){
+				$("ul").append("<li>内容"+json.data[i]+"</li>")
+			}
+			setTimeout(function(){
+				$(".ck").html("加载更多")
+				$(".ck").data("loading",false)//加载完成后将状态锁置为false，让下次点击可加载
+				console.log($(".ck").data())
+			},1000)//元素插入完成后改写加载按钮内容,因为太快完成所以加延迟显示加载效果
+			
+		}
+
+		function onerror(){
+			alert("error")
+		}
+		
+		
+		$(".ck").on("click",function(mousev){
+			mousev.preventDefault();//防止点击a链接自动跳到页顶
+			if($(".ck").data("loading")){//点击后先检查状态锁，如果是锁止状态（true）则return退出
+				return
+			}
+			var $count=$("ul li").length//每点击一次获取当前ul中的li数量
+			$(".ck").data("loading",true)//设置状态锁，防止重复点击，true锁止状态
+			console.log($(".ck").data())
+			$(".ck").html("<img src='loading.gif'>")
+			$.ajax({
+			url:"loadmore",
+			type:"GET",
+			dataType:"json",
+			data:{
+				status:"start",
+				length:6,//每次加载个数
+				cur:$count//将每次点击获取的li数量传到后台
+			},
+			success:function(json){//后台传回数据是json对象格式,用.方法调用
+				onsucess(json)
+			},
+			error:function(){
+				onerror()
+			}
+		})
+		})
+		
+	})
+</script>
+</body>
+</html>

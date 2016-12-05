@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task37-2</title>
+    <style type="text/css">
+      .date-ipt {
+        border-radius: 1px;
+        margin: 10px;
+      }
+      .ui-date-picker {
+        position: absolute;
+        width: 280px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 14px;
+        font-family: Tahoma, sans-serif;
+      }
+      .ui-date-picker > .header {
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: orange;
+        font-weight: bold;
+      }
+      .ui-date-picker .caret {
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        cursor: pointer;
+      }
+      .ui-date-picker .caret-left {
+        float: left;
+        margin: 6px 0 0 10px;
+        border-right: 7px solid;
+      }
+      .ui-date-picker .caret-right {
+        float: right;
+        margin: 6px 10px 0 0;
+        border-left: 7px solid;
+      }
+      .ui-date-picker .panel {
+        width: 100%;
+        text-align: center;
+        background-color: #fff;
+      }
+      .ui-date-picker .panel th {
+        line-height: 2;
+      }
+      .ui-date-picker .panel td {
+        line-height: 1.2;
+      }
+      .ui-date-picker .pre-month,
+      .ui-date-picker .next-month {
+        color: #eee;
+      }
+      .ui-date-picker .cur-month {
+        cursor: pointer;
+      }
+      .ui-date-picker .cur-month:hover {
+        background-color: #ccc;
+        color: #fff;
+      }
+      .ui-date-picker .cur-date {
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="date-ipt" type="text" placeholder="有初始值" date-init="2016/06/12">
+    <input class="date-ipt" type="text" placeholder="无初始值">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      function DatePicker($target) {
+        // 初始化日期
+        this.init($target);
+        // 渲染日历dom
+        this.render();
+        // 设置日历日期
+        this.setData();
+        // 绑定事件
+        this.bind();
+      }
+
+      DatePicker.prototype = {
+
+        constructor: DatePicker,
+
+        init: function($target) {
+          this.$target = $target;
+          if(this.isValidDate($target.attr('date-init'))) {
+            this.date = new Date($target.attr('date-init'));
+            this.watchDate = new Date($target.attr('date-init'));
+          } else {
+            this.date = new Date();
+            this.watchDate = new Date();
+          }
+        },
+
+        render: function() {
+          var tpl = '<div class="ui-date-picker" style="display:none">'
+                  + '<div class="header"><span class="pre caret caret-left"></span><span class="cur header-date"></span><span class="next caret caret-right"></span></div>'
+                  + '<table class="panel">'
+                  +   '<thead><tr><th>SUN</th><th>MON</th><th>TUE</th><th>WEN</th><th>THU</th><th>FRI</th><th>SAT</th></tr></thead>'
+                  +   '<tbody></tbody>'
+                  + '</div>';
+          this.$datepicker = $(tpl);
+          this.$datepicker.insertAfter(this.$target)
+                          .css({
+                            'left': this.$target.offset().left,
+                            'top': this.$target.offset().top + this.$target.height(true)
+                          });
+        },
+
+        setData: function() {
+          // 抬头显示年月
+          this.$datepicker.find('.header-date').text(this.watchDate.getFullYear() + '年' + (this.watchDate.getMonth() + 1) + '月');
+          this.$datepicker.find('tbody').html('');
+          // 获取本月第一天和本月最后一天
+          var firstDay = this.getFirstDay(this.watchDate),
+              lastDay = this.getLastDay(this.watchDate),
+              dateArr = [],
+              d = '';
+          // 为达到显示效果，需要区分本月和上月以及次月的日期
+          // 而且，日期要对应实际的日期
+          // 所以给日历传递信息，这里用数组对象格式
+          for(var i = firstDay.getDay(); i > 0; i--) {
+            d = new Date(firstDay.getTime() - i * 24 * 60 * 60 * 1000);
+            dateArr.push({
+              type: 'pre',
+              date: d
+            });
+          }
+
+          for(var j = 0; j < (lastDay.getDate() - firstDay.getDate() + 1); j++) {
+            d = new Date(firstDay.getTime() + j * 24 * 60 * 60 * 1000);
+            dateArr.push({
+              type: 'cur',
+              date: d
+            });
+          }
+
+          for(var k = 1; k < (7 - lastDay.getDay()); k++) {
+            d = new Date(lastDay.getTime() + k * 24 * 60 * 60 *1000);
+            dateArr.push({
+              type: 'next',
+              date: d
+            });
+          }
+
+          var tpl = '';
+          for(var i = 0; i < dateArr.length; i++) {
+            if( i % 7 === 0) {
+              tpl += '<tr>';
+            }
+            tpl += '<td class="';
+            if(dateArr[i].type === 'pre') {
+              tpl += 'pre-month';
+            } else if(dateArr[i].type === 'cur') {
+              tpl += 'cur-month';
+            } else {
+              tpl += 'next-month';
+            }
+
+            if(this.getYYMMDD(this.date) === this.getYYMMDD(dateArr[i].date)){
+              tpl += ' cur-date';
+            }
+            tpl += '" data-date="' + this.getYYMMDD(dateArr[i].date) + '">';
+            tpl += this.toFixed(dateArr[i].date.getDate()) + '</td>';
+
+            if(i % 7 === 6) {
+              tpl += '</tr>';
+            }
+          }
+
+          this.$datepicker.find('tbody').html(tpl);
+        },
+
+        bind: function() {
+          var _this = this;
+          this.$datepicker.on('click', '.pre',function() {
+            _this.watchDate = _this.getPreMonth(_this.watchDate);
+            _this.setData();
+          })
+          .on('click', '.next',function() {
+            _this.watchDate = _this.getNextMonth(_this.watchDate);
+            _this.setData();
+          })
+          .on('click', '.cur-month', function() {
+            _this.$target.val($(this).attr('data-date'))
+            _this.$datepicker.hide();
+          })
+          .on('click', function(e){
+            e.stopPropagation();
+          });
+
+          this.$target.on('click', function(e){
+            e.stopPropagation();
+            _this.$datepicker.show();
+          });
+
+          $(window).on('click', function(e){
+            _this.$datepicker.hide();
+          })
+        },
+
+        getFirstDay: function(date) {
+          var year = date.getFullYear(),
+              month = date.getMonth();
+          return newDate = new Date(year, month, 1);
+        },
+
+        getLastDay: function(date) {
+          var year = date.getFullYear(),
+              month = date.getMonth();
+          month++;
+
+          if(month > 11) {
+            month = 0;
+            year++;
+          }
+          var newDate = new Date(year, month , 1);
+          return new Date(newDate.getTime() - 24 * 60 * 60 * 1000);
+        },
+
+        getPreMonth: function(date) {
+          var year = date.getFullYear(),
+              month = date.getMonth();
+          month--;
+
+          if(month < 0) {
+            month = 11;
+            year--;
+          }
+          return new Date(year, month, 1);
+        },
+
+        getNextMonth: function(date) {
+          var year = date.getFullYear(),
+              month = date.getMonth();
+          month++;
+          if(month > 11) {
+            month = 0;
+            year++;
+          }
+          return new Date(year, month, 1);
+        },
+
+        getYYMMDD: function(date){
+          var yy = date.getFullYear(),
+              mm = date.getMonth();
+          return yy + "/" + this.toFixed(mm + 1) + "/" + this.toFixed(date.getDate());
+        },
+
+        toFixed: function(n) {
+          return ((n + '').length === 1) ? ('0' + n + '') : (n +'');
+        },
+
+        isValidDate: function(dateStr) {
+          return new Date(dateStr).toString() !== 'Invalid Date';
+        }
+      };
+
+      $.fn.datePicker = function() {
+        this.each(function() {
+          new DatePicker($(this));
+        });
+      };
+      $('.date-ipt').datePicker();
+    </script>
+  </body>
+</html><!--

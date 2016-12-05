@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script >
+    	console.log(1+1); //2;
+    	console.log("2"+"4"); //进行字符串拼接--24
+    	console.log(2+"4"); //2转化为字符串拼接--24
+    	console.log(+new Date());//1472140158536;
+    	console.log(+"4");//4;
+    </script>
+在两个操作数都是数字的时候，会做加法运算<br><hr>
+两个参数都是字符串或在有一个参数是字符串的情况下会把另外一个参数转换为字符串做字符串拼接，若数字和字符相加，会将字符转化为数字，再相加。<br><hr>
+在参数有对象的情况下会调用其valueOf或toString<br><hr>
+在只有一个字符串参数的时候会尝试将其转换为数字<br><hr>
+在只有一个数字参数的时候返回其正数值<hr>
+
+</body>
+</html>

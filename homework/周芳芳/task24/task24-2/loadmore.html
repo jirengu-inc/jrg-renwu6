@@ -59,10 +59,11 @@
 				},
 				success:function(ret){
 					loadMoreBtn.innerText='加载更多';
-					for(var i=0;len=ret.length;i++){
+					for(var i=0;i<ret.length;i++){
 			        		var oLi=document.createElement('li');
-			        		oLi.innerHTML='内容'+ret[i];
+			        		oLi.innerHTML=ret[i];
 			        		ct.appendChild(oLi);
+			        		cur++;
         	        }
         	        locked = false;
 				},
@@ -73,7 +74,7 @@
 				}
 			})
 		});
-        
+    
 	</script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <script>
+function isNumber(s){
+    return typeof(a)=="number"?true:false;
+}
+function isString(s){
+    if(s==a)
+    return typeof(a)=="string"?true:false;
+    else return typeof(b)=="string"?true:false;  
+}
+function isBoolean(s){
+    return typeof(c)=="boolean"?true:false;
+}
+function isFunction(s){
+    if(s==a)
+    return typeof(a)=="function"?true:false;
+    else return typeof(isNumber)=="function"?true:false;
+}
+var a = 2,
+    b = "jirengu",
+    c = false;
+alert( isNumber(a) );  //true
+alert( isString(a) );  //false
+alert( isString(b) );  //true
+alert( isBoolean(c) ); //true
+alert( isFunction(a)); //false
+alert( isFunction( isNumber ) ); //true
+   </script> 
+</body>
+</html>

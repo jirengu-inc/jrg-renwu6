@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task35-1</title>
+  </head>
+  <body>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+    function Car(name, color, status) {
+      this.name = name;
+      this.color = color;
+      this.status = status;
+    }
+    Car.prototype = {
+      constructor : Car,
+      run: function() {
+        this.status = 'run';
+      },
+      stop: function() {
+        this.status = 'stop';
+      },
+      getStatus: function() {
+        console.log(this.status);
+      }
+    }
+
+    var car1 = new Car('BMW', 'red', 'stop');
+
+    </script>
+  </body>
+</html>

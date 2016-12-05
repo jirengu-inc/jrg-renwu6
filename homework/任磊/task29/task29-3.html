@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+    <style>
+        ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        #ct li{
+            list-style:none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            cursor:pointer;
+        }
+        #ct .hover{
+            background:green;
+            color: white;
+        }
+        #load-more{
+            display:block;
+            cursor:pointer;
+        }
+        .btn{
+            width:100px;
+            height:50px;
+            line-height:50px;
+            text-align:center;
+            margin: 10px auto;
+            border:1px solid #E27272;
+            border-radius:3px;
+            text-decoration:none;
+            color:#e27272;
+        }
+        .btn img{
+            display:blick;
+            width:60px;
+            height:30px;
+            margin-top:10px;
+        }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<ul id="ct">
+    <li>内容1</li>
+    <li>内容2</li>
+</ul>
+<a href="#" id="load-more" class="btn">加载更多</a>
+
+<script>
+    //使用面向对象的方法编写
+    function LoadMore($node){
+        this.Load($node);       //在页面滚动之前加载一次
+        var _this = this;
+        this.clock;
+        $(window).on('scroll',function(){
+            if(_this.clock){    //在页面滚动的时候不断的清除clock，直到最后一次滚动时执行clock。
+                clearTimeout(_this.clock)
+            };
+            _this.clock =setTimeout(function(){
+                _this.Load($node);
+            },300)
+        })
+    };
+
+    LoadMore.prototype = {
+        Load:function($node){
+            if(this.isVisible($node)){  //如果元素出现在可视窗口，就执行一次ajax函数。
+                this.ajax();
+                console.log(11);
+            }
+        },
+        isVisible:function($node){
+            var nodeH = $node.height();  //获取元素本身的高度
+            var nodeTop = $node.offset().top; //获取元素在文档中的高度
+            var scrollTop = $(window).scrollTop(); //获取滚动条滚动的距离
+            var winH = $(window).height();//获取窗口的高度
+            if(nodeH + nodeTop > scrollTop && nodeTop < scrollTop + winH){ //当一个元素的底部不超过窗口的上边缘，顶部不超过窗口的下边缘，就可以判断这个元素在窗口的可视范围之内了。
+                return true;
+            }else return false;
+        },
+        ajax:function(){
+            /*
+            定义接口：
+            1：url
+            2：入参：{start：$("li").length+1，len：10}
+            3.回参：{
+                status: 1 //1代表正常，0代表出错
+                data：["内容1"，"内容2"，"内容3"，"内容4"....]
+            }
+            * */
+            var _this = this;
+            var start = $('#ct').find('li').length+1;
+            $.ajax({
+                url:'task29-3.php',
+                type:'GET',
+                dataType:'json',
+                data:{
+                    start:start,
+                    len:10
+                },
+                success:function(json){
+                    _this.onSuccess(json);//这些方法都是绑定在原型上，所以用_this。
+                },
+                error:function(){
+                    _this.onError();
+                }
+            })
+        },
+        onSuccess:function(str){
+            if(str.status == 1){
+                this.append(str.data);
+            }
+            else{
+                alert('获取数据失败')
+            }
+        },
+        onError:function(){
+            alert('系统出错')
+        },
+        append:function(arr){
+            for(var i=0,len=arr.length; i<len; i++){ //遍历后台传回的数组，添加到容器中。
+                $('#ct').append('<li>'+arr[i]+'</li>'); //写道这里不得不感慨jQuery的强大和方便啊。
+            }
+        }
+    }
+
+    var oLoad = new LoadMore($("#load-more"));
+
+    $('#ct').on('mouseenter','li',function(){  //给li添加放置鼠标变色行为，当然用css的:hover也不错。
+        $(this).addClass("hover")
+    }).on('mouseleave','li',function(){
+        $(this).removeClass("hover")
+    });
+</script>
+</body>
+</html>

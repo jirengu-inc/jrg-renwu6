@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exposure</title>
+</head>
+<body>
+<div style="border: solid 1px red;">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<div>bind</div>
+<hr class="bind">
+<br><br><br><br><br><br><br><br><br>
+<div>one</div>
+<br class="one">
+
+<br>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+    var Exposure = (function(){
+        function show(node){
+            var Top = node.offset().top,
+                    winH = $(window).height(),
+                    scrT = $(document).scrollTop();
+            if(Top < winH + scrT && Top > scrT){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function bind($target,callback){
+            $(document).on("scroll",function(){
+                if(show($target)){
+                    callback.call($target);
+                }
+            })
+        }
+        function one($target,callback){
+            $(document).on("scroll",function(){
+                if(show($target) && !$target.data("load")){
+                    callback.call($target);
+                    $target.data("load",true);
+                }
+            })
+        }
+        return {
+            bind:bind,
+            one:one
+        }
+    })()
+    Exposure.one($(".one"),function(){
+        console.log('-----one----');
+        console.log(this);
+    })
+    Exposure.bind($(".bind"),function(){
+        console.log('-----bind----');
+        console.log(this);
+    })
+</script>
+</body>
+</html>

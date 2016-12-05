@@ -4,7 +4,7 @@
     $len=$_GET['leng'];
     $items=array();
 
-    for($i=0;$i <leng;$i++){
+    for($i=0;$i <$len;$i++){
     	array_push($items,'内容' . ($start+$i+1));
     }
     echo json_encode($items)

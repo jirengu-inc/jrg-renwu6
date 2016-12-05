@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task26-2</title>
+	<style>
+		fieldset{
+	    	margin:20px;
+	    	padding:20px;
+	    }
+		.ct{
+			height: 150px;
+			width: 150px;
+			background-color: yellow;
+			position: fixed;
+			top: 0;
+			right: 50px;
+		}
+		.ct1{
+			height: 150px;
+			width: 150px;
+			border:1px solid black;
+		}
+	</style>
+</head>
+<body>
+<fieldset>
+     <legend>当点击$btn时，让$btn 的背景色变为红色再变为蓝色</legend>
+     	 <button id="btn1">点我</button>
+
+     <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+  	 <script>
+         $('#btn1').on('click',function(){
+             $('#btn1').css('background-color','red');
+             setTimeout(function(){
+	             $('#btn1').css('background-color','blue')	
+	         	 },500);
+         })
+
+     </script>
+</fieldset>
+
+<fieldset>
+     <legend>当窗口滚动时，获取垂直滚动距离</legend>
+     	 <div class="ct">垂直滚动距离为0</div>
+
+     <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+  	 <script>
+         $(window).on('scroll',function(){
+             $('.ct').text('垂直滚动距离为'+$(window).scrollTop());
+         })
+
+     </script>
+</fieldset>
+
+<fieldset>
+     <legend>当鼠标放置到$div上，把$div背景色改为红色，移出鼠标背景色变为白色</legend>
+     	 <div class="ct1">hello hunger</div>
+
+     <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+  	 <script>
+         $('.ct1').on('mouseenter',function(){
+             $('.ct1').css('background-color','red');
+         }).on('mouseleave',function(){
+         	 $('.ct1').css('background-color','white');
+         })
+
+     </script>
+</fieldset>
+
+<fieldset>
+     <legend>当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</legend>
+     	 <input class="test-input" type="text" placeholder="请输入内容">
+
+     <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+  	 <script>
+         $('.test-input').on('focus',function(){
+             $('.test-input').css('outlineColor','blue');
+         })
+         $('.test-input').on('keyup',function(){
+             $('.test-input').val($('.test-input').val().toUpperCase());
+         })
+        $('.test-input').on('blur',function(){
+             console.log($('.test-input').val());
+         })
+
+     </script>
+</fieldset>
+
+<fieldset>
+     <legend>当选择 select 后，获取用户选择的内容</legend>
+     	 <select class="city" multiple="multiple">
+     	 	<option>北京</option>
+     	 	<option>上海</option>
+     	 	<option>广州</option>
+     	 	<option>深圳</option>
+     	 </select><br>
+         选择结果如下：<p></p>
+     <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+  	 <script>
+         $('.city').on('click',function(){
+             $('p').text($('.city option:selected').val());
+         })
+
+     </script>
+</fieldset>
+
+</body>
+</html>
