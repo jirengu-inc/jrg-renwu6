@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>task25-1</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul li{
+				list-style-type: none;
+			}
+			a{
+				color: #333;
+				text-decoration: none;
+			}
+			.nav-aside{
+				width: 200px;
+				margin: 20px;
+				background-color: #c7171e;
+			}
+			.nav-aside .items{
+				position: relative;
+			}
+			.nav-aside .items:last-of-type{
+				border: none;
+			}
+			.nav-aside .products{
+				margin: 0 10px;
+				padding: 10px;
+				border-bottom: 1px dotted #de272e;
+				font-size: 14px;
+				color: #fff;
+				display: block;
+			}
+			.nav-aside span{
+				font-size: 14px;
+				color: #fff;
+				cursor: pointer;
+				position: absolute;
+				right: 10px;
+				top: 10px;
+			}
+			.nav-aside .child-items{
+				width: 210px;
+				border: 1px solid #ccc;	
+				background-color: #fff;
+				font-size: 12px;
+				position: absolute;
+				left: 200px;
+				top: 0;
+				display: none;
+			}
+			.nav-aside .child-items li{
+				width: 55px;
+				padding: 10px 20px;
+				float: left;
+			}
+			.nav-aside .items.hover .child-items{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<ul class="nav-aside">
+			<li class="items">
+				<a href="#" class="products">珠宝玉器</a>
+				<span>></span>
+				<ul class="child-items">
+					<li>
+						<a href="#">翡翠</a>
+					</li>
+					<li>
+						<a href="#">玉石</a>
+					</li>
+					<li>
+						<a href="#">宝石</a>
+					</li>
+					<li>
+						<a href="#">水晶</a>
+					</li>
+					<li>
+						<a href="#">玛瑙</a>
+					</li>
+					<li>
+						<a href="#">珍珠</a>
+					</li>
+					<li>
+						<a href="#">钻石</a>
+					</li>
+					<li>
+						<a href="#">琥珀</a>
+					</li>
+					<li>
+						<a href="#">和田</a>
+					</li>
+					<li>
+						<a href="#">软玉</a>
+					</li>
+				</ul>
+			</li>
+			<li class="items">
+				<a href="#" class="products">珠宝玉器</a>
+				<span>></span>
+				<ul class="child-items">
+					<li>
+						<a href="#">翡翠</a>
+					</li>
+					<li>
+						<a href="#">玉石</a>
+					</li>
+					<li>
+						<a href="#">宝石</a>
+					</li>
+					<li>
+						<a href="#">水晶</a>
+					</li>
+					<li>
+						<a href="#">玛瑙</a>
+					</li>
+					<li>
+						<a href="#">珍珠</a>
+					</li>
+				</ul>
+			</li>
+			<li class="items">
+				<a href="#" class="products">珠宝玉器</a>
+				<span>></span>
+				<ul class="child-items">
+					<li>
+						<a href="#">翡翠</a>
+					</li>
+					<li>
+						<a href="#">玉石</a>
+					</li>
+					<li>
+						<a href="#">宝石</a>
+					</li>
+					<li>
+						<a href="#">水晶</a>
+					</li>
+				</ul>
+			</li>
+			<li class="items">
+				<a href="#" class="products">珠宝玉器</a>
+				<span>></span>
+				<ul class="child-items">
+					<li>
+						<a href="#">翡翠</a>
+					</li>
+					<li>
+						<a href="#">玉石</a>
+					</li>
+					<li>
+						<a href="#">宝石</a>
+					</li>
+					<li>
+						<a href="#">水晶</a>
+					</li>
+					<li>
+						<a href="#">玛瑙</a>
+					</li>
+					<li>
+						<a href="#">珍珠</a>
+					</li>
+				</ul>
+			</li>
+			<li class="items">
+				<a href="#" class="products">珠宝玉器</a>
+				<span>></span>
+				<ul class="child-items">
+					<li>
+						<a href="#">翡翠</a>
+					</li>
+					<li>
+						<a href="#">玉石</a>
+					</li>
+					<li>
+						<a href="#">宝石</a>
+					</li>
+					<li>
+						<a href="#">水晶</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+		<script>
+			$(function(){
+				$(".nav-aside .items").on("mouseenter",function(){
+//					$(this).find(".child-items").show();
+					$(this).addClass("hover");
+				});
+				$(".nav-aside .items").on("mouseleave",function(){
+//					$(this).find(".child-items").hide();
+					$(this).removeClass("hover");
+				});
+			});
+		</script>
+	</body>
+</html>
