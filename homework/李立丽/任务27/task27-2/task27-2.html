@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task27-2</title>
+<style>
+        body,html,li,ul{
+        	padding:0;
+        	margin:0;
+        }
+        a{
+        	text-decoration: none;
+        	color: #fff;
+        }
+        ul,li{      	
+        	list-style: none;
+        }
+        .wrap{
+        	position: relative;
+        	width: 320px;
+        	height: 206px;
+        	overflow: hidden;
+        	margin:0 auto;
+        }
+		    .view img {
+		      width: 320px;
+		      height: 206px;
+        }
+        .arrow{
+        	position: absolute;
+        	top:50%;
+        	margin-top:-20px;
+          font-size:20px;
+          font-weight: bold;
+        	width: 30px;
+        	height: 30px;
+        	display: block;
+        	line-height: 30px;
+        	border-radius: 30px;
+        	background:#4e443c;
+        	text-align: center;
+        	opacity: 0.5;
+        }
+        .arrow:hover{
+        	opacity: 1;
+        }
+        .left{
+        	left:10px;
+        }
+        .right{
+        	right:10px;
+        }
+        .btn{
+        	bottom: 10px;
+        	position: absolute;
+        	left: 50%;
+        	transform: translateX(-50%);
+
+        }
+        .btn li{
+        	cursor: pointer;
+        	height: 10px;
+        	width: 10px;
+        	display: inline-block;
+        	border-radius: 100%;
+        	background: #fff;
+        }
+        .btn li.active{
+        	background: #666;
+        }
+	</style>
+</head>
+<body>
+   <div class="wrap wrap1">
+   	  <ul class="view">
+   	  	<li><a href="#"><img src="1.png"></a></li>
+   	  	<li><a href="#"><img src="2.png"></a></li>
+   	  	<li><a href="#"><img src="3.png"></a></li>
+   	  	<li><a href="#"><img src="4.png"></a></li>
+   	  </ul>
+   	  <a class="arrow left" href="javascript:void(0);"><</a>
+   	  <a class="arrow right" href="javascript:void(0);">></a>
+   	  <ul class="btn">
+   	  	<li class="active"></li>
+   	  	<li></li>
+   	  	<li></li>
+   	  	<li></li>
+   	  </ul>
+   </div>
+
+   <div class="wrap wrap2">
+   	  <ul class="view">
+   	  	<li><a href="#"><img src="1.png"></a></li>
+   	  	<li><a href="#"><img src="2.png"></a></li>
+   	  	<li><a href="#"><img src="3.png"></a></li>
+   	  	<li><a href="#"><img src="4.png"></a></li>
+   	  </ul>
+   	  <a class="arrow left" href="javascript:void(0);"><</a>
+   	  <a class="arrow right" href="javascript:void(0);">></a>
+   	  <ul class="btn">
+   	  	<li class="active"></li>
+   	  	<li></li>
+   	  	<li></li>
+   	  	<li></li>
+   	  </ul>
+   </div>
+
+   <div class="wrap wrap3">
+   	  <ul class="view">
+   	  	<li><a href="#"><img src="1.png"></a></li>
+   	  	<li><a href="#"><img src="2.png"></a></li>
+   	  	<li><a href="#"><img src="3.png"></a></li>
+   	  	<li><a href="#"><img src="4.png"></a></li>
+   	  </ul>
+   	  <a class="arrow left" href="javascript:void(0);"><</a>
+   	  <a class="arrow right" href="javascript:void(0);">></a>
+   	  <ul class="btn">
+   	  	<li class="active"></li>
+   	  	<li></li>
+   	  	<li></li>
+   	  	<li></li>
+   	  </ul>
+   </div>
+
+<script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+   <script>
+   function play(wrap){
+      var $parent =$(wrap);
+      var $view=$parent.find('.view');
+      var $img = $view.children();
+      var imgCount = $view.children().length;//原始图片个数
+
+      var curIdx = 0;//申明变量，当前被选中的图片从0开始
+      var locked = false;
+      var setTime;
+      rollStart();
+
+      
+         
+      function rollStart(){
+      	setTime = setInterval(function(){
+      		playNext(1)
+      	},3000);//每3秒钟执行一次playNext()
+      }
+
+     function playNext(idx){
+        var tmpIdx;
+      	tmpIdx =(curIdx+idx)%imgCount//idx记录下一张图片的索引
+      	$parent.find('.btn').children().eq(tmpIdx).addClass('active').siblings().removeClass('active');
+      	$img.children().eq(curIdx).fadeOut(500);
+      	$img.children().eq(tmpIdx).fadeIn(500,function(){//更改状态锁要放在回调函数中，不然动画还没执行就开锁了
+      		curIdx =tmpIdx;
+          locked=false;
+      	});	
+      }
+
+      function playPre(idx){
+        var tmpIdx;
+      	tmpIdx =(curIdx-idx)%imgCount
+      	$parent.find('.btn').children().eq(tmpIdx).addClass('active').siblings().removeClass('active');
+      	$img.children().eq(curIdx).fadeOut(500);
+      	$img.children().eq(tmpIdx).fadeIn(500,function(){
+          curIdx =tmpIdx;
+          locked=false;
+      	});
+      		    	
+      }
+
+      $parent.find('.right').on('click',function(){
+        if(locked){
+        	return;
+        }
+        locked = true;
+        clearInterval(setTime);
+        playNext(1);
+
+        rollStart();
+      });
+
+      $parent.find('.left').on('click',function(){
+        if(locked){
+        	return;
+        }
+        locked = true;
+        clearInterval(setTime);
+        playPre(1);
+
+        rollStart();
+      });
+
+      $parent.find('.btn').on('click','li',function(){
+      	var index = $(this).index();
+      	if(locked){
+      		return;
+      	}
+
+      	clearInterval(setTime);      	
+      	locked = true;
+
+      	if(index>curIdx){
+      		playNext(index-curIdx);
+      	}
+      	if(index<curIdx){
+      		playPre(curIdx-index);
+      	}
+      	rollStart();
+      })
+    }
+    play('.wrap1');
+    play('.wrap2');
+    play('.wrap3');
+   </script>
+
+</body>
+</html>
