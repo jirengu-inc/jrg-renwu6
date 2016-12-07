@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+  <head>
+    <style>
+    body,html{
+        margin:0px;
+        padding:0px;
+    }
+
+        #container{
+            position:relative;/*父元素相对定位*/
+            margin-left:100px;
+            margin-right:100px
+        }
+
+        .item{
+            margin:10px;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            box-shadow:2px 2px 5px #ccc;
+            transition:all 1s;/*元素的变化有动画效果*/
+            position:absolute;/*展现元素都用绝对定位放置*/
+        }
+
+        .item img{
+            width:300px;/*瀑布流中展现元素都是固定宽度值*/
+        }
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js">
+    </script>
+  </head>
+  <body>
+    <div id="container"><!-- 相对定位-->
+        <div class="item"><!-- 绝对定位-->
+            <img src="img/1.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/2.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/3.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/4.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/5.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/6.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/7.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/8.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/9.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/10.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/11.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/12.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/13.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/14.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/15.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/16.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/17.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/18.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/19.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/20.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/21.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/22.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/23.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/24.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/25.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/26.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/27.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/28.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/29.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/30.jpg" alt="">
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+
+            var waterfall=(function(){/*闭包方式私有化封装，申明一个变量名，将函数立即执行赋值给这个变量名，用变量名.方法（）的方式调用*/
+
+                function render(){
+                    var $windowWidth=$(window).width(),
+                        $nodeWidth=$(".item").eq(0).outerWidth(true),
+                        $itemNum=parseInt($windowWidth/$nodeWidth)//页面能容纳的元素个数为当前窗口宽度/目标元素固定宽度
+
+                    var nodeHeightSum=[]//数组长度等于页面能容纳多少个元素的个数
+                        for(var i=0;i<$itemNum;i++){
+                            nodeHeightSum.push(0)//初始状态数组都为0，即页面上为空白状态再开始排列元素
+                        }
+
+                    var $itemNode=$(".item")
+                        $itemNode.each(function(){//获取当前页面上所有要展示的元素，each方法遍历成员
+                            var $cur=$(this),
+                                idx=0,//idx为最小高度元素的索引，初始状态假定第0个是最短的
+                                $itemMinHeight=nodeHeightSum[0]//初始状态假定最小高度元素就是数组成员内的第0个
+                                for(var i=0;i<nodeHeightSum.length;i++){
+                                    if(nodeHeightSum[i]<$itemMinHeight){/*遍历数组成员，数组成员值小于假定的最小值时，
+                                        返回最小值成员索引号和对应的高度值*/
+                                        idx=i;
+                                        $itemMinHeight=nodeHeightSum[i]
+                                    }
+                                }
+
+                                $cur.css({left:idx*$nodeWidth,top:$itemMinHeight})/*这个高度最小值成员的位置X轴等于索引号*展示目标元素固定宽度
+                                Y轴等于数组成员的值*/
+                                nodeHeightSum[idx]=$cur.outerHeight(true)+nodeHeightSum[idx]/*样式设置完成后，将数组中的成员值更新，
+                                即放置元素后当前列的总高度=放置元素前最矮的这列的总高度+放置元素的高度
+                                */
+                        })
+                }
+
+                render()//先执行一次
+                $(window).on("resize",function(){//当窗口发生尺寸发生改变时再执行一次
+                    render()
+                })
+
+                return{/*闭包，外层函数立即执行返回内部的一个函数名，即将内部函数暴露出来做为接口*/
+                    init:render
+                }
+            })()
+
+            waterfall.init()//调用闭包函数中暴露的接口
+
+        })
+    </script>
+  </body>
+</html>
