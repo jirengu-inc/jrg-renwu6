@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task28-1</title>
+	<style>
+		body{
+			margin:10px;
+		}
+		.clearfix:after{
+			content:'';
+			display: block;
+			clear: both;
+		}
+		#header{
+			background: red;
+			text-align: center;
+			height: 80px;
+			line-height: 80px;
+			margin-top: 10px;
+			margin-bottom: 20px;
+		}
+		.nav{
+			background: blue;
+			height:40px;
+		}
+		#content{
+			background: #ccc;
+			height:1000px;
+			padding: 15px;
+		}
+		.aside{
+            background: green;
+            height:400px;
+            width:100px;
+            float: left;
+		}
+		.main{
+			background: white;
+			height:1000px;
+			margin-left: 100px;
+			overflow: auto;
+		}
+		#footer{
+			height:20px;
+			background: black;
+			color:white;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+   <div id="header">header</div>
+   <div class="nav">nav</div>
+   <div id="content" class="clearfix">
+   	  <div class="aside">aside</div>
+   	  <div class="main">main</div>
+   </div>
+   <div id="footer">footer</div>
+
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script> 
+   <script>
+
+       var $cur = $('.nav');//导航条nav
+       var curH = $cur.height();//导航条的高度
+       var curW = $cur.width(); //导航条的宽度
+       var offsetTop = $cur.offset().top;//向上偏移的距离
+       var offsetLeft = $cur.offset().left;//向左偏移的距离
+
+       //在导航前面克隆目标元素，让其暂时隐藏以保证同时只能看到一个
+       var $curClone = $cur.clone().css({visibility:'hidden',display:'none'}).insertBefore($cur);
+
+       //监听窗口滚动
+       $(window).on('scroll',function(){
+       	   var scrollTop = $(this).scrollTop();//获取位于对象最顶端和窗口中可见内容的最顶端之间的距离
+       	   if(scrollTop >= offsetTop){
+       	   	  setFixed();
+       	   }else{
+       	   	  unsetFixed();
+       	   }
+       });
+       //设置fixed状态
+       function setFixed(){
+       	   $cur.css({
+       	   	 'position':'fixed',
+       	   	 'top':0,
+       	   	 'left':offsetLeft,
+       	   	 'width':curW,
+       	   	 'margin':0,
+       	   	 'z-index':9999//保证元素在z轴的最上方
+       	   });
+       	   $curClone.show();
+       }
+       //设置unfixed状态
+       function unsetFixed(){
+       	  $cur.removeAttr('style');
+       	  $curClone.hide();
+       }
+
+   </script> 
+
+</body>
+</html>

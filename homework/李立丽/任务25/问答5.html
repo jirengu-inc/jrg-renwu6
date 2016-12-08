@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>问答5DEMO</title>
+	<style>
+		.div1{
+			width:100px;
+			height:100px;
+			background-color: yellow;
+		}
+	</style>
+	
+</head>
+<body>
+     <input type="button" id="show" value="show">
+     <input type="button" id="hidden" value="hidden">
+     <input type="button" id="show5s" value="show in 5s">
+     <input type="button" id="hide5s" value="hide in 5s">
+     <div class="div1"></div>
+
+<script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+<script>
+     $(document).ready(function(){
+        $("#show").on("click",function(){
+            $(".div1").show();
+        })
+        $("#hidden").on("click",function(){
+            $(".div1").hide();
+        })
+        $("#show5s").on("click",function(){
+            $(".div1").show(5000);
+        })
+        $("#hide5s").on("click",function(){
+            $(".div1").hide(5000);
+        })        
+     });
+</script>
+</body>
+</html>

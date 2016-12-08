@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <script>
+    	console.log(a);//a未初始化，值为undefined  
+        var a = 1;//先申明a再给a赋值1
+        console.log(a);//a初始化了值为1
+        console.log(b);//b没有申明也没有初始化，输出为错误Uncaught ReferenceError: b is not defined
+    </script>
+       	console.log(a);//a未初始化，值为undefined  <br><hr>
+        var a = 1;//先申明a再给a赋值1              <br><hr>
+        console.log(a);//a初始化了值为1            <br><hr>
+        console.log(b);//b没有申明也没有初始化，输出为错误(Uncaught ReferenceError: b is not defined)                           <br><hr>
+
+        <br>
+        变量未被申明和初始化时其值传递时会造成错误，变量有申明未初始化传递时其值为undefined。<hr>
+
+</body>
+</html>

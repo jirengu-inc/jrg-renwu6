@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>gotop</title>
+    <style>
+        p{
+            margin-top:30px;
+        }
+        #go-top{
+            position:fixed;
+            right:20px;
+            bottom:20px;
+            border:1px solid red;
+            cursor:pointer;
+            padding:10px;
+            display:none;
+        }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<p>内容1</p>
+<p>内容2</p>
+<p>内容3</p>
+<p>内容4</p>
+<p>内容5</p>
+<p>内容6</p>
+<p>内容7</p>
+<p>内容8</p>
+<p>内容9</p>
+<p>内容10</p>
+<p>内容11</p>
+<p>内容12</p>
+<p>内容13</p>
+<p>内容14</p>
+<p>内容15</p>
+<p>内容16</p>
+<p>内容17</p>
+<p>内容18</p>
+<p>内容19</p>
+<p>内容20</p>
+
+<script>
+//    var $goTop = $('<div id ="go-top">回到顶部</div>');
+//    $goTop.appendTo($('body'));
+//    $(window).on("scroll",function(){
+//        var offset = $(window).scrollTop();
+//        console.log(offset);
+//        if(offset > 100){
+//            $goTop.show();
+//        }
+//        else{
+//            $goTop.hide();
+//        }
+//    })
+//    $goTop.on("click",function(){
+//        $(window).scrollTop(0);
+//    })
+
+    /*使用封装的方法*/
+    var goTop={
+        init: function(){
+            if($('#go-top').length>0){
+                return;
+            }
+            var $goTop = $('<div id = "go-top">回到顶部</div>');
+            $('body').append($goTop);
+            this.$goTop = $goTop;
+            this.bind();
+        },
+        bind:function(){
+            var me = this;
+            $(window).on('scroll',function(){
+                var offset = $(window).scrollTop();
+                if(offset > 100){
+                    me.$goTop.show();
+                }
+                else{
+                    me.$goTop.hide();
+                }
+                me.$goTop.on("click",function(){
+                    $(window).scrollTop(0);
+                })
+            })
+        }
+    }
+    goTop.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style type="text/css">
+	p{
+		line-height:16px;
+		margin-bottom:30px;
+	}
+
+	#back_top{
+		width:90px;
+		height:30px;
+		border:1px solid green;
+		line-height:30px;
+		text-align:center;
+		cursor:pointer;
+		position:fixed;
+		right:0px;
+		bottom:10px;
+		display:none;
+	}
+
+</style>
+	<title>回到顶部</title>
+</head>
+<body>
+<p>内容1</p>
+<p>内容2</p>
+<p>内容3</p>
+<p>内容4</p>
+<p>内容5</p>
+<p>内容6</p>
+<p>内容7</p>
+<p>内容8</p>
+<p>内容9</p>
+<p>内容10</p>
+<p>内容11</p>
+<p>内容12</p>
+<p>内容13</p>
+<p>内容14</p>
+<p>内容15</p>
+<p>内容16</p>
+<p>内容17</p>
+<p>内容18</p>
+<p>内容19</p>
+<p>内容20</p>
+<script type="text/javascript">
+	$(function(){
+		// //方法一(代码未封装):
+		// var $new_node=$('<div id="back_top">回到顶部</div>')/*生成回到顶部div节点*/
+		// 	$(window).on('scroll',function(){
+		// 		var $scrollTop=$('body').scrollTop()/*获取滚动距离*/
+		// 		if($new_node.data('show')&&$scrollTop>=100){/*当标志位为show且滚动距离大于100时跳过不执行，避免scroll多次滚动时反复执行*/
+		// 			return
+		// 		}
+		// 		$('body').append($new_node)
+		// 		if($scrollTop>=100){/*body滚动距离大于100px时显示回到顶部元素*/
+		// 			$new_node.show()
+		// 			$new_node.data('show',true)/*增加标志位*/
+		// 		} else{
+		// 			console.log($scrollTop)
+		// 			$new_node.hide()
+		// 			$new_node.data('show',false)
+		// 		}
+		// 	})
+
+		// 	$new_node.on("click",function(){/*点击时回到顶部*/
+		// 		$(window).scrollTop(0)
+		// 	})
+
+		//方法二(简易封装)
+		var backTop={
+			init:function(){
+				var $new_node=$('<div id="back_top">回到顶部</div>')
+				if($new_node.data('show')&&$scrollTop>=100){
+					return
+				}
+				$('body').append($new_node)
+				this.$backTop=$new_node
+				this.bind()
+				console.log(this)
+			},
+
+			bind:function(){
+				var self=this/*事件发生时，事件函数内的this会指向触发事件的对象，this会改变，所以这里先赋值保存原来的this信息*/
+				$(window).on('scroll',function(){
+					var $scrollTop=$('body').scrollTop()
+					if($scrollTop>=100){
+						self.$backTop.show()
+						 self.$backTop.data('show',true)
+					}else{
+						self.$backTop.hide()
+						 self.$backTop.data('show',false)
+					}
+				})
+				this.$backTop.on("click",function(){/*这里由于不是在事件函数内所以this指向没有变化，所以用this也可以用self*/
+					$(window).scrollTop(0)
+				})
+			}
+		}
+
+		backTop.init()/*调用backTop对象中的init()函数*/
+
+		// //方法三（闭包封装）：
+		// var backTop=(function (){/*backTop等于一个匿名函数立即执行()()，return返回值赋值给backTop*/
+		// 	var $new_node=$('<div id="back_top">回到顶部</div>')
+		// 		function init(){
+		// 			$(window).on('scroll',function(){
+		// 			var $scrollTop=$('body').scrollTop()
+		// 			if($new_node.data('show')&&$scrollTop>=100){
+		// 				return
+		// 			}
+		// 			$('body').append($new_node)
+		// 			if($scrollTop>=100){
+		// 				$new_node.show()
+		// 				$new_node.data('show',true)
+		// 			} else{
+		// 				console.log($scrollTop)
+		// 				$new_node.hide()
+		// 				$new_node.data('show',false)
+		// 				}
+		// 			})
+
+		// 			$new_node.on("click",function(){
+		// 				$(window).scrollTop(0)
+		// 			})
+		// 		}
+			
+		// 		return {
+		// 			init:init/*因为return内容是{init:init}这样的一个对象，key是init，value是匿名函数内部的一个名为init的function,所以现在就相当于
+		// 					backTop = {
+		// 					init:function(){
+		// 					//这就是那个内部的init function
+		// 					}
+		// 					};
+		// 			*/
+		// 		}
+		// })()
+		// backTop.init()/*相当于执行backTop上的.init()方法*/
+
+	})
+</script>
+</body>
+</html>
