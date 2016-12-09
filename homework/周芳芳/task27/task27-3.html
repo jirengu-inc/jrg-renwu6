@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>无限轮播之淡入淡出</title>
+	<title>无限轮播</title>
 	<style type="text/css">
 	html,body,ul,li,p{
 		margin: 0;
@@ -21,20 +21,19 @@
 		overflow: hidden;
 	}
 	.carousel .img-ct{
-		position: relative;
+		position: absolute;
 	}
 	.carousel .img-ct img{
 		width: 960px;
 		height: 620px;
 	}
-	.clearfix:after{
+	.carousel .img-ct:after{
 		content: '';
 		display: block;
 		clear: both;
 	}
 	.carousel .img-ct li{
-		position: absolute;
-		display: none;
+		float: left;
 	}
 	.arrow{
 		position: absolute;
@@ -80,23 +79,23 @@
 </head>
 <body>
 	<div class="carousel">
-		<ul class="img-ct clearfix">
+		<ul class="img-ct">
 			<li>
-			    <a href="#"><img src="images/etnews-img1.jpg" alt=""></a>
+			    <a href=""><img src="images/etnews-img1.jpg" alt=""></a>
 			</li>
 			<li>
-			    <a href="#"><img src="images/etnews-img2.jpg" alt=""></a>
+			    <a href=""><img src="images/etnews-img2.jpg" alt=""></a>
 			</li>
 			<li>
-			    <a href="#"><img src="images/etnews-img3.jpg" alt=""></a>
+			    <a href=""><img src="images/etnews-img3.jpg" alt=""></a>
 			</li>
 			<li>
-			    <a href="#"><img src="images/etnews-img4.jpg" alt=""></a>
+			    <a href=""><img src="images/etnews-img4.jpg" alt=""></a>
 			</li>
 		</ul>
 		<a href="#" class="pre arrow"><</a>
 		<a href="#" class="next arrow">></a>
-		<ul class="bullet clearfix">
+		<ul class="bullet">
 			<li class="active"></li>
 			<li></li>
 			<li></li>
@@ -106,14 +105,18 @@
 
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
-	    $(function(){
 		var $ct=$('.img-ct'),
 		    $items=$ct.children(),
 		    $pre=$('.pre'),
 		    $next=$('.next'),
 		    $bullet=$('.bullet'),
 		    imgWidth=$items.width(),
-            imgCount=$ct.children().length;
+            imgCount=$ct.children().size();
+        
+        $ct.prepend($items.last().clone());
+        $ct.append($items.first().clone());
+        imgRealCount=$ct.children().size();
+        $ct.css({left:0-imgWidth,width:imgRealCount*imgWidth})
 
         var curIdx=0;
         var isAnimate=false;
@@ -126,41 +129,14 @@
         });
         $bullet.find('li').on('click',function(){
         	var idx= $(this).index();
-            play(idx);
+        	if(idx>curIdx){
+        		playNext(idx-curIdx);
+        	}
+        	if(idx<curIdx){
+        		playPre(curIdx-idx);
+        	}
         });
 
-        play(0);
-        
-
-        
-
-        function playNext(idx){
-        	play((curIdx+1) % imgCount)
-        }
-
-        function playPre(){
-        	play((imgCount+curIdx-1) % imgCount)
-        }
-
-        function play(idx){
-        	if(isAnimate) {
-        		return;
-        	} else {
-	        	isAnimate = true;
-	        	$items.eq(curIdx).fadeOut(500);
-	        	$items.eq(idx).fadeIn(500,function(){
-	        		isAnimate=false;
-	        	});
-        	}
-        	curIdx=idx;
-        	setBullet();
-        }
-
-        function setBullet(){
-        	$bullet.children().removeClass('active')
-        	                  .eq(curIdx).addClass('active');
-        }
-        
         function stopAuto(){
         	clearInterval(clock);
         }
@@ -169,9 +145,46 @@
         	clock=setInterval(function(){
         		playNext();
         	},3000);
-        };
+        }
+
+
+        function playNext(idx){
+        	var idx = idx || 1;
+        	if(!isAnimate){
+        		isAnimate=true;
+        		$ct.animate({left:'-='+(imgWidth*idx)},function(){
+        			curIdx=(curIdx+idx)%imgCount;
+        			if(curIdx===0){
+        				$ct.css({left:0-imgWidth});
+        			}
+        			isAnimate=false;
+        			setBullet();
+        		})
+        	}
+        }
+
+        function playPre(){
+        	var idx = idx || 1;
+        	if(!isAnimate){
+        		isAnimate=true;
+        		$ct.animate({left:'+='+(imgWidth*idx)},function(){
+        			curIdx=(imgCount+curIdx-idx)%imgCount;
+        			if(curIdx===(imgCount-1)){
+        				$ct.css({left:0-imgWidth*imgCount});
+        			}
+        			isAnimate=false;
+        			setBullet();
+        		})
+        	}
+        }
+
+        function setBullet(){
+        	$bullet.children().removeClass('active')
+        	                  .eq(curIdx).addClass('active');
+        }
+        
         autoPlay();
-       }) 
+        
 	</script>
 </body>
 </html>

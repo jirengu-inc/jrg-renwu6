@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>无限轮播之淡入淡出</title>
+	<title>无限轮播之三个</title>
 	<style type="text/css">
 	html,body,ul,li,p{
 		margin: 0;
@@ -79,6 +79,57 @@
 	</style>
 </head>
 <body>
+    <!-- 第一个轮播 -->
+	<div class="carousel">
+		<ul class="img-ct clearfix">
+			<li>
+			    <a href="#"><img src="images/etnews-img1.jpg" alt=""></a>
+			</li>
+			<li>
+			    <a href="#"><img src="images/etnews-img2.jpg" alt=""></a>
+			</li>
+			<li>
+			    <a href="#"><img src="images/etnews-img3.jpg" alt=""></a>
+			</li>
+			<li>
+			    <a href="#"><img src="images/etnews-img4.jpg" alt=""></a>
+			</li>
+		</ul>
+		<a href="#" class="pre arrow"><</a>
+		<a href="#" class="next arrow">></a>
+		<ul class="bullet clearfix">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+    <!-- 第二个轮播 -->
+	<div class="carousel">
+		<ul class="img-ct clearfix">
+			<li>
+			    <a href="#"><img src="images/etnews-img1.jpg" alt=""></a>
+			</li>
+			<li>
+			    <a href="#"><img src="images/etnews-img2.jpg" alt=""></a>
+			</li>
+			<li>
+			    <a href="#"><img src="images/etnews-img3.jpg" alt=""></a>
+			</li>
+			<li>
+			    <a href="#"><img src="images/etnews-img4.jpg" alt=""></a>
+			</li>
+		</ul>
+		<a href="#" class="pre arrow"><</a>
+		<a href="#" class="next arrow">></a>
+		<ul class="bullet clearfix">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+    <!-- 第三个轮播 -->
 	<div class="carousel">
 		<ul class="img-ct clearfix">
 			<li>
@@ -106,12 +157,14 @@
 
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript">
-	    $(function(){
-		var $ct=$('.img-ct'),
+	    $.fn.runCarousel = function() {
+	    //开发一个轮播插件：通过$.fn向jquery添加新的方法 	
+		var $cur=$(this),
+		    $ct=$cur.find('.img-ct'),
 		    $items=$ct.children(),
-		    $pre=$('.pre'),
-		    $next=$('.next'),
-		    $bullet=$('.bullet'),
+		    $pre=$cur.find('.pre'),
+		    $next=$cur.find('.next'),
+		    $bullet=$cur.find('.bullet'),
 		    imgWidth=$items.width(),
             imgCount=$ct.children().length;
 
@@ -130,8 +183,8 @@
         });
 
         play(0);
+        autoPlay();
         
-
         
 
         function playNext(idx){
@@ -170,8 +223,10 @@
         		playNext();
         	},3000);
         };
-        autoPlay();
-       }) 
+       }
+       $('.carousel').each(function(){
+       	$(this).runCarousel();
+       });
 	</script>
 </body>
 </html>

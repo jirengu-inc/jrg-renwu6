@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流实战</title>
+    <style type="text/css">
+        html,body,ul,li,p,div{
+            margin: 0;
+            padding:0;
+        }
+        ul,li{
+            list-style:none;
+        }
+        #wrap{
+            width:900px;
+            margin: 0 auto;
+        }
+        #pic-ct{
+            position:relative;
+        }
+        #pic-ct .item{
+            position: absolute;
+            padding: 0 0 10px 0;
+			width: 280px;            
+			margin: 10px;
+			border: 1px solid #CCCCCC;
+			background: #FFFFFF;
+			box-shadow: 0 0 10px #CCCCCC;
+			border-radius: 8px;
+            transform: all 1s;
+            opacity:0;
+        }
+        #pic-ct .item img{
+        	margin: 10px;
+        	width: 260px;
+        }
+        #pic-ct .item .header{
+        	height: 25px;
+        	margin: 0 12px;
+        	border-bottom: 1px solid #DBDBDB;
+        }
+        #pic-ct .item .desc{
+        	font-size: 12px;
+        	line-height: 1.8;
+        	margin: 10px 15px 0;
+        	color: #777371;
+        }
+        .load{
+        	height: 20px;
+        }
+        .hide{
+        	display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div class="ct-waterfall">
+        <ul id="pic-ct">
+			<!--<li class="item">
+				<a href="#">
+					<img src="http://www.sinaimg.cn/dy/slidenews/5_img/2016_49/453_83341_220344.jpg"/>
+				</a>
+				<h4>美发明氦气球人形机器人：身体轻盈动作灵活</h4>
+				<p class="desc">
+					美国加州大学洛杉矶分校机器人与机械实验室一个科研团队近日发明的一款人形机器人让人耳目一新。
+				</p>
+			</li>-->
+			<li class="item hide"></li>
+        </ul>
+        <div class="load">正在加载数据</div>
+    </div>
+</div>
+<script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+<script>
+    /*大致思路如下：
+    * 1）：当页面初始化和鼠标滚动时，监测一个标签，
+    * 2）：如果这个标签出现在可视窗口中，就利用$.ajax中的跨域模块得到新浪的后台数据。
+    * 3）：得到后台数据后生成新的html内容添加到页面中。
+    * 4）：等到新添加的内容加载完成后，使用瀑布流的方式将这些内容重新布局。
+    * */
+    /*---------------------------*/
+    /*当页面刚打开的时候，加载一次*/
+    checkShow();
+    var clock;
+    /*在鼠标滚动的时候加载事件，使用setTimeout是为了优化新能，当页面不停的滚动的时候就会不停的消除clock，直到停止滚动后的300ms再执行事件*/
+    $(window).on('scroll',function(){
+        if(clock){
+            clearTimeout(clock);
+        }
+        clock = setTimeout(function(){
+            checkShow();
+        },300)
+    });
+
+    function checkShow(){
+        if(isVisible($('.load'))){
+            placeDate();
+        }
+    };
+
+    /*检测元素是否出现在可视窗口*/
+    function isVisible($node){
+        var nodeH = $node.offset().top,
+                scrollTop = $(window).scrollTop(),
+                winH = $(window).height();
+        return (nodeH < scrollTop + winH) ? true : false;
+    };
+
+    /*获取后台数据*/
+    var curPage = 1,
+            perPageCount = 9;
+
+    function placeDate(){
+        $.ajax({
+            url:'http://platform.sina.com.cn/slide/album_tech',
+            dataType:'jsonp',
+            jsonp:'jsoncallback',
+            data:{
+                app_key:'1271687855',
+                num: perPageCount,
+                page: curPage
+            }
+        }).done(function(ret){
+        if(ret && ret.status && ret.status.code === "0"){
+            console.log(ret);
+            place(ret.data);
+            curPage++;
+            $('.load').css({visibility:"hidden"})
+        }else{
+            console.log('get error data');
+        }
+    });
+    };
+    /*等待数据加载完毕再执行瀑布流*/
+    function place(nodeList){
+        var $node = renderDate(nodeList);
+        var defereds = [];
+        $node.find('img').each(function(){
+            //创建一个Deferred（延迟）对象，用做$.when（）方法的参数
+            var defer = $.Deferred();
+            //当图片全部加载完毕时，执行resolve()方法。
+            $(this).on('load',function(){
+                //resolve()方法表示Deferred对象已执行完成
+                defer.resolve();
+            });
+            defereds.push(defer);
+        });
+        //使用apply方法让$.when（）接受一个数组形式的参数。
+        $.when.apply(null,defereds).done(function(){
+            console.log('new images all loaded ... ');
+            //当图片全部加载完成时，再执行瀑布流布局。
+            waterfall($node);
+        })
+    }
+    /*利用后台数据生成模板添加到页面中*/
+    function renderDate(items){
+        var itemStr = "",$nodes;
+
+        for(var i=0; i<items.length; i++){
+            itemStr += '<li class = "item">';
+            itemStr += '<a href="'+items[i].url+'"class= "link"><img src="'+items[i].img_url + '" alt=""></a>';
+            itemStr += '<h4 class = "header">'+items[i].short_name+'</h4>';
+            itemStr += '<p class = "desc">'+items[i].short_intro+'</p>';
+            itemStr += '</li>';
+        }
+        $nodes = $(itemStr);
+        console.log($nodes)
+        $('#pic-ct').append($nodes);
+        return $nodes;
+    };
+
+    /*瀑布流布局*/
+    var nodeW = $('.item').outerWidth(true);//得到图片容器的宽度
+    var num = $('#wrap').width()/nodeW;//得到每行能容纳的列数
+    var itemHArr = [];
+
+    for(var i=0; i<num; i++){
+        itemHArr.push(0);
+    };
+
+    function waterfall($nodes){
+        $nodes.each(function(index,value){
+            var idx = 0,
+                    minH = itemHArr[0];
+
+            for(var i=0,len=itemHArr.length; i<len; i++){
+                if(itemHArr[i] < minH){
+                    idx = i;
+                    minH = itemHArr[i];
+                }
+            };
+
+            $(value).css({
+                top: minH,
+                left: idx*nodeW,
+                opacity: 1
+            });
+            itemHArr[idx] += $(value).outerHeight(true);
+            $('#pic-ct').height(Math.max.apply(null,itemHArr));
+        })
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#ct{
+			position: relative;
+		}
+		.item{
+			width: 232px;
+			border: 1px solid #ccc;
+			padding: 5px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			box-shadow: 0 0 5px #ccc;
+			float: left;
+		}
+		.item img{
+			width: 232px;
+		}
+	</style>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+</head>
+<body>
+	<div id="ct">
+		<div class="item">
+			<img src="01.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="02.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="03.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="04.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="01.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="02.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="03.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="04.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="01.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="02.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="03.jpg" alt="">
+		</div>
+		<div class="item">
+			<img src="04.jpg" alt="">
+		</div>
+	</div>
+	<script>
+		$(window).on("load",function(){
+			waterfall();
+			var dataInt={"data":[{"src":"01.jpg"},{"src":"02.jpg"},{"src":"03.jpg"},{"src":"04.jpg"}]};
+			$(window).on("scroll",function(){
+				if(checkScrollSlide){
+					$.each(dataInt.data,function(key,value){
+						var oDiv=$("<div>").addClass("item").appendTo($("#ct"));
+						$("<img>").attr("src",$(value).attr("src")).appendTo(oDiv);
+					})
+					waterfall();
+				}
+			});
+		});
+
+		function waterfall(){
+			var $items=$(".item");
+			var w=$items.eq(0).outerWidth(true);
+			var cols=Math.floor($(window).width()/w);
+			$("#ct").width(w*cols).css("margin","0 auto");
+			var hArr=[];
+			$items.each(function(index,value){
+				var h=$items.eq(index).outerHeight(true);
+				if(index<cols){
+					hArr[index]=h;
+				}else{
+					var minH=Math.min.apply(null,hArr);
+					var minHIndex=$.inArray(minH,hArr);
+					$(value).css({
+						"position":"absolute",
+						"top":minH+"px",
+						"left":minHIndex*w+"px"
+					})
+					hArr[minHIndex]=hArr[minHIndex]+$items.eq(index).outerHeight(true);
+				}
+			});
+			console.log(hArr);
+		}
+
+		function checkScrollSlide(){
+			var $lastItem=$(".item").last();
+			var lastItemDis=$lastItem.offset().top+Math.floor($lastItem.outerHeight(true)/2);
+			var scrollTop=$(window).scrollTop();
+			var documentH=$(window).height();
+			return(lastItemDis<scrollTop+documentH)?true:false;
+		}
+	</script>
+</body>
+</html>
