@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务5-2</title>
+    <style type="text/css">
+		html,body{
+			margin:0px;
+			padding:0px;
+		}
+		a{
+			text-decoration:none;
+      color:black;
+		}
+
+    .content{
+      width:400px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:#fff;
+      z-index:100;
+      display:none;
+    }
+
+    .cover{
+      position:fixed;
+      top:0px;
+      right:0px;
+      bottom:0px;
+      left:0px;
+      background:#000;
+      opacity:0.3;
+      z-index:99;
+      display:none;
+    }
+
+    .clearfix:after{
+      content:"";
+      display:block;
+      clear:both;
+    }
+
+    .close{
+      position: absolute;
+      top: 0px;
+      right: 15px;
+    }
+
+    .head{
+      height:40px;
+      line-height:40px;
+      border-bottom:1px solid #ccc;
+    }
+
+    h3{
+      margin:0px;
+      margin-left:10px;
+      font-size:20px;
+    }
+
+    .footer>a{
+      float:right;
+      padding:10px;
+    }
+
+    .middle{
+      height:150px;
+      border-bottom:1px solid #ccc;
+    }
+
+    .middle>p{
+      padding-left:10px;
+    }
+
+    .footer{
+      height:40px;
+    }
+
+    .active{
+        display:block;
+    }
+    </style>
+</head>
+<body>
+<button class="btn start">点我</button>
+<div class="cover"></div>
+    <div class="content">
+      	<div class="head">
+          		<h3>我是标题</h3>
+          		<a href="#" class="close">X</a>
+      	</div>
+      	<div class="middle">
+          		<p>内容1</p>
+          		<p>内容2</p>
+      	</div>
+      	<div class="footer clearfix">
+          		<a href="#" class="enter">确认</a>
+          		<a href="#" class="exit">取消</a>
+      	</div>
+    </div>
+
+		<script>
+    var utiobj={
+      hasClass:function(el,cl){
+          var reg=new RegExp('\\b'+cl+'\\b','g');
+          return reg.test(el.className);
+        },
+
+
+
+        addClass:function(el,cl){
+          if(!utiobj.hasClass(el,cl)){  //也可以写成!this.hasClass(el,cl){.....}
+            el.className += " "+cl;
+          }
+        },
+
+        removeClass:function(el,cl){
+            if(utiobj.hasClass(el,cl)){//也可以写成!utiobj.hasClass(el,cl){.....}
+              el.className=el.className.replace(cl,"")
+            }
+          }
+        }
+
+
+
+       var node_btn = document.querySelector(".btn"),
+            node_cover = document.querySelector(".cover"),
+            node_cont= document.querySelector(".content"),
+            node_body=document.querySelector("body")
+
+            node_btn.addEventListener("click",function(mousev){
+                  utiobj.addClass(node_cover,"active")
+                  utiobj.addClass(node_cont,"active")
+            },false);
+
+
+            node_cont.addEventListener("click",function(mousev){
+              if(utiobj.hasClass(mousev.target,"close")||utiobj.hasClass(mousev.target,"exit")){
+                utiobj.removeClass(node_cont,"active")
+                utiobj.removeClass(node_cover,"active")
+              }
+            },false)
+
+
+		</script>
+
+
+</body>
+</html>

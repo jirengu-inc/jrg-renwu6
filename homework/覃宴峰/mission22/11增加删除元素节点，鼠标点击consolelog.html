@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
 <head>
 	<title></title>
 </head>
@@ -21,12 +22,20 @@
 
 	str5.addEventListener("click",function(mousev){
 		var newnode=document.createElement("li");
-		newnode.innerText=str3.value;
-		str1.appendChild(newnode)//目标元素插入到父元素下的最后一个子元素位置处
+		if(!str3.value){
+			console.log("没输入内容")
+			return
+		}
+			newnode.innerText=str3.value;
+			str1.appendChild(newnode)//目标元素插入到父元素下的最后一个子元素位置处
 	},false)
 
 	str4.addEventListener("click",function(mousev){
 		var newnode=document.createElement("li");
+		if(!str3.value){
+			console.log("没输入内容")
+			return
+		}
 		newnode.innerText=str3.value;
 		str1.insertBefore(newnode,str1.firstChild)//目标元素插入到父元素str1下的指定位置
 	},false)

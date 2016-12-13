@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>stickup</title>
+	<style type="text/css">
+	html,body,div{
+		margin:0px;
+		padding:0px;
+		font-size:20px;
+	}
+
+	.clearfix{
+		content:"";
+		display:block;
+		clear:both;
+	}
+		#header{
+			height:90px;
+			background:red;
+			line-height:90px;
+			margin-bottom:20px;
+		}
+
+		#nav{
+			height:40px;
+			background:blue;
+			line-height:40px;
+		}
+
+		#main{
+			height:800px;
+			border:10px solid #ccc;
+		}
+
+		.aside{
+			width:100px;
+			height:350px;
+			background:green;
+			float:left;
+		}
+
+		.rside{
+			float:left;
+		}
+
+		#footer{
+			height:20px;
+			background:#333;
+		}
+
+
+	</style>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="nav">nav</div>
+	<div id="main" class="clearfix">
+		<div class="aside">aside</div>
+		<div class="rside">main</div>
+	</div>
+	<div id="footer">footer</div>
+	<script type="text/javascript">
+		$(function(){
+			$.fn.stickup=function(){   /*声明插件，这里的this指的是当前元素*/
+				var $cur=this,
+				$width=$cur.width(),
+				$height=$cur.height(),
+				$offsetTop=$cur.offset().top,
+				$offsetLeft=$cur.offset().left
+
+				var $clone_node=$cur.clone().insertBefore($cur).css({'opacity':"0"}).hide()
+				/*克隆元素并隐藏，stickup操作的是克隆元素，设置克隆元素透明度0是为了防止网速
+				慢时页面加载显示有两条nav*/
+
+				/*或者写成这样
+ 				var $clone_node = $cur.clone()
+              .css({visibility: 'hidden', display: 'none'})
+              .insertBefore($cur);
+				*/
+				$(window).on("scroll",function(){
+					var $scrollTop=$(window).scrollTop();
+					console.log($scrollTop)
+					if($scrollTop>=$offsetTop){
+						if(!isFixed()){
+							setFixed();
+						}
+					} else{
+						if(isFixed()){
+							removeFixed()
+						}
+					}
+				});
+
+				function isFixed(){
+					return $clone_node.data('fixed_mark');
+				}
+
+				function setFixed(){
+					$clone_node.data('fixed_mark',true)/*修改标志位*/
+					.css({'position':'fixed',
+						'left':$offsetLeft,
+						'top':0,
+						'width':$width,
+						'height':$height,
+						'z-index':9999/*保证元素在Z轴最上方*/
+					})
+					$clone_node.css({'opacity':"1"}).show()
+				}
+
+				function removeFixed(){
+					$clone_node.data('fixed_mark',false)/*修改标志位*/
+					.removeAttr('style')
+					$clone_node.hide()
+				}
+
+			}
+
+			$("#nav").stickup()  /*调用插件*/
+		})
+	</script>
+</body>
+</html>

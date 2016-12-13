@@ -1,0 +1,146 @@
+html,body,ul,li,p,h1,h3,div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font: 14px/1.5 normal;
+    color: #333;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #666;
+}
+a:hover {
+    color: #333;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.layout {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#header {
+    border: 1px solid #ccc;
+}
+#header .logo {
+    float: left;
+    line-height: 50px;
+    font-size: 30px;
+}
+#header .navbar {
+    float: left;
+    margin-left: 20px;
+ 
+}
+.navbar>li {
+    float: left;
+    position: relative;
+    padding: 0 10px;
+    height: 50px;
+    line-height: 50px;
+   font-weight:600;
+}
+#header .droplist {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+#header .navbar li:hover .droplist {
+    display: block;
+}
+.droplist li {
+    padding: 10px;
+    line-height: 1;
+    border-bottom: 1px dashed #ccc;
+}
+.droplist li:last-child{
+    border: none;
+}
+.droplist li:hover{
+    background: #eee;
+}
+
+.intro {
+    padding: 30px 0;
+    background: #b84d45;
+    color: #fff;
+}
+.breadcrumb {
+    margin-top: 40px;
+    background: #eee;
+    border-radius: 3px;
+}
+.breadcrumb ul {
+    padding: 10px;
+}
+.breadcrumb li:first-child{font-weight:bold;}
+.breadcrumb li {
+    display: inline-block;
+    color: #666;
+}
+.breadcrumb a {
+    color: #b84d45;
+}
+
+.works {
+    margin-top: 10px;
+}
+.works ul {
+    margin-left: -40px;
+}
+.works li {
+    float: left;
+    margin: 20px 0 0 43px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+.works img {
+    height: 200px;
+    width: 301px;
+}
+.works h3,
+.works p {
+    text-align: left;
+    padding: 5px 10px;
+}
+.works a {
+    display: inline-block;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+.works .btn{border:1px solid #ccc;
+            padding:5px 10px;}
+
+.aboutme {
+    margin-top: 30px;
+    padding: 20px 0;
+    text-align: center;
+    background: #b84d45;
+    color: #fff;
+}
+.aboutme a {
+    display: inline-block;
+    padding: 5px 8px;
+    margin-top: 10px;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#footer p {
+    margin: 30px 0;
+    padding-top: 30px;
+    text-align: center;
+    border-top: 1px solid #dadada;
+}

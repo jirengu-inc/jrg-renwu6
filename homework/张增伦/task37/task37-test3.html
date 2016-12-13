@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<body>
+
+<style>
+
+    html,div,body,ol,nav,ul,li{margin: 0;padding: 0}
+    ul,ol{list-style: none}
+    x-tabs > nav{
+        overflow: hidden;
+    }
+    x-tabs > nav > ol > li{
+        float: left;
+        padding: 10px;
+        border: 1px solid red;
+    }
+
+    x-tabs > nav > ol > li.active{
+        background-color: red;
+    }
+
+    x-tabs >ol.content>li{
+        display: none;
+        border: 1px solid red;
+        height: 200px;
+        padding: 10px;
+    }
+
+    x-tabs >ol.content>li.active{
+        display: block;
+    }
+
+</style>
+
+    <x-tabs>
+        <nav>
+        <ol>
+            <li class="active">tab1</li>
+            <li>tab2</li>
+        </ol>
+        </nav>
+        <ol class="content">
+            <li class="active">content1</li>
+            <li>content2</li>
+        </ol>
+
+    </x-tabs>
+
+    <script>
+
+        $('x-tabs').on('click','nav>ol>li',function(e){
+            var $li = $(e.currentTarget);
+            var index = $li.index();
+            $li.addClass('active').siblings().removeClass('active');
+            var $target = $li.closest('x-tabs').find('.content>li').eq(index);
+            $target.addClass('active').siblings().removeClass('active');
+        });
+
+    </script>
+
+</body>
+</html>

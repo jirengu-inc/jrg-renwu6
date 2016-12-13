@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>mission25-002</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+			font-size:12px;
+			color:#666;
+		}
+		ul,li{
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+			color:#666;
+		}
+
+		#container{
+			width:648px;
+			margin:0 auto;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		.product{
+			width:645px;
+		}
+
+		.product-icon.clearfix{
+			position:relative;
+			margin-left:-21px;
+			margin-bottom:-21px;
+
+		}
+
+		.product-icon.clearfix li{
+			width:200px;
+			float:left;
+			border:1px solid #eee;
+			margin-left:20px;
+			margin-bottom:20px;
+		}
+
+		.cover{
+			position:absolute;
+			width:200px;
+			height:199px;
+			background: rgba(0,0,0, 0.3);/*背景色全黑加apha通道值透明*/
+			opacity:1;/*蒙层透明度不透明*/
+			display:none;
+		}
+
+		.cover a{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			border:1px solid #c81623;
+			border-radius:3px;
+			color:#c81623;
+			background:#fff;
+			padding:10px;
+		}
+
+		.pd-fee{
+			color:#c81623;
+		}
+
+		.add-list{
+			float:left;
+			border:1px solid #c81623;
+			border-radius:3px;
+			padding:10px 20px;
+			color:#c81623;
+			margin-top:20px;
+
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<h1 class="pd-title clearfix">
+		珠宝首饰
+	</h1>
+	<div class="product hover"><!-- 因为要先展示某一个product，所以这个product增加了hover类，让其显示为display:block -->
+		<ul class="product-icon clearfix">
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+			<li class="pd-list">
+			<div class="cover"><a href="#">立即抢购</a></div>
+			<img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg">
+			<p class="pd-dis">藏美千足金和田玉金镶玉路路通吊坠</p>
+			<p class="pd-fee">￥699</p>
+			</li>
+		</ul>
+	</div>
+	<a href="#" class="add-list">添加</a>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+
+$(function(){
+$(".product-icon.clearfix").on("mouseenter",".pd-list",function(mousev){
+			$(this).find(".cover").show();
+		});
+
+		$(".product-icon.clearfix").on("mouseleave",".pd-list",function(mousev){
+			$(this).find(".cover").hide()
+		});
+
+
+
+
+var products = [
+			{
+				img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+				name: '珂兰 黄金手 猴哥款',
+				price: '￥405.00'
+			},{
+				img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+				name: '珂兰 黄金转运珠 猴哥款',
+				price: '￥100.00'
+			},{
+				img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+				name: '珂兰 黄金手链 3D猴哥款',
+				price: '￥45.00'
+			}
+		];
+
+var $html=""
+for(var key in products){
+	console.log(key)
+	$html +='<li class="pd-list">'
+	$html +='<div class="cover"><a href="#">立即抢购</a></div>'
+	$html +='<img src="'+products[key].img+'">'
+	$html +='<p class="pd-dis">'+products[key].name+'</p>'
+	$html +='<p class="pd-fee">'+products[key].price+'</p>'
+	$html +='</li>'
+}
+
+$(".add-list").on("click",function(){
+	console.log($html)
+	$(".product-icon.clearfix").append($html)
+})
+
+$("a").on("click",function(mousev){
+	mousev.preventDefault();
+})
+
+})//!!!!!!!!
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>代码3</title>
+</head>
+<body>
+	<ul class="ct">
+	    <li data-img="1.png">鼠标放置查看图片1</li>
+	    <li data-img="2.png">鼠标放置查看图片2</li>
+	    <li data-img="3.png">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+<script>
+    var ct = document.querySelector(".ct");
+    var imgPreview = document.querySelector(".img-preview");
+    var newImg = document.createElement('img');
+
+    ct.addEventListener("mouseover",function(e){
+    	newImg.setAttribute("src",e.target.getAttribute("data-img"));
+        imgPreview.appendChild(newImg);
+    });
+
+</script>
+
+</body>
+</html>

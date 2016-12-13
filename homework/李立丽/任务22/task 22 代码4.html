@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>代码4</title>
+<style>
+	html,body,ul,li{
+		margin: 0;
+		padding:0;
+	}
+	.clearfix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.wrap{
+		width: 600px;
+		height: 300px;
+		border: 1px solid #ccc;
+		margin:40px;
+		box-sizing: border-box;
+	}
+	li{
+		list-style: none;
+		float:left;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		text-align: center; 
+		vertical-align: center;
+		width: 198.5px;
+		height: 40px;
+		line-height: 40px;
+		cursor: pointer;
+	}
+	li:last-child{
+		border-right:none;
+	}
+	.active{
+		background-color: #eee;
+	}
+	.wrap div{
+		display: none;
+		height: 300px;
+		padding: 20px;
+	}	
+
+    .wrap .content{
+        display: block;
+    }
+
+</style>
+
+</head>
+<body>
+  <div class="wrap">
+  	<ul class="tab clearfix">
+  		<li class="active">tab1</li>
+  		<li>tab2</li>
+  		<li>tab3</li>
+  	</ul>
+  	<div class="content">内容1</div>
+  	<div>内容2</div>
+  	<div>内容3</div>
+  </div>
+<script>
+var ct = document.querySelector(".wrap");
+var uLi = ct.getElementsByTagName("li");
+var uDiv = ct.getElementsByTagName("div");
+for (var i = 0; i< uLi.length; i++) {
+	uLi[i].index = i;
+	uLi[i].onclick = function(){
+		for (var i = 0; i< uLi.length; i++) {
+			uLi[i].className = '';
+			uDiv[i].style.display = 'none';
+		}
+		this.className = 'active';
+		uDiv[this.index].style.display = 'block';
+	}
+}
+
+</script>
+
+</body>
+</html>

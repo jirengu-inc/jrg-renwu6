@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>点按钮变色</title>
+	<style type="text/css">
+	@font-face {
+      font-family: 'fontello';
+      src: url('./font/fontello.eot?52721601');
+      src: url('./font/fontello.eot?52721601#iefix') format('embedded-opentype'),
+           url('./font/fontello.woff?52721601') format('woff'),
+           url('./font/fontello.ttf?52721601') format('truetype'),
+           url('./font/fontello.svg?52721601#fontello') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+    .demo-icon
+    {
+      font-family: "fontello";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+     
+      display: inline-block;
+      text-decoration: inherit;
+      width: 1em;
+      margin-right: .2em;
+      text-align: center;
+      /* opacity: .8; */
+     
+      /* For safety - reset parent styles, that can break glyph codes*/
+      font-variant: normal;
+      text-transform: none;
+     
+      /* fix buttons height, for twitter bootstrap */
+      line-height: 1em;
+     
+      /* Animation center compensation - margins should be symmetric */
+      /* remove if not needed */
+      margin-left: .2em;
+     
+      /* You can be more comfortable with increased icons size */
+      /* font-size: 120%; */
+     
+      /* Font smoothing. That was taken from TWBS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+     
+      /* Uncomment for 3D effect */
+      /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    }
+    
+	.change span {
+		display:block;
+		margin-top:-19px;
+	}
+	.change i:hover {
+		padding-top:19px;
+	}
+	
+	.change{
+		height:18px;
+		line-height: 17px;
+		overflow:hidden;
+		display: inline-block;
+	}
+    <link rel="stylesheet" href="css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="css/fontello-ie7.css"><![endif]-->
+	</style>
+</head>
+<body>
+百度的变换文字方法 把要换的字隐藏起来
+<div class="change"><i href="#" class="demo-icon"><span>&#xf14d;</span>&#xe800;</i></div>转发给朋友
+
+</body>
+</html>

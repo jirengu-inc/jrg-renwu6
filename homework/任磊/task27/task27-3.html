@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>无限轮播</title>
+    <style type="text/css">
+    	html,body,ul,li,p{
+    		margin:0;
+    		padding: 0;
+    	}
+    	ul,li{
+    		list-style: none;
+    	}
+    	a{
+    		text-decoration: none;
+    	}
+    	.clearfix:after{
+    		content:"";
+    		display: block;
+    		clear: both;
+    	}
+    	.carousel{
+    		width: 360px;
+    		height: 240px;
+    		overflow: hidden;
+    		position: relative;
+    		margin: 0 auto;
+    	}
+    	.img-ct{
+    		position: absolute;
+    	}
+    	.img-ct li{
+    		float: left;
+    	}
+    	.img-ct img{
+    		width: 360px;
+    		height: 240px;
+    	}
+    	.carousel .arrow{
+    		position: absolute;
+    		top: 50%;
+    		display: block;
+    		width: 40px;
+    		height: 40px;
+    		margin-top: -20px;
+    		line-height: 40px;
+    		text-align: center;
+    		font-size: larger;
+    	    border-radius: 40px;
+    	    background-color: #666;
+    	    color: #fff;
+    	    opacity: 0.6;
+    	}
+		.arrow:hover{
+			opacity:1;
+		}
+    	.carousel .pre{
+    		left: 15px;
+    	}
+    	.carousel .next{
+    		right: 15px;
+    	}
+    	.carousel .indicator{
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+    	}
+    	.carousel .indicator li{
+    		float: left;
+    		width: 10px;
+    		height: 10px;
+    		background-color: #fff;
+    		cursor: pointer;
+    		border-radius: 100%;
+    		margin: 0 5px;
+    	}
+    	.indicator li.active{
+    		background-color: #666;
+    	}
+    </style>
+	<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<div class="carousel">
+		<ul class="img-ct clearfix">
+			<li data-id="0"><a href="#"><img src="img/task27-3/1.jpg" alt="" /></a></li>
+			<li data-id="1"><a href="#"><img src="img/task27-3/2.jpg" alt="" /></a></li>
+			<li data-id="2"><a href="#"><img src="img/task27-3/3.jpg" alt="" /></a></li>
+			<li data-id="3"><a href="#"><img src="img/task27-3/4.jpg" alt="" /></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="indicator clearfix">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script>
+		var $ct = $('.img-ct'),
+			$img = $ct.find("li"),
+			imgWidth = $img.width(),
+			imgCount = $img.length,
+			$pre = $('.pre'),
+			$next = $('.next'),
+			$indicator = $('.indicator');
+
+		$ct.prepend($img.last().clone());
+		$ct.append($img.first().clone());
+		imgRealCount = $ct.find('li').length;//小心变量提升
+		$ct.css({
+			'width':imgRealCount*imgWidth,
+			'left': 0-imgWidth
+		})
+
+		var curIdx = 0;
+		var locked = false;
+
+		$pre.on('click',function(e){
+			e.stopPropagation();
+			playPre();
+			stopAuto();
+		})
+		$next.on('click',function(e){
+			e.stopPropagation();
+			playNext();
+			stopAuto();
+		})
+
+		$indicator.find('li').on('click',function(e){
+			var idx = $(e.currentTarget).index();
+			stopAuto();
+			if(idx > curIdx){
+			    playNext(idx-curIdx);
+			}
+			if(idx < curIdx){
+			    playPre(curIdx - idx);
+			}
+		});
+
+		function autoPlay(){
+			auto = setInterval(function(){
+				playNext()
+			},2000);
+		};
+		autoPlay();
+
+		function stopAuto(){
+			clearInterval(auto);
+		};
+
+		function playNext(idx){
+			var idx = idx || 1;
+			if(locked){
+			    return;
+			};
+			locked = true;
+			$ct.animate({left: '-='+ (idx*imgWidth)},function(){
+				curIdx = (curIdx + idx) % imgCount;
+				if(curIdx === 0){
+					$ct.css({
+						'left':0-imgWidth
+					});
+				};
+				locked = false;
+				setIndicator();
+				console.log(curIdx);
+		});
+		};
+
+		function playPre(idx){
+			var idx = idx || 1;
+			if(locked){
+			    return;
+			};
+			locked = true;
+			$ct.animate({left:'+='+(idx*imgWidth)},function(){
+				curIdx = (imgCount + curIdx - idx)%imgCount;
+				if(curIdx === (imgCount - 1)){
+				    $ct.css({
+						'left':0-imgCount*imgWidth
+					});
+				}
+				locked = false;
+				setIndicator();
+			})
+		}
+		function setIndicator(){
+			$indicator.find('li').removeClass('active')
+					  .eq(curIdx).addClass('active')
+		}
+	</script>
+</body>
+</html>
