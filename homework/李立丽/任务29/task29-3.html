@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task29-3</title>
+	<style>
+		html,body,ul,li{
+			padding:0;
+			margin:0;
+		}
+		li{
+			list-style: none;
+			padding:10px;
+			margin:10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		.btn{
+			width: 80px;
+			height: 30px;
+			margin:0 auto;
+			border:1px solid red;
+			background: #fff;
+			border-radius: 5px;
+			color:red;
+            text-align: center;
+            display: block;
+		}
+		.hover{
+			background: green;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+   <ul class="ct">
+	   	<li>内容1</li>
+	   	<li>内容2</li>
+	   	<li>内容3</li>
+	   	<li>内容4</li>
+	   	<li>内容5</li>
+	   	<li>内容6</li>
+   </ul>
+   <button class="btn">加载更多</button>
+  
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+   <script>
+    //当底部加载更多按钮出现时，通过 ajax 发送请求获取数据，append 到容器里。事件绑定使用代理方式
+           var clock;
+           addmore();//开始的时候执行一次加载，不然的话用户在未滚动前获取不到数据
+
+           $(window).on('scroll',function(){
+           	//设置定时器当事件触发一定时间后再执行
+           	   if(clock){
+           	   	  clearTimeout(clock);
+           	   }
+           	   clock = setTimeout(function(){
+           	   	   if(isVisible($('.btn'))){
+           	   	   	   addmore();
+           	   	   }
+           	   	   
+           	   },100)//每0.1秒执行一次addmore()
+           });
+
+	       function addmore(){
+	       	var start = $('.ct').find('li').length+1
+	             $.ajax({
+	             	url:'task29-3.php',
+	             	type:'GET',
+	             	dataType:'json',
+	             	data:{
+	             		start:start,
+	             		len:20
+	             	},
+	             	success:function(json){
+	             		onSuccess(json);
+	             	},
+	             	error: function(){
+	             		console.log('系统异常');
+	             	}
+	             });
+	        }
+	             function onSuccess(json){
+	             	if(json.status===1){
+	             		append(json.data);
+	             	}else{
+	             		alert('获取数据出错');
+	             	}
+	             }
+	             function append(arr){
+	             	for (var $i = 0; $i < arr.length; $i++) {
+	             		$('.ct').append("<li>" + arr[$i] + "</li>");
+	             	}
+	             }
+
+	        function isVisible($node){
+			    var nodeH = $node.height();
+			    var offsetTop=$node.offset().top;
+			    var winH=$(window).height();
+				var scrollTop=$(window).scrollTop();						
+
+				if(winH+scrollTop>offsetTop   && scrollTop<scrollTop+winH){//判断是否加载图片
+		            return true;
+		        }else{
+		            return false;
+		        }
+			}
+
+	       //鼠标放置上去和移除的样式， 这里由于li是动态添加的，所以必须要事件代理
+           $('.ct').on('mouseover','li',function(){
+             $(this).addClass('hover');
+           }).on('mouseout','li',function(){
+             $(this).removeClass('hover');
+           })
+
+
+   	  
+   </script>
+
+
+</body>
+</html>

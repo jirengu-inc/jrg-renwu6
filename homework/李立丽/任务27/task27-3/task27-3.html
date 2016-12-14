@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task27-3</title>
+	<style>
+        body,html,li,ul{
+        	padding:0;
+        	margin:0;
+        }
+        a{
+        	text-decoration: none;
+        	color: #fff;
+        }
+        ul,li{
+        	list-style: none;
+        }
+        .clearfix:after{
+          content: '';
+          display: block;
+          clear: both;
+        }
+        .wrap{
+        	position: relative;
+        	width: 320px;
+        	height: 206px;
+        	overflow: hidden;
+        	margin:0 auto;
+        }
+        .view{
+          position: absolute;//绝对定位后才可以通过JS来偏移，相对于父元素.wrap绝对定位，以便设置初始状态默认显示第一张图片 left:0-imgWidth
+        }
+        .view li{
+          float: left;
+        }
+		    .view img{
+		      width: 320px;
+		      height: 206px;
+        }
+        .arrow{
+        	position: absolute;
+        	top:50%;
+        	margin-top:-20px;
+          font-size:20px;
+          font-weight: bold;
+        	width: 30px;
+        	height: 30px;
+        	display: block;
+        	line-height: 30px;
+        	border-radius: 30px;
+        	background:#4e443c;
+        	text-align: center;
+        	opacity: 0.5;
+        }
+        .arrow:hover{
+        	opacity: 1;
+        }
+        .left{
+        	left:10px;
+        }
+        .right{
+        	right:10px;
+        }
+        .btn{
+        	bottom: 10px;
+        	position: absolute;
+        	left: 50%;
+        	transform: translateX(-50%);
+
+        }
+        .btn li{
+        	cursor: pointer;
+        	height: 10px;
+        	width: 10px;
+        	display: inline-block;
+        	border-radius: 100%;
+        	background: #fff;
+        }
+        .btn li.active{
+        	background: #666;
+        }
+	</style>
+</head>
+<body>
+   <div class="wrap">
+      <ul class="view clearfix">
+        <li><a href="#"><img src="1.png"></a></li>
+        <li><a href="#"><img src="2.png"></a></li>
+        <li><a href="#"><img src="3.png"></a></li>
+        <li><a href="#"><img src="4.png"></a></li>
+      </ul>
+      <a class="arrow left" href="javascript:void(0);"><</a>
+      <a class="arrow right" href="javascript:void(0);">></a>
+      <ul class="btn">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+   </div>
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+   <script>
+      var $view = $('.view')
+      var $img = $('.view').find('li');
+      var imgCount = $img.length;//原始图片个数
+      var imgWidth = $img.width();//单张图片宽度
+      var curIdx = 0;
+      var locked = false;
+      var setTime;
+
+      $view.prepend($img.last().clone());
+      $view.append($img.first().clone());
+      //设置照片容器的初始位置和宽度
+      $view.css({
+        'width':(imgCount+2)*imgWidth,//头尾都另外克隆了一个元素，所以要+2
+        'left':0-imgWidth
+      })
+      rollStart();      
+         
+      function rollStart(){
+      	setTime = setInterval(function(){
+      		playNext(1)
+      	},3000);//每3秒钟执行一次playNext()
+      }
+
+      function playNext(idx){//参数表示每次播放图片的数量
+        var tmpIdx;//定义一个变量，记录下一张图片的索引
+        tmpIdx =(curIdx+idx)%imgCount;   
+        $('.btn').find('li').eq(tmpIdx).addClass('active').siblings().removeClass('active'); 
+        $view.animate({left:'-='+ imgWidth*idx},function(){
+           if(tmpIdx ==0){            
+              $view.css('left',0-imgWidth);
+           }
+            curIdx = tmpIdx; //存储当前的值，供下次使用  
+            locked=false;           
+        });
+
+      }
+
+      function playPre(idx){
+        var tmpIdx;
+      	tmpIdx=(curIdx-idx+imgCount)%imgCount  // +imgCount 是处理curIdx为负1的情况.
+      	$('.btn').find('li').eq(tmpIdx).addClass('active').siblings().removeClass('active');
+        $view.animate({left:'+='+ (imgWidth*idx)},function(){           
+           if(tmpIdx ==imgCount-1){
+              $view.css('left',0-imgWidth*imgCount);
+           } 
+            curIdx = tmpIdx; //存储当前的值，供下次使用 
+            locked=false;           
+        });     		    	
+      }
+
+      $('.right').on('click',function(){
+        if(locked){
+        	return;
+        }
+        locked = true;
+        clearInterval(setTime);
+        playNext(1);
+
+        rollStart();
+      });
+
+      $('.left').on('click',function(){
+        if(locked){
+        	return;
+        }
+        locked = true;
+        clearInterval(setTime);
+        playPre(1);
+
+        rollStart();
+      });
+
+      $('.btn').find('li').on('click',function(){
+      	var index = $(this).index();//获取当前点击的图片
+      	if(locked){
+      		return;
+      	}
+
+      	clearInterval(setTime);      	
+      	locked = true;
+
+
+
+      	if(index>curIdx){
+      		playNext(index-curIdx);
+      	}
+      	if(index<curIdx){
+      		playPre(curIdx-index);
+      	}
+
+
+      	rollStart();
+      })
+   </script>
+
+</body>
+</html>

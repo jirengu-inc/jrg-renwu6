@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task28-2</title>
+	<style>
+		.wrap{
+			width: 900px;
+			margin:0 auto;
+		}
+		#header{
+			height:60px;
+			background: red;
+			margin-bottom:20px;
+		}
+		.clearfix:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.nav1,.nav2,.nav3,.nav4{
+			height:30px;
+			border:1px solid black;
+			background:yellow;
+		}
+		.aside{
+			height:400px;
+			width: 200px;
+			float: left;
+			background:pink;
+		}
+		.aside2{
+			background: yellow;
+		}
+		.aside3{
+			background: red;
+		}
+		.main{
+			float: right;
+			height:400px;
+			width: 680px;		
+			margin-bottom: 20px;
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+   <div class="wrap">
+	   <div id="header">header</div>
+		   <div class="nav1">nav1</div>
+		   <div id="content" class="clearfix">
+		   	  <div class="aside aside1">aside1</div>
+		   	  <div class="main">main1</div>
+		   </div>
+		   <div class="nav2">nav2</div>
+		   <div id="content" class="clearfix">
+		   	  <div class="aside aside2">aside2</div>
+		   	  <div class="main">main2</div>
+		   </div>
+		   <div class="nav3">nav3</div>
+		   <div id="content" class="clearfix">
+		   	  <div class="aside aside3">aside3</div>
+		   	  <div class="main">main3</div>
+		   </div>
+		   <div class="nav4">nav4</div>
+		   <div id="content" class="clearfix">
+		   	  <div class="aside aside4">aside4</div>
+		   	  <div class="main">main4</div>
+		   </div>
+   </div>
+   <div id="footer">footer</div>
+
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+   <script>
+
+   	  	 $.fn.stick = function(){
+	       var $cur = $(this);
+	       var curH = $cur.height();//导航条的高度
+	       var curW = $cur.width(); //导航条的宽度
+	       var offsetTop = $cur.offset().top;//向上偏移的距离
+	       var offsetLeft = $cur.offset().left;//向左偏移的距离
+
+	       //在导航前面克隆目标元素，让其暂时隐藏以保证同时只能看到一个
+	       var $curClone = $cur.clone().css({visibility:'hidden',display:'none'}).insertBefore($cur);
+
+	       //监听窗口滚动
+	       $(window).on('scroll',function(){
+	       	   var scrollTop = $(this).scrollTop();//获取位于对象最顶端和窗口中可见内容的最顶端之间的距离
+	       	   if(scrollTop >= offsetTop){
+	       	   	  setFixed();
+	       	   }else{
+	       	   	  unsetFixed();
+	       	   }
+	       });
+
+	       //设置fixed状态
+	       function setFixed(){
+	       	   $cur.css({
+	       	   	 'position':'fixed',
+	       	   	 'top':0,
+	       	   	 'left':offsetLeft,
+	       	   	 'width':curW,
+	       	   	 'margin':0,
+	       	   	 'z-index':9999//保证元素在z轴的最上方
+	       	   });
+	       	   $curClone.show();
+	       }
+	       //设置unfixed状态
+	       function unsetFixed(){
+	       	  $cur.removeAttr('style');
+	       	  $curClone.hide();
+	       } 
+   	  	 }
+        $('.nav1').stick(); 
+        $('.nav2').stick(); 
+        $('.nav3').stick();
+        $('.nav4').stick(); 
+
+     /*$('.nav').each(function(){
+     	$(this).stick();
+     }) */ 	  
+   </script>
+
+</body>
+</html>

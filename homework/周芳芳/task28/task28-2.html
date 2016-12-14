@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>stickup多个</title>
+	<style type="text/css">
+	#header{
+		height: 80px;
+		line-height: 80px;
+		background: red;
+	}
+	.wrap{
+		width: 900px;
+		margin: 0 auto;
+	}
+	.ct{
+		margin-top: 20px;
+	}
+	.ct:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.nav{
+		height: 30px;
+		border: 1px solid;
+		background: #ef6;
+	}
+	#footer{
+		background: #333;
+		height: 30px;
+	}
+	.aside{
+		width: 200px;
+		height: 400px;
+		float: left;
+	}
+	.aside1{
+		background: #e98;
+	}
+	.aside2{
+		background: #9e9;
+	}
+	.aside3{
+		background: #f6d;
+	}
+	.aside4{
+		background: #3c9;
+	}
+	.main{
+		width: 680px;
+		height: 400px;
+		background: blue;
+		float: right;
+	}
+	</style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="content">
+		<div class="wrap">
+			<div class="ct">
+				<div class="nav">nav1</div>
+				<div class="aside aside1">aside1</div>
+				<div class="main">main1</div>
+			</div>
+			<div class="ct">
+				<div class="nav">nav2</div>
+				<div class="aside aside2">aside2</div>
+				<div class="main">main1</div>
+			</div>
+			<div class="ct">
+				<div class="nav">nav3</div>
+				<div class="aside aside3">aside3</div>
+				<div class="main">main1</div>
+			</div>
+			<div class="ct">
+				<div class="nav">nav4</div>
+				<div class="aside aside4">aside4</div>
+				<div class="main">main1</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">footer</div>
+
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+
+       $('.nav').each(function(){
+		var $cur=$(this),
+		    curH=$cur.height(),
+		    curW=$cur.width(),
+		    offsetTop=$cur.offset().top,
+		    offsetLeft=$cur.offset().left;
+
+        var $curClone = $cur.clone()
+                        .css({visibility:'hidden',display:'none'})
+                        .insertBefore($cur);
+
+        $(window).on('scroll',function(){
+        	var scrollTop=$(this).scrollTop();
+
+        	if(scrollTop>=offsetTop){
+        		if(!isFixed()){
+        			setFixed();
+        		}
+        	}else{
+        		if(isFixed()){
+        			unsetFixed();
+        		}
+        	}
+        });
+
+        function isFixed(){
+        	return $cur.data('data-fixed');
+        }
+
+        function setFixed(){
+        	$cur.data('data-fixed',true)
+        	.css({
+        		'position':'fixed',
+        		'top':0,
+        		'left':offsetLeft,
+        		'width':curW,
+        		'margin':0,
+        		'background':'#fa1605',
+        		'z-index':999
+        	});
+        	$curClone.show();
+        }
+
+        function unsetFixed(){
+        	$cur.data('data-fixed',false)
+        	    .removeAttr('style');
+        	$curClone.hide();
+        }
+    })
+	</script>
+</body>
+</html>
