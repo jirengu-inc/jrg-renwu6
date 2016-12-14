@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无限加载</title>
+    <style>
+	ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #ccc;
+		text-align: center;
+		margin-bottom: 15px;
+		cursor: pointer;
+	}
+	.hover{
+		background-color: green;
+	}
+	#load-more{
+		margin: 0 auto;
+		text-align: center;
+		width: 100px;
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #f60;
+		text-decoration: none;
+		border-radius: 3px;
+		color: #f60;
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+	<ul id="ct">
+		<li>内容1</li>
+		<li>内容2</li>
+	</ul>
+	<div href="#" id="load-more">加载更多</div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		var $loadMoreBtn=$('#load-more'),
+		    $ct=$('#ct');
+
+		var cur = 2;
+		var clock;
+
+		load();
+
+		$ct.on('mouseenter','li',function(){
+			$(this).addClass('hover');
+		}).on('mouseleave','li',function(){
+			$(this).removeClass('hover');
+		});
+
+		$(window).on('scroll',function(e){
+
+			if(clock) clearTimeout(clock);
+			clock = setTimeout(function(){
+				if(!isVisible($loadMoreBtn)) return;
+				load();
+			},100)
+		});
+
+		function load(){
+			$.ajax({
+				url:'http://zhenai.luckhu.com/loadmore.php',
+				dataType:'json',
+				type:'get',
+				data:{
+					start:cur,
+					leng:20
+				},
+				success:function(json){
+					onSuccess(json);
+				},
+				error:function(){
+					onError();
+				}
+			});
+		}
+
+		function onSuccess(json){
+				append(json);
+				cur+=20;
+		}
+
+		function onError(){
+			alert('系统异常');
+		}
+
+		function append(arr){
+			for(var i=0;i<arr.length;i++){
+			    $('#ct').append('<li>'+arr[i]+'</li>');
+			}
+		}
+
+		function isVisible($node){
+			var winH=$(window).height(),
+			    offsetH=$node.offset().top,
+			    scrollH=$(window).scrollTop();
+			if((offsetH>scrollH) && (offsetH<scrollH+winH)){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	</script>
+</body>
+
+
+</html>
