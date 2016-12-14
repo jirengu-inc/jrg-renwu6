@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<style>
+	#content{
+		position: relative;
+		width: 100%;
+	}
+	.item{
+		position: absolute;
+		width: 200px;
+		margin-right: 10px;
+		margin-top: 10px;
+		transition:all 1s;
+		font-weight: bold;
+	}
+	.h1{
+		height: 200px;
+		background: #f4b300;
+	}
+	.h2{
+		height: 300px;
+		background: #691BB8;
+	}
+	.h3{
+		height: 400px;
+		background: #006ac1;
+	}
+</style>
+</head>
+<body>
+	<div id="content">
+		<div class="item h1">1</div>
+		<div class="item h3">2</div>
+		<div class="item h2">3</div>
+		<div class="item h1">4</div>
+		<div class="item h1">5</div>
+		<div class="item h1">6</div>
+		<div class="item h3">7</div>
+		<div class="item h3">8</div>
+		<div class="item h2">9</div>
+		<div class="item h1">10</div>
+		<div class="item h3">11</div>
+		<div class="item h3">12</div>
+		<div class="item h2">13</div>
+		<div class="item h2">14</div>		
+	</div>
+	<script>
+
+	var waterFall = {
+		arrColHeight: [],
+
+		//定义-调用
+		init: function($ct){
+			this.$ct = $ct;
+			this.$items = $ct.find('.item');
+			this.itemWidth = this.$items.outerWidth(true);
+			// this.bind();
+			this.start();
+		},
+		// bind: function(){
+		// 	var me = this;
+		// 	$(window).on('resize',function(){
+		// 		me.start();
+		// 	})
+		// },
+		start: function(){
+			var me = this;
+				this.colNum = Math.floor(this.$ct.width()/this.itemWidth);
+
+			for(var i=0;i<this.colNum; i++){
+				this.arrColHeight[i] = 0;
+			}
+			console.log(this.arrColHeight);
+			console.log(this.arrColHeight.length);
+
+			this.$items.each(function(){
+				me.placeItem($(this));
+			});
+		},
+		placeItem: function(el){
+
+			var obj = this.getIndexOfMin(this.arrColHeight);
+				idx = obj.idx;
+				min = obj.min;
+			el.css({
+				left: idx*(this.itemWidth),
+				top:  min
+			})
+			this.arrColHeight[idx] += el.outerHeight(true);
+		},
+		getIndexOfMin: function(arr){
+
+			var min = arr[0],
+				idx = 0;
+			for(var i =0; i<this.colNum; i++){
+				if (arr[i] < min) {
+					min =arr[i];
+					idx = i; 
+				}
+			}
+			return {
+				min: min,
+				idx: idx
+			};
+		}
+	}
+	waterFall.init($('#content'));
+	$(window).on('resize',function(){
+		waterFall.init($('#content'));
+	})
+
+
+	</script>
+    
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task30</title>
+	<style>
+		html,body{
+			padding:0;
+			margin:0;
+		}
+		#wrap{
+			position: relative;
+		}
+		.item{
+			position: absolute;
+			width: 200px;
+			margin-top:10px;
+			margin-right:10px;
+			transform: all 1s;
+		}
+		.item1{
+			height: 230px;
+			background: red;
+		}
+		.item2{
+			height: 300px;
+			background: yellow;
+		}
+		.item3{
+			height: 400px;
+			background: blue;
+		}
+		.item4{
+			height:500px;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+   <div id="wrap">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item1">5</div>
+      <div class="item item2">6</div>
+      <div class="item item3">7</div>
+      <div class="item item4">8</div>
+      <div class="item item1">9</div>
+      <div class="item item2">10</div>
+      <div class="item item2">11</div>
+      <div class="item item3">12</div>
+      <div class="item item4">13</div>
+      <div class="item item1">14</div>
+      <div class="item item2">15</div>
+      <div class="item item3">16</div>
+      <div class="item item1">17</div>
+      <div class="item item2">18</div>
+      <div class="item item2">19</div>
+      <div class="item item3">20</div>
+      
+   	
+   </div>
+
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+   <script>
+   	 $(function(){
+
+            function setImg(){
+
+               var itemWidth = $('.item').outerWidth(true);   //一个item的宽度
+               var colNum = parseInt($(window).width()/itemWidth);   //一行所占的列数
+               var colSumHeight = [];  //申明一个空数组，存储每列中所有元素高度之和
+                
+                //有多少列就遍历几次
+               for(var i = 0; i<colNum;i++){   
+                  colSumHeight.push(0);  //每列的高度初始都是0
+               }
+
+               $('.item').each(function(){
+                  var $this = $(this);
+
+                  var idx = 0; //初始最小高度的下标
+                  var minSumHeight = colSumHeight[0];  //初始最小高度所在的位置
+                  //循环数组，找出当前最短的那列的高度以及这一列的下标
+                  for(var i=0;i<colSumHeight.length; i++){
+                     if(colSumHeight[i] < minSumHeight){    //查看最小宽度的那列下标
+                        idx = i;
+                        minSumHeight = colSumHeight[i];
+                     }
+                  }
+
+                  $this.css({   //设置元素的属性
+                     left: itemWidth*idx,
+                     top: minSumHeight
+                  });
+                  colSumHeight[idx] += $this.outerHeight(true);   //更新每列的高度之和
+               });
+            }
+
+            setImg();
+
+            $(window).on('resize', function(){    //如果窗口的高度由变化，就重新响应
+               setImg();
+            })
+
+   	})
+
+
+   </script>
+
+</body>
+</html>
