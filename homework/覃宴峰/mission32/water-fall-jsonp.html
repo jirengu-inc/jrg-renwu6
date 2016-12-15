@@ -13,8 +13,8 @@
 		}
 
 		#container{
-			margin-left:100px;
-			mrgin-right:100px;
+			margin-left:50px;
+			margin-right:50px;
 		}
 
 		#item_img{
@@ -42,7 +42,7 @@
 			margin:10px 15px;
 		}
 		#load{
-			display:none;
+			/*display:none;*/
 		}
 	</style>
 </head>
@@ -97,7 +97,6 @@
 				})
 			}
 			function ondisplay(){//检查focus元素是否可见
-				$(window).on("scroll",function(){
 				$winH=$(window).height(),
 				$scrollTop=$(window).scrollTop()
 				$nodeH=$("#load").offset().top
@@ -107,15 +106,15 @@
 					}else{
 						return false
 					}
-				})
 			}
+
 			var clock
 			$(window).on("scroll",function(){
 				if(clock){
 					clearTimeout(clock)
 				}
 				clock=setTimeout(function(){
-					if(ondisplay){
+					if(ondisplay()){
 					onloading()
 					}
 				},300)
