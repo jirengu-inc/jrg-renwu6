@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>waterfall-jsonp</title>
+	<style type="text/css">
+		html,body,h4,ul,li{
+			margin:0px;
+			padding:0px;
+		}
+		ul,li{
+			list-style:none;
+		}
+
+		#container{
+			margin-left:50px;
+			margin-right:50px;
+		}
+
+		#item_img{
+			position:relative;
+		}
+		.item{
+			border:1px solid #ccc;
+			border-radius:5px;
+			box-shadow:5px 5px 2px #eee;
+			width:290px;
+			margin:20px;
+			position:absolute;
+			transition: all 1s;
+		}
+		.item img{
+			width:260px;
+			margin:15px;
+		}
+		.item p{
+			border-top:1px solid #ccc;
+			padding-top:9px;
+			margin:0px 15px 15px;
+		}
+		.item h4{
+			margin:10px 15px;
+		}
+		#load{
+			/*display:none;*/
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div id="water_cont">
+		<ul id="item_img">
+			<!--拼装元素示例
+				<li class="item">
+				<a href="http://comment5.news.sina.com.cn/comment/skin/default.html?channel=kj&newsid=slidenews-album-453-73265" class="link"><img src="http://www.sinaimg.cn/dy/slidenews/5_t160/2016_49/453_83443_516649.jpg"/></a>
+				<h4 class="item-header">胖妹把退役雷神赛马骑到皮包骨</h4>
+				<p class="description">被救出的Thor看上去恢复了不少。</p>
+			</li> -->
+		</ul>
+ 		<button id="load">focus</button>
+	</div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		var perPageCount=12,
+			curPage=1
+
+			onloading()
+			$(window).on("resize",function(){
+				onloading()
+			})
+			function onloading(){
+				$.ajax({
+				type:"get",
+				url:"http://platform.sina.com.cn/slide/album_tech",
+				dataType:"jsonp",
+				jsonp:"jsoncallback",
+				async: true,
+				data: {
+							app_key: '1271687855',
+							num: perPageCount, //每页有几
+							page: curPage      //当前页数
+						},
+					success: function(json){
+		                 console.log(json);
+		                 if(json && json.status.code==="0"){//后台回传的是字符串，如有传回有内容且status.code的值=0则成功
+							 rebuild(json.data)
+		                 	curPage += 1//元素拼装后改写请求的页数，下次请求第2页
+		                 	console.log(curPage)
+		                 }
+		             },
+		             error: function(){
+		                 alert('error');
+		             }
+				})
+			}
+			function ondisplay(){//检查focus元素是否可见
+				$winH=$(window).height(),
+				$scrollTop=$(window).scrollTop()
+				$nodeH=$("#load").offset().top
+					if($winH+$scrollTop>$nodeH){
+						console.log($scrollTop+" "+$nodeH)
+						return true
+					}else{
+						return false
+					}
+			}
+
+			var clock
+			$(window).on("scroll",function(){
+				if(clock){
+					clearTimeout(clock)
+				}
+				clock=setTimeout(function(){
+					if(ondisplay()){
+					onloading()
+					}
+				},300)
+			})
+			function rebuild(resdata){//拼装html
+					var node=''
+					for(var i=0;i<resdata.length;i++){
+						node +='<li class="item">'
+						node +='<a href="'+resdata[i].url+'" class="link"><img src="'+resdata[i].img_url+'"/></a>'
+						node +='<h4 class="item-header">'+resdata[i].short_name+'</h4>'
+						node +='<p class="description">'+resdata[i].short_intro+'</p></li>'
+					}
+					var	$node=$(node)
+						$("#item_img").append($node)
+						console.log($node)//jsonp获取的数据返回的内容拼装成html元素
+						setTimeout(function(){
+							render()//请求的jsonp文件拼装完成后，延迟一段时间再开始瀑布流排列，不然一开始页面会错乱
+						},300)
+				}
+			function render(){//瀑布流元素排列
+				var $nodewidth=$(".item").outerWidth(true),
+					$windowwidth=$(window).width(),
+					$imgnum=parseInt($windowwidth/$nodewidth),
+					imgarr=[]
+					for(var i=0;i<$imgnum;i++){
+						imgarr.push(0)
+					}
+					$(".item").each(function(){
+						var $cur=$(this),
+						idx=0,
+						minheight=imgarr[0]
+						for(var i=0;i<imgarr.length;i++){
+							if(imgarr[i]<minheight){
+								idx=i;
+								minheight=imgarr[i]
+							}
+						}
+						$cur.css({left:idx*$nodewidth,
+									top:minheight})
+						imgarr[idx]=imgarr[idx]+$cur.outerHeight(true)
+						$("#item_img").css({height:imgarr[idx]})/*ul容器内的li元素绝对定位后,
+						ul如果没有指定高度，里面的元素focuse元素会跑到最顶上去，所以每次加载元素后要
+						把ul容器的高度指定为当前li列中高度合计中最大的那个，也就是最后那个加载元素所在的列的总高度*/
+					})
+			}
+
+	}) </script>
+</body>
+</html>
