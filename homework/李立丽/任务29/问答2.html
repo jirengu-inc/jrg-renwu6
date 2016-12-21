@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>问答2</title>
+    <style>
+    	div{
+    		width:200px;
+    		height:2000px;
+    		text-align: center;
+    		border:1px solid red;
+    	}
+    	p{
+            color:red;
+            border:1px solid black;
+            margin-top: 1000px;
+    	}
+    </style>
+</head>
+<body>
+  <div>
+    <p>在控制台打印出true</p>
+  </div>
+<script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+<script>
+	function isVisible($node){
+		    var nodeH = $node.height();
+		    var offsetTop=$node.offset().top;
+		    var winH=$(window).height();
+			var scrollTop=$(window).scrollTop();						
+
+			if(winH+scrollTop>offsetTop){
+	            return true;
+	        }else{
+	            return false;
+	        }
+		}
+                         
+		$(window).on("scroll",function(){
+			var result=isVisible($("p"));
+			if(result){
+				console.log(result);
+			}
+		});
+</script>	
+</body>
+
+</html>
