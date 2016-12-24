@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task35-2</title>
+	<style type="text/css">
+		p{
+			line-height: 30px;
+		}
+		.btn{
+			height: 100px;
+			width: 100px;
+			background: yellow;
+			border:1px solid black;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 100px;
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			cursor: pointer;
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+  	   <p>内容1</p>
+	   <p>内容2</p>
+	   <p>内容3</p>
+	   <p>内容4</p>
+	   <p>内容5</p>
+	   <p>内容6</p>
+	   <p>内容7</p>
+	   <p>内容8</p>
+	   <p>内容9</p>
+	   <p>内容10</p>
+	   <p>内容11</p>
+	   <p>内容12</p>
+	   <p>内容13</p>
+	   <p>内容14</p>
+	   <p>内容15</p>
+	   <p>内容16</p>
+	   <p>内容18</p>
+	   <p>内容19</p>
+	   <p>内容20</p>
+	   <p>内容21</p>
+	   <p>内容22</p>
+	   <p>内容23</p>
+	   <p>内容24</p>
+	   <p>内容25</p>
+	   <p>内容26</p>
+	   <p>内容27</p>
+	   <p>内容28</p>
+	   <p>内容29</p>
+	   <p>内容30</p>
+
+
+
+
+	   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+
+	   <script>
+	   //构造对象函数，传入参数
+	   function GoTop(ct,target){
+	   	   this.ct = ct;
+	   	   this.target = target;
+	   }
+
+	   //对象的原型绑定事件和创建按钮
+
+	   GoTop.prototype.bindEvent = function(){
+              var cur = this;
+	   	   	  $(window).on('scroll',function(){
+                 if($(window).scrollTop()>100){
+                 	cur.target.show();
+                 }else{
+                 	cur.target.hide();
+                 }
+	   	   	  })
+              cur.target.on('click',function(){
+              	  $(window).scrollTop(0);
+              })
+	   	   	  
+	   }
+	   GoTop.prototype.createNode = function(){
+	   	   	  this.target = $('<button class="btn">回到顶部</button>');
+	   	   	  this.ct.append(this.target);
+	   	   	  this.bindEvent();
+
+	   }
+
+	   //生成对象
+	   var goTop=new GoTop($('body'));
+		goTop.createNode();
+
+
+
+
+
+
+	   	 
+	   </script>
+
+</body>
+</html>
