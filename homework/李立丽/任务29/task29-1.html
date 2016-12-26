@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task29-1</title>
+	<style>
+		p{
+			line-height: 30px;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+		}
+		.btn{
+			height: 100px;
+			width: 100px;
+			background: yellow;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 100px;
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			cursor: pointer;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+   <p>内容1</p>
+   <p>内容2</p>
+   <p>内容3</p>
+   <p>内容4</p>
+   <p>内容5</p>
+   <p>内容6</p>
+   <p>内容7</p>
+   <p>内容8</p>
+   <p>内容9</p>
+   <p>内容10</p>
+   <p>内容11</p>
+   <p>内容12</p>
+   <p>内容13</p>
+   <p>内容14</p>
+   <p>内容15</p>
+   <p>内容16</p>
+   <p>内容18</p>
+   <p>内容19</p>
+   <p>内容20</p>
+   <p>内容21</p>
+   <p>内容22</p>
+   <p>内容23</p>
+   <p>内容24</p>
+   <p>内容25</p>
+   <p>内容26</p>
+   <p>内容27</p>
+   <p>内容28</p>
+   <p>内容29</p>
+   <p>内容30</p>
+   <p>内容40</p>
+   <p>内容41</p>
+   <p>内容42</p>
+   <p>内容43</p>
+   <p>内容44</p>
+   <p>内容45</p>
+   <p>内容46</p>
+   <p>内容47</p>
+   <p>内容48</p>
+   <p>内容49</p>
+   <p>内容50</p>
+   <a href="javascript:void(0)" class="btn">回到顶部</a>
+
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+   <script>
+   	  $(window).on('scroll',function(){
+   	  	  if($(window).scrollTop()>100){//当滚动条滚动的距离大于100的时候
+   	  	  	$('.btn').show();//回到顶部按钮显示
+   	  	  }else{
+   	  	  	$('.btn').hide();
+   	  	  }
+   	  })
+   	  $('.btn').on('click',function(){//点击回到顶部按钮，跳转到页面顶部
+   	  	  $(window).scrollTop(0);
+   	  })
+   </script>
+
+</body>
+</html>

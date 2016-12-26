@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务4</title>
+    <style type="text/css">
+        body,ul,li,p{
+            margin:0;
+            padding:0;
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        .tab-switch *{
+            box-sizing:border-box;
+        }
+        .tab-switch{
+            width:600px;
+            margin:auto;
+            margin-top:40px;
+            border:1px solid #ccc;
+        }
+        .tab li{
+            list-style-type:none;
+            float:left;
+            width:200px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            cursor:pointer;
+            border-right:1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .tab li:last-child{
+            border-right:none;
+        }
+        .tab .active {
+            background-color:#eee;
+        }
+        .tab-switch div{
+            display:none;
+            height:300px;
+            padding:20px;
+        }
+        .tab-switch .content{
+            display:block;
+        }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+    <div class="ct tab-switch">
+        <ul class="tab clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="content">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+    <div class="ct tab-switch">
+        <ul class="tab clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="content">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </div>
+<script>
+    function TabSwitch($node){
+        this.$li = $node.find('.tab li');
+        this.$div = $node.find('div');
+        this.bind();
+    };
+    TabSwitch.prototype = {
+        constructor:TabSwitch,
+        bind:function(){
+          var _this = this;
+          this.$li.on("click",function(){
+              var index = $(this).index();
+              $(this).addClass('active')
+                      .siblings().removeClass('active');
+              _this.$div.removeClass('content')
+                        .eq(index).addClass('content');
+          })
+        }
+    };
+    $('.ct').each(function(index,value){
+        new TabSwitch($(value));
+    })
+</script>
+</body>
+</html>

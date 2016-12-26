@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <style type="text/css">
+    	html,body,ul,li,p{
+    		margin:0;
+    		padding: 0;
+    	}
+    	ul,li{
+    		list-style: none;
+    	}
+    	a{
+    		text-decoration: none;
+    	}
+    	.clearfix:after{
+    		content:"";
+    		display: block;
+    		clear: both;
+    	}
+    	.ct{
+    		width: 360px;
+    		height: 240px;
+    		overflow: hidden;
+    		position: relative;
+    		margin: 0 auto;
+    	}
+    	.ct .img-ct{
+    		position: absolute;
+    	}
+    	.img-ct li{
+    		float: left;
+    	}
+    	.img-ct img{
+    		width: 360px;
+    		height: 240px;
+    	}
+    	.ct .arrow{
+    		position: absolute;
+    		top: 50%;
+    		display: block;
+    		width: 40px;
+    		height: 40px;
+    		margin-top: -20px;
+    		line-height: 40px;
+    		text-align: center;
+    		font-size: larger;
+    	    border-radius: 40px;
+    	    background-color: #666;
+    	    color: #fff;
+    	    opacity: 0.6;
+    	}
+		.arrow:hover{
+			opacity:1;
+		}
+    	.ct .pre{
+    		left: 15px;
+    	}
+    	.ct .next{
+    		right: 15px;
+    	}
+    	.ct .indicator{
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+    	}
+    	.ct .indicator li{
+    		float: left;
+    		width: 10px;
+    		height: 10px;
+    		background-color: #fff;
+    		cursor: pointer;
+    		border-radius: 100%;
+    		margin: 0 5px;
+    	}
+    	.indicator li.active{
+    		background-color: #666;
+    	}
+    </style>
+	<script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+	<div class="ct">
+		<ul class="img-ct clearfix">
+			<li data-id="0"><a href="#"><img src="img/task27-3/1.jpg" alt="" /></a></li>
+			<li data-id="1"><a href="#"><img src="img/task27-3/2.jpg" alt="" /></a></li>
+			<li data-id="2"><a href="#"><img src="img/task27-3/3.jpg" alt="" /></a></li>
+			<li data-id="3"><a href="#"><img src="img/task27-3/4.jpg" alt="" /></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+	</div>
+	<div class="ct">
+		<ul class="img-ct clearfix">
+			<li data-id="0"><a href="#"><img src="img/task27-3/1.jpg" alt="" /></a></li>
+			<li data-id="1"><a href="#"><img src="img/task27-3/2.jpg" alt="" /></a></li>
+			<li data-id="2"><a href="#"><img src="img/task27-3/3.jpg" alt="" /></a></li>
+			<li data-id="3"><a href="#"><img src="img/task27-3/4.jpg" alt="" /></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+	</div>
+	<script>
+		/*通过改变DOM的顺序来实现轮播效果*/
+		function Carousel($node){
+			var $ct = this.$ct = $node.find('.img-ct');
+			this.$img = $ct.find('li');
+			$ct.css('width',this.$img.width()*this.$img.length);
+			this.$pre = $node.find('.pre');
+			this.$next = $node.find('.next');
+			this.bind();
+		};
+		Carousel.prototype ={
+			constructor:Carousel,
+			bind:function(){
+				var _this = this;
+				this.$pre.on('click',function(){
+					_this.playPre();
+				});
+				this.$next.on('click',function(){
+					_this.playNext();
+				})
+			},
+			playPre:function(){
+				var $ct = this.$ct;
+				$ct.prepend($ct.children().last());/*在DOM中选中一个元素使用prepend或者append方法，就是移动元素的效果*/
+				$ct.css("left",0-this.$img.width());
+				$ct.animate({left:0});
+			},
+			playNext:function(){
+				var $ct = this.$ct;
+				$ct.animate({left:0-this.$img.width()},function(){
+					$ct.append($ct.children().first());
+					$ct.css("left",0);
+				})
+			}
+		};
+		$('.ct').each(function(index,value){
+			new Carousel($(value));
+		})
+/*
+		var $node1 = $('.ct').eq(0);
+		var $node2 = $('.ct').eq(1);
+		var carousel1 = new Carousel($node1);
+		var carousel2 = new Carousel($node2);
+*/
+
+	</script>
+</body>
+</html>

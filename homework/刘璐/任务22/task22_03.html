@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task22_03</title>
+</head>
+<body>
+<ul class="ct">
+    <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg">鼠标放置查看图片1</li>
+    <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg">鼠标放置查看图片2</li>
+    <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview"></div>
+<script>
+    //补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。
+    var ct=document.querySelector('.ct'),
+        pre=document.querySelector('.img-preview'),
+        img=document.createElement('img');
+        ct.addEventListener('mouseover',function (e) {
+            img.src=e.target.getAttribute("data-img");
+            pre.appendChild(img);
+        })
+
+</script>
+</body>
+</html>
