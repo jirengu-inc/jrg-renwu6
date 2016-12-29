@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        li {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background-color: green;
+        }
+
+        button {
+            border: 1px solid red;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            color: red;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .wrap {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id=content>
+        <li>内容1</li>
+        <li>内容2</li>
+    </ul>
+    <div class="wrap">
+        <button id=btn>加载更多</button>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      var  $btn = $('#btn'),
+            $content = $('#content'),
+            $sum = $content.children().length,
+            lock = false;
+      $btn.on('click',getMore)
+
+        function getMore() {
+          console.log($sum)
+            lock = true;
+            $.ajax({
+                url: 'getMore.php',
+                type: 'get',
+                data: {
+                    start: $sum,
+                    length: 6
+                },
+                dataType: 'json',
+                success: function(ret) {
+                    for (var i = 0; i < ret.length; i++) {
+                  $('#content').append('<li>'+ret[i]+'</li>')
+                    }
+                    lock = false;
+                },
+                error: function() {
+                    alert("异常");
+                    lock = false;
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>
