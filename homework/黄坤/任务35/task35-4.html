@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style>
+	.mod-tab *{
+		box-sizing: border-box;
+	}
+	.mod-tab{
+		border:1px solid #ccc;
+	}
+	.mod-tab ul,.mod-tab li{
+		margin:0;
+		padding: 0;
+		list-style: none;
+	}
+	.mod-tab .tabs:after{
+		content: '';
+		height: 0;
+		display: table;
+		clear:both;
+	}
+	.mod-tab .tabs li{
+		float: left;
+		width: 33.3%;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		cursor: pointer;
+	}
+	.mod-tab .tabs li:last-child{
+		border-right: none;
+	}
+	.mod-tab .panel{
+		display: none;
+		height: 180px;
+		padding: 20px;
+	}
+	.mod-tab .tabs .active{
+		background: #eee;
+	}
+	.mod-tab .active{
+		display: block;
+	}		
+</style>
+</head>
+<body>
+	<!-- 使用构造函数创建对象的方式实现 Tab 切换功能 -->
+ 	<div class="mod-tab">
+		<ul class="tabs">
+			<li class="active">tab1</li>
+			<li>tab2</li>
+			<li>tab3</li>
+		</ul>
+		<div class="panel active">内容1</div>
+		<div class="panel">内容2</div>
+		<div class="panel">内容3</div>
+	</div>
+
+	<script>
+	     function GoTap($el){
+	     	var cur = this.$el = $el;
+	     	this.idx = cur.index();
+			this.panel = cur.parents('.mod-tab').find('.panel');
+	     	this.bind();
+	     }
+	     GoTap.prototype = {
+	     	bind: function(){
+	     		var me = this;
+	     		this.$el.on('click',function(){
+		     		me.fidCtx();
+	     		});
+	     	},
+	     	fidCtx:function(){
+	     			var self = this.idx;
+	     			this.$el.siblings().removeClass('active');
+	     			this.$el.addClass('active');
+		     		this.panel.removeClass('active');
+		     		this.panel.eq(self).addClass('active');	     		
+	     	}
+	     }
+	     $('.tabs li').each(function(){
+	     	new GoTap($(this));
+	     })
+	</script>
+</html>
