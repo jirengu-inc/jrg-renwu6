@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装ajax</title>
+</head>
+<body>
+<button id="btn" type="button">点我</button>
+<div id="text"></div>
+<script src="../js/ajax.js"></script>
+<script>
+    document.querySelector('#btn').addEventListener('click', function () {
+        ajax({
+            url: 'getData.php',   //接口地址
+            type: 'get',               // 类型， post 或者 get,
+            data: {
+                username: 'xiaoming',
+                password: 'abcd1234'
+            },
+            success: function (ret) {
+                var myDiv = document.querySelector('#text');
+                myDiv.innerText = '用户名：' + ret.username + '\|' + '密码：' + ret.password;    // {status: 0}
+            },
+            error: function () {
+                console.log('出错了')
+            }
+        })
+    });
+</script>
+</body>
+</html>

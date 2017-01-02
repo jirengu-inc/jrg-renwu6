@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style media="screen">
+        body {
+            height: 1000px;
+        }
+
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: white;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .scroll {
+            position: fixed;
+            right: 100px;
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</legend>
+        <button class=settimeout>点击变色</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</legend>
+        <div class="box"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend>当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</legend>
+        <input class=inPut type="text">
+    </fieldset>
+    <fieldset>
+        <legend> 当选择 select 后，获取用户选择的内容 </legend>
+        <select class=select>
+      <option value="red">red</option>
+      <option value="pink">pink</option>
+      <option value="green">green</option>
+    </select>
+        <p class=result>pink</p>
+    </fieldset>
+    <div class="scroll"></div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.settimeout').on('click', function() {
+            var $button = $(this).css({
+                'background': 'red'
+            })
+            setTimeout(function() {
+                $button.css({
+                    'background': 'blue'
+                })
+            }, 1000)
+        })
+
+        $('.box').on('mouseenter', function() {
+            $(this).addClass('red');
+        })
+        $('.box').on('mouseleave', function() {
+            $(this).removeClass('red')
+        });
+        $('inPut').on('focus', function() {
+            $(this).css({
+                'outlineColor': 'blue'
+            })
+        })
+        $('.inPut').on('keyup', function() {
+            $(this).val(function(index, val) {
+                return val.toUpperCase();
+            })
+            $('.inPut').on('blur', function() {
+                console.log($(this).val())
+            })
+        })
+
+        $('.select').on('change', function() {
+            $(this).siblings('.result').text($(this).val())
+        })
+
+        $(window).on('scroll', function() {
+            $('.scroll').animate({
+                'font-size': '30px'
+            }).text('垂直滚动距离' + $(window).scrollTop() + 'px')
+        })
+    </script>
+</body>
+
+</html>
