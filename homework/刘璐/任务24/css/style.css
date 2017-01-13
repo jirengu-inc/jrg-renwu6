@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul, li {
+    list-style: none;
+}
+#ct li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    cursor: pointer;
+}
+#ct li:hover{background-color: green;}
+#loadmore {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    cursor: pointer;
+}
+.btn {
+    height: 40px;
+    line-height: 40px;
+    width: 80px;
+    border: 1px solid #E27272;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    color: #E27272;
+}
+

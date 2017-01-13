@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<style>
+		div,button{
+			padding: 0;
+			margin:0;
+		}
+		.col{
+			height: 40px;
+			border: 1px solid #ccc;
+			margin: 10px;
+			padding-left:10px;
+			line-height: 40px; 
+			cursor: pointer;
+		}
+		.btn{
+			width: 96px;
+			height: 46px;
+			border: 1px solid #c13939;
+			border-radius: 2px;
+			padding: 8px 12px;
+			background: #fff;
+			color: #c13939;
+			font-size: 16px;
+			margin: 10px;
+			display: block;
+			margin: 0 auto;
+		}
+		img{
+			width: 30px;
+			height: 30px;
+			margin: 0px auto;
+			text-align: center;
+		}
+		.ct>div:hover{
+			background: green;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<div class="col">内容1</div>
+		<div class="col">内容2</div>
+	</div>
+	<button class="btn">加载更多</button>
+	<script>
+		$(function(){
+
+			var len = 6,
+		 		start = 2;
+
+			$('.btn').on('click',function(){
+
+				if ($(this).data('isloading')) {
+					return;
+				}
+				$(this).data('isLoading',true)
+					   .html('<img src=loading.gif>');
+
+				$.ajax({
+					url: 'getMore.php',
+					type: 'GET',
+					dataType: 'json',
+					data:{
+						start: start,
+						len: len
+					},
+					success: function(data){
+						$('.btn').data('isLoading',false)
+					     	     .html('加载更多');	
+						if (data && data.status === 1) {
+							var items = data.item;
+							for(var i=0; i<items.length;i++){
+								$('.ct ').append('<div class="col">' + '内容'+items[i] + '</div>');
+							}
+							start += len;
+						}else{
+							alert('获取信息失败');
+						}
+					},
+					error: function(){					
+						$('.btn').data('isLoading',false)
+					     	     .html('加载更多');
+						alert('系统异常')
+					}
+				});
+
+			});
+		});
+
+	</script>
+    
+</body>
+</html>

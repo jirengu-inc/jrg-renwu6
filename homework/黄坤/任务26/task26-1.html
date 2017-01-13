@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+	<style>
+		.ct{
+			width: 100%;
+			height: 100vh;
+			border: 1px solid;
+		}
+		.first,.second{
+			width: 100%;
+			height: 100px;
+			border: 1px solid red;
+		}
+		.active{
+			background: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<div class="first">1</div>
+		<div class="second active">2</div>
+		<p>3<img src="http://img0.bdstatic.com/img/image/imglogo-r.png" title="百度" id="sites"></p>
+		<div class="item">111111</div>
+		<div class="panel">222222</div>
+		<button class="btn-add">添加active类</button><br>
+		<button class="btn-remove">删除first div的active类并隐藏first div</button><br>
+		<button class="btn-attr">获取设置元素属性</button><br>
+		<button class="btn-src">自定义元素属性</button><br>
+		<button class="btn-pre">在被选元素的开头插入内容</button><br>
+		<button class="btn-app">在被选元素的末尾插入内容</button><br>
+		<button class="btn-rem">删除子元素</button><br>
+		<button class="btn-empty">清空元素内部内容</button><br>
+
+		
+	</div>
+
+	<script>
+		$('.btn-add').on('click',function(){
+			$('.ct .first').addClass('active');		
+		})
+		$('.btn-remove').on('click',function(){
+			$('.ct .first').removeClass('active').hide('.ct .first');			
+		})
+		$('.btn-attr').on('click',function(){
+			console.log( $('.ct p>img').attr('id') );	;//获取
+			$('.ct p>img').attr('id','sites_biyin');
+			console.log( $('.ct p>img').attr('src') );
+			$('.ct p>img').attr('title','必应') 
+			$('.ct p>img').attr('src','http://cn.bing.com/sa/simg/CN_Logo_Gray.png') 
+		})
+
+		$('.ct').attr('data-src',false);
+		$('.btn-src').click(function(){
+			if($('.ct').attr('data-src')){
+				$('.ct').css({'border':'2px solid red'});
+			}else{
+				return;			}
+		});
+
+		$('.btn-pre').on('click',function(){
+			$('.ct ').prepend( $('.ct').find('p'));		
+		})
+
+		$('.btn-app').on('click',function(){
+			$('.ct ').append( $('.ct').find('p'));		
+		})
+
+		$('.ct .btn-rem').on('click',function(){
+			$('.ct').find('p').css({'border':'2px solid red'}).animate({		
+				width:'100%',
+				height:'200px'},1000).empty();	
+		})
+		$('.ct .btn-empty').on('click',function(){
+			$('.ct').empty();	
+		})
+
+		var $div = $('<div class="btn"></div>')
+		$div.appendTo($('.ct'));
+		$('.ct .btn').css({'width':'300px',
+						   'height':'60px',
+						   'padding':'10px',
+						   'border':'1px solid red',
+						   'margin':'10px'
+						});
+
+		//width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）。
+		//height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。
+		console.log($('.ct .btn').width());
+		console.log($('.ct .btn').height());
+
+		//innerWidth() 方法返回元素的宽度（包括内边距）。
+		//innerHeight() 方法返回元素的高度（包括内边距）。
+		console.log($('.ct .btn').innerWidth());
+		console.log($('.ct .btn').innerHeight());
+
+		//outerWidth() 方法返回元素的宽度（包括内边距和边框）。
+		//outerHeight() 方法返回元素的高度（包括内边距和边框）
+		console.log($('.ct .btn').outerWidth());
+		console.log($('.ct .btn').outerHeight());
+
+		//outerWidth(true) 方法返回元素的宽度（包括内边距、边框和外边距）。
+		//outerHeight(true) 方法返回元素的高度（包括内边距、边框和外边距）。
+		console.log($('.ct .btn').outerWidth(true));
+		console.log($('.ct .btn').outerHeight(true));
+
+		//获取窗口滚动条垂直滚动距离$(document).scrollTop();
+		console.log($(document).scrollTop());//18
+
+		//获取$node 到根节点水平、垂直偏移距离
+		console.log('ct到根节点水平、垂直偏移距离:'+'x='+$('.ct').offset().left +' y='+$('.ct').offset().top );
+
+		//修改$node 的样式，字体颜色设置红色，字体大小设置14px
+		$('.ct .btn').text('字体文本').css({
+			'color':'red',
+			'fontSize':'14px'
+		});
+		//遍历节点，把每个节点里面的文本内容重复一遍
+		$('.ct').children().each(function(){
+			console.log($(this).text());
+		})
+
+		//从$ct 里查找 class 为 .item的子元素
+		console.log( $('.ct').find('.item').text() );
+
+		//获取$ct 里面的所有孩子
+		console.log($('.ct').children());		
+
+		//对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子
+		console.log( $('.item').parents('.ct').find('.panel').get(0));
+		
+		//获取选择元素的数量
+		console.log($('.ct').children().length);	
+
+		//获取当前元素在兄弟中的排行
+		console.log( $('.ct').find('.panel').index() );
+	</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task24-3</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			font-size: 16px;
+		}
+		.register{
+			margin:30px;
+		}
+		h3{
+			padding-bottom:20px;
+		}
+		input{
+			border-radius: 3px;
+			border:1px solid #ccc;
+			height: 20px;
+		}
+		ul,li{
+			list-style: none;
+		}
+		span{
+			font-size: 14px;
+			color:#ccc;
+			padding:10px;
+			display: block;
+			padding-left: 95px;
+		}
+		#btn{
+			display: block;
+            width:50px;
+            height:30px;
+			text-align: center;
+			border:1px solid #333;
+			margin-top:-20px;
+			border-radius: 5px;
+			margin-left:120px; 
+		}
+	</style>
+</head>
+<body>
+<div class="register">
+  		<h3>注册</h3>
+  <div class="content">
+	  <ul>
+	  	<li>
+	  		用户名：&nbsp;&nbsp<input id="username" type="text" placeholder="用户名(hunger被注册过)" ><br/>
+	  		<span id="name-tip">只能是字母、数字、下划线，3-10个字符</span>
+	  	</li>
+	  	<li>
+	  		密&nbsp码：&nbsp;&nbsp<input id="psw" type="password"><br/>
+	  		<span id="psw-tip">大写字母、小写、数字、下划线最少两种，6-15个字符</span>
+	  	</li>
+	  	<li>
+	  		再输一次：&nbsp<input id="psw-again" type="password" placeholder="再输入一次密码">
+	  		<span id="again-tip"></span>
+	  	</li>
+	  </ul>
+  </div>
+</div>
+ <button id="btn">注册</button>
+
+<script>
+    //封装AJAX函数
+	function ajax(opts){
+			var oAjax = new XMLHttpRequest(); 
+			oAjax.onreadystatechange = function(){
+				if(oAjax.readyState===4 && oAjax.status===200){
+					var json = JSON.parse(oAjax.responseText);
+					opts.success(json);
+				}
+				if(oAjax.status===404){
+					opts.error();
+				}
+			}
+			var dataStr='';
+			for (var key in opts.data) {
+				dataStr += key +"="+ opts.data[key]+ "&"
+			}
+			dataStr = dataStr.substr(0, dataStr.length-1);
+            dataStr +='t='+new Date().getTime();//制止缓存
+			if (opts.type.toLowerCase()==='get') {
+				oAjax.open(opts.type, opts.url + '?'+dataStr,true);
+				oAjax.send();
+			}
+			if (opts.type.toLowerCase()==='post') {
+				oAjax.open(opts.type, opts.url,true);
+				oAjax.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+				oAjax.send(dataStr);
+			}
+	}
+	var username = document.getElementById('username');
+	var nametip = document.getElementById('name-tip'); 
+	var psw = document.getElementById('psw');
+	var pswtip = document.getElementById('psw-tip');
+	var again = document.getElementById('psw-again');
+	var againtip = document.getElementById('again-tip');
+	var btn = document.querySelector('#btn');
+
+	function isValidUsername(str){
+		var reg = /^\w{3,10}$/;
+		return reg.test(str);
+	}
+    //这里只有用户名需要ajax验证是否被重复使用
+	username.addEventListener('change', function(){
+		ajax({
+		    url: 'task24-3.php',   //接口地址
+		    type: 'get',    // 类型， post 或者 get,
+		    data: {
+		        username:username.value,
+		    },
+		    success: function(json){
+                onSuccess(json);
+			},
+		    error: function(){
+		        onError();
+		    }
+		})
+	});
+	function onSuccess(json){
+        if(json == 0){
+			nametip.innerText = '该用户名已经存在'; 
+			username.style.border = '1px solid red';               	
+        }
+        if(isValidUsername(username.value) && json == 1){
+            nametip.innerText = '用户名可用';
+            username.style.border = '1px solid #ccc';
+        }
+		if(!isValidUsername(username.value)){
+			nametip.innerText = '该用户名格式不正确';
+			username.style.border = "1px solid red";
+		}		
+	}
+	function onError(){
+		alert('数据出错了');
+	}
+
+	function isValidPassword(str) {
+	    if(/(^\d{6,15}$)|(^[A-Z]{6,15}$)|(^[a-z]{6,15})|(^_{6,15}$)|(^[a-zA-Z0-9]{0,5}$)/.test(str)) {
+	        //alert("Oh,你输入的密码不合法!");
+	        return;
+	    }
+	   if(/^\w{6,15}$/.test(str)){
+	        return true;
+	    }
+	}
+	psw.addEventListener('change',function(){   //第一次验证密码
+		if(!isValidPassword(psw.value)){
+            pswtip.innerText = '密码格式不正确';
+            psw.style.border = '1px solid red';
+		}else{
+			pswtip.innerText = '';
+			psw.style.border = '1px solid #ccc';
+		}
+	})
+    again.addEventListener('change',function(){   //第二次验证密码
+    	if(again.value ==''){
+            againtip.innerText = '密码不能为空';
+            again.style.border = '1px solid red';
+		}else if(again.value !==psw.value){
+			againtip.innerText = '两次输入的密码不一致';
+			again.style.border = '1px solid red';
+		}else{
+            againtip.innerText = '';
+            again.style.border = '1px solid #ccc';
+		}
+    })
+
+	btn.addEventListener('click',function(){
+		if(isValidUsername(username.value) && psw.value ==again.value){
+			alert('注册中...')
+		}else{
+			alert('信息不符，请重写填写')
+		}
+	})	
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		div{
+			width: 100px;
+			height: 1500px;
+			border: 1px solid red;
+			text-align:center;
+			margin: 0 auto;
+		}
+		p{
+			border: 1px solid blue;
+			margin-top: 750px;
+			transform: translateY(-50%);
+		}
+	</style>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<p>我出现了就在控制台显示true</p>
+	</div>
+	<script>
+		function isVisible($node){
+			var $scrollTop=$(window).scrollTop();
+			var $windowHeight=$(window).height();
+			var $nodeOffsetTop=$node.offset().top;
+
+			if($windowHeight+$scrollTop>$nodeOffsetTop){
+	            return true;
+	        }else{
+	            return false;
+	        }
+		}   
+        var cansee=false;           
+		$(window).on("scroll",function(){
+			if(cansee==true){
+				return;
+			}
+			var result=isVisible($("p"));
+			if(result){
+				console.log(result);
+				cansee=true;
+			}		
+		});
+	</script>
+</body>
+</html>

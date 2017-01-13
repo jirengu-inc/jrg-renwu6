@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<style>
+	html,body,ul,li,p{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	.carousel{
+		position: relative;
+		width: 310px;
+		height: 206px;
+        margin-left: 10px;
+		overflow: hidden;
+	}
+    #c1{
+        margin-top: 10px;
+    }
+	.carousel .img-ct{
+		position: absolute;
+	}
+	.carousel .img-ct img{
+		width: 310px;
+		height: 206px;
+	}
+	.carousel .img-ct li{
+		float: left;
+	}
+	.carousel .img-ct:after{
+		content: " ";
+		display: block;
+		clear: both;
+	}
+	.arrow{
+		position: absolute;
+		top: 50%;
+		margin-top: -15px;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background: #4E443C;
+		color: #fff;
+		border-radius: 30px;
+		box-shadow: 0 0 2px #999;
+		opacity: 0.8;
+	}
+	.arrow:hover{
+		opacity: 1;
+	}
+	.pre{
+		left: 10px;
+	}
+	.next{
+		right: 10px;
+	}
+</style>
+</head>
+<body>
+    <div class="carousel" id="c1">
+    	<ul class="img-ct">
+    		<li data-id=0><a href="#"><img src="1.jpg"></a></li>
+    		<li data-id=1><a href="#"><img src="2.jpg"></a></li>
+    		<li data-id=2><a href="#"><img src="3.jpg"></a></li>
+    		<li data-id=3><a href="#"><img src="4.jpg"></a></li>
+    	</ul>
+    	<a class="pre arrow" href="#"><</a>
+    	<a class="next arrow" href="#">></a>
+    </div>
+  <div class="carousel" id="c2">
+	<ul class="img-ct">
+		<li data-id=0><a href="#"><img src="1.jpg"></a></li>
+		<li data-id=1><a href="#"><img src="2.jpg"></a></li>
+		<li data-id=2><a href="#"><img src="3.jpg"></a></li>
+		<li data-id=3><a href="#"><img src="4.jpg"></a></li>
+	</ul>
+	<a class="pre arrow" href="#"><</a>
+	<a class="next arrow" href="#">></a>
+	<ul class="bullet">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+ <script>
+        function action(carousel){
+            var $parent = $(carousel),
+        	    $ct = $parent.find('.img-ct'),
+        		$items = $ct.children(),
+        		$pre = $parent.find('.pre'),
+        		$next = $parent.find('.next'),  
+        		imgWidth = $items.width(),
+        		imgCount = $items.size();
+
+        	$ct.prepend($items.last().clone());
+        	$ct.append($items.first().clone());
+        	imgRealCount = $ct.children().size();
+        	$ct.css({left:0-imgWidth,width:imgRealCount*imgWidth})
+
+            var curIdx = 0 ;
+                isAnimate = false;
+        	$next.on('click',function(){		
+                if (curIdx == 3) {
+                    $ct.css({left:0-imgWidth});
+                    curIdx = 0;
+                }else{
+                    playNext();
+                }
+        	});
+        	$pre.on('click',function(){
+                if (curIdx == 0) {
+                    $ct.css({left:0-imgWidth*imgCount})
+                    curIdx = 3;
+                }else{
+                    playPre();
+                }
+        	});
+        	function playNext(){
+                    if (!isAnimate) {
+                        isAnimate = true;
+            			$ct.animate({left:'-='+imgWidth},function(){
+                            curIdx++;
+                            isAnimate = false;
+            			});
+                    }
+        		}
+        	function playPre(){ 
+                    if (!isAnimate) {   
+                        isAnimate = true;                    
+            			$ct.animate({left:'+='+imgWidth},function(){
+                            curIdx--;
+                            isAnimate = false;
+            			});
+                    }
+        		}
+        }
+        action('#c1');
+        action('#c2');
+    </script> 
+</body>
+</html>

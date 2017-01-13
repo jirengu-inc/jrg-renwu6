@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>轮播图按图片序号显示</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:none;
+			clear:both;
+		}
+
+		.windowview{
+			width: 310px;
+			height: 206px;
+			position:relative;
+			overflow:hidden;
+		}
+
+		.ul-cont.clearfix{
+			position:absolute;
+		}
+
+		.ul-cont li img{
+			width: 310px;
+			height: 206px;
+		}
+
+		.ul-cont.clearfix li{
+			float:left;
+		}
+
+		.arrow{
+			position:absolute;
+			top: 50%;
+		    transform: translateY(-50%);
+		    width:30px;
+		    height:30px;
+		    line-height:30px;
+		    text-align:center;
+		    border-radius:30px;
+		    background: #4E443C;
+		    color: #fff;
+		    opacity: 0.8
+		}
+
+		.arrow:hover{
+			opacity:0.5;
+		}
+
+		.next{
+			right:10px;
+		}
+
+		.pre{
+			left:10px;
+		}
+
+		.btn{
+			position:absolute;
+			bottom:10px;
+			left:50%;
+			transform: translateX(-50%);
+		}
+
+		.btn li{
+			width:15px;
+			height:4px;
+			border-radius:3px;
+			background:#fff;
+			display:inline-block;
+			cursor:pointer;
+		}
+
+		.btn .active{
+			background:#999;
+		}
+
+		#container{
+			margin:0 auto;
+		}
+	</style>
+	<script type="text/javascript" src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js">
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div id="cont1" class="windowview"><!--div cont1是轮播图的固定窗口，里面ul是影片(li都向左浮动后成一条)，div窗口不动，里面的ul左右滑动产生轮播效果 -->
+			<ul class="ul-cont clearfix">
+				<li data-idx=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></a></li>
+				<li data-idx=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></a></li>
+				<li data-idx=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg"></a></li>
+				<li data-idx=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg"></a></li>
+			</ul>
+			<a href="#" class="next arrow">></a>
+			<a href="#" class="pre arrow"><</a>
+		</div>
+		<div id="cont2" class="windowview"><!--div cont1是轮播图的固定窗口，里面ul是影片(li都向左浮动后成一条)，div窗口不动，里面的ul左右滑动产生轮播效果 -->
+			<ul class="ul-cont clearfix">
+				<li data-idx=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></a></li>
+				<li data-idx=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></a></li>
+				<li data-idx=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg"></a></li>
+				<li data-idx=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg"></a></li>
+			</ul>
+			<a href="#" class="next arrow">></a>
+			<a href="#" class="pre arrow"><</a>
+		</div>
+	</div>
+	<script>
+		$(function(){
+
+			function Carousel($node){
+				this.$ct=$node.find(".ul-cont.clearfix");
+				this.$imgWidth=this.$ct.find("li").eq(0).width();//获取图片宽度即每次图片滚动的距离，作为属性绑定到实例对象
+				this.pre=$node.find(".pre").eq(0);//给实例对象绑定pre属性，这个pre属性在后面会绑定一个点击事件
+				this.next=$node.find(".next").eq(0);
+				this.$ct.css("width",this.$imgWidth*this.$ct.find("li").length)//设置影片条总宽度才能连贯滚动，如果不设置滚动后会有空白
+				this.bind()//绑定bind方法，bind方法是两个事件函数
+			};
+
+			Carousel.prototype = {
+				constructor:Carousel,
+				bind:function(){
+					var cur=this;//因为绑定事件后在事件函数内this指向触发事件的dom元素，所以要用赋值保留原来的this对象
+					this.pre.on("click",function(){
+						console.log(cur)
+						cur.playpre()//cur就是构造函数Carousel
+					})
+					this.next.on("click",function(){
+						cur.playnext()
+					})
+				},
+
+				playpre:function(){/*上一页效果是影片条从左向右移动，
+					先将最后一张图片放到首位，然后css position控制影片向左先移动一段距离（瞬间完成肉眼无法察觉），
+					再用动画效果完成影片从左向右移动的过程*/
+					this.$ct.prepend(this.$ct.children().last())/*第一步：每点击一次先将影片的顺序调整，将最后一张图片放到第一位，即要展现的图片放到第一位*/
+					this.$ct.css("left",0-this.$imgWidth)/*第二步：为第三步将影片从左向右滑动制造一段距离，css瞬间完成，肉眼无法察觉*/
+					this.$ct.animate({left:0})/*第三步，完成影片从左向右滑动的动画效果*/
+				},
+				playnext:function(){/*下一页效果是影片条从右向左移动,
+					先将影片的第一张放到最后的位置，即已经看过的图片放到末尾，然后用css position将影片固定在left:0的初始位置,
+					再用动画效果完成影片从右往左移动的过程
+					*/
+					this.$ct.append(this.$ct.children().first())/*第一步：每次点击先将影片顺序调整，已经看过的图片放到末尾*/
+					this.$ct.css("left",0)/*第二步:每次点击先将影片的位置先固定在初始位置left:0*/
+					this.$ct.animate({left:0-this.$imgWidth})/*第三步:animate负值，完成影片从右向左滚动的动画效果*/
+				}
+			};
+
+			// var $node1 = $('.windowview').eq(0);/*第一组轮播*/
+			// var carousel1 = new Carousel($node1);
+			// var $node2 = $('.windowview').eq(1);/*第二组轮播*/
+			// var carousel2 = new Carousel($node2);
+
+			$('.windowview').each(function(index,value){/*jquey获取对象后用each方法对每个成员执行一次new操作，index参数不可少
+			value传入时要还原成jquery对象所以要加$*/
+				new Carousel($(value))
+			})
+
+		})
+	</script>
+</body>
+</html>

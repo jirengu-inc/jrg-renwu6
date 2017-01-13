@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>	
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+    	#header{
+    		height: 80px;
+			background: red;
+			line-height: 80px;
+			text-align: center;
+    	}
+    	#nav{
+    		height: 40px;
+    		background: blue;
+    		margin-top: 20px;
+    	}
+    	#content{
+    		background: #ccc;
+			min-height: 800px;
+			overflow: auto;
+			padding: 10px;
+    	}
+    	#content .aside{
+    		width: 100px;
+    		min-height: 400px;
+    		background: green;
+    		float: left;
+    	}
+    	#content .main{
+    		min-height: 800px;
+    		background: #fff;
+    		overflow: auto;
+    		padding-left: 20px;
+    	}
+    	#footer{
+    		background: #333;
+    	}
+    </style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="nav">nav</div>
+	<div id="content">
+		<div class="aside">aside</div>
+		<div class="main">main</div>
+	</div>
+	<div id="footer">footer</div>
+
+	<script>
+		var $cur=$("#nav"), //导航nav
+			curH=$cur.height(), //导航nav的高度
+			curW=$cur.width(), //导航nav的宽度
+			offsetTop=$cur.offset().top, //向下偏移的距离
+			offsetLeft=$cur.offset().left; //向左偏移的距离
+
+
+		var $curClone=$cur.clone().css({visibility:"hidden",display:"none"}).insertBefore($cur);  
+		//在导航nav前面再克隆一个nav,并设置样式透明度为0和隐藏,
+
+		$(window).on("scroll",function(){
+			var scrollTop=$(this).scrollTop();
+			if(scrollTop>=offsetTop){
+				setFixed();
+			}else{
+				unsetFixed();
+			}
+		});
+		function setFixed(){
+			$cur.css({
+		 		"position":"fixed",
+				"top":0,
+		 		"left":offsetLeft,
+		 		"width":curW,
+				"margin": 0,
+		 		"z-index":9999
+		 	});
+		 	$curClone.show();
+		}
+		function unsetFixed(){
+			$cur.removeAttr("style");
+			$curClone.hide();
+		}
+	</script>
+</body>
+</html>

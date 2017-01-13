@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>懒加载</title>
+	<style type="text/css">
+		html,body{
+			margin:0px;
+			padding:0px;
+		}
+		ul,li{
+			list-style:none;
+		}
+
+		.clearfix{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		#container{
+			width:800px;
+			margin:0 auto;
+		}
+
+		.clearfix li{
+			float:left;
+			margin:10px;
+		}
+		img{
+			width:200px;
+			height:400px;
+		}
+	</style>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js">
+	</script>
+</head>
+<body>
+	<div id="container">
+		<ul class="clearfix">
+			<li><img src="girl.jpg" alt=""></li>
+			<li><img src="girl.jpg" alt=""></li>
+			<li><img src="girl.jpg" alt=""></li>
+			<li><img src="girl.jpg" alt=""></li>
+			<li><img src="girl.jpg" alt=""></li>
+			<li><img src="girl.jpg" alt=""></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+			<li><img src="" alt="" data_img="girl.jpg"></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			
+			checkimg();
+			var clock;
+			$(window).on("scroll",function(){
+				if(clock){/*多次滚动时直接清除当前定义的时钟，即如果发现连续多次滚动就不执行checkimg()函数，因为鼠标滚动一次会执行多次scroll所以这么写能提高性能，避免scroll滚动重复执行checkimg()函数*/
+			      clearTimeout(clock);
+			    }
+			    clock = setTimeout(function(){/*每次滚动新建一个延迟执行动作*/
+			      console.log(1);
+			      checkimg();
+			    }, 300);
+			})
+
+			
+
+			function checkimg(){
+				$("img").each(function(){
+					var $img=$(this)
+					console.log($img)
+					if(isshow($img) && !$img.data("loaded")){/*元素出现在视窗内且元素没有被加载过才能执行*/
+						showimg($img)
+					}
+				})
+			}
+
+			function isshow($img){
+				var $nodeH=$img.offset().top,
+					$scrollTop=$(window).scrollTop(),
+					$winH=$(window).height()
+					if($scrollTop + $winH > $nodeH){
+						return true
+					} else{
+						return false
+					}
+			}
+
+			function showimg($img){
+				$img.attr("src",$img.attr("data_img"));
+				$img.data("loaded",true)/*对加载过的元素设置标志位*/
+			}
+		})
+	</script>
+</body>
+</html>

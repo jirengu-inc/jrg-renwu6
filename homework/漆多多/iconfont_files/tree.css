@@ -1,0 +1,176 @@
+/* Just some base styles not needed for example to function */
+*{
+	box-sizing: border-box;
+}
+html {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	height: 100%;
+}
+body, form, ul, li, p, h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+}
+body {
+	color: #333;
+	margin: 0;
+}
+img {
+	border: none;
+}
+p {
+	font-size: 1em;
+	margin: 0 0 1em 0;
+}
+html {
+	font-size: 100%; /* IE hack */
+}
+body {
+	font-size: 1em; /* Sets base font size to 16px */
+}
+table {
+	font-size: 100%; /* IE hack */
+}
+input, select, textarea, th, td {
+	font-size: 1em;
+}
+
+#doc{
+	display: -webkit-box;
+	display: flex;
+}
+
+.aside
+{
+	float: left;
+    min-width: 200px;
+    max-width: 440px;
+    margin-right: 20px;
+    padding: 30px 20px 30px 15px;
+	background-color: #2f3238;
+	color: #bbb;
+	font-size: 14px;
+	transition: width 0.8s;
+}
+.main{
+	padding: 20px;
+	flex: 1;
+	min-height: 900px;
+}
+
+
+/* CSS Tree menu styles */
+ol.tree {
+	padding: 0 0 0 30px;
+}
+ol.tree li {
+	position: relative;
+	margin-left: -15px;
+	list-style: none;
+}
+ol.tree li.file {
+	margin-left: -1px !important;
+}
+ol.tree li.file a {
+	background: url(../img/doc.png) 0 0 no-repeat;
+	background-size: 18px!important;
+	color: #74777b;
+	padding-left: 26px;
+	margin-top: 2px;
+	margin-bottom: 8px;
+	text-decoration: none;
+	display: block;
+}
+ol.tree li.file a[href *= '.pdf'] {
+	background: url(../img/pdf.png) 0 0 no-repeat;
+}
+ol.tree li.file a[href *= '.txt'] {
+	background: url(../img/txt.png) 0 0 no-repeat;
+}
+ol.tree li.file a[href *= '.md'] {
+	background: url(../img/md.png) 0 0 no-repeat;
+}
+
+ol.tree li.file a[href *= '.doc'],
+ol.tree li.file a[href *= '.docx'] {
+	background: url(../img/doc.png) 0 0 no-repeat;
+}
+ol.tree li.file a[href *= '.png'],
+ol.tree li.file a[href *= '.jpg'],
+ol.tree li.file a[href *= '.gif'] {
+	background: url(../img/picture.png) 0 0 no-repeat;
+}
+ol.tree li.file a[href *= '.html'],
+ol.tree li.file a[href *= '.htm'] {
+	background: url(../img/explorer.png) 0 0 no-repeat;
+}
+ol.tree li.file a[href $= '.css'],
+ol.tree li.file a[href $= '.less'],
+ol.tree li.file a[href $= '.scss'], 
+ol.tree li.file a[href $= '.sass'] {
+	background: url(../img/css.png) 0 0 no-repeat;
+}
+ol.tree li.file a[href $= '.js'] {
+	background: url(../img/js.png) 0 0 no-repeat;
+}
+ol.tree li input {
+	position: absolute;
+	left: 0;
+	margin-left: 0;
+	opacity: 0;
+	z-index: 2;
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+	vertical-align: middle;
+	top: 0;
+}
+ol.tree li input + ol {
+	background: url(../img/plus.png) 40px 2px no-repeat;
+	background-size: 10px;
+	margin: -16px 0 0 -44px; /* 15px */
+	height: 20px;
+	transition: padding-top 0.3s;
+}
+ol.tree li input + ol > li {
+	display: none;
+	margin-left: -14px !important;
+	padding-left: 1px;
+}
+ol.tree li label {
+	background: url(../img/folder.png) 15px 1px no-repeat;
+	background-size: 18px;
+	cursor: pointer;
+	display: block;
+	padding-left: 42px;
+	margin-bottom: 4px;
+}
+ol.tree li input:checked + ol {
+	background: url(../img/minus.png) 40px 6px no-repeat;
+	background-size: 10px;
+	margin: -1.25em 0 0 -44px; /* 20px */
+	padding: 1.563em 0 0 80px;
+	height: auto;
+	transition: padding-top 0.3s;
+}
+ol.tree li input:checked + ol > li {
+	display: block;
+	margin: 0 0 0.125em;  /* 2px */
+}
+ol.tree li input:checked + ol > li:last-child {
+	margin: 0 0 0.063em; /* 1px */
+}
+
+@media screen and (max-width:768px){
+	#doc{
+		display: block;
+	}
+	.aside{
+		    float: none;
+		    max-width: 100%;
+		    height: auto;
+		    margin-bottom: 0;
+	}
+	.main{
+		margin-left: 0;
+	}
+}

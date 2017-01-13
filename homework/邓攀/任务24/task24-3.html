@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>task24-3</title>
+	    <style>
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body{
+				font-size: 16px;
+			}
+			#register{
+				margin: 50px;
+			}
+			#reg-form{
+				margin-top: 15px;
+			}
+			#register .reg-ct dt{
+				width: 80px;
+				height: 36px;
+				line-height: 36px;
+				float: left;
+			}
+			#register .reg-ct dd{
+				margin-left: 80px;
+			}
+			#register .reg-ct input{
+				width: 200px;
+				height: 36px;
+				line-height: 36px;
+				padding-left:5px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+			}
+			#register .reg-ct .prompt{
+				margin-top: 10px;
+				margin-bottom: 10px;
+				font-size: 12px;
+				color: #aaa;
+			}
+			#btn{
+				width: 80px;
+				height: 36px;
+				line-height: 20px;
+				margin-top: 30px;
+				background-color: #fff;
+				border: 1px solid #000;
+				border-radius: 3px;
+				font-size: 18px;
+				display: block;
+				cursor: pointer;
+			}
+			#btn:hover{
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="register">
+			<h2>注册</h2>
+			<form action id="reg-form">
+				<dl class="reg-ct">
+					<dt>用户名：</dt>
+					<dd>
+						<input type="text" id="username" placeholder="用户名（hunger已被注册过）" />
+					</dd>
+					<dd class="prompt prompt-u">只能是字母、数字、下划线，3-10个字符</dd>
+					<dt>密码：</dt>
+					<dd>
+						<input type="password" id="password1" placeholder="密码" />
+					</dd>
+					<dd class="prompt prompt-p1">密码是大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+					<dt>再输一次：</dt>
+					<dd>
+						<input type="password" id="password2" placeholder="再输一次密码"/>
+					</dd>
+					<dd class="prompt prompt-p2"></dd>
+					<dd>
+						<button id="btn" type="button">注册</button>
+					</dd>
+				</dl>
+			</form>
+		</div>
+		<script>
+		    function ajax(opts){
+				var xhr = new XMLHttpRequest(); 
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState === 4 && xhr.status === 200){
+						var json = JSON.parse(xhr.responseText);
+						opts.success(json);
+					}
+					if(xhr.status === 404){
+						opts.error();
+					}
+				}
+				var dataStr="";
+				for (var key in opts.data){
+					dataStr += key + "=" + opts.data[key] + "&";
+				}
+				dataStr = dataStr.substr(0, dataStr.length-1);
+				if (opts.type.toLowerCase() === "get"){
+					xhr.open(opts.type,opts.url + "?" + dataStr,true);
+					xhr.send();
+				}
+				if (opts.type.toLowerCase() === "post"){
+					xhr.open(opts.type, opts.url,true);
+					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+					xhr.send(dataStr);
+				}
+			}
+	    var username = document.querySelector("#username"),
+	        password1 = document.querySelector("#password1"),
+	        password2 = document.querySelector("#password2"),
+	        prou = document.querySelector(".prompt-u"),
+	        prop1 = document.querySelector(".prompt-p1"),
+	        prop2 = document.querySelector(".prompt-p2"),
+	        btn = document.querySelector("#btn");
+	    username.addEventListener("change",function(){
+	        checkUserName() && checkUn();
+	    });
+	    password1.addEventListener("change",function(){
+	        checkPwd1();
+	    });
+	    password2.addEventListener("change",function(){
+	        checkPwd2();
+	    });
+	    btn.addEventListener("click",function(){
+	        if(checkUserName() && checkPwd1() && checkPwd2()){
+	        	if(username.value !== "hunger"){
+	        		alert("正在注册···");
+	        	}
+	        }
+	    });
+	    function checkUserName(){
+	        var reg = /^\w{3,10}$/;
+	        if(reg.test(username.value)){
+	            prou.innerText = "用户名可用";
+	            prou.style.color = "black";
+	            username.style.borderColor = "black";
+	            return true;
+	        }
+	        else{
+	            prou.innerText = "用户名格式有误";
+	            prou.style.color = "red";
+	            username.style.borderColor = "red";
+	            return false;
+	        }
+	    }
+	    function checkUn(){
+	        ajax({
+	            url:"task24-3.php",
+	            type:"get",
+	            data:{
+	                username:username.value
+	            },
+	            success:function(ret){
+	                if(ret === 0){
+	                    prou.innerText = "用户名可用";
+	                    prou.style.color = "black";
+	                    username.style.borderColor = "black";
+	                    b = true;
+	                }else if(ret === 1){
+	                    prou.innerText = "用户名已经存在";
+	                    prou.style.color ="red";
+	                    username.style.borderColor= "red";
+	                    b = false;
+	                }
+	            },
+	            error:function(){
+	            	alert("oh 出错了");
+	            }
+	        });
+	    }
+	    function checkPwd1(){
+	        var reg = /^\w{6,15}$/g,
+	            reg2 =/(^[A-Z]+$)|(^[a-z]+$)|(^[0-9]+$)|(^[_]+$)/;
+	        if(reg.test(password1.value)){
+	            if(reg2.test(password1.value)){
+	                prop1.innerText = "密码格式有误";
+	                prop1.style.color = "red";
+	                password1.style.borderColor = "red";
+	                return false;
+	            }else{
+	                prop1.innerText = "密码格式正确";
+	                prop1.style.color = "black";
+	                password1.style.borderColor = "black";
+	                return true;
+	            }
+	        }else{
+	            prop1.innerText = "密码格式有误";
+	            prop1.style.color = "red";
+	            password1.style.borderColor = "red";
+	            return false;
+	        }
+	    }
+	    function checkPwd2(){
+	        if(password2.value === password1.value){
+	            prop2.innerText = "两次输入的密码一致";
+	            prop2.style.color = "black";
+	            password2.style.borderColor = "black";
+	            return true;
+	        }else{
+	            prop2.innerText = "两次输入的密码不一致";
+	            prop2.style.color = "red";
+	            password2.style.borderColor = "red";
+	            return false;
+	        }
+	    }
+	</script>
+	</body>
+</html>

@@ -8,10 +8,10 @@
 	<button id="btn">点我</button>
     <div id="myDiv"></div>
 	<script>
-    
+
 	document.querySelector('#btn').addEventListener('click', function(){
 	    ajax({
-	        url: 'http://zhenai.luckhu.com/getData.php',   //接口地址
+	        url: 'getData.php',   //接口地址
 	        type: 'get',               // 类型， post 或者 get,
 	        data: {
 	            username: 'xiaoming',
@@ -19,15 +19,15 @@
 	        },
 	        success: function(ret){
 	            console.log(ret);       // {status: 0}
-                var myDiv=document.querySelector('#myDiv');
-                myDiv.innerText='用户名：'+ret.username+','+'密码：'+ret.password;
+                /*var myDiv=document.querySelector('#myDiv');
+                myDiv.innerText='用户名：'+ret.username+','+'密码：'+ret.password;*/
 	        },
 	        error: function(){
 	           console.log('出错了')
 	        }
 	    })
 	});
-    
+
     function ajax(o){
     	var xhr = new XMLHttpRequest();
     	xhr.onreadystatechange = function(){
@@ -39,7 +39,7 @@
     		}
             if(xhr.status == 404){
                 o.error();
-            }	
+            }
     };
     //创建发送到服务器的数据，为了让数据附加到url上，必须为key/value格式
     var dataStr = "";
@@ -60,6 +60,9 @@
         xhr.send(dataStr);
     };
     }
+    /*$(".ct a").bind("click",function(){
+        console.log($(this).text());
+    })*/
 	</script>
 </body>
 </html>

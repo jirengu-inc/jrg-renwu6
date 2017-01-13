@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #header {
+            line-height: 80px;
+            height: 80px;
+            text-align: center;
+            background-color: blue;
+        }
+
+        .nav {
+            height: 50px;
+            background-color: red;
+            text-align: center;
+            ;
+            line-height: 50px;
+        }
+
+        #content {
+            padding: 10px;
+            border: 1px solid green;
+            margin: 5px;
+            background-color: #213;
+            height: 700px;
+        }
+
+        #content::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .aside {
+            height: 500px;
+            width: 100px;
+            background-color: pink;
+            float: left;
+        }
+
+        .main {
+            background-color: yellow;
+        }
+
+        #footer {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">Stickup</div>
+    <div class="nav">导航1</div>
+    <div id="content">
+        <div class="aside">Aside</div>
+        <div class="main">Main</div>
+    </div>
+    <div class="nav">导航2</div>
+    <div id="content">
+        <div class="aside">Aside</div>
+        <div class="main">Main</div>
+    </div>
+    <div class="nav">导航3</div>
+    <div id="content">
+        <div class="aside">Aside</div>
+        <div class="main">Main</div>
+    </div>
+    <div id="footer">Footer</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.fn.stickup = function() {
+            var $cur = this;
+            $cur.each(function() {
+                var $cur = $(this),
+                    curH = $cur.height(),
+                    curW = $cur.width(),
+                    offsetTop = $cur.offset().top,
+                    offsetLeft = $cur.offset().left;
+                var curClone = $cur.clone();
+                curClone.insertBefore($cur)
+                    .css({
+                        opaticy: 0
+                    })
+                    .hide();
+                $(window).on('scroll', function() {
+                    var winTop = $(window).scrollTop();
+                    if (winTop >= offsetTop) {
+                        $cur.css({
+                            position: 'fixed',
+                            left: offsetLeft,
+                            top: 0,
+                            height: curH,
+                            width: curW
+
+                        })
+                        curClone.show();
+                    };
+                    if (winTop <= offsetTop) {
+                        curClone.hide();
+                        $cur.removeAttr('style');
+                    }
+                })
+            })
+        }
+        $('.nav').stickup();
+    </script>
+
+
+</body>
+
+</html>
