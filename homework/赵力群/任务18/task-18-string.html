@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>task-18-string</title>
-  </head>
-  <body>
-    <script>
-      //1. 写一个 ucFirst函数，返回第一个字母为大写的字符 （***）
-      console.log(ucFirst("hunger"));
 
-      function ucFirst(str) {
-        return str.replace(str[0], str.substr(0, 1).toUpperCase());
+<head>
+  <meta charset="utf-8">
+  <title>task-18-string</title>
+</head>
+
+<body>
+  <script>
+    //1. 写一个 ucFirst函数，返回第一个字母为大写的字符 （***）
+    console.log(ucFirst("hunger"));
+
+    function ucFirst(str) {
+      return str.replace(str[0], str.substr(0, 1).toUpperCase());
+    }
+
+    // function ucFirst(str) {
+    //   var result = str[0].toUpperCase() + str.substr(1);
+    //   console.log(result);
+    //   return result;
+    // }
+
+    //2. 写一个函数truncate(str, maxlength), 如果str的长度大于maxlength，会把str截断到maxlength长，并加上...，如 （****）
+    console.log(truncate("hello, this is hunger valley,", 10));
+    console.log(truncate("hello world", 20));
+
+    function truncate(str, maxlength) {
+      var newstr = "";
+      if (str.length > maxlength) {
+        newstr = str.substr(0, maxlength) + "...";
+      } else {
+        newstr = str;
       }
+      return newstr;
+    }
+  </script>
+</body>
 
-      //2. 写一个函数truncate(str, maxlength), 如果str的长度大于maxlength，会把str截断到maxlength长，并加上...，如 （****）
-      console.log(truncate("hello, this is hunger valley,", 10));
-      console.log(truncate("hello world", 20));
-
-      function truncate(str, maxlength) {
-        var newstr = "";
-          if(str.length > maxlength) {
-            newstr = str.substr(0, maxlength) + "...";
-          } else {
-            newstr = str;
-          }
-        return newstr;
-      }
-
-    </script>
-  </body>
 </html>
