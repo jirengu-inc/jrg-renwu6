@@ -1,41 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>task22-2</title>
-  </head>
-  <body>
-    <ul class="ct">
-      <li>这里是</li>
-      <li>饥人谷</li>
-      <li>任务6班</li>
-    </ul>
-    <input class="ipt-add-content" placeholder="添加内容">
-    <button id="btn-add-start">开头添加</button>
-    <button id="btn-add-end">结尾添加</button>
-    <script>
-      var ct = document.getElementsByClassName('ct'),
-          iptAddContent = document.getElementsByClassName('ipt-add-content'),
-          btnAddStart = document.getElementById('btn-add-start'),
-          btnAddEnd = document.getElementById('btn-add-end');
+<html lang="en">
 
-          function handler1() {
-            var newItem = document.createElement('li'),
-                txt = document.createTextNode(iptAddContent[0].value);
-            newItem.appendChild(txt);
-            ct[0].insertBefore(newItem, ct[0].children[0]);
-          }
-          function handler2() {
-            var newItem = document.createElement('li'),
-                txt = document.createTextNode(iptAddContent[0].value);
-            newItem.appendChild(txt);
-            ct[0].appendChild(newItem);
-          }
-      btnAddStart.addEventListener('click', handler1);
-      btnAddEnd.addEventListener('click', handler2);
-      ct[0].addEventListener('click', function(event) {
-        console.log(event.target.innerHTML);
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>22-2</title>
+</head>
+
+<body>
+  <ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+  </ul>
+  <input type="text" class="ipt-add-content" placeholder="添加内容">
+  <button class="btn-add-start">开头添加</button>
+  <button class="btn-add-end">结尾添加</button>
+  <script>
+    var ct = document.getElementsByClassName('ct'),
+      addContent = document.getElementsByClassName('ipt-add-content'),
+      btnAddStart = document.getElementsByClassName('btn-add-start'),
+      btnAddEnd = document.getElementsByClassName('btn-add-end'),
+      txt = '';
+    btnAddStart[0].addEventListener('click', function (e) {
+      if (addContent[0].value === '') {
+        alert('请输入内容');
+        return;
+      } else {
+        txt = addContent[0].value;
+        var itemTxt = document.createTextNode(txt);
+        var newItem = document.createElement('li');
+        newItem.appendChild(itemTxt);
+        ct[0].insertBefore(newItem, ct[0].children[0]);
+      }
+    });
+    btnAddEnd[0].addEventListener('click', function () {
+      if (addContent[0].value === '') {
+        alert('请输入内容');
+        return;
+      } else {
+        txt = addContent[0].value;
+        var itemTxt = document.createTextNode(txt);
+        var newItem = document.createElement('li');
+        newItem.appendChild(itemTxt);
+        ct[0].appendChild(newItem, ct[0].children[0]);
+      }
+    });
+    ct[0].addEventListener('click', function (e) {
+      console.log(e.target.innerHTML);
+    });
+  </script>
+</body>
+
 </html>

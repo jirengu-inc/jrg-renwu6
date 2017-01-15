@@ -8,14 +8,16 @@
 
 <body>
   <script>
-    function isValidUsername(str) {
-      var reg = /^\w{6,20}$/;
+    function isValidUserName(str) {
+      var reg = /^[a-zA-Z][\w]{5,19}$/;
       return reg.test(str);
     }
-    var str1 = "ab645651_";
-        str2 = "djsklf!-";
-    console.log(isValidUsername(str1));
-    console.log(isValidUsername(str2));
+    var str1 = "ab645651_",
+        str2 = "djsklf!-",
+        str3 = "12sssfff_";
+    console.log(isValidUserName(str1));
+    console.log(isValidUserName(str2));
+    console.log(isValidUserName(str3));
   </script>
 </body>
 
