@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象</title>
+	<style>
+	li{
+		height: 100px;
+		background-color: green;
+		list-style: none;
+	}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		function GoTop($ct){
+			this.$ct = $ct;
+			this.$target = $('<button class="btn">GoTop</button>')
+			this.$target.css({
+				position:'fixed',
+				right:'100px',
+				bottom:'100px'
+			})
+		}
+		GoTop.prototype={
+			constructor:GoTop,
+			createNode:function(){
+				this.$target.appendTo(this.$ct);
+				this.$target.hide()
+			},
+			bindEvent:function(){
+				var _this = this;
+				$(window).on('scroll',function(){
+					if($(window).scrollTop() < 100){
+						_this.$target.hide();
+					}else{
+						_this.$target.show();
+					}
+				});
+				this.$target.on('click',function(){
+					$(window).scrollTop(0);
+				});
+			}
+		}
+		var GoTop1 = new GoTop($('body'));
+		GoTop1.createNode();
+		GoTop1.bindEvent();
+
+	</script>
+</body>
+</html>
