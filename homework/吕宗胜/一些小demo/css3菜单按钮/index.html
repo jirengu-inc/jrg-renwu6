@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>css3菜单按钮</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;
+			color: #000;
+			/*font-size: 12px;*/
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		h1{
+			font-weight: normal;
+			font-size: 18px;
+		}
+		p{
+			font-size: 12px;
+			margin-top: 3px;
+			color: #6d757a;
+		}
+		.lf{
+			float: left;
+			width: 120px;
+			cursor: pointer;
+		}
+		.desp{
+			float: left;
+			width: 40px;
+			height: 30px;
+			padding: 20px 0 25px 0;
+		}
+		.wrapper{
+			width: 980px;
+			height: 80px;
+			border: 1px solid #f1f1f1;
+			border-radius: 3px;
+			box-shadow: 0 0 1px #f1f1f1;
+			margin: 100px auto;
+		}
+		.share{
+			padding-left: 10px;
+		}
+		.conment{
+			display: block;
+			float: left;
+			width: 80px;
+			height: 80px;
+		}
+		/*share*/
+		.share .share-bg{
+			background: url(img/anim-share.png) 0 0 no-repeat;
+		}
+		@keyframes share{
+			0%{
+				background-position: 0 0;
+			}
+			100%{
+				background-position: -1360px 0;
+			}
+		}
+		.share:hover .share-bg{
+			animation: share steps(17) 0.8s infinite;
+		    /*animation(动画): share(动画名称) steps(17)(运动曲线) 0.8s(一次动画所需的时间) infinite(动画一直进行);*/
+		}
+		/*collect*/
+		.collect{
+			padding-left: 20px;
+		}
+		.collect-bg{
+			background: url(img/anim-fav.png) 0 5px no-repeat;
+		}
+		@keyframes collect{
+			0%{
+				background-position: 0 5px;
+			}
+			100%{
+				background-position: -1120px 5px;
+			}
+		}
+		.collect:hover .collect-bg{
+			animation: collect steps(14) 1s infinite both;
+		}
+		/*iPhone*/
+		.iPhone{
+			padding-left: 20px;
+		}
+		.iPhone-bg{
+			background: url(img/anim-app.png) 0 0 no-repeat;
+		}
+		@keyframes iPhone{
+			0%{
+				background-position: 0 0;
+			}
+			100%{
+				background-position: -1280px 0;
+			}
+		}
+		.iPhone:hover .iPhone-bg{
+			animation: iPhone steps(16) 1.2s 1;
+		}
+		/*coin*/
+		.coin{
+			padding-left: 20px;
+		}
+		.coin-bg{
+			background: url(img/anim-coin.png) 0 -15px no-repeat;
+		}
+		@keyframes coin{
+			0%{
+				background-position: 0 -15px;
+			}
+			100%{
+				background-position: -640px 0;
+			}
+		}
+		.coin:hover .coin-bg{
+			animation: coin steps(8) 0.8s infinite;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper clearfix">
+		<div class="share lf">
+			<div class="clearfix">
+				<span class="share-bg conment"></span>
+				<div class="desp">
+		            <h1>分享</h1>
+		            <p>11755</p>
+		        </div>
+			</div>
+		</div>
+		<div class="collect lf">
+		    <div class="clearfix">
+		        <span class="collect-bg conment"></span>
+		        <div class="desp">
+		            <h1>喜欢</h1>
+		            <p>11755</p>
+		        </div>
+		    </div>
+		</div>
+		<div class="iPhone lf">
+		    <div class="clearfix">
+		        <span class="iPhone-bg conment"></span>
+		        <div class="desp">
+		            <h1>下载</h1>
+		            <p>11755</p>
+		        </div>
+		    </div>
+		</div>
+		<div class="coin lf">
+		    <div class="clearfix">
+		        <span class="coin-bg conment"></span>
+		        <div class="desp">
+		            <h1>购买</h1>
+		            <p>11755</p>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>
