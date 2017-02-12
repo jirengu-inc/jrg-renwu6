@@ -9,13 +9,13 @@
 <body>
   <script>
     // 非贪婪模式
-    str = '.. <!-- My -- comment \n test --> .. <!----> .. ';
-    reg = /<!--[\w\W]*?-->/g;
-    str.match(reg);
+    str1 = '.. <!-- My -- comment \n test --> .. <!----> .. ';
+    reg1 = /<!--(.|\n)*?-->/g;
+    console.log(str1.match(reg1));
     // 贪婪模式
-    str = '.. <!-- My -- comment \n test --> .. <!----> .. ';
-    reg = /<!--[^>]*-->/g;
-    str.match(reg);
+    str2 = '.. <!-- My -- comment \n test --> .. <!----> .. ';
+    reg2 = /<!--[^>]*-->/g;
+    console.log(str2.match(reg2));
   </script>
 </body>
 

@@ -9,13 +9,15 @@
 <body>
   <script>
     function isPhoneNum(str) {
-      var reg = /_\d/;
+      var reg = /^1\d{10}$/;
       return reg.test(str);
     }
-    var str1 = "3_",
-        str2 = "_3";
+    var str1 = "12345678901",
+        str2 = "112122",
+        str3 = "1231321324654654";
     console.log(isPhoneNum(str1));
     console.log(isPhoneNum(str2));
+    console.log(isPhoneNum(str3));
   </script>
 </body>
 

@@ -8,9 +8,9 @@
 
 <body>
   <script>
-    var reg = /#\w{6}/g,
-        subj = "color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddee #fd2 ";
-    alert( subj.match(reg) );
+    var re = /[\s:]#[0-9a-fA-F]{6}/g;
+    subj = "color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddee #fd2 ";
+    alert(subj.match(reg));
   </script>
 </body>
 

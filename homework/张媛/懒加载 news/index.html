@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>img-lazyload</title>
+<style>
+  .container{
+    width:400px;
+    margin: 0 auto;
+    background-color: #eee;
+  }
+  ul,li,h3,p{
+    list-style: none;
+    margin:0;
+    padding:0;
+  }
+  li:after{
+    content:'';
+    clear:both;
+    display:block;
+  }
+  li{
+    padding:15px;
+  }
+  a{
+    text-decoration: none;
+  }
+  img{
+    width:80px;
+    height:80px;
+    float:left;
+    margin-right:15px;
+  }
+  h3{
+    color:#000;
+  }
+  p{
+    margin-top:15px;
+    color:#000;
+  }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <ul class="clearfix ">
+
+
+
+
+
+    </ul>
+    <p class="load"></p>
+
+  </div>
+
+
+  	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+    var pageIndex = 0,
+        isOver = false,
+        isNewsArrive = true;
+
+    getNews();
+    $(window).on('scroll',check)
+
+    function check(){
+      if(isShow($('.load')) && !isOver && isNewsArrive){
+        getNews()
+      }
+    }
+
+    function getNews(){
+      isNewsArrive = false;
+
+      $.get('/get',{page:pageIndex})
+       .done(function(ret){
+         isNewsArrive = true;
+         if(ret.status === 0){
+           pageIndex++;
+           appendHtml(ret.data)
+           check()
+         }else{
+           alert('出错了！')
+         }
+       })
+       .fail(function(){
+         alert('系统异常')
+       })
+    }
+
+    function appendHtml(news){
+      if(news.length===0){
+        isOver = true;
+        $('.container').append('<p>没有更多新闻了!</P>');
+        return;
+      }
+      var htmls = '';
+      $.each(news, function(){
+        htmls += '<li>';
+        htmls += '<a href =" '+ this.link+' ">';
+        htmls += '<img src =" '+this.img+' ">';
+        htmls += '<h3>'+this.title+'</h3>';
+        htmls += '<p>'+this.brif+'</p>';
+        htmls += '</a></li>';
+      })
+      $('.news').append(htmls);
+    }
+
+    function isShow($node){
+      console.log('show',$node);
+      
+      var windowHeight = $(window).height(),
+          scrollTop = $(window).scrollTop(),
+          offsetTop = $node.offset().top,
+          nodeHeight = $node.height;
+
+      if(windowHeight + scrollTop > offsetTop && offsetTop + nodeHeight > scrollTop){
+        return true;
+      }else{
+        return false;
+      }
+
+    }
+
+
+  	</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>task22_04</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul{
+            width:904px;
+            margin:50px auto 0 auto;
+        }
+        li{
+            width: 300px;
+            height: 40px;
+            line-height:40px;
+            text-align:center;
+            border:1px solid #ccc;
+            list-style-type:none;
+            cursor:pointer;
+            font-size:24px;
+            float:left;
+        }
+        li.active{
+            background-color:#eee;
+        }
+        li:nth-child(2){
+            border-left:none;
+            border-right:none;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear:both;
+        }
+        .content{
+            width:902px;
+            height:400px;
+            margin:0 auto;
+            border:1px solid #ccc;
+            border-top:none;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+<ul class="tab clearfix">
+    <li class="active">tab1</li>
+    <li>tab2</li>
+    <li>tab3</li>
+</ul>
+<div class="content">内容1</div>
+<script>
+    var tab = document.querySelector(".tab"),
+            content = document.querySelector(".content");
+    function tabHandler(e){
+        for(var i = 0;i < tab.children.length;i++){
+            tab.children[i].style.backgroundColor = "white";
+        }
+        e.target.style.backgroundColor = "#eee";
+        content.innerText = "内容" + e.target.innerText[3];
+    }
+    tab.addEventListener("click",tabHandler);
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+/*初始化 start*/
+*{padding:0; margin:0; box-sizing: border-box;}
+ul li{list-style: none;}
+.clearfix{*zoom:1;}
+.clearfix:after{display: block; content: ''; clear: both;}
+a{text-decoration: none; color:#333; font-size: 14px;}
+/*初始化 end*/
+.container{width:800px; margin:0 auto;}
+.container li{float: left; margin: 10px 10px;}
+.container li img{ width:380px; height: 380px;}
+p{float: left;}

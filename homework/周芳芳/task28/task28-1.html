@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>stickup</title>
+	<style type="text/css">
+	#header{
+		height: 80px;
+		line-height: 80px;
+		background: #e66;
+		text-align: center;
+	}
+	#nav{
+		height:40px;
+		margin-top: 20px;
+		background: #3c9;
+	}
+	#content{
+		min-height: 800px;
+		padding: 10px;
+		background: #ccc;
+	}
+	.aside{
+		width: 100px;
+		min-height: 400px;
+		background: green;
+		float: left;
+	}
+	.main{
+		min-height: 800px;
+		background: #fff;
+		padding-left: 20px;
+		overflow: auto;
+	}
+	#footer{
+		background: #333;
+		height: 100px;
+	}
+	</style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="nav">nav</div>
+	<div id="content">
+		<div class="aside">aside</div>
+		<div class="main">main</div>
+	</div>
+	<div id="footer">footer</div>
+
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		var $cur=$('#nav'),
+		    curH=$cur.height(),
+		    curW=$cur.width(),
+		    offsetTop=$cur.offset().top,
+		    offsetLeft=$cur.offset().left;
+
+        var $curClone = $cur.clone()
+                        .css({visibility:'hidden',display:'none'})
+                        .insertBefore($cur);
+
+        $(window).on('scroll',function(){
+        	var scrollTop=$(this).scrollTop();
+
+        	if(scrollTop>=offsetTop){
+        		if(!isFixed()){
+        			setFixed();
+        		}
+        	}else{
+        		if(isFixed()){
+        			unsetFixed();
+        		}
+        	}
+        });
+
+        function isFixed(){
+        	return $cur.data('data-fixed');
+        }
+
+        function setFixed(){
+        	$cur.data('data-fixed',true)
+        	.css({
+        		'position':'fixed',
+        		'top':0,
+        		'left':offsetLeft,
+        		'width':curW,
+        		'margin':0,
+        		'background':'#f6d',
+        		'z-index':999
+        	});
+        	$curClone.show();
+        }
+
+        function unsetFixed(){
+        	$cur.data('data-fixed',false)
+        	    .removeAttr('style');
+        	$curClone.hide();
+        }
+	</script>
+</body>
+</html>
