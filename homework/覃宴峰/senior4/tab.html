@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tab</title>
+	<style type="text/css">
+		div,ul,li{
+			margin:0;
+			padding:0;
+		}
+
+		ul,li{
+			list-style:none;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:block;
+			clear:both;
+		}
+
+		.container{
+			padding:30px;
+			width:600px;
+			border:1px solid #ccc;
+			border-radius:3px;
+			margin: 20px auto;
+		}
+
+		.tab-list{
+			border-bottom:1px solid #ccc;
+		}
+
+		.tab-list li{
+			padding:10px 20px;
+			color: brown;
+			float: left;
+			cursor: pointer;
+		}
+
+		.tab-list .active{
+			color: black;
+			border: 1px solid #ccc;
+			border-bottom: 1px solid white;
+			border-radius: 4px 4px 0 0;/*控制四个方向的角度*/
+			margin-bottom: -1px;/*margin负-1像素时li下边线覆盖ul下边线*/
+		}
+
+		.tab-cont>li {
+			padding: 20px;
+			display: none;
+		}
+		.tab-cont .active {
+			display: block;
+		}
+	</style>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<ul class="tab-list clearfix">
+	 	<li class="active">选项1</li>
+	 	<li>选项2</li>
+	 	<li>选项3</li>
+	 </ul>
+	 <ul class="tab-cont">
+	 	<li class="active">内容1</li>
+	 	<li>内容2</li>
+	 	<li>内容3</li>
+	 </ul>
+</div>
+<div class="container">
+	<ul class="tab-list clearfix">
+	 	<li class="active">选项1</li>
+	 	<li>选项2</li>
+	 	<li>选项3</li>
+		<li>选项4</li>
+	 </ul>
+	 <ul class="tab-cont">
+	 	<li class="active">内容1</li>
+	 	<li>内容2</li>
+	 	<li>内容3</li>
+		<li>内容4</li>
+	 </ul>
+</div>
+<script type="text/javascript">
+	var newtab=(function(){
+		function Tab($node){
+			this.$node=$node;
+			this.init()
+			this.bind()
+		}
+
+		Tab.prototype.init=function(){
+			this.$tab_list=this.$node.find(".tab-list")
+			this.$tab_cont=this.$node.find(".tab-cont")
+		}
+
+		Tab.prototype.bind=function(){
+			var _this=this;
+			this.$tab_list.on("click",function(e){
+			var idx=$(e.target).index();
+			_this.$tab_list.children().removeClass("active");
+			_this.$tab_list.children().eq(idx).addClass("active")
+			_this.$tab_cont.children().removeClass("active");
+			_this.$tab_cont.children().eq(idx).addClass("active")
+			})
+		}
+
+		return {
+			getnew:function($node){
+				new Tab($node)
+			}
+		}
+	})()//函数立即执行返回一个方法（这里可以看成是newtab对象上有getnew方法），这个方法执行new Tab($node)函数
+
+	newtab.getnew($(".container").eq(0))//调用newtab对象上的.getnew方法
+	newtab.getnew($(".container").eq(1))
+
+</script>
+</body>
+</html>
