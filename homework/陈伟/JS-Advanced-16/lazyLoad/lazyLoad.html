@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>lazyload</title>
+    <style media="screen">
+    *{margin:0;padding:0;box-sizing:border-box;}
+ul,ol{
+list-style:none;
+}
+.listImg li{
+margin:50px;
+float:left;
+}
+.listImg:after{
+content:'';
+display: block;
+clear: both;
+}
+img{
+width: 300px;
+height: 300px;
+}
+    </style>
+</head>
+
+<body>
+    <ul class=listImg>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://www.005.tv/uploads/allimg/161205/1024133L9-4.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701560.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://pic.7230.com/Uploads/Picture/2016-12-05/58452a721fd08.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://www.gzhphb.com/gpPic/600/0/mmbiz.qpic.cn/mmbiz_jpg/fG2Z0Sqx1frKFziaUT04L6obtZiadvYcmBBpqtAh1xyvAbLYJfpW1DCeGk9giau5bhGjviaeJAULO2YicWSMPgu0Ayw/0?wx_fmt=jpeg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701258.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701560.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://ww2.sinaimg.cn/orj480/006n5Ibzjw1f9tt3z8l3fg308c08cx6p.gif"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://ww2.sinaimg.cn/orj480/a0192e7ejw1f9uad75s14j208c08ct8z.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://wx4.sinaimg.cn/orj360/8646d7f9ly1fau4grwpqrj208c08cwem0.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701560.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://www.005.tv/uploads/allimg/161205/1024133L9-4.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701560.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://pic.7230.com/Uploads/Picture/2016-12-05/58452a721fd08.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://www.gzhphb.com/gpPic/600/0/mmbiz.qpic.cn/mmbiz_jpg/fG2Z0Sqx1frKFziaUT04L6obtZiadvYcmBBpqtAh1xyvAbLYJfpW1DCeGk9giau5bhGjviaeJAULO2YicWSMPgu0Ayw/0?wx_fmt=jpeg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701258.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701560.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://ww2.sinaimg.cn/orj480/006n5Ibzjw1f9tt3z8l3fg308c08cx6p.gif"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://ww2.sinaimg.cn/orj480/a0192e7ejw1f9uad75s14j208c08ct8z.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://wx4.sinaimg.cn/orj360/8646d7f9ly1fau4grwpqrj208c08cwem0.jpg"></a>
+        </li>
+        <li>
+            <a href="#"><img src="" alt="" data-src="http://img.99danji.com/uploadfile/2016/1205/20161205044701560.jpg"></a>
+        </li>
+    </ul>
+    <script type="text/javascript">
+        $.fn.lazyLoad = function($node) {
+            var $cur = this;
+            $cur.each(function() {
+                checkShow();
+
+                function checkShow() {
+                    $($cur).each(function() {
+                        var $current = $(this);
+                        if ($current.attr('isLoad')) {
+                            return
+                        }
+                        if (isShow($current)) {
+                            showImg($current);
+                        }
+                    })
+                }
+
+                function isShow($cur) {
+                    var offsetTop = $cur.offset().top,
+                        curH = $cur.height(),
+                        winH = $(window).height(),
+                        scrollTop = $(window).scrollTop();
+                    if (offsetTop + curH > scrollTop && offsetTop < winH + scrollTop) {
+                        console.log('true')
+                        return true;
+                    } else {
+                        console.log('false')
+                        return false;
+                    }
+                }
+
+                function showImg($cur) {
+                    $cur.each(function() {
+                        var url = $(this).attr('data-src');
+                        $(this).attr('src', url);
+                        $(this).attr('isLoad', true);
+                    })
+                }
+                var lock;
+                $(window).on('scroll', function() {
+                    if (lock) {
+                        clearTimeout(lock);
+                        console.log(lock)
+                    }
+                    lock = setTimeout(checkShow, 300)
+                })
+            })
+        }
+        $('.listImg img').lazyLoad();
+    </script>
+</body>
+
+</html>

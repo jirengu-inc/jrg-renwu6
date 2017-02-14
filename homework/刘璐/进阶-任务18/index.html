@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>瀑布流</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="item h1">1</div>
+        <div class="item h3">2</div>
+        <div class="item h2">3</div>
+        <div class="item h1">4</div>
+        <div class="item h1">5</div>
+        <div class="item h3">6</div>
+        <div class="item h3">7</div>
+        <div class="item h2">8</div>
+        <div class="item h1">9</div>
+        <div class="item h3">10</div>
+        <div class="item h3">11</div>
+        <div class="item h3">12</div>
+        <div class="item h2">13</div>
+        <div class="item h2">14</div>
+        <div id="load-more"></div>
+    </div>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script>
+        $(window).on('resize', function () {
+            render();
+        });
+        function render() {
+            var ctWidth = $(window).width()
+                , itemWidth = $('.item').outerWidth(true)
+                , colNum = Math.floor(ctWidth / itemWidth);
+            var colSumHeight = [];
+            for (var i = 0; i < colNum; i++) {
+                colSumHeight.push(0);
+            }
+            $('.item').each(function () {
+                var $node = $(this);
+                var idx = 0,
+                    minSumHeight = colSumHeight[0];
+                for (var i = 0; i < colSumHeight.length; i++) {
+                    if (colSumHeight[i] < minSumHeight) {
+                        idx = i;
+                        minSumHeight = colSumHeight[i];
+                    }
+                }
+                $node.css({
+                    left: itemWidth * idx,
+                    top: minSumHeight
+                });
+                colSumHeight[idx] = $node.outerHeight(true) + colSumHeight[idx];
+            })
+        }
+        render();
+    </script>
+</body>
+</html>

@@ -8,23 +8,26 @@
 
 <body>
   <script>
-    function jsonDeepCopy(json) {
+    function JSONDeepCopy(json) {
       var newJson = {};
-      for(property in json) {
-        if(typeof json[property] === "object") {
-          newJson[property] = jsonDeepCopy(json[property]);
+      for(key in json) {
+        if(typeof json[key] === 'object') {
+          newJson[key] = JSONDeepCopy(json[key]);
         } else {
-          newJson[property] = json[property];
+          newJson[key] = json[key];
         }
       }
       return newJson;
     }
     var json1 = {
-      "name": "zhao",
-      "age": 24
+      name: 'zhao',
+      age: 24,
+      hobby: {
+        paint: 'painting'
+      }
     };
-    var json2 = jsonDeepCopy(json1);
-    json2.age = 25;
+    var json2 = JSONDeepCopy(json1);
+    json1.hobby.paint = 1;
     console.log(json1);
     console.log(json2);
   </script>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task35-3</title>
+	<style>
+        body,html,li,ul{
+        	padding:0;
+        	margin:0;
+        }
+		ul>li{
+			list-style: none;
+			padding: 0;
+		}
+		a{
+			text-decoration: none;
+			color:#fff;
+		}
+		.ct{
+			width: 350px;
+			height: 240px;
+			position: relative;
+			overflow: hidden;
+		}
+		.img-list.li{
+			display: inline-block;
+		}
+		.arrow{
+			position: absolute;
+			top: 50%;
+			margin-top: -12px;
+			font-size: 20px;
+			font-weight: bold;
+			display: block;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			border-radius: 30px;
+			background-color: #333;
+			text-align: center;
+			opacity: 0.5;
+		}
+		.arrow:hover{
+			opacity: 1;
+		}
+		.left{
+			left: 20px;
+		}
+		.right{
+			right:20px;
+		}
+	</style>
+</head>
+<body>
+   <div class="ct">
+      <ul class="img-list">
+      	<li><a href="#"><img src="pic1.jpg" width="350px" height="240px"></a></li>
+      	<li><a href="#"><img src="pic2.jpg" width="350px" height="240px"></a></li>
+      	<li><a href="#"><img src="pic3.jpg" width="350px" height="240px"></a></li>
+      	<li><a href="#"><img src="pic4.jpg" width="350px" height="240px"></a></li>
+      </ul>			
+   	  <a class="arrow left" href="javascript:void(0);"><</a>
+      <a class="arrow right" href="javascript:void(0);">></a>
+   </div>
+   <div div class="ct">
+      <ul class="img-list">
+      	<li><a href="#"><img src="pic1.jpg" width="350px" height="240px"></a></li>
+      	<li><a href="#"><img src="pic2.jpg" width="350px" height="240px"></a></li>
+      	<li><a href="#"><img src="pic3.jpg" width="350px" height="240px"></a></li>
+      	<li><a href="#"><img src="pic4.jpg" width="350px" height="240px"></a></li>
+      </ul>			
+   	  <a class="arrow left" href="javascript:void(0);"><</a>
+      <a class="arrow right" href="javascript:void(0);">></a>
+   </div>
+
+   <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+
+   <script>
+			function Carousel($node){
+				this.ct = $node.find('.img-list');
+				this.pre = $node.find('.left');
+				this.next = $node.find('.right');
+				this.imgWidth = $node.find('li').width;
+				this.imgCount = $node.find('li').length;
+				this.ct.css({
+					width:this.imgCount*this.imgWidth
+				});
+				this.bind();
+			}
+
+			Carousel.prototype = {
+			    bind:function(){
+			    	var cur = this;
+			    	this.next.on('click',function(){
+			    		cur.playNext();
+			    	})
+			    	this.pre.on('click',function(){
+			    		cur.playPre();
+			    	})
+			    },
+
+			    playNext:function(){
+			    	this.ct.animate({'left':0-this.imgWidth},function(){
+			    		$(this).append($(this).children().first());
+			    	    $(this).css('left',0);//移动完成后本身是变成 left: 0-imgwidth ，但是设置为O,使其保持有动画的效果
+			    	})			    	
+			    },
+
+			    playPre:function(){
+			    	this.ct.prepend(this.ct.children().last());
+			    	this.ct.css('left',0-this.imgWidth);
+			    	this.ct.animate('left',0);
+			    }
+			}
+
+			var $node1 = $('.ct').eq(0);
+			var $node2 = $('.ct').eq(1);
+			var carousel1 = new Carousel($node1);
+			var carousel2 = new Carousel($node2);
+
+
+	</script>
+   	  
+
+   </script>
+
+
+
+</body>
+</html>
+

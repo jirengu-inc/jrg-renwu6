@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>task26-2</title>
+		<style>
+			body{
+				margin: 10px;
+				padding: 10px;
+			}
+			fieldset{
+				margin: 15px;
+				padding: 10px;
+			}
+			.btn1{
+				width:100px;
+				height: 40px;
+				line-height: 40px;
+				margin: 15px;
+				text-align: center;
+				border: 2px solid #000;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			.box2{
+				width: 150px;
+				height: 150px;
+				margin: 25px;
+				border: 2px solid #000;
+				background-color: powderblue;
+				position: fixed;
+				top: 0;
+				right: 30px;
+			}
+			.box3{
+				width: 200px;
+				height: 200px;
+				margin: 15px;
+				border: 2px solid #000;
+				background-color: lightpink;
+			}
+			.test{
+				margin: 30px;
+			}
+			select{
+				margin: 30px;
+			}
+		</style>
+		<script src="jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+		<fieldset>
+			<legend>1.当点击$btn 时，让 $btn的背景色变为红色再变为蓝色</legend>
+			<div class="btn1">点击变色</div>
+			<script>
+				$(".btn1").on("click",function(){
+					$(this).css({
+						"background-color":"red",
+						"color":"white"
+					});
+					setTimeout(function(){
+						$(".btn1").css("background-color","blue")
+					},500);
+				});
+			</script>
+		</fieldset>
+		<fieldset>
+			<legend>2.当窗口滚动时，获取垂直滚动距离</legend>
+			<div class="box2"></div>
+			<p>在右上角!!!!</p>
+			<script>
+				$(window).on("scroll",function(){
+					$(".box2").text("滚动条距离窗口顶部的距离是：" + $(window).scrollTop() + "px");
+				});
+			</script>
+		</fieldset>
+		<fieldset>
+			<legend>3.当鼠标放置到$div上，把$div背景色改为红色，移出鼠标背景色变为白色</legend>
+			<div class="box3"></div>
+			<p>鼠标放在上边box中改变颜色！！！</p>
+			<script>
+				$(".box3").on("mouseenter",function(){
+					$(this).css("background-color","red");
+				});
+				$(".box3").on("mouseleave",function(){
+					$(this).css("background-color","#fff");
+				});
+			</script>
+		</fieldset>
+		<fieldset>
+			<legend>
+				4.当鼠标激活 input输入框时让输入框边框变为蓝色，
+				当输入框内容改变时把输入框里的文字小写变为大写，
+				当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字
+			</legend>
+			<input type="text" class="test" placeholder="请输入内容" />
+			<script>
+				$(".test").on("focus",function(){
+					$(this).css("outline-color","blue");
+				});
+				$(".test").on("keyup",function(){
+					$(".test").val($(".test").val().toUpperCase());
+				});
+				$(".test").on("blur",function(){
+					console.log($(".test").val());
+				});
+			</script>
+		</fieldset>
+		<fieldset>
+			<legend>5.当选择select后，获取用户选择的内容</legend>
+			<select name="sports" id="hobby">
+				<option value="football">football</option>
+				<option value="basketball">basketball</option>
+				<option value="swimming">swimming</option>
+				<option value="volleyball">volleyball</option>
+				<option value="gymnastics">gymnastics</option>
+			</select>
+			<p class="get-hobby">当前选择的运动是：<span></span></p>
+			<script>
+				$("#hobby").on("change",function(){
+					$(".get-hobby span").text($("option:selected").val());
+				});
+			</script>
+		</fieldset>
+	</body>
+</html>

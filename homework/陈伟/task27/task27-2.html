@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4e443c;
+            opacity: 0.6;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .next {
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pre {
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bullet {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-left: -3px;
+            margin-right: -3px;
+        }
+
+        .bullet>li {
+            list-style: none;
+            display: inline-block;
+            background-color: #fff;
+            margin-left: 3px;
+            margin-right: 3px;
+            width: 28px;
+            height: 8px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .bullet>.active {
+            background-color: #4e443c;
+            opacity: .7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slides">
+        <img class=pic src="http://p5.gexing.com/GSF/shaitu/20160814/1118/57afe31ab0db3.jpg">
+        <img class=pic src="http://img3.duitang.com/uploads/item/201605/22/20160522214548_zPGFN.jpeg">
+        <img class=pic src="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1606/30/c5/23590087_1467291897939_800x800.jpg">
+        <img class=pic src="http://77os.77acg.com/images/201607/goods_img/22129_P_1468351510787.jpg">
+    </div>
+    <div class="slides">
+        <img class=pic src="http://p5.gexing.com/GSF/shaitu/20160814/1118/57afe31ab0db3.jpg">
+        <img class=pic src="http://img3.duitang.com/uploads/item/201605/22/20160522214548_zPGFN.jpeg">
+        <img class=pic src="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1606/30/c5/23590087_1467291897939_800x800.jpg">
+        <img class=pic src="http://77os.77acg.com/images/201607/goods_img/22129_P_1468351510787.jpg">
+    </div>
+    <div class="slides">
+        <img class=pic src="http://p5.gexing.com/GSF/shaitu/20160814/1118/57afe31ab0db3.jpg">
+        <img class=pic src="http://img3.duitang.com/uploads/item/201605/22/20160522214548_zPGFN.jpeg">
+        <img class=pic src="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1606/30/c5/23590087_1467291897939_800x800.jpg">
+        <img class=pic src="http://77os.77acg.com/images/201607/goods_img/22129_P_1468351510787.jpg">
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript">
+        $.fn.slides = function(options) {
+            var $slides = this;
+            $slides.each(function() {
+                var $slider = $(this),
+                    current = 1,
+                    hover = false,
+                    stopPlay,
+                    $pics = $slider.children();
+                $slider.css({
+                    position: 'relative'
+                })
+                $pics.wrapAll('<div class = wrap ></div>');
+                var $wrap = $slider.children();
+                $wrap.prepend($pics.last().clone());
+                $wrap.append($pics.first().clone());
+                var $pics = $wrap.children();
+                $wrap.css({
+                    width: ($pics.length * options.width),
+                    overflow: 'hidden',
+                    position: 'absolute',
+                    left: -options.width
+                });
+                $pics.css({
+                    display: 'block',
+                    float: 'left',
+                    width: options.width,
+                    height: options.height
+                });
+                $wrap.wrapAll('<div class = viewpoint></div>');
+                var $viewpoint = $wrap.parent();
+                $viewpoint.css({
+                    width: options.width,
+                    height:options.height,
+                    overflow: 'hidden',
+                    position: 'relative'
+                });
+                var $next = $('<a href="#" class=next>></a>').appendTo($viewpoint),
+                    $pre = $('<a href="#" class=pre><</a>').appendTo($viewpoint),
+                    $bullet = $('<ul class=bullet></ul>').appendTo($viewpoint);
+                for (var i = 0; i < $pics.length - 2; i++) {
+                    $bullet.append('<li></li>');
+                }
+                $bullet.children().first().addClass('active');
+                var go = function(index) {
+
+                    if (stopPlay) {
+                        clearInterval(stopPlay);
+                    }
+                    if (index == $pics.length) {
+                        $wrap.css({
+                            left: (-options.width)
+                        });
+                        index = 2;
+                    }
+                    var left = index * (-options.width);
+                    $wrap.stop(true).animate({
+                        left: left
+                    }, function() {
+                        if (index === 0) {
+                            $wrap.css({
+                                left: ($pics.length - 2) * (-options.width)
+                            });
+                            index = $pics.length - 2;
+                        }
+                        current = index;
+                        if (index === $pics.length - 1) {
+                            index = 1;
+                        }
+                      $slider.find('.bullet').children().eq(index - 1).addClass('active').siblings('.active').removeClass('active')
+
+                        if (hover===false) {
+                            autoPlay();
+                        }
+                    })
+                }
+                var next = function() {
+                    go(current + 1)
+                }
+                $next.on('click', function() {
+                    next();
+                })
+                var pre = function() {
+                    go(current - 1)
+                }
+                $pre.on('click', function() {
+                    pre();
+
+                })
+                var autoPlay = function() {
+                    stopPlay = setInterval(function() {
+                        next();
+                    }, 3000)
+                }
+                if (options.auto === true) {
+                    autoPlay();
+
+                };
+                $pics.on('mouseenter', function() {
+                    hover = true;
+                    clearInterval(stopPlay)
+                }).on('mouseleave', function() {
+                    hover = false;
+                    autoPlay();
+                })
+                $bullet.on('click', 'li', function(e) {
+                    var idx = $(e.currentTarget).index();
+                    go(idx + 1);
+                })
+            })
+        };
+        $('.slides').slides({
+            width: 400,
+            height: 400,
+            auto: true
+        });
+    </script>
+
+</body>
+
+</html>

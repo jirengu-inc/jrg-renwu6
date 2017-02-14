@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        body {
+            font-family: 微软雅黑;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+            border: 1px solid pink;
+            background-color: pink;
+            margin: 10px;
+        }
+
+        .black {
+            background-color: azure;
+        }
+
+        .scrolltop {
+            position: fixed;
+            top: 0;
+            right: 200px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>addClass and removeClass</legend>
+        <div class="box"></div>
+        <button class=addclass>addClass</button>
+        <button class=removeclass>removeClass</button>
+    </fieldset>
+    <!-- 添加与删除class功能 -->
+    <fieldset>
+        <legend>show and hidden</legend>
+        <div class="box"></div>
+        <button class=show>show</button>
+        <button class=hidden>hidden</button>
+    </fieldset>
+    <!-- 显示与隐藏功能 -->
+    <fieldset>
+        <legend>获取与修改属性</legend>
+        <img id=testImg src="http://img3.3lian.com/2013/v12/86/105.jpg" title="img">
+        <button class=attr>获取属性</button>
+        <div class="attribute">
+        </div>
+        <input class=newId type="text" placeholder="请输入ID" style="width:100px;">
+        <button class=alterId>修改</button>
+        <input class=newSrc type="text" placeholder="请输入src" style="width:100px;">
+        <button class=alterSrc>修改</button>
+        <input class=newTitle type="text" placeholder="请输入title" style="width:100px;">
+        <button class=alterTitle>修改</button>
+        <input class=dataSrc type="text" placeholder="自定义属名data-src" style="width:100px;">
+        <input class=dataSrcVal type="text" placeholder="自定义属值" style="width:100px;">
+        <button class=alterData>修改</button>
+
+    </fieldset>
+    <!--  获取与修改属性 -->
+    <fieldset>
+        <legend>开头与末尾添加元素</legend>
+        <div class=content>
+            <p>我是内容</p>
+        </div>
+        <button class=prepend>开头添加</button>
+        <button class=append>末尾添加</button>
+    </fieldset>
+    <!-- 开头与末尾添加 -->
+    <fieldset>
+        <legend>remove</legend>
+        <div class="box"></div>
+        <button class=remove>remove</button>
+    </fieldset>
+    <!-- 移除元素 -->
+    <fieldset>
+        <legend>empty</legend>
+        <div class="box">
+            <p>清空内部所有元素</p>
+        </div>
+        <button class=empty>empty</button>
+    </fieldset>
+    <!-- 清空内部所有元素 -->
+    <fieldset>
+        <legend>html</legend>
+        <div class="box">
+        </div>
+        <button class=html>html</button>
+    </fieldset>
+    <!-- html方法 -->
+    <fieldset>
+        <legend>获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)</legend>
+        <div class="box">
+        </div>
+        <p class=width>不包括内边距宽度：</p>
+        <p class=innerwidth>包括内边距宽度：</p>
+        <p class=outerwidth>包括边框的宽度：</p>
+        <p class=outerwidthtrue>包括外边距的宽度：</p>
+        <p class=height>不包括内边距高度：</p>
+        <p class=innerheight>包括内边距高度：</p>
+        <p class=outerheight>包括边框的高度：</p>
+        <p class=outerheighttrue>包括外边距的高度：</p>
+        <button class=getWidthHeight>获取高度和宽度</button>
+        <input class=newwidth type="text" placeholder=请输入新宽度>
+        <input class=newheight type="text" placeholder=请输入新高度>
+        <button class=widthHeight>提交</button>
+    </fieldset>
+    <!-- 获取和设置元素高度宽度 -->
+    <div class="scrolltop">获取窗口滚动条垂直滚动距离
+        <p></p>
+    </div>
+    <!-- 获取滚动条距离 -->
+    <fieldset>
+        <legend>获取box到根节点水平、垂直偏移距离</legend>
+        <div class="box"></div>
+        <button class=offset>获取水平、垂直偏移距离</button>
+
+    </fieldset>
+    <!--  获取水平、垂直偏移距离 -->
+    <fieldset>
+        <legend>修改$node 的样式，字体颜色设置红色，字体大小设置14px</legend>
+        <div class=content>字体颜色设置红色，字体大小设置14px</div>
+        <button class=css>点击修改</button>
+
+    </fieldset>
+    <!-- 修改样式 -->
+    <fieldset>
+        <legend>遍历节点，把每个节点里面的文本内容重复一遍</legend>
+        <ul class=ct>
+            <li>内容1</li>
+            <li>内容2</li>
+            <li>内容3</li>
+        </ul>
+        <button class=each>点击遍历</button>
+
+    </fieldset>
+    <!--   each遍历节点 -->
+
+    <fieldset>
+        <legend>查找 class 为 .item的子元素</legend>
+        <ul class=ct>
+            <li>内容1</li>
+            <li class=item>内容2</li>
+            <li>内容3</li>
+        </ul>
+        <button class=find>点击查找item</button>
+        <button class=children>获取$ct 里面的所有孩子</button>
+
+    </fieldset>
+    <!-- find() 方法获得当前元素集合中每个元素的后代，通过选择器、jQuery 对象或元素来筛选。 -->
+    <!-- children() 方法返回被选元素的所有直接子元素。 -->
+    <fieldset>
+        <legend>获取选择元素的数量</legend>
+        <ul class=ct>
+            <li>内容1</li>
+            <li>内容2</li>
+            <li>内容3</li>
+        </ul>
+        <button class=length>获取选择元素的数量</button><span class=showLength></span>
+        <!-- length方法 -->
+
+        <fieldset>
+            <legend>获取当前元素在兄弟中的排行</legend>
+            <ul class=ct>
+                <li>内容1</li>
+                <li class=item>内容2</li>
+                <li>内容3</li>
+            </ul>
+            <button class=index>item排行第几</button><span class=showIndex></span>
+
+        </fieldset>
+
+        <!--  index() -->
+
+        <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $('.addclass').on('click', function() {
+
+                $(this).siblings('.box').addClass('black')
+            });
+            $('.removeclass').on('click', function() {
+                $(this).siblings('.box').removeClass('black');
+            });
+            //添加与删除功能
+            $('.show').on('click', function() {
+                $(this).siblings('.box').animate({
+                    opacity: "1"
+                })
+            });
+            $('.hidden').on('click', function() {
+                $(this).siblings('.box').animate({
+                    opacity: "0"
+                })
+            });
+            //显示与隐藏功能
+
+            $('.attr').on('click', function() {
+
+                var $id = $('img').attr('id'),
+                    $src = $('img').attr('src'),
+                    $title = $('img').attr('title');
+                $(this).siblings('.attribute').append('<p>id=' + $id + '</p>' + '<p>src=' + $src + '</p>' + '<p>title=' + $title + '</p>');
+            });
+            //获取id、src、title部分
+            $('.alterId').on('click', function() {
+                var $newval = $('.newId').val();
+                $('img').attr('id', $newval)
+            })
+            $('.alterSrc').on('click', function() {
+                var $newsrc = $('.newSrc').val();
+                $('img').attr('src', $newsrc)
+            })
+            $('.alterTitle').on('click', function() {
+                var $newtitle = $('newTitle').val();
+                $('img').attr('title', $newtitle)
+            });
+            $('.alterData').on('click', function() {
+                    var $newdata = $('.dataSrc').val(),
+                        $newdataval = $('.dataSrcVal').val();
+                    $('img').attr($newdata, $newdataval);
+                })
+                //修改元素属性。
+            $('.prepend').on('click', function() {
+                $(this).siblings('.content').prepend('<p>我是开头添加的内容</p>')
+            })
+            $('.append').on('click', function() {
+                    $(this).siblings('.content').append('<p>我是末尾添加的内容</p>')
+                })
+                //开头与末尾添加。
+            $('.remove').on('click', function() {
+                    $(this).siblings('.box').remove();
+                })
+                //移除元素。
+            $('.empty').on('click', function() {
+                    $(this).siblings('.box').empty();
+                })
+                //清空元素内部。
+            $('.html').on('click', function() {
+                    $(this).siblings('.box').html('<p>设置元素内部html文本</p>')
+                })
+                //设置元素内部html文本。
+            $('.getWidthHeight').one('click', function() {
+                var width = $(this).siblings('.box').width(),
+                    innerwidth = $(this).siblings('.box').innerWidth(),
+                    outerwidth = $(this).siblings('.box').outerWidth(),
+                    outerwidthtrue = $(this).siblings('.box').outerWidth(true),
+                    height = $(this).siblings('.box').height(),
+                    innerheight = $(this).siblings('.box').innerHeight(),
+                    outerheight = $(this).siblings('.box').outerHeight(),
+                    outerheighttrue = $(this).siblings('.box').outerHeight(true);
+                $('.width').append(width + 'px');
+                $('.innerwidth').append(innerwidth + 'px');
+                $('.outerwidth').append(outerwidth + 'px');
+                $('.outerwidthtrue').append(outerwidthtrue + 'px');
+                $('.height').append(height + 'px');
+                $('.innerheight').append(innerheight + 'px');
+                $('.outerheight').append(outerheight + 'px');
+                $('.outerheighttrue').append(outerheighttrue + 'px')
+            });
+            $('.widthHeight').on('click', function() {
+                var width = $('.newwidth').val(),
+                    height = $('.newheight').val();
+                $(this).siblings('.box').width(width);
+                $(this).siblings('.box').height(height)
+            });
+            //获取和设置元素高度宽度。
+            $(window).on('scroll', function() {
+                    $('.scrolltop>p').text($(window).scrollTop() + 'px');
+                })
+                //获取滚动条距离。
+            $('.offset').one('click', function() {
+                var offset = $(this).siblings('.box').offset();
+                $(this).siblings('.box').append('垂直距离：' + offset.top + 'px' + '水平距离：' + offset.left + 'px')
+            })
+
+            //获取水平、垂直偏移距离。
+            $('.css').on('click', function() {
+                    $(this).siblings('.content').css({
+                        'font-size': '14px',
+                        'color': 'red'
+                    });
+                })
+                //修改样式
+            $('.each').on('click', function() {
+                    $(this).parents().children('.ct').children().each(function() {
+                        $(this).parents().children('.ct').append('<li>' + $(this).text() + '</li>')
+                    })
+                })
+                //each()遍历节点
+            $('.find').on('click', function() {
+                var $find = $(this).siblings().find('.item');
+                $(this).siblings().find('.item').animate({
+                    'font-size': '50px'
+                }).append('<span>' + $find.attr('class') + '</span>');
+                setTimeout(function() {
+                    $('.ct').find('.item').animate({
+                        'font-size': '16px'
+                    })
+                }, 2000);
+            })
+
+            //find() 方法获得当前元素集合中每个元素的后代，通过选择器、jQuery 对象或元素来筛选。
+            $('.children').on('click', function() {
+                    $(this).siblings('.ct').children().animate({
+                        'font-size': '50px'
+                    });
+                    setTimeout(function() {
+                        $('.ct').children().animate({
+                            'font-size': '16px'
+                        })
+                    }, 2000);
+                })
+                //children() 方法返回被选元素的所有直接子元素。
+            $('.length').one('click', function() {
+                    var $length = $(this).siblings('.ct').children().length;
+                    $(this).parents().find('.showLength').text(':' + $length)
+                })
+                //length
+
+            $('.index').one('click', function() {
+                var $index = $(this).siblings('.ct').children('.item').index();
+                $(this).parents().find('.showIndex').text(':' + $index);
+            })
+        </script>
+
+</body>
+
+</html>

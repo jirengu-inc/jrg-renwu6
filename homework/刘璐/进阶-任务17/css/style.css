@@ -1,0 +1,103 @@
+/*初始化 start*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul li {
+    list-style: none;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+
+/*初始化 end*/
+
+.carousel {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.carousel .img-ct img {
+    width: 300px;
+    height: 200px;
+}
+
+.carousel .img-ct {
+    position: absolute;
+    width: 1200px;
+    height: 200px;
+}
+
+.carousel .img-ct li {
+    float: left;
+}
+
+.carousel .btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #333;
+    opacity: 0.6;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+}
+
+.carousel .btn-pre {
+    left: 10px;
+}
+
+.carousel .btn-next {
+    right: 10px;
+}
+
+.carousel .bullet-ct {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.carousel .bullet {
+    display: inline-block;
+}
+
+.carousel .bullet>li {
+    display: inline-block;
+    width: 20px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #fff;
+    margin: 0 5px;
+}
+
+.carousel .bullet .active {
+    background-color: #666;
+}
+

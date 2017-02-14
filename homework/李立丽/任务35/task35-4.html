@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>task35-4</title>
+	<style>
+	html,body,ul,li{
+		margin: 0;
+		padding:0;
+	}
+	.clearfix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.wrap{
+		width: 600px;
+		height: 300px;
+		border: 1px solid #ccc;
+		margin:40px;
+		box-sizing: border-box;
+	}
+	li{
+		list-style: none;
+		float:left;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		text-align: center; 
+		vertical-align: center;
+		width: 198.5px;
+		height: 40px;
+		line-height: 40px;
+		cursor: pointer;
+	}
+	li:last-child{
+		border-right:none;
+	}
+	.active{
+		background-color: #eee;
+	}
+	.wrap div{
+		display: none;
+		height: 300px;
+		padding: 20px;
+	}	
+
+    .wrap .content{
+        display: block;
+    }
+	</style>
+</head>
+<body>
+	<div class="wrap">
+	  	<ul class="tab clearfix">
+	  		<li class="active">tab1</li>
+	  		<li>tab2</li>
+	  		<li>tab3</li>
+	  	</ul>
+	  	<div class="content">内容1</div>
+	  	<div>内容2</div>
+	  	<div>内容3</div>
+	  </div>
+	<div class="wrap">
+	  	<ul class="tab clearfix">
+	  		<li class="active">tab1</li>
+	  		<li>tab2</li>
+	  		<li>tab3</li>
+	  	</ul>
+	  	<div class="content">内容1</div>
+	  	<div>内容2</div>
+	  	<div>内容3</div>
+	  </div>
+
+	  <script src=http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js></script>
+
+	  <script>
+	  	 function tabChange($nodes){
+	  	  	this.$li = $nodes.find('.tab li');
+	  	 	this.$div = $nodes.find('div');
+	  	 	this.bind();
+	  	 }
+
+	  	 tabChange.prototype.bind = function(){
+	  	 	var cur = this;
+	  	 	this.$li.on('click',function(){
+	  	 		var idx = $(this).index();
+                $(this).addClass('active').siblings().removeClass('active');
+                cur.$div.removeClass('content').eq(idx).addClass('content');
+	  	 	})
+	  	 }
+	  	 var $nodes1 = $('.wrap').eq(0);
+	  	 var $nodes2 = $('.wrap').eq(1);
+	  	 var tabChange1 = new tabChange($nodes1);
+	  	 var tabChange2 = new tabChange($nodes2);
+	  </script>
+
+
+
+
+
+</body>
+</html>

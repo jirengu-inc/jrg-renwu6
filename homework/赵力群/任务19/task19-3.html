@@ -12,13 +12,17 @@
         lastMonth = getLastNDays(30);
     console.log(lastweek);
     console.log(lastMonth);
-    function getLastNDays(n) {
-      var t1 = Date.now(),
-          t2 = n * 24 * 60 * 60 *1000,
-          t3 = new Date(t1 - t2),
-          str = t3.toLocaleDateString(),
-          newstr = str.split("/").join("-");
-      return newstr;
+    function getLastNDays(t) {
+      var t1 = new Date();
+      var t2 = new Date(new Date() - (t * 24 * 60 * 60 * 1000));
+      var str = t2.toLocaleDateString();
+      var arr = str.split('/');
+      for(var i = 0; i< arr.length; i++) {
+        if(arr[i].length === 1) {
+          arr[i] = '0' + arr[i];
+        }
+      }
+      return arr.join('-');
     }
   </script>
 </body>

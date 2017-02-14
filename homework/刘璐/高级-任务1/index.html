@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>回到顶部</title>
+    <style>
+        *{padding:0; margin:0;}
+        .ct{
+            height:1200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+   <div class="ct"></div>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script>
+        var Gotop=function(ct,target){
+            this.ct=ct;
+            this.target=$('<button class="btn">返回顶部</button>');
+            this.target.css({right:'100px', bottom:'200px', position:'fixed'})
+        }
+        Gotop.prototype.creatNode=function(){
+            this.ct.append(this.target);
+            this.target.hide();
+        }
+        Gotop.prototype.bindEvent=function(){
+            var _this=this;
+            $(window).on('scroll',function(){
+                if($(window).scrollTop()<100){
+                    _this.target.hide();
+                }else{
+                    _this.target.show();
+                }
+            });
+            this.target.on('click',function(){
+                $(window).scrollTop(0);
+            })
+        }
+        var Top=new Gotop($('body'));
+        Top.creatNode();
+        Top.bindEvent();
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>35</title>
+<style>
+	div{
+		height: 1500px;
+		background: pink;
+	}
+	.btn{
+		position: fixed;
+		right: 10px;
+		bottom: 10px;
+		width: 60px;
+		height: 40px;
+		display: none;
+		color:#fff;
+		border: 1px solid;
+		border-radius: 3px;
+		background:  #000;
+		cursor: pointer;
+	}
+</style>
+</head>
+<body>
+	<div></div>
+	<button class="btn">点我</button>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+    function GoTop(ct,target){
+        this.ct = ct;
+        this.target = target;
+        this.bindEvent();
+        this.createNode();
+    }
+    GoTop.prototype ={
+        bindEvent: function(){
+     		this.target.onclick = function(){
+     			$(window).scrollTop('0');
+     		};
+        },
+        createNode:function(){
+        	var me = this;
+        	$(window).on('scroll',function(){
+        		if ($(window).scrollTop() > 300) {
+        			$(me.target).show();
+        		}else{
+        			$(me.target).hide();
+        		}
+        	})
+   		 }
+	}
+    var returnGotop = new GoTop( $('div')[0] , $('button')[0] );
+ </script>
+</body>
+</html>

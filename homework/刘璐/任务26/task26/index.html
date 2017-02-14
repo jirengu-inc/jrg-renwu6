@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task26</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="ct">
+    <div class="item">内容1</div>
+    <div class="btn add-more">加载更多</div>
+</div>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+    $(function(){
+        var LEN=3;//获取3条
+        var ready=true;//相当于一个锁,数据来之后才会有效果
+        $('.add-more').on('click',function () {
+            var me=this;
+            start=$(this).index();//获取到自己位置
+            if(!ready){
+                return;//直接返回
+            }
+            ready=false;//相当于加了一把锁
+            $(me).text('loading...');//上面文案变为loading,然后向后台获取数据
+            $.ajax({
+                url:'getMoreItemPost.php',//接口
+                type:'GET',//类型
+                dataType:'json',
+                data:{//传递给后台的数据
+                    start:start,
+                    len:LEN
+                },
+                success:function (data) {//成功后得到data数据
+                    console.log(this);
+                    if(data&&data.status==='success'){
+                        var items=data.items;
+                        for(var i=0; i<items.length;i++){
+                            $(me).before('<div class="item">'+items[i]+'</div>');
+                        }
+                    }
+                    else{alert('error');}
+                },
+                /*error:function () {//断网/服务器挂了
+                    alert('error');
+                },*/
+                complete:function () {//无论成功or失败都会执行
+                    ready=true;//执行完成把锁打开
+                    $(me).text('加载更多');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

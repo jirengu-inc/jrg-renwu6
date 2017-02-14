@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>tab</title>
+        <script src="http://lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js">
+        </script>
+        <style>
+            html,body,ul,li{
+                margin:0;
+                padding:0;
+            }
+            ul,li{
+                list-style: none;
+            }
+
+            .clearfix{
+                content:"";
+                display:block;
+                clear:both;
+            }
+
+            .cont1{
+                border:1px solid #ccc;
+                width:300px;
+                margin-top:50px;
+            }
+
+
+            .listactive.clearfix li{
+                width:100px;
+                height:25px;
+                border-right:1px solid #ccc;
+                border-bottom:1px solid #ccc;
+                float:left;
+                text-align:center;
+                line-height:25px;
+                cursor:pointer;
+            }
+
+            .listactive.clearfix li:last-child{/*选中li元素中的最后一个将其右border去除，
+                因为上面li都设置了border和.cont1设置border有重叠，这里去除后可使用cont1所加的border*/
+                border-right:none;
+            }
+
+            .listactive.clearfix *{/*将ul下的li元素设置成边框盒模型，以免width+边框超过父元素cont1规定的宽度*/
+                box-sizing:border-box;
+            }
+
+            .cont1 div{
+                width:300px;
+                height:300px;
+                display:none;
+            }
+
+            .cont1 .active_cont{
+                display:block;
+            }
+
+            .active_tab{
+                background:#eee
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="tab1" class="cont1">
+            <ul class="listactive clearfix">
+                <li class="active_tab">tab1</li>
+                <li>tab2</li>
+                <li>tab3</li>
+            </ul>
+            <div class="active_cont">内容1</div>
+            <div>内容2</div>
+            <div>内容3</div>
+        </div>
+
+        <div id="tab2" class="cont1">
+            <ul class="listactive clearfix">
+                <li class="active_tab">tab1</li>
+                <li>tab2</li>
+                <li>tab3</li>
+            </ul>
+            <div class="active_cont">内容1</div>
+            <div>内容2</div>
+            <div>内容3</div>
+        </div>
+        <script>
+            $(function(){
+                function showTab($node){
+                    this.$li=$node.find(".listactive.clearfix").eq(0).find("li");
+                    this.$div=$node.find("div");
+                    this.bind();/*this指向showTab对象*/
+                    console.log(this)
+                }
+
+                showTab.prototype={
+                    constructor:showTab,
+                    bind:function(){
+                        var cur=this;/*下面要使用事件函数，this赋值保留原this对象,这里this指向showTab对象*/
+                        console.log(this)
+                        cur.$li.on("click",function(){
+                            console.log(this)/*这里this指向的是触发事件的dom元素，如果要使用jquery的
+                            一系列方法操作dom，要将其转换成jquery对象*/
+                            console.log($(this))
+                            console.log($(this).index())/*index()方法从匹配的元素中搜索当前元素的索引号*/
+                            $(this).addClass("active_tab")
+                                    .siblings().removeClass("active_tab")
+                            var index_div=$(this).index()/*记录当前点击tab的索引号，这个索引号和div对应起来*/
+                            cur.$div.eq(index_div).addClass("active_cont")/*这里不能使用this，因为this指向触发事件的dom元素，要用cur*/
+                                    .siblings().removeClass("active_cont")
+
+                        })
+                    }
+                }
+
+                var show1=new showTab($("#tab1"))
+                var show2=new showTab($("#tab2"))
+
+                // $(".cont1").each(function(index,value){
+                //     new showTab($(value))
+                // })
+
+            })
+
+        </script>
+    </body>
+</html>
