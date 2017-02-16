@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>无线轮播二次封装</title>
+<style type="text/css">
+html,body,ul,li{
+	margin:0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.carousel{
+	position: relative;
+	width: 310px;
+	height: 206px;
+	overflow: hidden;
+}
+.img-ct{
+	position: relative;
+}
+.img-ct a{
+	display: inline-block;
+}
+.img-ct img{
+	width: 310px;
+	height: 206px;
+}
+.img-ct:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.img-ct li{
+	float: left;
+}
+.arrow{
+	position: absolute;
+	top: 50%;
+	margin-top: -15px; /*垂直居中*/
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #444;
+	color: #fff;
+	border-radius: 30px;
+	box-shadow: 0 0 2px #888;
+	opacity: 0.7;
+}
+.arrow:hover{
+	opacity: 1;
+}
+.pre{
+	left: 10px;
+}
+.next{
+	right: 10px;
+}
+.bullet{
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%); /*水平偏移，使其水平居中*/
+}
+.bullet li{
+	width: 16px;
+	height: 4px;
+	border-radius: 2px;
+	background: #fff;
+	display: inline-block;
+	cursor: pointer;
+}
+.bullet li.active{
+	background: #666;
+}
+
+</style>
+</head>
+<body>
+<div class="carousel">
+	<ul class="img-ct">
+		<li data-id='0'><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></a></li>
+		<li data-id='1'><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></a></li>
+		<li data-id='2'><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg"></a></li>
+		<li data-id='3'><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/16.jpg"></a></li>
+	</ul>
+	<a href="#" class="pre arrow"><</a>
+	<a href="#" class="next arrow">></a>
+	<ul class="bullet">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<script src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+
+var Carousel=(function(){
+	function _Carousel($carousel){
+		this.ct=$carousel;
+	    this.init();
+	    this.bind();
+	    this.autoPlay();
+	}
+
+	_Carousel.prototype.init=function(){
+		this.$ct = this.ct.find('.img-ct');
+	    this.$items=this.$ct.children();
+	    this.$pre= this.ct.find('.pre');
+	    this.$next=this.ct.find('.next');
+	    this.$bullet=this.ct.find('.bullet');
+	    this.imgWidth=this.$items.width();
+	    this.imgCount=this.$ct.children().size();
+
+	    this.$ct.prepend(this.$items.last().clone());
+		this.$ct.append(this.$items.first().clone());
+		this.imgRealCount=this.$ct.children().length;
+		this.$ct.css({left:0-this.imgWidth,width:this.imgRealCount*this.imgWidth});
+	};
+	_Carousel.prototype.bind=function(){
+		this.curIdx=0;
+		this.isAnimate=false;
+		var _this=this;
+		this.$next.on('click',function(){
+			_this.playNext();
+		});
+		this.$pre.on('click',function(){
+			_this.playPre();
+		});
+		this.$bullet.find('li').on('click',function(){
+			var idx=$(this).index();
+			if(idx > _this.curIdx){
+				_this.playNext(idx-_this.curIdx);
+			}else if(idx < _this.curIdx){
+				_this.playPre(_this.curIdx-idx);
+			}
+		});
+	};
+	_Carousel.prototype.playNext=function(idx){
+		var idx = idx || 1;
+		var _this=this;
+			if(!this.isAnimate){
+				this.isAnimate=true;
+				this.$ct.animate({left:'-='+(_this.imgWidth*idx)},function(){
+					_this.curIdx+=idx;
+					if(_this.curIdx==_this.imgCount){
+						_this.$ct.css({left:0-_this.imgWidth});
+						_this.curIdx=0;
+					}
+					_this.isAnimate=false;
+					_this.setBullet();
+				});
+			}
+	};
+	_Carousel.prototype.playPre=function(idx){
+		var idx=idx||1;
+		var _this=this;
+			if(!this.isAnimate){
+				this.isAnimate=true;
+				this.$ct.animate({left:'+='+(_this.imgWidth*idx)},function(){
+					_this.curIdx=(_this.imgCount+_this.curIdx-idx)%_this.imgCount;
+					if(_this.curIdx==(_this.imgCount-1)){
+						_this.$ct.css({left:0-_this.imgWidth*_this.imgCount});
+					}
+					_this.isAnimate=false;
+					_this.setBullet();
+				});
+			}
+	};
+	_Carousel.prototype.setBullet=function(){
+		this.$bullet.find('li').removeClass('active')
+			                  .eq(this.curIdx).addClass('active');
+	};
+	_Carousel.prototype.autoPlay=function(){
+		var _this=this;
+		this.clock=setInterval(function(){
+				_this.playNext();
+		},3000);
+	};
+	_Carousel.prototype.stopAuto=function(){
+		clearInterval(this.clock);
+	};
+
+	return {
+		init:function($ct){
+			$ct.each(function(index,node){
+				new _Carousel($(node));
+			});
+		}
+	};
+})();
+
+Carousel.init($('.carousel'));
+</script>
+</body>
+</html>

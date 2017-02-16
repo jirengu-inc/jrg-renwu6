@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>轮播图按图片序号显示</title>
+	<style type="text/css">
+		html,body,ul,li{
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			list-style:none;
+		}
+		a{
+			text-decoration:none;
+		}
+
+		.clearfix:after{
+			content:"";
+			display:none;
+			clear:both;
+		}
+
+		.container{
+			width: 310px;
+			height: 206px;
+			position:relative;
+			overflow:hidden;  /*固定窗口*/
+		}
+
+		.ul-cont.clearfix{
+			position:absolute;/*相对于父元素#container绝对定位，以便设置初始状态默认显示第一张图片 left:0-imgWidth*/
+		}
+
+		.ul-cont li img{
+			width: 310px;
+			height: 206px;
+		}
+
+		.ul-cont.clearfix li{
+			float:left;
+		}
+
+		.arrow{
+			position:absolute;
+			top: 50%;
+		    transform: translateY(-50%);
+		    width:30px;
+		    height:30px;
+		    line-height:30px;
+		    text-align:center;
+		    border-radius:30px;
+		    background: #4E443C;
+		    color: #fff;
+		    opacity: 0.8
+		}
+
+		.arrow:hover{
+			opacity:0.5;
+		}
+
+		.next{
+			right:10px;
+		}
+
+		.pre{
+			left:10px;
+		}
+
+		.btn{
+			position:absolute;
+			bottom:10px;
+			left:50%;
+			transform: translateX(-50%);
+		}
+
+		.btn li{
+			width:15px;
+			height:4px;
+			border-radius:3px;
+			background:#fff;
+			display:inline-block;
+			cursor:pointer;
+		}
+
+		.btn .active{
+			background:#999;
+		}
+
+		.container{
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<ul class="ul-cont clearfix">
+		<li data-idx=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a></li>
+		<li data-idx=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a></li>
+		<li data-idx=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></a></li>
+		<li data-idx=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></a></li>
+	</ul>
+	<a href="#" class="next arrow">></a>
+	<a href="#" class="pre arrow"><</a>
+	<ul class="btn">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<div class="container">
+	<ul class="ul-cont clearfix">
+		<li data-idx=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></a></li>
+		<li data-idx=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></a></li>
+		<li data-idx=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg"></a></li>
+		<li data-idx=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg"></a></li>
+	</ul>
+	<a href="#" class="next arrow">></a>
+	<a href="#" class="pre arrow"><</a>
+	<ul class="btn">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+	<script type="text/javascript" src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js">
+	</script>
+	<script type="text/javascript">
+			function Carousel($node){
+				    this.$node=$($node),
+					this.$firstNode=this.$node.find(".ul-cont.clearfix").find("li:first").clone(),
+					this.$lastNode=this.$node.find(".ul-cont.clearfix").find("li:last").clone(),
+					this.$imgWidth=this.$node.find(".ul-cont.clearfix li a img").width(),/*单张图片宽度*/
+					this.$imgCount=this.$node.find(".ul-cont.clearfix").find("li").length,/*原始图片个数*/
+					this.$node.find(".ul-cont.clearfix").append(this.$firstNode);
+					this.$node.find(".ul-cont.clearfix").prepend(this.$lastNode)
+				    this.$realCount=this.$node.find(".ul-cont.clearfix").find("li").length,/*加首尾后个数*/
+					this.$window=this.$node.find(".ul-cont.clearfix")
+					this.$window.css({left:0-this.$imgWidth,width:this.$realCount*this.$imgWidth}); /*设置图片组总宽度，图片float所以排成一列，默认显示第一张图片*/
+					this.couIdx=0;/*申明变量记录当前图片的序号*/
+					this.idx=1;
+					this.bind();
+					console.log(this.counIdx)
+			}
+			Carousel.prototype.bind=function(){
+					var _this=this
+					this.$node.find(".next").on("click",function(){//右箭头点击执行playnext()
+						_this.playnext();
+				})
+
+					this.$node.find(".pre").on("click",function(){//左箭头点击执行playpre()
+						_this.playpre();
+				})
+
+					this.$node.find(".btn").find("li").on("click",function(mousev){//底部按钮点击执行playnext或playpre
+					_this.idx=$(mousev.currentTarget).index()
+					if(_this.idx>_this.couIdx){
+						console.log("idx: "+_this.idx+"couIdx: "+_this.couIdx)
+						_this.playnext(_this.idx-_this.couIdx)
+					}
+					else if(_this.idx<_this.couIdx){
+						console.log("idx: "+_this.idx+"couIdx: "+_this.couIdx)
+						_this.playpre(_this.couIdx-_this.idx)
+						// console.log(couIdx-idx)
+					}
+				})
+			}
+			Carousel.prototype.ckbutton=function(){//随动画效果更改底部button颜色
+				var _this=this
+				this.$node.find(".btn").find("li").removeClass("active").eq(_this.couIdx).addClass("active")
+			}
+
+				Carousel.prototype.playnext=function(idx){
+					var _this=this
+					var idx=idx || 1//取点击底部button产生的idx值或者取向左向右按钮产生的idx值
+					console.log(idx)
+					this.$window.animate({left:"-="+(idx*this.$imgWidth)},function(){//匿名函数内this会发生改变，所以要使用_this
+						_this.couIdx=_this.couIdx+idx;
+						 console.log()
+						if(_this.couIdx===4){//到右侧边界时，通过css操作跳到真实第一张index0
+							_this.$window.css({left:0-_this.$imgWidth})
+							_this.couIdx=0//跳转后将couIdx置为0
+						}
+						_this.ckbutton()
+					})
+				}
+
+				Carousel.prototype.playpre=function(idx){
+					var _this=this
+					var idx=idx || 1//取点击底部button产生的idx值或者取向左向右按钮产生的idx值
+					this.$window.animate({left:"+="+(idx*this.$imgWidth)},function(){//匿名函数内this会发生改变，所以要使用_this
+						_this.couIdx=_this.couIdx-idx;
+						if(_this.couIdx===-1){//到左侧边界时，通过css操作跳到真实最后一张index3
+							_this.$window.css({left:0-4*_this.$imgWidth})
+							_this.couIdx=3//跳转后将couIdx置为3
+						}
+						_this.ckbutton()
+					})
+				}
+
+				new Carousel($(".container").eq(0))
+				new Carousel($(".container").eq(1))
+
+	</script>
+</body>
+</html>

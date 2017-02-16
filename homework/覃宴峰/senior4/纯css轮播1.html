@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by anonymous (http://jsbin.com/yoticodowo/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    *{margin:0;padding: 0;}
+    ul,ol{list-style: none;}
+    body{
+      font-size: 14px;
+    }
+    .demo{
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items:center;
+    }
+    .slides{
+      position: relative;
+      width: 640px;
+      height: 400px;
+    }
+    .slides > li{
+      position: absolute;
+      visibility: hidden;
+    }
+    .slides > li > img{
+      height: 400px;
+      vertical-align: middle;
+    }
+    
+    .controls{
+      display: flex;
+      
+    }
+    .controls > li{
+      background: #ddd;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      margin: .5em;
+      color: #444;
+      
+    }
+    input[name=currentSlide]{
+      display: none;
+    }
+    
+    input[name=currentSlide]:nth-child(1):checked ~ .slides > li:nth-child(1),
+    input[name=currentSlide]:nth-child(2):checked ~ .slides > li:nth-child(2),
+    input[name=currentSlide]:nth-child(3):checked ~ .slides > li:nth-child(3),
+    input[name=currentSlide]:nth-child(4):checked ~ .slides > li:nth-child(4),
+    input[name=currentSlide]:nth-child(5):checked ~ .slides > li:nth-child(5){
+      visibility: visible;
+      animation: slide 1s;
+    }
+    
+    input[name=currentSlide]:nth-child(1):checked ~ .controls > li:nth-child(1),
+    input[name=currentSlide]:nth-child(2):checked ~ .controls > li:nth-child(2),
+    input[name=currentSlide]:nth-child(3):checked ~ .controls > li:nth-child(3),
+    input[name=currentSlide]:nth-child(4):checked ~ .controls > li:nth-child(4),
+    input[name=currentSlide]:nth-child(5):checked ~ .controls > li:nth-child(5){
+      background: #888;
+      color: white;
+    }
+    
+    @keyframes slide{
+      from {
+        opacity: 0.7;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+<section class="demo">
+  
+  <input type="radio" name=currentSlide id="slide1" checked>
+  <input type="radio" name=currentSlide id="slide2">
+  <input type="radio" name=currentSlide id="slide3">
+  <input type="radio" name=currentSlide id="slide4">
+  <input type="radio" name=currentSlide id="slide5">
+  
+  <ol class="slides">
+    <li><img src="http://i1.piimg.com/567571/984fd6671b2c0723.jpg" alt=""></li>
+    <li><img src="http://p1.bqimg.com/567571/17a8a88091dbaa63.jpg" alt=""></li>
+    <li><img src="http://i1.piimg.com/567571/8ece3945fe69ba9f.jpg" alt=""></li>
+    <li><img src="http://i1.piimg.com/567571/9d1c775af7a7daf1.jpg" alt=""></li>
+    <li><img src="http://i1.piimg.com/567571/7450d82c50c7f178.jpg" alt=""></li>
+  </ol>
+  <ol class="controls">
+    <li><label for="slide1">1</label></li>
+    <li><label for="slide2">2</label></li>
+    <li><label for="slide3">3</label></li>
+    <li><label for="slide4">4</label></li>
+    <li><label for="slide5">5</label></li>
+  </ol>
+</section>
+</body>
+</html>
