@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<!-- 禁止浏览器自动缩放,禁止用户手动缩放,默认缩放比例1.0(不放大也不缩小) -->
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+		img{
+			border: 0;
+			vertical-align: middle;
+		}
+		body,html{
+			font-family: "微软雅黑",Arial,Helvetica,sans-serif;
+			background: #e1e1e1;
+		}
+		html{
+			font-size: 62.5%;/*rem会继承html的大小,将html默认字体大小设置为62.5%,而浏览器默认字体大小为16px,因此html也就是说10px,这样就免去了字体的单位换算过程了*/
+		}
+		input{
+			outline: none;
+			border: 0;
+			box-shadow: none;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.xs-wrap{
+			width: 100%;
+			min-width: 320px;
+			overflow: hidden;
+			font-size: 1.4rem;
+		}
+		.xs-top{
+			text-align: center;
+			height: 46px;
+			line-height: 46px;
+			background: #51b7ec;
+			position: relative;
+		}
+		.xs-top .logo{
+			display: block;
+			width: 100px;
+			height: 46px;
+			float: left;
+			margin: 0 0 0 15px;
+		}
+		.xs-top .logo img{
+			display: block;
+			width: 110px;
+			height: 30px;
+			margin: 9px 0 0 0;
+		}
+		.xs-top ul li{
+			display: inline-block;
+		}
+		.xs-top ul li a{
+			position: absolute;
+			background: url(http://m.xiashu.cc/template/mobile/public/image/propic.png) no-repeat;/*禁止背景图片平铺拉伸*/
+			display: inline-block;
+			background-size: 120px 30px;
+		}
+		.xs-top ul li:nth-child(1) a{
+			width: 42px;
+			height: 46px;
+			right: 100px;
+			top: 0;
+			background-position: -75px 8px;
+		}
+		.xs-top ul li:nth-child(2) a{
+			width: 41px;
+			height: 46px;
+			right: 55px;
+			top: 0;
+			background-position: 3px 8px;
+		}
+		.xs-top ul li:nth-child(3) a{
+			width: 41px;
+			height: 46px;
+			right: 10px;
+			top: 0;
+			background-position: -35px 8px;
+		}
+		.xs-nav{
+			background: #f6f6f6;
+			padding: 0;
+			display: block;
+			height: 40px;
+			line-height: 40px;
+			font-size: 1.4rem;
+			border-bottom: 1px solid #dcdcdc;
+		}
+		.xs-nav a{
+			float: left;
+			padding: 0;
+			text-align: center;
+			width: 20%;
+			display: block;
+			color: #666;
+		}
+		.xs-nav .tab-active{
+			color: #51b7ec;
+			border-bottom: 2px solid #51b7ec;
+		}
+		.xs-content{
+			padding: 10px;
+		}
+		.form .search{
+			width: 100%;
+		}
+		.input{
+			background: #fff;
+			padding: 5px;
+			border: 1px solid #ccc;
+		}
+		.input input{
+			height: 22px;
+			width: 100%;
+			line-height: 22px;
+			background: none;
+		}
+		.search .col-2{
+			width: 5px;
+		}
+		.search .col-3{
+			width: 80px;
+		}
+		.buttom input{
+			width: 100%;
+			height: 34px;
+			background: #9f9386;
+			background: -webkit-linear-gradient(top,#9f9386,#9f9386);
+			color: #fff;
+			border-radius: 2px;
+		}
+		.module {
+			background: #fff;
+			padding: 10px;
+			border-radius: 3px;
+			margin-top: 10px;
+			clear: both;
+		}
+		.module .module-hd{
+			height: 25px;
+			line-height: 25px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid #e6e6e6;
+		}
+		.module-hd h2{
+			font-size: 1.4rem;
+			font-weight: normal;
+			float: left;
+		}
+		.bookimglist {
+		    padding: 5px 0;
+		}
+		.bookimglist li{
+			float: left;
+			width: 25%;
+			padding: 10px 0;
+			text-align: center;
+		}
+		.bookimglist li a{
+			display: block;
+			width: 90%;
+			min-width: 64px;
+			margin: 0 auto;
+		}
+		.bookimglist li .pic {
+		    width: 100%;
+		    height: 110px;
+		}
+		img{
+			border: 0;
+			vertical-align: middle;
+		}
+		.bookimglist li .name {
+		    height: 20px;
+		    line-height: 20px;
+		    font-size: 1.4rem;
+		    color: #666;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		}
+		.booktextlist {
+			border-top: 1px solid #e6e6e6;
+		    padding-top: 8px;
+		}
+		.booktextlist li {
+		    height: 30px;
+		    line-height: 30px;
+		}
+		.orange, a.orange, .orange a {
+		    color: #be9155;
+		}
+		.hottextlist li{
+			white-space: nowrap;
+		    text-overflow: ellipsis;
+		    overflow: hidden;			
+		}
+		.hottextlist li .vline {
+		    padding: 0 8px;
+		}
+		.hottextlist li .name, a.name, .name a{
+			color: #333;
+		}
+		.hottextlist .gray{
+			color: #999;
+			font-style: normal;
+		}
+		.module-hd h3 {
+		    float: left;
+		    border-left: 5px solid #51b7ec;
+		    padding-left: 10px;
+		    height: 25px;
+		    line-height: 25px;
+		    font-size: 1.4rem;
+		}
+		.module-hd span {
+		    float: right;
+		}
+		.newpost {
+		    background: #9fcb57;
+		    padding: 0 10px;
+		    border: 1px solid #8ebf3f;
+		    color: #FFF;
+		}
+		.newpost a {
+		    color: #FFF;
+		    font-size: 1.2rem;
+		}
+		.bbslist {
+		    padding: 0 5px;
+		}
+		.bbslist li {
+		    padding: 8px 0px;
+		    border-bottom: 1px solid #e6e6e6;
+		}
+		.bbslist li a{
+			color: #333;
+		}
+		.bbslist li .time {
+		    display: block;
+		    font-size: 1.4rem;
+		    color: #c5c9cd;
+		}
+		.imgtextlist li {
+		    min-height: 90px;
+		    padding: 15px 0 15px 74px;
+		    line-height: 20px;
+		    border-bottom: 1px solid #e6e6e6;
+		    position: relative;
+		}
+		.imgtextlist li img{
+			width: 64px;
+			height: 90px;
+			border: 0;
+   			vertical-align: middle;
+		}
+		.imgtextlist li .pic {
+		    position: absolute;
+		    left: 0;
+		    top: 18px;
+		}
+		.imgtextlist li .title {
+		    height: 20px;
+		    color: #000;
+		}
+		.author {
+			color: #c5c9cd;
+		}
+		.imgtextlist li .intro {
+		    font-size: 1.4rem;
+		    max-height: 54px;
+		    line-height: 18px;
+		    overflow: hidden;
+		    color: #999;
+		}
+		.rcmdtextlist {
+			margin-top: 10px;
+		}
+		.rcmdtextlist li:first-child {
+		    border-top: 1px solid #e6e6e6;
+		}
+		.rcmdtextlist li {
+		    padding: 12px 0;
+		    line-height: 20px;
+		    border-bottom: 1px solid #e6e6e6;
+		}
+		.rcmdtextlist li a{
+			color: #333;
+		}
+		.rcmdtextlist li a p .author{
+			margin-left: 10px;
+			color: #c5c9cd;
+		}
+		.rcmdtextlist li .intro {
+		    max-height: 60px;
+		    font-size: 1.4rem;
+		    overflow: hidden;
+		    color: #999;
+		    margin-top: 5px;
+		}
+		.line-x {
+		    width: 100%;
+		    position: relative;
+		    height: 1px;
+		}
+		.line-x:after {
+		    border-bottom: 1px solid #c8c7cc;
+		    display: block;
+		    content: '';
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    -webkit-transform-origin: 0 0;
+		    -webkit-transform: scale(1);
+		    pointer-events: none;
+		}
+		.footer {
+		    padding: 0 10px 20px;
+		    margin-top: 10px;
+		    text-align: center;
+		}
+		.footer p {
+		    font-size: 12px;
+		    color: #aaa;
+		    line-height: 2em;
+		}
+		.footer a {
+		    font-size: 14px;
+		    display: inline-block;
+		    color: #666;
+		    padding: 0 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="xs-wrap">
+		<!-- header标签定义头部区域 -->
+		<header class="xs-top">
+			<a href="#" class="logo">
+				<img src="http://m.xiashu.cc/template/mobile/public/image/logo.png" alt="首页" title="首页">
+			</a>
+			<ul>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+				<li><a href="#"></a></li>
+			</ul>
+		</header>
+		<!-- nav标签定义导航或者菜单 -->
+		<nav class="xs-nav">
+			<a href="#" class="tab-active">首页</a>
+			<a href="#">书库</a>
+			<a href="#">社区</a>
+			<a href="#">排行</a>
+			<a href="#">记录</a>
+		</nav>
+
+		<!-- section标签定义比较大的区域 -->
+		<section class="xs-content">
+			<div class="form">
+				<table cellpadding="0" cellpadding="0" class="search">
+					<tbody>
+						<tr>
+							<td class="col-1">
+								<div class="input">
+									<input type="text" placeholder="请输入关键字搜索" name="" value="">
+								</div>
+							</td>
+							<td class="col-2"></td>
+							<td class="col-3">
+								<div class="buttom">
+									<input type="submit" value="搜索">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="module">
+				<div class="module-hd">
+					<h2>热门阅读</h2>
+				</div>
+				<ul class="bookimglist clearfix">
+					<li>
+						<a href="">
+							<img src="http://img.xiashu.cc/cover/32/32047/32047s.jpg" alt="和护士后妈生活的日子" class="pic">
+							<p class="name">和护士后妈生活的日子</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="http://img.xiashu.cc/cover/32/32978/32978s.jpg" alt="好色小姨" class="pic">
+							<p class="name">好色小姨</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="http://img.xiashu.cc/cover/20170104/e20ff6905c24ff4821615d74e93d6f68.jpg" alt="女总裁的超级保镖" class="pic">
+							<p class="name">女总裁的超级保镖</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="http://img.xiashu.cc/cover/37/d6/43/37d643dbf818308923bb8da1043b4497.jpg" alt="离婚无效:前妻快到碗里来" class="pic">
+							<p class="name">离婚无效:前妻快到碗里来</p>
+						</a>
+					</li>
+				</ul>
+				<ul class="booktextlist hottextlist">
+					<li>
+						<a href="" class="orange">现代</a>
+						<span class="vline">|</span>
+						<a href="" class="name">
+							总裁大人，体力好！
+							<em class="gray">（绝宠文）母亲结婚当晚，她被...</em>
+						</a>
+					</li>
+					<li>
+						<a href="" class="orange">都市</a>
+						<span class="vline">|</span>
+						<a href="" class="name">
+							都市奇门医圣：
+							<em class="gray">实习医生叶皓轩，意外...都市奇门医圣：</em>
+						</a>
+					</li>
+					<li>
+						<a href="" class="orange">灵异</a>
+						<span class="vline">|</span>
+						<a href="" class="name">
+							通天仕途：
+							<em class="gray">这是一个部队转业军官的官场人...</em>
+						</a>
+					</li>
+					<li>
+						<a href="" class="orange">灵异</a>
+						<span class="vline">|</span>
+						<a href="" class="name">
+							我曾爱过你的唇：
+							<em class="gray">爱上宋城那年，我身高腿长腰肢...</em>
+						</a>
+					</li>
+					<li>
+						<a href="" class="orange">仙侠</a>
+						<span class="vline">|</span>
+						<a href="" class="name">
+							呆萌小青梅：妖孽竹马太腹黑：
+							<em class="gray">“哥哥，发生关系是什么关系？...</em>
+						</a>
+					</li>
+					<li>
+						<a href="" class="orange">现代</a>
+						<span class="vline">|</span>
+						<a href="" class="name">
+							萌宝9块9：妈咪免费咬一口：
+							<em class="gray">某宝站在大街上敲锣打...</em>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="module">
+				<div class="module-hd">
+					<h3>最新话题</h3>
+					<span class="newpost">
+						<a href="">更多话题</a>
+					</span>
+				</div>
+				<ul class="bbslist">
+					<li>
+						<a href="">
+							【社区公告】等级积分是多少
+							<span class="time">蓝精灵 8帖 47分钟前</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							【社区公告】这个好升级？
+							<span class="time">张柏芝 0帖 47分钟前</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							【书荒求书】你的孤独虽败犹荣
+							<span class="time">叵测 1帖 51分钟前</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							【书荒求书】不。。。不不。
+							<span class="time">游客 1帖 1小时前 </span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							【社区杂谈】下书网发帖规则(修订)
+							<span class="time">撕票者 17帖 1小时前 </span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="module">
+				<div class="module-hd">
+					<h2>玄幻小说</h2>
+					<span><a href="">更多</a></span>
+				</div>
+				<a href=""></a>
+				<ul class="imgtextlist">
+					<a href=""></a>
+					<li>
+						<a href=""></a>
+						<a href="">
+							<img src="http://img.xiashu.cc/cover/82/af/6d/82af6def4e3f071b69aa425ef48e88f7.jpg" alt="万道成神" class="pic">
+							<p class="title">万道成神</p>
+							<p class="author">新版红双喜 著</p>
+							<p class="intro">挥袖翻云覆雨，拳出天崩地裂！这是一个恢弘的世界，这是一个强者为尊的武者世界！上古封神一战引动天怒，降...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="http://img.xiashu.cc/cover/20160927/b45456e08c028351f1d745436668d612.jpg" alt="万古天地" class="pic">
+							<p class="title">万古天帝</p>
+							<p class="author">第一神 著</p>
+							<p class="intro">天界第一战神，却因功高震主，遭挚爱背叛，死于洞房之夜。聂天重生百年之后，再不做殿下之臣！破苍穹，逆乾...</p>
+						</a>
+					</li>
+				</ul>
+				<ul class="rcmdtextlist">
+					<li>
+						<a href="">
+							<p class="title">诸天至尊<span class="ml10 author">纯情犀利哥</span></p>
+							<p class="mt5 intro">十方地狱禁不了我魂，浩瀚星空亮不过我眼，无垠大地载不起我足，诸天神魔承不...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<p class="title">武神天下<span class="ml10 author">禹枫</span></p>
+							<p class="mt5 intro">炎狱大陆，强者为尊，弱者只能受人欺辱。从小小星罗镇出来的王炎能否蜕变成为顶级强者...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<p class="title">黑客<span class="ml10 author">青幕山</span></p>
+							<p class="mt5 intro">    世界巅峰级黑客石磊，因为偷窥世界最强国的军事实弹演习，并且企图窃取对方各...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<p class="title">一胎二宝：亿万首席爱妻入骨<span class="ml10 author">花容月下</span></p>
+							<p class="mt5 intro">一张百万契约，她成为代孕妈咪。他是高高在上的帝国首席执行官，挥手翻云覆雨。而...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<p class="title">盖世帝尊<span class="ml10 author">一叶青天</span></p>
+							<p class="mt5 intro">乱古岁月，诸圣争霸。一个号称“睡神”的少年，因祸得福开启一门逆天功法。从此以后，...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<p class="title">至尊剑皇<span class="ml10 author">半步沧桑</span></p>
+							<p class="mt5 intro">古幽大陆，万族林立，一个小镇中的少年，坠崖重生，掀起一场惊动千古的浪潮。...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">			
+							<p class="title">修罗武神<span class="ml10 author">善良的蜜蜂</span></p>
+							<p class="mt5 intro">论潜力，不算天才，可玄功武技，皆可无师自通。论实力，任凭你有万千至宝，但定不敌我...</p>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<p class="title">混沌冥神<span class="ml10 author">南怀</span></p>
+							<p class="mt5 intro">    一滴神血，三千龙筋！我命由我，天地莫问！一世神话，三生情缘！我心如一，恩...</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="module">
+				<div class="module-hd">
+					<h2>最佳新作</h2>
+					<span><a href="">更多</a></span>
+				</div>
+				<a href=""></a>
+				<ul class="bookimglist clearfix">
+					<li>
+						<a href="/94513/">
+							<img src="http://img.xiashu.cc/cover/20170215/0005a37d8995eebc3202f669a21c269b.jpg" alt="反派养成计划" class="pic">
+							<p class="name">反派养成计划</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94512/">
+							<img src="http://m.xiashu.cc/public/image/nocover.jpg" alt="凤倾朝纲：刁蛮野后" class="pic">
+							<p class="name">凤倾朝纲：刁蛮野后</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94511/">
+							<img src="http://img.xiashu.cc/cover/20170215/44d52225e7131b5c9245f650bf7844d9.jpg" alt="最佳姿势，撩了霸道总裁" class="pic">
+							<p class="name">最佳姿势，撩了霸道总裁</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94510/">
+							<img src="http://img.xiashu.cc/cover/20170215/223d3316efb08ff56acb9c9d7c1f7a2b.jpg" alt="论皇后的养成（重生）" class="pic">
+							<p class="name">论皇后的养成（重生）</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94509/">
+							<img src="http://img.xiashu.cc/cover/20170215/d3e5c5ad3db05eb85313209a93119b5b.jpg" alt="撩汉狂人不手软" class="pic">
+							<p class="name">撩汉狂人不手软</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94508/">
+							<img src="http://img.xiashu.cc/cover/20170215/8688e552c199cdd488bdd9d73793f47f.jpg" alt="魔帝追妻：冰山嫡小姐" class="pic">
+							<p class="name">魔帝追妻：冰山嫡小姐</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94507/">
+							<img src="http://m.xiashu.cc/public/image/nocover.jpg" alt="错嫁豪门阔少" class="pic">
+							<p class="name">错嫁豪门阔少</p>
+						</a>
+					</li>
+					<li>
+						<a href="/94506/">
+							<img src="http://m.xiashu.cc/public/image/nocover.jpg" alt="女总裁的近身高手" class="pic">
+							<p class="name">女总裁的近身高手</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<div class="line-x"></div>
+			<div class="footer">
+		        <p>
+		            <a href="http://hao.uc.cn">UC网址导航</a>
+		            <a href="/about/about.html">关于我们</a>
+		            <a href="/about/privacy.html">隐私条款</a>
+		            <a href="/about/contact.html">联系我们</a>
+		        </p>
+		        <p>本站系基于互联网搜索引擎技术为您提供信息检索服务。</p>
+		        <p>Copyright ©2016 xiashu.cc All Rights Reserved.</p>
+		        <p>Processed in 0.037(s),Sqls:0,read:9,write:0</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音乐播放器</title>
+	<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1469876470_5415266.css">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			list-style: none;
+			text-decoration: none;
+		}
+		html,body{
+			background: #d2d5d6;
+			height: 100%;
+			font-family: Arial, Helvetica, sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+		img{
+			border: 0;
+			vertical-align: middle;
+		}
+		a{
+			color: #455569;
+			transition: all .1s ease-in-out;
+		}
+		.clearfix{
+			*zoom: 1;
+		}
+		.clearfix:after{
+			display: block;
+			content: "";
+			clear: both;
+		}
+		.wrapper{
+			width: 220px;
+			height: 250px;
+			position: relative;
+			top: 50%;
+			left: 50%;
+			margin-top: -125px;
+			margin-left: -110px;
+			border-radius: 10px;
+			box-shadow: 0 6px 7px #999;
+			background: #eef1f2;
+			/*background: pink;*/
+		}
+		.wrapper .background{
+			width: 100%;
+			height: 80px;
+			border-radius: 10px 10px 0 0;
+			/*background: green;*/
+			overflow: hidden;
+		}
+		.wrapper .background img{
+			width: 100%;
+		}
+		.wrapper .content{
+			height: 95px;
+			padding-top: 30px;
+			padding-left: 15px;
+			color: #455569;
+			line-height: 1.3;
+			/*background: red;*/
+		}
+		.wrapper .content .song-info{
+			width: 100px;
+			float: left;
+			/*background: yellow;*/
+		}
+		.wrapper .content .song-info .songname{
+			font-size: 16px;
+			font-weight: 700;
+			white-space: nowrap; /*超出文本不换行*/
+			text-overflow: ellipsis;/*超出文本被隐藏*/
+			overflow: hidden;
+		}
+		.wrapper .content .song-info .singer{
+			font-size: 12px;
+			font-weight: 700;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		.wrapper .content .song-info .songstyle{
+			font-size: 12px;
+			margin-top: 5px;
+			/*background: green;*/
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		.wrapper .content .music-icon{
+			float: right;
+			/*background: orange;*/
+		}
+		.wrapper .content .music-icon a,
+		.wrapper .content .music-icon span{
+			margin-left: 3px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+		span.colored,
+		a.colored{
+			color: #cdd2d7;
+		}
+		span.love{
+			color: #fe8698;
+		}
+		span.start{
+			color: #feec98
+		}
+		.basebar{
+			height: 4px;
+			width: 180px;
+			border-radius: 5px;
+			background: #414141;
+			cursor: pointer;
+			margin: 10px auto;
+			position: relative;
+		}
+		.basebar .progressbar{
+			height: 4px;
+			width: 0px;
+			border-radius: 5px;
+			background: #CDD2D7;
+		}
+		.controls{
+			padding: 10px 20px;
+			/*background: blue;*/
+			color: #d9d9d9;
+		}
+		.controls .play-control #controlBtn{
+			display: inline-block;
+			width: 36px;
+			height: 36px;
+			line-height: 36px;
+			font-size: 22px;
+			text-align: center;
+			background: #414141;
+			border-radius: 50%;
+			cursor: pointer;
+			vertical-align: middle;
+		}
+		.controls .play-control #changeBtn,
+		.controls .play-control #nextBtn{
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			text-align: center;
+			background: #414141;
+			border-radius: 50%;
+			cursor: pointer;
+			vertical-align: middle;
+		}
+		span .seleted{
+			color: #414141;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="background"></div>
+		<audio src=""></audio>
+		<div class="content clearfix">
+			<div class="song-info">
+				<p class="songname"></p>
+				<p class="singer"></p>
+				<p class="songstyle"></p>
+			</div>
+			<div class="music-icon">
+				<a class="iconfont icon-share colored" href="http://service.weibo.com/share/share.php?appkey=&title=
+				&url=&pic=&searchPic=false&style=simple" target="_blank" title="分享"></a>
+				<span class="iconfont icon-collect colored" title="收藏"></span>
+				<span class="iconfont icon-tolove colored" title="喜欢"></span>
+			</div>
+		</div>
+
+		<div class="basebar">
+			<div class="progressbar"></div>
+		</div>
+
+		<div class="controls clearfix">
+			<div class="play-control">
+	    		<span class="iconfont icon-play" id="controlBtn" title="播放/暂停"></span>
+	    		<span class="iconfont icon-channel" id="nextBtn" title="下一曲"></span>
+	    		<span class="iconfont icon-nextSong" id="changeBtn" title="下一频道"></span>
+	    	</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		var myAudio=$("audio")[0];
+		var current=0;
+
+		$("#controlBtn").on("click",function(){
+			if(myAudio.paused){
+				play();
+			}else{
+				pause();
+			}
+		})
+
+		$("#changeBtn").on("click",function(){
+			getChannel();
+		})
+
+		$("#nextBtn").on("click",function(){
+			getMusic();
+		})
+
+
+		function play(){
+			myAudio.play()
+			$("#controlBtn").addClass("icon-pause").removeClass("icon-play")
+		}
+
+		function pause(){
+			myAudio.pause();
+			$("#controlBtn").addClass("icon-play").removeClass("icon-pause");
+		}
+
+		function getChannel(){
+			$.ajax({
+				url:"http://api.jirengu.com/fm/getChannels.php",
+				dataType:"json",
+				Method:"get",
+				success:function(response){
+					var channels=response.channels;
+					var num=Math.floor(Math.random()*channels.length);
+					var channelName=channels[num].name;
+					var channelId=channels[num].channel_id;
+					$(".songstyle").text(channelName);
+					$(".songstyle").attr("title",channelName);
+					$(".songstyle").attr("data-id",channelId);
+					getMusic();
+				}
+			})
+		}
+
+		function getMusic(num){
+			$.ajax({
+				url:"http://api.jirengu.com/fm/getSong.php",
+				dataType:"json",
+				Method:"get",
+				data:{
+					"channel":$(".songstyle").attr("data-id")
+				},
+				success:function(ret){
+					var resource=ret.song[0];
+					var url=resource.url;
+					var bgPic=resource.picture;
+					var title=resource.title;
+					var author=resource.artist;
+					$("audio").prop("src",url);
+					$(".songname").text(title);
+					$(".songname").attr("title",title);
+					$(".singer").text(author);
+					$(".singer").attr("title",author);
+					$(".background").css({
+						"background-image":"url("+bgPic+")",
+						"background-repeat":"no-repeat",
+						"background-position":"center",
+						"background-size":"cover"
+					})
+					play();
+				}
+			})
+		}
+
+		setInterval(present,50);
+		$(".basebar").on("mousedown",function(e){
+			var posX=e.clientX;
+			var targetLeft=$(this).offset().left;
+			var percentage=(posX-targetLeft)/$(this).width()*100;
+			myAudio.currentTime=myAudio.duration*percentage/100;
+		})
+
+		function present(){
+			var length=myAudio.currentTime/myAudio.duration*100;
+			$(".progressbar").width(length+"%");
+			if(myAudio.currentTime===myAudio.duration){
+				getMusic();
+			}
+		}
+
+		$(".icon-collect").on("click",function(){
+			$(this).toggleClass("start");
+		})
+
+		$(".icon-tolove").on("click",function(){
+			$(this).toggleClass("love");
+		})
+
+		$(document).ready(getChannel())
+	</script>
+</body>
+</html>

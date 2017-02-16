@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>全屏滚动</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			text-decoration: none;
+		}
+		html,body{
+			background: #d2d5d6;
+			height: 100%;
+			font-family: Lato,"Microsoft YaHei",sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+		img{
+			border: 0;
+			vertical-align: middle;
+		}
+		a{
+			color: #ffffff;
+			transition: all .1s ease-in-out;
+		}
+		h1{
+			color: #eef3f0;
+			font-size: 4rem;
+			text-shadow: 1px 2px #22c3aa,2px 4px #aee2d9;
+		}
+		h2{
+			color: #eef3f0;
+			font-size: 3rem;
+		}
+		.wrapper{
+			width: 100%;
+			height: 100vh;
+			min-height: 400px;
+			background: #22c3aa;
+			text-align: center;
+		}
+		.nav{
+			margin-right: 2rem;
+			text-align: right;
+			height: 15vh;
+			line-height: 15vh;
+		}
+		.nav a{
+			display: inline-block;
+			width: 2rem;
+			height: 2rem;
+			line-height: 2rem;
+			border: 1px solid #fff;
+			text-align: center;
+			border-radius: 50%;
+		}
+		#projects .topbtn{
+			position: fixed;
+			left: 2rem;
+			display: none;
+		}
+		.visible{
+			display: block !important;
+		}
+		#projects .hightlight{
+			width: 100%;
+			height: 100vh;
+			background: #22c3aa;
+		}
+		header .logo{
+			position: absolute;
+			left: 2rem;
+			height: 15vh;
+			line-height: 15vh;
+			text-align: left;
+			font-size: 0.8rem;
+		}
+		/*header .logo:after{
+			display: block;
+			content: "";
+			clear: both;
+		}*/
+		header .title{
+			width: 100%;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			min-height: 300px;
+			height: 100vh;
+		}
+		header .title .introduction{
+			margin: 2rem 2rem;
+			color: #008a75;
+			font-weight: bold;
+			font-size: 1rem;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-align: center;
+			word-break: break-all;/*允许在单词内换行*/
+			display: -webkit-box;
+			-webkit-box-orient: vertical;/*父元素内的子元素从上向下垂直排列,和display: -webkit-box;一起使用兼容多种浏览器*/
+			-webkit-line-clamp: 2;/*块元素内显示文本的行数*/
+			-webkit-box-flex: 2;
+		}
+		.figure{
+			height: 100vh;
+			min-height: 300px;
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.character{
+			margin: 4vh;
+			font-size: 0.9rem;
+			line-height: 1.5;
+			color: #eef3f0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			text-align: center;
+			word-break: break-all;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp:4;
+			-webkit-box-flex:4;
+		}
+		.moreBtn{
+			display: inline-block;
+			vertical-align: middle;
+			width: 10rem;
+			padding: 0.4rem 1rem;
+			color: #22c3aa;
+			background: #fff;
+			text-align: center;
+			border-radius: 1.5rem;
+			border: 1px solid transparent;
+			transition: all .3s ease-in-out;
+		}
+		.moreBtn:hover{
+			color: #fff;
+			background: transparent;
+			border: 1px solid #fff;
+		}
+		#projects .luffy{
+			background-color: #FE4C40;
+		}
+		#projects .zoro{
+			background-color: #007850;
+		}
+		#projects .nami{
+			background-color: #ff8da1;
+		}
+		#projects .usopp{
+			background-color: #918280;
+		}
+		#projects .sanji{
+			background-color: #ee7836;
+		}
+		#projects .chopper{
+			background-color: #36acee;
+		}
+		#projects .robin{
+			background-color: #6f599c;
+		}
+		#projects .franky{
+			background-color: #599c6f;
+		}
+		#projects .Brook{
+			background-color: #4C556E;
+		}
+		#projects .luffy h2{
+			text-shadow: 1px 2px #FE4C40,2px 4px #fe938c;
+		}
+		#projects .zoro h2{
+			text-shadow: 1px 2px #007850,2px 4px #00ab72;
+		}
+		#projects .nami h2{
+			text-shadow: 1px 2px #ff8da1,2px 4px #ffdae0;
+		}
+		#projects .usopp h2{
+			text-shadow: 1px 2px #918280,2px 4px #a99d9b;
+		}
+		#projects .sanji h2{
+			text-shadow: 1px 2px #ee7836,2px 4px #f29865;
+		}
+		#projects .chopper h2{
+			text-shadow: 1px 2px #36acee,2px 4px #65bff2;
+		}
+		#projects .Robin h2{
+			text-shadow: 1px 2px #6f599c,2px 4px #8a77b1;
+		}
+		#projects .franky h2{
+			text-shadow: 1px 2px #599c6f,2px 4px #87bb98;
+		}
+		#projects .brook h2{
+			text-shadow: 1px 2px #4C556E,2px 4px #6d799a;
+		}
+	</style>
+</head>
+<body>
+	<div id="projects">
+		<div class="nav topbtn"><a href="#">top</a></div>
+		<header class="hightlight">
+			<div class="logo"><a href="#">@mijiu</a></div>
+			<div class="title">
+				<h1>ONE PIECE</h1>
+				<p class="introduction">中文译名：海贼王，是一部连载中的日本少年漫画作品，作者为尾田荣一郎，内容为描述主角蒙奇·D·路飞想要得到“ONE PIECE”和成为“海贼王”的故事。该作于1997年起在日本漫画杂志《周刊少年Jump》（集英社）定期连载。</p>
+			</div>
+		</header>
+
+		<div class="wrapper luffy">
+			<div class="figure">
+				<h2 class="name">蒙奇·D·路飞</h2>
+				<p class="character">本作的主角，超人系“橡胶果实”的能力者，草帽海贼团的<strong>船长</strong>。父亲是革命军首领蒙奇·D·龙，爷爷是海军中将英雄蒙奇·D·戈普。有两个义兄，海贼王高路·D·罗杰的儿子“火拳”波特夹斯·D·艾斯（已故）和革命军参谋縂长萨波。海贼界11位超新星之一。其特征“草帽”是其童年仰慕的海贼“红发”香克斯托为保管的，故常被称为“草帽小子”。以“我要成为海贼王”和得到“ONE PIECE”为毕生梦想，且贯穿全故事。</p>
+				<a href="" class="moreBtn" target="_blank">About more</a>
+			</div>
+		</div>
+
+		<div class="wrapper zoro">
+			<div class="figure">
+				<h2 class="name">罗罗亚·佐罗</h2>
+				<p class="character">草帽海贼团的<strong>战斗员/剑士</strong>。海贼界11位超新星之一，佐罗是路飞刚出海时遇到的第1位伙伴，同时也是路飞得力的左右手，船上实质的NO.2，于谢尔兹镇上初次登场，其能力“三刀流”是双手持刀之外，加上口咬着一本刀的佐罗独创剑术，贯彻自己的“武士道”。立志成为世界第一大剑豪并让自己的名声响彻天堂。</p>
+				<a href="" class="moreBtn" target="_blank">About more</a>
+			</div>
+		</div>
+
+		<div class="wrapper nami">
+			<div class="figure">
+				<h2 class="name">奈美</h2>
+				<div class="character">草帽海贼团的<strong>航海士</strong>。奈美是草帽海贼团的第2位伙伴(实际上是草帽海贼团的第4位伙伴)，初登场于橘子镇（动画版则是被亚比达抢劫的某艘客船），她厌恶海贼并极度敛财。自称"专偷海贼宝物的小偷"，是原海贼“阿龙海贼团”的测量士，为了赚取一亿贝里买下被阿龙统治的故乡而出海四处窃取海贼的财物，在路飞打败阿龙后重获自由“正式加入”草帽海贼团。</div>
+				<a href="" class="moreBtn" target="_blank">About more</a>
+			</div>
+		</div>
+
+		<div class="wrapper usopp">
+    		<div class="figure">
+    			<h2 class="name">撒谎布</h2>
+	    		<p class="character">草帽海贼团的<strong>狙击手</strong>。撒谎布是草帽海贼团第3位伙伴，初登场于西罗布村，原为村里的孩子团“撒谎布海贼团”船长，他是“红发海贼团”狙击手耶稣布的儿子。特征为长鼻子（遗传自母亲）和黑色卷发，以及略厚的嘴唇，虽然性格胆小，但会为了伙伴和好友义无反顾地站出来面对敌人，于德莱斯罗兹的战斗中为了狙击糖糖而觉醒了见闻色霸气。</p>
+	    		<a class="moreBtn" href="https://zh.wikipedia.org/wiki/%E9%A8%99%E4%BA%BA%E5%B8%83" target="_blank">About more</a>
+    		</div>
+    	</div>
+
+    	<div class="wrapper sanji">
+    		<div class="figure">
+    			<h2 class="name">文斯莫克·山治</h2>
+	    		<p class="character">草帽海贼团的<strong>厨师</strong>。山智是草帽海贼团的第4位伙伴。有着向上卷曲的眉毛，爱吸烟，从师父红脚卓夫那里习得超强的腿技以及厨艺，从小。遇到事情经常能冷静的分析思考，并做出正确的判断（女性面前除外），在许多话中为伙伴解难。为故事中唯一需活捉的悬赏犯。真实身份为杀手家族“宾什莫克”家3子，以及需与“夏洛特”家族（BIG MOM）第35个女儿“布琳”联婚。能熟练使用月步、使用见闻色和武装色霸气。</p>
+	    		<a class="moreBtn" href="https://zh.wikipedia.org/wiki/%E6%96%87%E6%96%AF%E8%8E%AB%E5%85%8B%C2%B7%E9%A6%99%E5%90%89%E5%A3%AB" target="_blank">About more</a>
+    		</div>
+    	</div>
+
+    	<div class="wrapper chopper">
+    		<div class="figure">
+    			<h2 class="name">多尼多尼·乔巴</h2>
+	    		<p class="character">草帽海贼团的<strong>船医</strong>。乔巴是草帽海贼团的第5位伙伴。动物系“人人果实”的能力者，是一只蓝鼻子的驯鹿，因为遭遇同伴和人类的歧视而有着孤独悲伤的童年，被庸医Dr.西尔尔克收养，因为对自己的无知让西尔尔克吃下认为能够治疗百病的剧毒菇而自责，在西尔尔克过世后为了成为能够治疗任何疾病"万能药"，向西尔尔克的好友Dr.古蕾娃学习医术。</p>
+	    		<a class="moreBtn" href="https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%B0%BC%E5%A4%9A%E5%B0%BC%C2%B7%E5%96%AC%E5%B7%B4" target="_blank">About more</a>
+    		</div>
+    	</div>
+
+    	<div class="wrapper robin">
+    		<div class="figure">
+    			<h2 class="name">妮古·罗宾</h2>
+	    		<p class="character">草帽海贼团的<strong>考古学家</strong>，妮古·罗宾是草帽海贼团第6位伙伴。拥有超人系“花花果实”（ハナハナの実）的开花人，考古学之岛欧哈拉的遗孤，原地下暗杀组织巴洛克华克的副社长兼最高司令官，代号为“Miss All Sunday”，惨遭鳄鱼重伤害但是没死，后来自杀不成反被路飞所救，在巴洛克华克解散后加入草帽海贼团。</p>
+	    		<a class="moreBtn" href="https://zh.wikipedia.org/wiki/%E5%A6%AE%E5%8F%AF%C2%B7%E7%BE%85%E8%B3%93" target="_blank">About more</a>
+    		</div>
+    	</div>
+
+    	<div class="wrapper franky">
+    		<div class="figure">
+    			<h2 class="name">弗兰奇</h2>
+	    		<p class="character">草帽海贼团的<strong>船匠</strong>。弗兰奇是草帽海贼团第7位伙伴。特征是蓝色的飞机头和太阳眼镜，穿着海滩装和一件三角泳裤，以及铁制的鼻子和独特形状的下巴。说话带点老外腔调，原为水之七岛的解体商兼赏金猎人集团“弗兰奇家族”一家之主。</p>
+	    		<a class="moreBtn" href="https://zh.wikipedia.org/wiki/%E4%BD%9B%E6%9C%97%E5%9F%BA" target="_blank">About more</a>
+    		</div>
+    	</div>
+
+    	<div class="wrapper brook">
+    		<div class="figure">
+    			<h2 class="name">布鲁克</h2>
+	    		<p class="character">草帽海贼团的<strong>音乐家/剑士</strong>。布鲁克是草帽海贼团第8位伙伴。自称“死了剩一把骨头的布鲁克”，黄泉果实能力者，复活人，死后可以复活一次。独特笑声是“哟呵呵呵”，喜欢音乐，所有的乐器都会弹奏。个性好色、搞笑，见到女性开口第一句话就是“可不可以让我欣赏你的内裤”？</p>
+	    		<a class="moreBtn" href="https://zh.wikipedia.org/wiki/%E5%B8%83%E9%AD%AF%E5%85%8B_(ONE_PIECE)" target="_blank">About more</a>
+    		</div>
+    	</div>
+    </div>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.gotoTop=function(node){
+			 var $node=$(node);
+			 $(window).on("scroll",function(e){
+			 	e.preventDefault();
+			 	var offsetY=$(this).scrollTop();
+			 	var viewpointHeight=document.documentElement.clientHeight;
+			 	if(offsetY>=viewpointHeight){
+			 		$node.addClass("visible");
+			 	}else{
+			 		$node.removeClass('visible')
+			 	}
+			 })
+			 $node.on("click",function(){
+			 	$("body").animate({scrollTop:0},"slow");
+			 })
+		}
+		
+		var isAnimate=false;
+		$.fullPage=function(node){
+			var $node=$(node);
+			var isAnimate=false;
+			$node.on("wheel",function(e){
+				var deltaY = e.originalEvent.deltaY;
+				var viewpointHeight = document.documentElement.clientHeight;
+				if(!isAnimate){
+					isAnimate=true;
+					var operation=deltaY > 0? '+=' : '-=';
+					$("body,html").stop(true,true).animate({
+						scrollTop:operation+viewpointHeight
+					},1200,function(){
+						isAnimate=false;
+					})
+				}
+			})
+		}
+		$.gotoTop((".topbtn"));
+		$.fullPage($("#projects"));
+	</script>
+</body>
+</html>
