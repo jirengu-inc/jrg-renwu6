@@ -1,0 +1,105 @@
+/*初始化 start*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul li {
+    list-style: none;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+
+/*初始化 end*/
+
+.imglist {
+    position: relative;
+    width: 310px;
+    height: 206px;
+    border: 1px solid #eee;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.img {
+    width: 2000px;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+img {
+    width: 310px;
+    height: 206px;
+}
+
+.imglist ul li {
+    float: left;
+}
+
+.btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #333;
+    opacity: 0.6;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+}
+
+.btn-l {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+}
+
+.btn-r {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+}
+
+.choose {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.choose li {
+    width: 16px;
+    height: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.choose li.active {
+    background-color: #666;
+}

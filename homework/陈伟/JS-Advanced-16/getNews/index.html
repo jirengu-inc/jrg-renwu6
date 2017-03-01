@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        a {
+            text-decoration: none;
+            color: inherit;
+            font-family: "微软雅黑";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .thumb {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .item:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .item p {
+            color: #ccc;
+            margin-top: 20px;
+        }
+
+        .item h2 {
+            font-size: 20px;
+        }
+
+        .getMore {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class=newList></ul>
+    <p class=getMore>加载更多</p>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        var pageIndex = 0,
+            isOver = false,
+            lock = false;
+        getNews();
+        $(window).on('scroll', checkShow)
+
+        function checkShow() {
+
+            if (isShow($('.getMore')) && !isOver && !lock) {
+                getNews();
+
+            }
+        }
+
+        function getNews() {
+            lock = true;
+            $.get('/getNews', {
+                page: pageIndex
+            }).done(function(ret) {
+                if (ret.status === 0) {
+                    appendHtml(ret.data);
+                    pageIndex++;
+                    lock = false;
+                    checkShow();
+
+                } else {
+                    alert('系统出错')
+                }
+
+            }).fail(function() {
+                alert('系统出错')
+            })
+        }
+
+        function isShow($cur) {
+            var offsetTop = $cur.offset().top,
+                curH = $cur.height(),
+                winH = $(window).height(),
+                scrollTop = $(window).scrollTop();
+            if (offsetTop + curH > scrollTop && offsetTop < winH + scrollTop) {
+                console.log('true')
+                return true;
+            } else {
+                console.log('false')
+                return false;
+            }
+        }
+
+        function appendHtml(news) {
+            if (news.length === 0) {
+                $('.newList').append('<p>没有更多内容了</p>');
+                isOver = true;
+            }
+            $(news).each(function() {
+                var htmls = '';
+                htmls += '<li class="item">';
+                htmls += '<a href="' + this.link + '">';
+                htmls += '<div class="thumb"> <img src="' + this.img + '"></div>';
+                htmls += '<h2>' + this.title + '</h2>';
+                htmls += '<p>' + this.brif + '</p>';
+                htmls += '</a></li>';
+
+                $('.newList').append(htmls)
+            })
+        }
+    </script>
+</body>
+
+</html>

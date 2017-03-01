@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>1</title>
   </head>
   <body>
     <script>
@@ -43,7 +43,7 @@
       var str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
           newstr = "";
       for(var i = 0; i < len; i++) {
-        newstr += str[Math.floor(Math.random() * str.length)];
+        newstr += str[Math.floor(Math.random() * str.length)]; // 最大值str.length - 1, 最小值 0 ，故Mathdom() * (str.length - 1 - 0 + 1) + 0
       }
       return newstr;
     }

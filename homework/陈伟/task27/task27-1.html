@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .slider {
+            position: relative;
+            height: 400px;
+            width: 400px;
+        }
+
+        .wrap {
+            position: relative;
+            height: 400px;
+            width: 400px;
+        }
+
+        .pic {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            display: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4e443c;
+            opacity: 0.6;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .next {
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pre {
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bullet {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bullet>li {
+            display: inline-block;
+            width: 30px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .bullet>.active {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <ul class=wrap>
+            <li><img class=pic src="http://p5.gexing.com/GSF/shaitu/20160814/1118/57afe31ab0db3.jpg"></li>
+            <li><img class=pic src="http://img3.duitang.com/uploads/item/201605/22/20160522214548_zPGFN.jpeg"></li>
+            <li><img class=pic src="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1606/30/c5/23590087_1467291897939_800x800.jpg"></li>
+            <li><img class=pic src="http://77os.77acg.com/images/201607/goods_img/22129_P_1468351510787.jpg"></li>
+        </ul>
+        <a class=next href="#">></a>
+        <a class=pre href="#">
+            <</a>
+                <ul class=bullet>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+    </div>
+    <script type="text/javascript">
+        var current = 0;
+        var $pics = $('.wrap').children().children();
+        $pics.first().css({
+            display: 'block'
+        })
+
+        var click = false;
+        var go = function(index) {
+            if (stopKey) {
+                clearInterval(stopKey);
+            }
+            click = true;
+            if (click === true) {
+                $pics.eq(current).fadeOut();
+                $pics.eq(index).fadeIn(function() {
+                    current = index;
+                    click = false;
+                });
+                autoPlay();
+                console.log(index);
+                $bullet.eq(index).addClass('active').siblings('.active').removeClass('active');
+            }
+        }
+        function next() {
+            go((current + 1) % $pics.length);
+        }
+        $('.next').on('click', function() {
+            next();
+        });
+
+        $('.pre').on('click', function() {
+            go(($pics.length + current - 1) % $pics.length)
+        })
+        var stopKey
+
+        function autoPlay() {
+            stopKey = setInterval(function() {
+                next();
+            }, 2000)
+        }
+        autoPlay();
+        $('.wrap').on('mouseenter', function() {
+            clearInterval(stopKey);
+        }).on('mouseleave', function() {
+            if (stopKey) {
+                autoPlay();
+            }
+        });
+        var $bullet = $('.bullet').children();
+        $bullet.first().addClass('active')
+        $('.bullet').on('click', 'li', function(e) {
+            var idx = $(e.currentTarget).index();
+            go(idx);
+        })
+    </script>
+</body>
+</html>

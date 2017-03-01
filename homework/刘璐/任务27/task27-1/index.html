@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-懒加载</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<ul class="container clearfix">
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+                                        data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/12.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/16.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg" data-src="http://cdn.jirengu.com/book.jirengu.com/img/17.jpg" alt=""></a></li>
+</ul>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+    check();
+    $(window).on('scroll', check)
+    function check(){
+        $('.container img').not('.load').each(function () {
+            if(isShow($(this))){
+                showImg($(this))
+            }
+        })
+    }
+    function showImg($imgs) {
+        $imgs.each(function () {
+            var imgUrl=$(this).attr('data-src');
+            $(this).attr('src',imgUrl);
+            $(this).addClass('load')
+        })
+    }
+
+    function isShow($node) {
+        var windowHeight=$(window).height(),
+                scrollTop=$(window).scrollTop(),
+                offsetTop=$node.offset().top,
+                nodeHeight=$node.height();
+        if(windowHeight+scrollTop>offsetTop&&scrollTop<offsetTop+nodeHeight){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
