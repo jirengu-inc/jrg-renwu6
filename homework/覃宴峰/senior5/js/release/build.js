@@ -1,0 +1,9 @@
+({
+    baseUrl:"../../js",//这里定义相对路径时是相对于build.js所在目录为起始，
+                        //注意这里的baseUrl一定要设置的与要压缩的main.js的baseUrl为同一位置（不是指字面意义上的相同，而是路径要一样）
+    paths:{
+        "jquery":"lib/jquery-3.1.1.min"//这里的paths必须与main.js中定义的paths一致
+    },
+    name:"main",//这里定义的位置是以baseUrl为参考路径
+    out:"merge.js"//这里定义的输出路径是相对于build.js所在目录的相对路径
+})

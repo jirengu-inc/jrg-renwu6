@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>mission15-002</title>
+    <link rel="stylesheet" href="css/fontcss/css/font-awesome.min.css">
+    <style>
+    html,body,h1,h2,p,ul,li,img,a,div{
+      margin:0px;
+      padding:0px;
+    }
+
+    a{
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    ul,li{
+      list-style:none;
+    }
+
+    .fa{
+    color:#fff;
+    }
+    .wrap{
+      width:1178px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .fixclear:after{
+      content:"";
+      display:block;
+      clear:both;
+    }
+
+    #header{
+      /*background:#ccc url(img/backgroundimg/header-bg.jpg) 0px -65px no-repeat;
+      background-size:100%;*/
+      height:757px;
+      position:relative;
+      /*width:100%*/
+    }
+
+    .logo{
+      float: left;
+      font-size: 2rem;
+      color: #fed136;
+      font-family: Forte;
+      margin-right: 472px;
+      line-height:14px;
+    }
+
+    .nav-title{
+      float:left;
+      font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color:#fff;
+      margin-right:25px;
+      line-height:14px;
+      font-size:14px;
+    }
+
+    .nav-title:hover{
+      color:#fed136;
+    }
+    .wrap.fixclear{
+      padding:40px 0px;
+    }
+
+    .wrap.fixclear.cont{
+      position:absolute;
+      top:0px;
+      left:86px;/*轮播中说明文字，需改进*/
+    }
+
+    .header-title1{
+      font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-style: italic;
+    font-size: 40px;
+    line-height: 40px;
+    margin:50px 0px 20px;
+    color:#fff;
+    }
+
+    .header-title2{
+      font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 75px;
+    line-height: 75px;
+    margin-bottom: 60px;
+    color:#fff;
+    }
+
+    .btn-yellow{
+      color:#fff;
+      background:#fed136;
+      border-color:#fed136;
+      border-radius:3px;
+      font-size:18px;
+      font-weight:bold;
+      padding:20px 40px;
+      font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    .btn-yellow:hover{
+      background-color: #fec503;
+      border-color: #f6bf01;
+    }
+
+    .wrap.fixclear .wrap{
+      margin-top:285px;
+    }
+
+    .service-list.fixclear{
+      margin-left:-44px; /*service-list整体向左移动40px，给子元素li留出左margin40px距离*/
+      margin-bottom:150px;
+    }
+
+
+    .service-list>li{
+      float:left;
+      width:360px;
+      margin-left:45px;
+    }
+
+    .circle{
+      display: block;
+      width: 55px;
+      height: 55px;
+      background: #fed136;
+      border: 20px solid #fed136;
+      border-radius: 50px;
+      margin:0 auto;
+    }
+
+    .service-list h3{
+      font-family:monaco;
+      font-weight: 700;
+      font-size:15px;
+    }
+
+    .service-list p{
+      color:#777;
+      font-size: 14px;
+    line-height: 1.75;
+    text-align:center;
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    .main-service-title div{
+      font-size:40px;
+      font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    margin-bottom:15px;
+    }
+
+
+    .main-service-title p{
+      font-size: 16px;
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 26px;
+    color:#777;
+    }
+
+    .main-service-title{
+      padding-top:150px;
+    }
+
+    .protfolio{
+      background:#f7f7f7;
+      padding-bottom: 180px;
+    }
+
+    /*.main-service-title.fixclear img{  
+      width:372px;
+      height:260px;
+    }*/
+
+    .img-before{
+      width:372px;
+      height:260px;
+      text-align:center;
+      display:none;
+      position:absolute;
+    }
+
+    .img-before:hover{
+      background:#fed136;
+      opacity:0.8;
+      transition: all 0.3s;
+    }
+
+    .img-before i{
+    font-size:60px;
+    margin-top:100px;
+    }
+
+    .main-service-title.fixclear a{
+      position:relative;
+    }
+
+    .main-service-title.fixclear a:hover .img-before{/*结合上面.img-before:hover 使用*/
+      display:block;
+    }
+
+    .main-service-title.fixclear>ul>li {
+      float: left;
+      margin-left: 30px;
+      background:#fff;
+      margin-bottom:30px;
+    }
+
+    .main-service-title.fixclear{
+    margin-left: -30px;
+    }
+
+    .main-service-title.fixclear h2{
+      font-family:monaco;
+      font-size:16px;
+      margin:26px 0px 5px;
+    }
+
+    .main-service-title.fixclear>p{
+      margin-bottom:75px;
+    }
+
+
+    .begin-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+.begin-background-right{
+  border: 5px solid #eee;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    background: #eee;
+    float: right;
+    margin-top: 15px;
+}
+
+.begin-background-left{
+  border: 5px solid #eee;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    background: #eee;
+    float: left;
+    margin-top: 15px;
+}
+
+.begin-title-right{
+  width: 345px;
+text-align: right;
+float: right;
+margin-right: 35px;
+}
+
+.begin-title-left{
+  width: 345px;
+text-align: left;
+float: left;
+margin-left: 35px;
+}
+
+.time-line{
+  position:relative;
+}
+
+.middle-line{
+    margin: 0 auto;
+    height:1200px;
+    width: 0.5px;
+    border: 1px solid #eee;
+    position:absolute;
+    left: 50%;
+    top:20px;
+}
+
+
+.time-line-font {
+    font-family: Arial;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.time-line-font-p{
+  font-size: 16px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  color:#777;
+  line-height: 25px;
+}
+
+.begin-background-bottom{
+  width: 70px;
+height: 70px;
+border: 40px solid #fed136;
+border-radius: 85px;
+background: #fed136;
+vertical-align: middle;
+text-align: center;
+font-family: Arial;
+font-weight: bold;
+color: #fff;
+line-height:26px;
+}
+
+.begin.fixclear,.transition.fixclear{
+  position:relative;
+  right: -70px;
+  margin-bottom:100px;
+}
+
+.agency.fixclear,.phase.fixclear{
+  position:relative;
+  left: 508px;
+  margin-bottom:100px;
+}
+
+.begin-background{
+  position:relative;
+  left: 515px;
+  margin-bottom:100px;
+}
+
+
+.team{
+  background:#f7f7f7;
+  text-align:center;
+
+}
+
+.team-background{
+  width: 226px;
+    height: 226px;
+    background: #fff;
+    border-radius: 112px;
+    border: 5px solid #fff;
+}
+
+.team-img{
+    width: 225px;
+    height: 225px;
+    border-radius: 112px;
+}
+
+.team-list h2{
+  font-family: monaco;
+      font-size: 16px;
+      margin: 26px 0px 5px;
+}
+
+.team-list p{
+  font-size: 16px;
+      font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: #777;
+}
+
+.team-float>li{
+  float:left;
+  margin-left:150px;
+}
+
+.team-float.fixclear.wrap {
+    margin-left: 20px;
+}
+
+.team-list i,.footer-infor i{
+  background: #000;
+width: 40px;
+height: 40px;
+text-align: center;
+line-height: 40px;
+border-radius: 20px;
+margin-left: 10px;
+}
+
+.team-list a:hover i,.footer-infor a:hover i{
+  background: #fed136;  /*伪类样式状态下的 i元素的样式*/
+  transition:all 0.3s;
+}
+
+.team-p{
+      font-size: 16px;
+      font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 10px;
+      color: #777;
+      width:750px;
+      text-align:middle;
+      padding:50px 0px 150px;
+}
+
+.team-logo li{
+  float:left;
+  width: 292px;
+}
+
+.team-logo img{
+    margin:32px 50px;
+}
+
+.footer-background{
+  height:790px;
+  background:#000 url(img/backgroundimg/map-image.png) 0px 30px no-repeat;
+}
+
+
+.footer-background>.wrap>.main-service-title>div{
+  color:#fff;
+}
+
+.footer-input input{
+  float:left;
+  width:45%;
+  padding:20px;
+  border: 1px solid;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}
+
+
+.footer-input textarea{
+  float:right;
+  width:45%;
+  height: 190px;
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}
+
+button{
+cursor:pointer;
+}
+
+.footer-infor span,.footer-infor a{
+  line-height: 40px;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+}
+
+.footer-infor a{
+  color:#fed136;
+  padding-left:5px;
+}
+
+.footer-infor a:hover{
+  color:#fec503;
+  text-decoration:underline;
+  text-decoration-color:#fec503;
+}
+
+.footer-infor span{
+  float:left;
+  margin-left: 70px;
+}
+
+.footer-infor div{
+  float:right;
+  margin-right:100px;
+}
+
+.time-line>ul>li>div{
+  width:600px;
+}
+
+
+ #container{
+			position:relative;
+			/*overflow:hidden;*/
+		}
+
+
+        .ul-cont.clearfix{
+            position:absolute;
+        }
+
+        .ul-cont.clearfix li{
+            float:left;
+        }
+
+        .arrow{
+            display:inline-block;/*将a标签转换为行内块元素才能设置宽高，只要下面posioin:absolute也能实现转换成块元素*/
+            position:fixed;/*行内元素、块级元素脱离文档流后会成块级元素，元素未指定宽度时脱离文档流后会根据包裹子元素内容自适应宽度。*/
+            top:50%;
+		    transform: translateY(-50%);
+		    width:40px;
+		    height:40px;
+		    line-height:40px;
+		    text-align:center;
+		    border-radius:40px;
+		    background: #4E443C;
+		    color: #fff;
+		    opacity: 0.8;
+        }
+
+        .arrow:hover{
+            opacity:0.5;
+        }
+
+        .next{
+            right:20px;
+        }
+
+        .pre{
+            left:20px;
+        }
+
+        .btn-cont{
+			position:fixed;
+			bottom:40px;
+			left:50%;
+			transform: translateX(-50%);
+		}
+
+        .btn-cont>li{
+            display:inline-block;
+            width:15px;
+            height:15px;
+            background-color:#4E443C;
+            border-radius:15px;
+            margin:5px;
+            cursor:pointer;
+            opacity:0.5;
+        }
+        
+        .btn-cont>.active{
+            background-color:#ccc;
+        }
+        .fa.fa-arrow-circle-up{
+          position:fixed;
+          bottom:10px;
+          right:10px;
+          color:#fed136;
+          font-size:40px;
+          display:none;
+        }
+
+
+        #container2{
+			margin-left:100px;
+			margin-right:100px;
+		}
+
+		#item_img{
+			position:relative;
+			overflow:hidden;
+		}
+		.item{
+			border:1px solid #ccc;
+			border-radius:5px;
+			box-shadow:5px 5px 2px #eee;
+			width:230px;
+			margin:15px;
+			position:absolute;
+			transition: all 1s;
+		}
+		.item img{
+			width:200px;
+			margin:15px;
+		}
+		.item p{
+			border-top:1px solid #ccc;
+			padding-top:9px;
+			margin:0px 15px 15px;
+		}
+		.item h4{
+			margin:10px 15px;
+      font-size:15px;
+		}
+		#load{
+			color: #fff;
+			background: #fed136;
+			border-color: #fed136;
+			border-radius: 3px;
+			font-size: 18px;
+			font-weight: bold;
+			padding: 9px 35px;
+			font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+			outline:none;
+			display:block;
+			margin:0 auto;
+		}
+    </style>
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="container">
+        <ul class="ul-cont clearfix">
+            <li data-idx="0"><a href="#"><img src="img/backgroundimg/001.jpg" alt=""></a></li>
+            <li data-idx="1"><a href="#"><img src="img/backgroundimg/002.jpg" alt=""></a></li>
+            <li data-idx="2"><a href="#"><img src="img/backgroundimg/003.jpg" alt=""></a></li>
+            <li data-idx="3"><a href="#"><img src="img/backgroundimg/004.jpg" alt=""></a></li>
+        </ul>
+        <a href="#" class="next arrow">></a>
+        <a href="#" class="pre arrow"><</a>
+        <ul class="btn-cont">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+          <div class="wrap fixclear cont">
+          <a href="" class="logo">start bootstrap</a>
+          <a href="" class="nav-title">SERVICE</a>
+          <a href="" class="nav-title">PROTFOLIO</a>
+          <a href="" class="nav-title">ABOUT</a>
+          <a href="" class="nav-title">TEAM</a>
+          <a href="" class="nav-title">CONTACT</a>
+          <div class="wrap">
+            <div class="header-title1">Welcome To Our Studio!</div>
+            <div class="header-title2">IT'S NICE TO MEET YOU</div>
+          <a href="" class="btn-yellow">TELL ME MORE</a>
+          </div>
+        </div>
+      </div>
+
+    <div id="main">
+      <div class="wrap">
+      <div class="main-service">
+        <div class="main-service-title">
+          <div>SERVICES</div>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+        <ul class="service-list fixclear">
+          <li>
+            <ul>
+              <li class="circle"><i class="fa fa-shopping-cart fa-3x"></i></li>
+              <li><h3>E-Commerce</h3></li>
+              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p></li>
+            </ul>
+        </li>
+        <li>
+          <ul>
+            <li class="circle"><i class="fa fa-laptop fa-3x"></i></li>
+            <li><h3>Responsive Design</h3></li>
+            <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p></li>
+          </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="circle"><i class="fa fa-lock fa-3x"></i></li>
+          <li><h3>Web Security</h3></li>
+          <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p></li>
+        </ul>
+    </li>
+        </ul>
+      </div>
+      </div>
+      <div class="protfolio">
+        <div class="wrap">
+        <div class="main-service-title fixclear">
+          <div>PORTFOLIO</div>
+          <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <div id="container2">
+            <div id="water_cont">
+                <ul id="item_img">
+                </ul>
+                <button id="load">loadmore</button>
+            </div>
+        </div>
+      </div>
+      </div>
+      <div class="about">
+        <div class="wrap">
+          <div class="main-service-title fixclear">
+            <div>ABOUT</div>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+            <div class="time-line">
+              <div class="middle-line"></div>
+              <ul>
+                <li>
+                  <div class="begin fixclear">
+                    <div class="begin-background-right"><img src="img/about/1.jpg" alt="" class="begin-img"></div>
+                    <div class="begin-title-right">
+                      <p class="time-line-font">2009-2011</p>
+                      <p class="time-line-font">Our Humble Beginnings</p>
+                      <p class="time-line-font-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Sunt ut voluptatum eius sapiente,
+                        totam reiciendistemporibus qui quibusdam, recusandae sit vero unde, sed,incidunt et ea quo
+                        dolore laudantium consectetur!</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="agency fixclear">
+                    <div class="begin-background-left"><img src="img/about/2.jpg" alt="" class="begin-img"></div>
+                    <div class="begin-title-left">
+                      <p class="time-line-font">MARCH 2011</p>
+                      <p class="time-line-font">An Agency is Born</p>
+                      <p class="time-line-font-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Sunt ut voluptatum eius sapiente,
+                        totam reiciendistemporibus qui quibusdam, recusandae sit vero unde, sed,incidunt et ea quo
+                        dolore laudantium consectetur!</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="transition fixclear">
+                    <div class="begin-background-right"><img src="img/about/3.jpg" alt="" class="begin-img"></div>
+                    <div class="begin-title-right">
+                      <p class="time-line-font">DECEMBER 2012</p>
+                      <p class="time-line-font">Transition to Full Service</p>
+                      <p class="time-line-font-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Sunt ut voluptatum eius sapiente,
+                        totam reiciendistemporibus qui quibusdam, recusandae sit vero unde, sed,incidunt et ea quo
+                        dolore laudantium consectetur!</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="phase fixclear">
+                    <div class="begin-background-left"><img src="img/about/4.jpg" alt="" class="begin-img"></div>
+                    <div class="begin-title-left">
+                      <p class="time-line-font">JULY 2014</p>
+                      <p class="time-line-font">Phase Two Expansion</p>
+                      <p class="time-line-font-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Sunt ut voluptatum eius sapiente,
+                        totam reiciendistemporibus qui quibusdam, recusandae sit vero unde, sed,incidunt et ea quo
+                        dolore laudantium consectetur!</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="begin-background"><div class="begin-background-bottom">BE PART OF OUR STORY!</div></div>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+      </div>
+      <div class="team">
+        <div class="wrap">
+          <div class="main-service-title fixclear">
+            <div>OUR AMAZING TEAM</div>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+        </div>
+        <ul class="team-float fixclear wrap">
+          <li>
+            <ul class="team-list">
+            <li><div class="team-background"><img src="img/team/5.jpg" alt="" class="team-img"></div></li>
+            <li><h2>Kay Garland</h2></li>
+            <li><p>Lead Designer</p></li>
+            <li>
+              <a href=""><i class="fa fa-facebook fa-lg"></i></a>
+              <a href=""><i class="fa fa-linkedin fa-lg"></i></a>
+              <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="team-list">
+          <li><div class="team-background"><img src="img/team/6.jpg" alt="" class="team-img"></div></li>
+          <li><h2>Larry Parker</h2></li>
+          <li><p>Lead Marketer</p></li>
+          <li>
+            <a href=""><i class="fa fa-facebook fa-lg"></i></a>
+            <a href=""><i class="fa fa-linkedin fa-lg"></i></a>
+            <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul class="team-list">
+        <li><div class="team-background"><img src="img/team/7.jpg" alt="" class="team-img"></div></li>
+        <li><h2>Diana Pertersen</h2></li>
+        <li><p>Lead Developer</p></li>
+        <li>
+          <a href=""><i class="fa fa-facebook fa-lg"></i></a>
+          <a href=""><i class="fa fa-linkedin fa-lg"></i></a>
+          <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+        </li>
+      </ul>
+    </li>
+        </ul>
+        <p class="team-p wrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis,
+          quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+      </div>
+      <div class="team-logo">
+        <div class="wrap">
+        <div class="team-logo-content fixclear">
+        <ul>
+          <li><a href=""><img src="img/logo/envato.jpg" alt=""></a></li>
+          <li><a href=""><img src="img/logo/designmodo.jpg" alt=""></a></li>
+          <li><a href=""><img src="img/logo/themeforest.jpg" alt=""></a></li>
+          <li><a href=""><img src="img/logo/creative-market.jpg" alt=""></a></li>
+        </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="footer-background">
+        <div class="wrap">
+          <div class="main-service-title fixclear">
+            <div>CONTACT US</div>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            </div>
+            <div class="wrap">
+              <form action="#" method="post">
+                <div class="footer-input fixclear">
+                <textarea name="textarea" id="" cols="30" rows="10" placeholder="YOUR MESSAGE*"></textarea>
+                <input type="text" name="username" placeholder="YOUR NAME*">
+                <input type="text" name="email" placeholder="YOUR EMAIL*">
+                <input type="text" name="phone" placeholder="YOUR PHONE*">
+                </div>
+                  <button type="submit" class="btn-yellow" name="submit">SEND MESSAGE</button>
+              </form>
+            </div>
+        </div>
+      </div>
+      <div class="footer-infor wrap fixclear">
+        <span>Copyright © Your Website 2014</span>
+        <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+        <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+        <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+        <div>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+      var windowWidth=$(window).width(),
+            windowHight=$(window).height()
+            $(".ul-cont").css({"width":4*windowWidth,"height":windowHight})
+            $(".ul-cont>li>a>img").css({"width":windowWidth,"height":windowHight})
+            $("#container").css({"overflow":"hidden","width":windowWidth,"height":windowHight})
+            var idx=0
+
+             function playnext(idx){
+                $(".ul-cont").animate({"left":0-windowWidth},function(){
+                $(".ul-cont").append($(".ul-cont").children().first())
+                $(".ul-cont").css({"left":0}) 
+                })
+                setbnt(idx)
+        }
+
+            function playpre(idx){
+                $(".ul-cont").prepend($(".ul-cont").children().last())
+                $(".ul-cont").css({"left":0-windowWidth});
+                $(".ul-cont").animate({"left":0})
+                setbnt(idx)
+        }
+
+
+
+        $(".next.arrow").on("click",function(e){
+            idx=idx+1
+            if(idx===4){
+                idx=0
+            }
+            playnext(idx)
+            console.log(idx)
+        })
+
+        $(".pre.arrow").on("click",function(e){
+            idx=idx-1
+            if(idx===-1){
+                idx=3
+            }
+            playpre(idx)
+            console.log(idx)
+        })
+
+        function setbnt(idx){
+            $(".btn-cont").find("li").removeClass("active").eq(idx).addClass("active")
+        }
+        $(window).on("scroll",function(){/*滚动时消除轮播上的操作按钮*/
+          var $scrollTop=$('body').scrollTop()
+          if($scrollTop>50){
+            $(".arrow,.btn-cont").hide()
+          }
+          else{
+            $(".arrow,.btn-cont").show()
+          }
+        })
+    </script>
+    <script>
+            var newNode='<a href="#" title="gotop"><i class="fa fa-arrow-circle-up"></i></a>'
+            console.log($(newNode))
+            $("body").append($(newNode))
+            $(window).on("scroll",function(){
+              var scrollY=$(window).scrollTop()
+              if(scrollY>300){
+                $(".fa.fa-arrow-circle-up").show()
+              } else{
+                $(".fa.fa-arrow-circle-up").hide()
+              }
+            })
+    </script>
+    <script>
+    var perPageCount=6,
+			curPage=1
+
+			onloading()
+			$(window).on("resize",function(){
+				onloading()
+			})
+			function onloading(){
+				$.ajax({
+				type:"get",
+				url:"http://platform.sina.com.cn/slide/album_tech",
+				dataType:"jsonp",
+				jsonp:"jsoncallback",
+				async: true,
+				data: {
+							app_key: '1271687855',
+							num: perPageCount, //每页有几
+							page: curPage      //当前页数
+						},
+					success: function(json){
+		                 console.log(json);
+		                 if(json && json.status.code==="0"){//后台回传的是字符串，如有传回有内容且status.code的值=0则成功
+									$("#load").on("click",function(){
+										rebuild(json.data)
+									})
+		                 	curPage += 1//元素拼装后改写请求的页数，下次请求第2页
+		                 	console.log(curPage)
+		                 }
+		             },
+		             error: function(){
+		                 alert('error');
+		             }
+				})
+			}
+			function ondisplay(){//检查focus元素是否可见
+				$winH=$(window).height(),
+				$scrollTop=$(window).scrollTop()
+				$nodeH=$("#load").offset().top
+					if($winH+$scrollTop>$nodeH){
+						console.log($scrollTop+" "+$nodeH)
+						return true
+					}else{
+						return false
+					}
+			}
+
+			var clock
+			$(window).on("scroll",function(){
+				if(clock){
+					clearTimeout(clock)
+				}
+				clock=setTimeout(function(){
+					if(ondisplay()){
+					onloading()
+					}
+				},300)
+			})
+			function rebuild(resdata){//拼装html
+					var node=''
+					for(var i=0;i<resdata.length;i++){
+						node +='<li class="item">'
+						node +='<a href="'+resdata[i].url+'" class="link"><img src="'+resdata[i].img_url+'"/></a>'
+						node +='<h4 class="item-header">'+resdata[i].short_name+'</h4>'
+						node +='<p class="description">'+resdata[i].short_intro+'</p></li>'
+					}
+					var	$node=$(node)
+						$("#item_img").append($node)
+						console.log($node)//jsonp获取的数据返回的内容拼装成html元素
+							setTimeout(function(){
+							render()//请求的jsonp文件拼装完成后，延迟一段时间再开始瀑布流排列，不然一开始页面会错乱
+						},300)
+				}
+			function render(){//瀑布流元素排列
+				var $nodewidth=$(".item").outerWidth(true),
+					$windowwidth=$(window).width(),
+					$imgnum=parseInt($windowwidth/$nodewidth),
+					imgarr=[]
+					for(var i=0;i<$imgnum;i++){
+						imgarr.push(0)
+					}
+					$(".item").each(function(){
+						var $cur=$(this),
+						idx=0,
+						minheight=imgarr[0]
+						for(var i=0;i<imgarr.length;i++){
+							if(imgarr[i]<minheight){
+								idx=i;
+								minheight=imgarr[i]
+							}
+						}
+            console.log($cur)
+						$cur.css({left:idx*$nodewidth,
+									top:minheight})
+						imgarr[idx]=imgarr[idx]+$cur.outerHeight(true)
+						$("#item_img").css({height:imgarr[idx]})/*ul容器内的li元素绝对定位后,
+						ul如果没有指定高度，里面的元素focuse元素会跑到最顶上去，所以每次加载元素后要
+						把ul容器的高度指定为当前li列中高度合计中最大的那个，也就是最后那个加载元素所在的列的总高度*/
+					})
+			}
+    </script>
+  </body>
+</html>
