@@ -1,6 +1,6 @@
-
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>datepicker</title>
@@ -72,7 +72,7 @@
   </style>
 </head>
 <body>
-  <input class="date-ipt" type="text" placeholder="有初始值" date-init="2016/05/31" />
+  <input class="date-ipt" type="text" placeholder="有初始值" date-init="2016/03/30" />
   <input class="date-ipt" type="text" placeholder="无初始值"  />
 <!--   <div class="ui-date-picker">
     <div class="header">
@@ -207,8 +207,11 @@
 
         var tpl = '';
         for(var i=0;i<dateArr.length;i++){
-          if(i%7 === 0){
+          if(i%7 === 0 && i===0){
             tpl = '<tr>' + tpl;
+          }
+          if (i%7=== 0 && i != 0) {
+            tpl += '<tr>';
           }
 
           tpl += '<td class="';
@@ -254,7 +257,7 @@
 
         //下面设置点击页面其他部分隐藏 datepicker
         this.$datepicker.on('click', function(e){
-          e.stopPropagation();
+          e.stopPropagation();//阻止当前事件在捕获及冒泡阶段的进一步传播。$datepicker绑定一个点击事件，单独点击它时不会冒泡到window。window点击事件不会触发。
         });
         $(window).on('click', function(e){
           self.$datepicker.hide();
