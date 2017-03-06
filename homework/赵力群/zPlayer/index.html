@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_1467430166_4040916.css">
+	<title>Music Player</title>
+</head>
+<body>
+	<div class="wrapper">
+		<!--歌词-->
+		 <div class="background">
+		 	<div class="music-lyric">
+		 		<div class="lyric-view">
+		 			<ul class="lyric"></ul>
+		 		</div>
+		 	</div>
+		 </div>
+		 <div class="content">
+			<audio src=""></audio>
+			<div class="music-message">
+				<p class="musicname"></p>
+				<p class="musicer"></p>
+				<p class="record" data-id=""></p>
+			</div>
+			<!--分享，收藏，喜欢-->
+			<div class="music-icon">
+				<a class="m-icon m-fenxiang colored" href="http://service.weibo.com/share/share.php?title=#_loginLayer_1466697157538" target="new"></a>
+				<span class="m-icon m-star colored"></span>
+				<span class="m-icon m-heart colored"></span>
+			</div>
+		</div>
+		<!--进度条-->
+		<span class="basebar">
+			<span class="progressbar"></span>
+		</span>
+		<div class="controls">
+			<!--音乐播放。换频道，下一曲-->
+			<div class="play-control">
+				<span class="m-icon m-play btn1" title="播放/暂停"></span>
+				<span class="m-icon m-change btn2" title="换频道"></span>
+				<span class="m-icon m-next btn3" title="换曲"></span>
+			</div>
+			<!--循环播放，随机播放-->
+			<div class="music-control">
+				<span class="m-icon m-xunhuan colored"></span>
+				<span class="m-icon m-lyric colored lyriced"></span>
+			</div>			
+		</div>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="music.js"></script>
+</body>
+</html>
