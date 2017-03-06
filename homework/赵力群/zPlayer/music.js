@@ -1,19 +1,15 @@
-//播放控制
 var myAudio = $("audio")[0];
 var lyricArr = [];
-// 播放/暂停控制
 $(".btn1").click(function(){
 	if (myAudio.paused) {
-		play();
+		play()
 	} else {
-		pause();
+		pause()
 	}
 });
-// 频道切换
 $(".btn2").click(function(){
 	getChannel();
 });
-// 播放下一曲音乐
 $(".btn3").click(function(){
 	getmusic();
 	
@@ -26,7 +22,6 @@ function pause(){
 	myAudio.pause();
 	$('.btn1').removeClass('m-pause').addClass('m-play');
 }
-//获取频道信息
 function getChannel(){
 	$.ajax({
 		url: 'http://api.jirengu.com/fm/getChannels.php',
@@ -44,7 +39,6 @@ function getChannel(){
 		}
 	})
 }
-// 通过ajax获取歌曲
 function getmusic(){
 	$.ajax({
 		url: 'http://api.jirengu.com/fm/getSong.php',
@@ -74,12 +68,11 @@ function getmusic(){
 				'background-position': 'center',
 				'background-size': 'cover',
 	 		});
-	       play();//播放
-	       getlyric();//获取歌词
+	       play();
+	       getlyric();
 		}
 	})
 };
-//获取歌词
 function getlyric(){
 	var Sid = $('audio').attr('sid');
 	var Ssid = $('audio').attr('ssid');
@@ -89,32 +82,30 @@ function getlyric(){
         	var lyr = JSON.parse(lyr);;
         	console.log(lyr);
         	if (!!lyr.lyric) {
-	        	$('.music-lyric .lyric').empty();//清空歌词信息
-	        	var line = lyr.lyric.split('\n');//歌词为以排数为界的数组
-                var timeReg = /\[\d{2}:\d{2}.\d{2}\]/g;//时间的正则
+	        	$('.music-lyric .lyric').empty();
+	        	var line = lyr.lyric.split('\n');
+                var timeReg = /\[\d{2}:\d{2}.\d{2}\]/g;
                 var result = [];
                 if(line != ""){
-                    for(var i in line){//遍历歌词数组
-                        var time = line[i].match(timeReg);//每组匹配时间 得到时间数组
-                        if(!time)continue;//如果没有 就跳过继续
-                        var value = line[i].replace(timeReg,"");// 纯歌词
-                        for(j in time){//遍历时间数组
-                            var t = time[j].slice(1, -1).split(':');//分析时间  时间的格式是[00:00.00] 分钟和毫秒是t[0],t[1]
-                            //把结果做成数组 result[0]是当前时间，result[1]是纯歌词
-                            var timeArr = parseInt(t[0], 10) * 60 + parseFloat(t[1]); //计算出一个curTime s为单位
+                    for(var i in line){
+                        var time = line[i].match(timeReg);
+                        if(!time)continue;
+                        var value = line[i].replace(timeReg,"");
+                        for(j in time){
+                            var t = time[j].slice(1, -1).split(':');
+                            var timeArr = parseInt(t[0], 10) * 60 + parseFloat(t[1]);
                             result.push([timeArr, value]);
                         }
                     }
                 }
-	            //时间排序
 	            result.sort(function (a, b) {
 	                return a[0] - b[0];
 	            });
-	            lyricArr = result;//存到lyricArr里面
-	            renderLyric();//渲染歌词
+	            lyricArr = result;
+	            renderLyric();
         	}
         }).fail(function(){
-        	$('.music-lyric .lyric').html("<li>本歌曲展示没有歌词</li>");
+        	$('.music-lyric .lyric').html("<li>本歌曲无歌词</li>");
         })
 }
 function renderLyric(){
@@ -123,15 +114,15 @@ function renderLyric(){
         lyrLi += "<li data-time='"+lyricArr[i][0]+"'>"+lyricArr[i][1]+"</li>";
     }
     $('.music-lyric .lyric').append(lyrLi);
-    setInterval(showLyric,100);//怎么展示歌词
+    setInterval(showLyric,100);
 }
 function showLyric(){
-    var liH = $(".lyric li").eq(5).outerHeight()-3; //每行高度
-    for(var i=0;i< lyricArr.length;i++){//遍历歌词下所有的li
-        var curT = $(".lyric li").eq(i).attr("data-time");//获取当前li存入的当前一排歌词时间
+    var liH = $(".lyric li").eq(5).outerHeight()-3;
+    for(var i=0;i< lyricArr.length;i++){
+        var curT = $(".lyric li").eq(i).attr("data-time");
         var nexT = $(".lyric li").eq(i+1).attr("data-time");
         var curTime = myAudio.currentTime;
-        if ((curTime > curT) && (curT < nexT)){//当前时间在下一句时间和歌曲当前时间之间的时候 就渲染 并滚动
+        if ((curTime > curT) && (curT < nexT)){
             $(".lyric li").removeClass("active");
             $(".lyric li").eq(i).addClass("active");
             $('.music-lyric .lyric').css('top', -liH*(i-2));
@@ -139,9 +130,8 @@ function showLyric(){
     }
 
 }
-//进度条控制
-setInterval(present,500)	//每0.5秒计算进度条长度
-$(".basebar").mousedown(function(ev){  //拖拽进度条控制进度
+setInterval(present,500)
+$(".basebar").mousedown(function(ev){
 	var posX = ev.clientX;
 	var targetLeft = $(this).offset().left;
 	var percentage = (posX - targetLeft)/400*100;
@@ -149,10 +139,9 @@ $(".basebar").mousedown(function(ev){  //拖拽进度条控制进度
 });
 function present(){
 	var length = myAudio.currentTime/myAudio.duration*100;
-	$('.progressbar').width(length+'%');//设置进度条长度
-	//自动下一曲
+	$('.progressbar').width(length+'%');
 	if(myAudio.currentTime == myAudio.duration){
-		getmusic();
+		getmusic()
 	}
 }
 //icon
@@ -179,4 +168,4 @@ $('.m-lyric').on('click',function(){
 		$('.background .music-lyric').css({'display':'none'})
 	}
 })
-$(document).ready(getChannel());
+$(document).ready(getChannel())
