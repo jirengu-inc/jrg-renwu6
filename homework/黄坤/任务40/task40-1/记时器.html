@@ -1,0 +1,31 @@
+<script>
+    function createTimer(){
+        obj = {};
+        obj.start = function(){
+            obj.before = new Date().getTime(); //也可写成Date.now();
+        }
+        obj.end = function(){
+            obj.after = new Date().getTime();
+        }
+        obj.get = function(){
+            return obj.after-obj.before;
+        }
+
+        return obj;	
+    }
+    
+    var timer1 = createTimer();
+    var timer2 = createTimer();
+    timer1.start();
+    for(var i=0;i<100;i++){
+    	console.log(i);
+    }
+    timer2.start();
+    for(var i=0;i<100;i++){
+    	console.log(i);
+    }
+    timer1.end();
+    timer2.end();
+    console.log(timer1.get());//2
+    console.log(timer2.get());//2
+</script>
