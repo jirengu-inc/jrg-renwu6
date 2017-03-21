@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>设计模式</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="#" rel="stylesheet">
+    </head>
+    <body>
+    <script>/*构造函数模式*/
+        function People(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        People.prototype.sayName=function(){
+            console.log(this.name)
+        }
+
+        var p1=new People('jason',28)
+    </script>
+
+    <script>/*混合模式*/
+        function People(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        People.prototype.sayName=function(){
+            console.log(this.name)
+        }
+
+        function Student(name,age,score){//继承People对象的属性用call
+            //如果要继承的父对象属性已经写死，比如this.name='penny',这里直接用People.call(this)
+            People.call(this,name,age);//如果要继承的父对象属性是参数，这里就用People.call(this,name,age)
+            this.score=score;
+        }
+
+        Student.prototype=Object.create(People.prototype)//继承People对象的方法用Object.create()
+
+        Student.prototype.sayScroe=function(){//Student对象自身定义的方法，不是从Student继承得来
+            console.log(this.score)
+        }
+        
+        var p2=new Student('penny','25','96')
+        /*继承方法或者使用自定义函数
+        function create(objpro){ //objpro参数是要继承对象的prototype
+            function F(){}  //创建构造函数，构造函数要生成空对象的prototype指向参数中传入的要继承对象的prototype
+            F.prototype=objpro
+            return new F()  //返回F函数执行的结果（父对象的prototype）
+        }
+        Student.protype=create(People.protype);*/
+    </script>
+
+    <script>
+       var Person=(function(){
+           this.name='kitty';
+           this.age='100';
+           this.score='95'
+           function sayname(){
+               console.log(name)//这里不用this是因为下面return返回的内容只有sayname,sayage方法和score属性即Person的上下文环境。所以如果用this.name，执行Person.sayname()时
+           }//返回结果是define。如果return返回的内容有name即Person上下文环境有name=kitty则可以使用this.name
+           function sayage(){
+               console.log(age)
+           }
+           
+           return {//返回接口只提供访问sayname方法,sayage方法,score属性。name,age被隐藏，外界无法访问到
+               sayname:sayname,
+               sayage:sayage,
+               score:score
+           }
+       })()//函数立即执行返回接口对象
+    </script>
+
+    <script>/*工厂模式*/
+        function Person2(name,age){
+            var people={//申明对象
+                name:name,
+                age:age,
+                sayname:function(){
+                    console.log(this.name)
+                }
+            }
+            return people//返回对象
+        }
+
+        var p3=Person2('jack','22')
+        var p4=Person2('lily','21')
+    </script>  
+    </body>
+</html>
