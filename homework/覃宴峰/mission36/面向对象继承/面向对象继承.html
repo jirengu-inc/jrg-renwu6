@@ -1,0 +1,59 @@
+<!--
+<script>
+// 继承，兼容老浏览器的方法
+    function Cake(name,size){
+        this.name=name;
+        this.size=size;
+    }
+    Cake.prototype.sayName=function(){
+        console.log('i am :',this.name)
+    }
+    Cake.prototype.saySize=function(){
+        console.log('my size is :',this.size)
+    }
+
+    function MilkCake(name,size,taste){
+        Cake.call(this,name,size);//子类函数继承父类函数的属性用call
+        this.taste=taste;
+    }
+    MilkCake.prototype=new Cake()//子类函数继承父类函数的方法，在子类函数的prototype上执行父类函数并创建一个父类函数的对象实例,
+                                //通过父类函数的对象实例的__proto__属性可形成原型链（指向父类函数的prototype属性从而实现继承父类函数的方法）
+    MilkCake.prototype.constructor=MilkCake;
+
+    var cake1=new MilkCake('牛奶蛋糕',16,'奶油')
+</script> -->
+
+
+<script>
+// 继承：ES5语法适用新浏览器
+function Cake(name,size){
+    this.name=name;
+    this.size=size;
+}
+Cake.prototype.sayName=function(){
+    console.log('i am :',this.name)
+}
+Cake.prototype.saySize=function(){
+    console.log('my size is :',this.size)
+}
+
+function MilkCake(name,size,taste){
+    Cake.call(this,name,size);//子类函数继承父类函数的属性用call
+    this.taste=taste;
+}
+
+function inherit(superType, subType){//子类函数继承父类函数方法用定义的inherit函数实现
+    var _prototype  = Object.create(superType.prototype);//复制父类函数的prototype内容，生成一个新对象
+    subType.prototype = _prototype;//子类函数的prototype指向复制父类函数prototype后生成的新对象
+    _prototype.constructor = subType;//新复制的prototype原型对象通过修改constructor属性指向子类函数（修改前指向父类构造函数）
+}
+
+inherit(Cake, MilkCake);
+
+//***一定要在继承父类函数的方法之后之后再写自己的方法，否则会被覆盖
+MilkCake.prototype.madein=function(){
+    console.log('made in China')
+}
+
+var cake2=new MilkCake('牛奶蛋糕',16,'奶油')
+</script>
