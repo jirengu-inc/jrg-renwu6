@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>发布订阅模式</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        #container{
+            width:600px;
+            height:600px;
+            border:1px solid green;
+            margin:0 auto;
+            position:absolute;
+        }
+        .cont1{
+            width:200px;
+            height:200px;
+            margin:50px;
+            background:dodgerblue;
+        }
+        .cont2{
+            width:200px;
+            height:200px;
+            margin:50px;
+            background:mediumseagreen;
+        }
+        </style>
+    </head>
+    <body>
+        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script>
+        var EventCenter=(function(){
+            var events={}
+
+            function on(evt,handler){//订阅事件，设置订阅的事件发生时要执行的动作
+                events[evt]=events[evt]//如果事件池events中已经存在key为evt的成员(即{[evt],.....})则直接执行push，否则将events对象中key为evt成员初始化成空数组
+                if(!events[evt]){
+                    events[evt]=[]//如果成员不存在则将成员evt初始化成空数组
+                }
+                events[evt].push({
+                    handler:handler
+                    })
+            }
+                                /*push后事件池events对象中的内容为
+                                {
+                                evt1:[{handler:function1(){xxx}},{handler:function2(){xxx}}],
+                                evt2:[{handler:function3(){xxx}},{handler:function4(){xxx}}]
+                                }
+                                */
+            
+            function fire(evt,args){//发布事件，fire相当于总开关，执行所订阅的事件！
+                if(!events[evt]){
+                    return
+                }
+                for(var i=0;i<events[evt].length;i++){
+                    events[evt][i].handler(args)
+                }
+            }
+
+            function off(evtname){
+                delete events[evtname]
+            }
+
+            return{
+                on:on,
+                fire:fire,
+                off:off
+            }
+        })()
+    </script>
+    <div id="container">
+        <button id="btn1">点击</button>
+        <div class="cont1"></div>
+        <div class="cont2"></div>
+    </div>
+    <script>
+        EventCenter.on("colorchange",function(){//订阅自定义的colorchange事件，当发生colorchange的时候.cont2执行渐变和移动
+            $(".cont2").css({'position':'relative'}).animate({opacity:0.25,
+    left: '200'})
+        })
+
+        $('#btn1').on('click',function(){
+            $(".cont1").css({'background':'yellow'})
+            EventCenter.fire('colorchange')//发布事件，当颜色改变执行完成后发布colorchange事件，并执行所订阅的colorchange事件
+        })
+    </script>
+    </body>
+</html>
