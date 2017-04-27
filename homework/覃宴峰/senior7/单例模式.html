@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script>
+        var singleton=(function(){
+            var instance;//创建空对象
+            
+            function createInstance(){//定义构造函数，后面会赋值给空对象instance
+                this.a=1;
+                this.b=2;
+            }
+            
+            return{//return obj这里不是狭义上的对象，而是singleton执行后返回的访问闭包的接口
+                getInstance:function(){
+                    if(!instance){
+                        instance=new createInstance() 
+                    }
+                    return instance;
+                }
+            }
+        })()
+    </script>
+    
+    
+    <div id="container1">
+        <button id="btn1">点击1</button>
+        <p>
+            点击结果1----<span id="cont1">0</span>
+        </p>
+    </div>
+    <script>
+        var singleton1=singleton.getInstance()
+        $("#btn1").click(function(){
+            $("#cont1").html(singleton1.a);
+            singleton1.a++;
+        })
+    </script>
+
+
+
+
+     <div id="container2">
+        <button id="btn2">点击2</button>
+        <p>
+            点击结果2----<span id="cont2">0</span>
+        </p>
+        <script>
+            var singleton2=singleton.getInstance()//singleton2和singleton1指向同一个引用（即对象instance）
+            $("#btn2").click(function(){
+                $("#cont2").html(singleton2.a);
+                singleton2.a++;
+            })
+        </script>
+    </div>
+    </body>
+</html>
