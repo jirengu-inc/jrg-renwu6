@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>16-6</title>
+		<style>
+			body,ul,h2,p{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style-type: none;
+			}
+			a{
+				color: #333;
+				text-decoration: none;
+			}
+			.clearfix::after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.news{
+				width: 600px;
+				margin: 50px auto;
+			}
+			.news .news-item{
+				margin-bottom: 20px;
+			}
+			.news .news-item>a{
+				display: block;
+			}
+			.news .news-item .news-pic{
+				width: 75px;
+				height: 75px;
+				float: left;
+			}
+			.news .news-pic>img{
+				width: 75px;
+				height: 75px;
+			}
+			.news .news-brief{
+				margin-left: 85px;
+			}
+			.news .news-brief>h2{
+				padding: 15px 0 15px 0;
+				font-size: 16px;
+			}
+			.news .news-brief>p{
+				font-size: 14px;
+				color: #ccc;
+			}
+			.load-more{
+				visibility: hidden;
+				margin: 30px auto;
+				height: 10px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="news">
+			<!-- <li class="news-item">
+				<a href="//xw.qq.com/zt/20170209032129/SPO20170209032129UT" class="clearfix">
+					<div class="news-pic">
+						<img src="//inews.gtimg.com/newsapp_ls/0/1529583619_150120/0" 
+							data-src="//inews.gtimg.com/newsapp_ls/0/1529583619_150120/0" 
+							alt="亚冠-上港2-3西悉尼将战苏宁 武磊携埃神破门" />
+					</div>
+					<div class="news-brief">
+						<h2>亚冠-上港2-3西悉尼将战苏宁 武磊携埃神破门</h2>
+						<p>腾讯体育5月10日北京时间18时，2017亚冠...</p>
+					</div>
+				</a>
+			</li>
+			<li class="news-item">
+				<a href="//xw.qq.com/sports/20170510042033/SPO201705100420330P" class="clearfix">
+					<div class="news-pic">
+						<img src="//inews.gtimg.com/newsapp_ls/0/1529668955_150120/0" 
+							data-src="//inews.gtimg.com/newsapp_ls/0/1529668955_150120/0" 
+							alt="亚冠16强对阵：苏宁上港演中国内战 恒大再遇鹿岛" />
+					</div>
+					<div class="news-brief">
+						<h2>亚冠16强对阵：苏宁上港演中国内战 恒大再遇鹿岛</h2>
+						<p>腾讯体育5月10日随着亚冠小组赛阶段的赛事全部...</p>
+					</div>
+				</a>
+			</li> -->
+		</ul>
+		<p class="load-more"></p>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			var pageIndex = 0,
+				isOver = false,
+				isNewsArrive = true;
+
+
+			getNews();
+			$(window).on("scroll",checkNews);
+			
+
+			function getNews(){
+				isNewsArrive = false;
+				$.ajax({
+					url: "/getNews",
+					type: "get",
+					data: {
+						page: pageIndex
+					}
+				}).done(function(ret){
+					isNewsArrive = true;
+					if(ret.status === 1){
+						pageIndex++;
+						appendHtml(ret.data);
+						checkNews();
+					}else{
+						alert("获取新闻出错了");
+					}
+				}).fail(function(){
+					alert("系统异常");
+				})
+			}
+
+			function appendHtml(news){
+				if(news.length === 0){
+					isOver = true;
+					$(".news").append("<p>没有更多新闻了</p>");
+				}
+				var htmls = "";
+				$.each(news,function(){
+					htmls += '<li class="news-item">';
+					htmls += '<a href="' + this.link + '" class="clearfix">';
+					htmls += '<div class="news-pic">';
+					htmls += '<img src="' + this.img + '" />';
+					htmls += '</div>';
+					htmls += '<div class="news-brief">';
+					htmls += '<h2>' + this.title + '</h2>';
+					htmls += '<p>' + this.brief + '</p>';
+					htmls += '</div>';
+					htmls += '</a>';
+					htmls += '</li>';
+				});
+				$(".news").append(htmls);
+			}
+
+			function checkNews(){
+				if(isVisible($(".load-more")) && !isOver && isNewsArrive){
+					getNews();
+				}
+			}
+
+			function isVisible($node){
+				var windowHeight = $(window).height(),
+					scrollTop = $(window).scrollTop(),
+					offsetTop = $node.offset().top,
+					nodeHeight = $node.height();
+				if(windowHeight + scrollTop > offsetTop && scrollTop < offsetTop + nodeHeight){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>
