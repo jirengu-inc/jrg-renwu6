@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>无限滚动轮播</title>
+		<style>
+			body,ul{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style-type: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			.clearfix::after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			
+			.carousel{
+				width: 755px;
+				height: 450px;
+				margin: 50px auto 0 auto;
+				overflow: hidden;
+				position: relative;
+			}
+			.carousel .img-ct{
+				width: 3775px;
+				height: 450px;
+				position: absolute;
+			}
+			.carousel .img-ct>li{
+				float: left;
+			}
+			.carousel .img-ct a{
+				display: block;
+				width: 755px;
+				height: 450px;
+			}
+			.carousel .img-ct img{
+				width: 755px;
+				height: 450px;
+			}
+			
+			.carousel .arrow{
+				display: block;
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				border-radius: 50%;
+				color: #fff;
+				font-size: 22px;
+				background-color: rgba(0,0,0,0.4);
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			.carousel .arrow:hover{
+				background-color: rgba(0,0,0,1);
+			}
+			.carousel .arrow-pre{
+				left: 12px;
+			}
+			.carousel .arrow-next{
+				right: 12px;
+			}
+			
+			.carousel .bullet{
+				position: absolute;
+				left: 50%;
+				bottom: 30px;
+				transform: translateX(-50%);
+			}
+			.carousel .bullet>li{
+				width: 25px;
+				height: 6px;
+				margin: 0 5px;
+				border-radius: 5px;
+				background-color: #fff;
+				cursor: pointer;
+				float: left;
+			}
+			.carousel li.active{
+				background-color: #444;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="carousel">
+			<ul class="img-ct clearfix">
+				<li>
+					<a href="#">
+						<img src="http://i2.muimg.com/588926/16f9c09022cd4ab6.jpg" alt="photo" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="http://i4.buimg.com/588926/b5a5bfb3e187b496.jpg" alt="photo" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="http://i4.buimg.com/588926/0a3b333dc4a6b961.jpg" alt="photo" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="http://i4.buimg.com/588926/d21d067ff42eb94b.jpg" alt="photo" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="http://i2.muimg.com/588926/603958f7dd436adb.jpg" alt="photo" />
+					</a>
+				</li>
+			</ul>
+			<a class="arrow arrow-pre" href="#">&lt;</a>
+			<a class="arrow arrow-next" href="#">&gt;</a>
+			<ul class="bullet clearfix">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			var $imgCt = $(".img-ct"),
+				$arrowPre = $(".arrow-pre"),
+				$arrowNext = $(".arrow-next"),
+				$bullet = $(".bullet"),
+				curImgIndex = 0,
+				isAnimate = false,
+				imgCount = $imgCt.children().length;
+				
+				
+			var $firstImg = $imgCt.children("li").first(),
+				$lastImg = $imgCt.children("li").last();	
+			$imgCt.prepend($lastImg.clone());
+			$imgCt.append($firstImg.clone());
+			
+			var imgWidth = $firstImg.width(),
+				imgCounts = $imgCt.children().length;
+			$imgCt.width(imgWidth * imgCounts);
+			$imgCt.css("left",-imgWidth);
+			
+			function playNext(index){
+				if(isAnimate){
+					return;
+				}
+				isAnimate = true;
+				$imgCt.animate({
+					left: "-=" + index * imgWidth
+				},1000,function(){
+					curImgIndex += index;
+					if(curImgIndex === imgCount){
+						$imgCt.css("left",-imgWidth);
+						curImgIndex = 0;
+					}
+					isAnimate = false;
+					setBullet();
+				});
+			}
+			function playPre(index){
+				if(isAnimate){
+					return;
+				}
+				isAnimate = true;
+				$imgCt.animate({
+					left: "+=" + index * imgWidth
+				},1000,function(){
+					curImgIndex -= index;
+					if(curImgIndex < 0){
+						$imgCt.css("left",-imgWidth * imgCount);
+						curImgIndex = imgCount - 1;
+					}
+					isAnimate = false;
+					setBullet();
+				})
+			}
+			function setBullet(){
+				$bullet.children("li").removeClass("active")
+									  .eq(curImgIndex)
+									  .addClass("active");
+			}
+			function autoPlay(){
+				clock = setInterval(function(){
+					playNext(1);
+				},2500);
+			}
+			
+			$arrowNext.on("click",function(event){
+				event.preventDefault();
+				playNext(1);
+			});
+			$arrowPre.on("click",function(event){
+				event.preventDefault();
+				playPre(1);
+			});
+			autoPlay();
+			$bullet.children('li').on("click",function(){
+				var $index = $(this).index();
+				if($index > curImgIndex){
+					playNext($index - curImgIndex);
+				}else if($index < curImgIndex){
+					playPre(curImgIndex - $index);
+				}
+			});
+		</script>
+	</body>
+</html>
