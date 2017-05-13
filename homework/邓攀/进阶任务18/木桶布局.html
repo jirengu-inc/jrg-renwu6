@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>木桶布局</title>
+		<style>
+			body{
+				margin: 0;
+			}
+			.img-ct{
+				width: 1000px;
+				margin: 50px auto 0 auto;
+			}
+			.img-row{
+				margin-bottom: 10px;
+			}
+			.img-row::after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.img-item{
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="img-ct">
+			<div class="img-row">
+				<div class="img-item">
+					<img src="" alt="">
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			var $imgCt = $(".img-ct"),
+				imgCtWidth = $imgCt.width(),
+				basicHeight = 200,
+				imgInfo,
+				rowHeight,
+				rowList = [];
+
+
+			//获得图片的url
+			function getImgUrls(num){
+				var width,height,urls = [];
+				for(var i = 0; i < num; i++){
+					width = Math.floor(Math.random() * 201 + 100);//[100,300]
+					height = Math.floor(Math.random() *51 + 100);//[100,150]
+					urls.push("https://unsplash.it/" + width + "/" + height + "/?random");
+				}
+				return urls;	
+			}
+			//加载图片
+			function loadImg(){
+				var imgUrls = getImgUrls(60);
+				$.each(imgUrls,function(index,url){
+					var img = new Image();
+					img.src = url;
+					img.onload = function(){
+						var originWidth = img.width,
+							originHeight = img.height,
+							ratio = originWidth / originHeight;
+						imgInfo = {
+							target: $(img),
+							width: basicHeight * ratio,
+							height: basicHeight,
+							ratio: ratio
+						}
+						render(imgInfo);
+					}
+				});
+			}
+			//计算一行的图片个数及其高度
+			function render(imgInfo){
+				var rowWidth = 0,
+					rowHeight = 0,
+					lastImgInfo = imgInfo;
+				rowList.push(imgInfo);
+				$.each(rowList,function(index,imgInfo){
+					rowWidth += imgInfo.width;
+					if(rowWidth > imgCtWidth){
+						rowList.pop();
+						rowWidth = rowWidth - lastImgInfo.width;
+						rowHeight = imgCtWidth * basicHeight / rowWidth;
+						createRow(rowHeight);
+						rowList = [];
+						rowList.push(lastImgInfo);
+					}
+				});
+			}
+			//向页面添加元素
+			function createRow(rowHeight){
+				var $imgRow = $('<div class="img-row"></div>');
+				$.each(rowList,function(index,imgInfo){
+					var $imgItem = $('<div class="img-item"></div>'),
+						$img = imgInfo.target;
+					$img.height(rowHeight);
+					$imgItem.append($img);
+					$imgRow.append($imgItem);	
+					$imgCt.append($imgRow);
+				});
+			}
+
+
+			loadImg();
+		</script>
+	</body>
+</html>
