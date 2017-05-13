@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>瀑布流布局</title>	
+		<style>
+			body{
+				margin: 0;
+				padding: 100px;
+			}
+			.ct{
+				position: relative;
+			}
+			.item{
+				width: 300px;
+				margin: 15px 15px 0 0;
+				font-size: 30px;
+				transition: all 1s; 
+				position: absolute;
+			}
+			.h1{
+				height: 300px;
+				background-color: #FF7F27;
+			}
+			.h2{
+				height: 200px;
+				background-color: #4BE1E3;
+			}
+			.h3{
+				height: 280px;
+				background-color: #88DBA9;
+			}
+			.h4{
+				height: 190px;
+				background-color: #FA1D1D;
+			}
+			.h5{
+				height: 230px;
+				background-color: #EEB7B7;
+			}
+			.h6{
+				height: 220px;
+				background-color: #C3C3C3;
+			}
+			.h7{
+				height: 290px;
+				background-color: #22B14C;
+			}
+			.h8{
+				height: 170px;
+				background-color: #9F93DC;
+			}
+			.h9{
+				height: 310px;
+				background-color: #FFAEC9;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ct">
+			<div class="item h1">1</div>
+			<div class="item h2">2</div>
+			<div class="item h3">3</div>
+			<div class="item h4">4</div>
+			<div class="item h5">5</div>
+			<div class="item h6">6</div>
+			<div class="item h7">7</div>
+			<div class="item h8">8</div>
+			<div class="item h9">9</div>
+			<div class="item h7">10</div>
+			<div class="item h4">11</div>
+			<div class="item h2">12</div>
+			<div class="item h6">13</div>
+			<div class="item h9">14</div>
+			<div class="item h3">15</div>
+			<div class="item h8">16</div>
+			<div class="item h1">17</div>
+			<div class="item h7">18</div>
+			<div class="item h4">19</div>
+			<div class="item h9">20</div>
+			<div class="item h1">21</div>
+		</div>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			function waterFall(){
+				var itemWidth = $(".item").outerWidth(true),
+					columnNumber = parseInt($('.ct').width() / itemWidth),
+					array = [];
+				for(var i = 0; i < columnNumber; i++){
+					array[i] = 0;
+				}
+				$(".item").each(function(){
+					var minValue = Math.min.apply(null, array),
+						minIndex = array.indexOf(minValue);
+					$(this).css({
+						top: minValue,
+						left: itemWidth * minIndex
+					});
+					array[minIndex] += $(this).outerHeight(true);
+				})
+			} 
+			
+			
+			waterFall();
+			$(window).on("resize",function(){
+				waterFall();
+			});
+		</script>
+	</body>
+</html>
