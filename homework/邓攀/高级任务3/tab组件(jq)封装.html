@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>tab组件</title>
+		<style>
+			body,ul{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style-type: none;
+			}
+			.tab{
+				width: 304px;
+				margin: 100px auto 0 auto;
+			}
+			.tab .tab-header{
+				border: 1px solid #000;
+				border-right: none;
+			}
+			.tab .tab-header::after{
+				content: '';
+				display: block;
+				clear: both;
+			}
+			.tab .tab-header>li{
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border-right: 1px solid #000;
+				cursor: pointer;
+				float: left;
+			}
+			.tab .tab-header>li.active{
+				background-color: pink;
+				color: #fff;
+			}
+			.tab .tab-body{
+				border: 1px solid #000;
+				border-top: none;
+			}
+			.tab .tab-body>li{
+				height: 200px;
+				padding: 30px 0 0 30px;
+				display: none;
+			}
+			.tab .tab-body>li.active{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tab">
+			<ul class="tab-header">
+				<li class="active">tab1</li>
+				<li>tab2</li>
+				<li>tab3</li>
+			</ul>
+			<ul class="tab-body">
+				<li class="active">tab1 11111</li>
+				<li>tab2 22222</li>
+				<li>tab3 33333</li>
+			</ul>
+		</div>
+		<div class="tab">
+			<ul class="tab-header">
+				<li class="active">tab1</li>
+				<li>tab2</li>
+				<li>tab3</li>
+			</ul>
+			<ul class="tab-body">
+				<li class="active">tab1 11111</li>
+				<li>tab2 22222</li>
+				<li>tab3 33333</li>
+			</ul>
+		</div>
+		<script src="js/jquery-3.2.1.js"></script>
+		<script>
+			var Tab = (function(){
+				var _Tab = function($headerDom,$bodyDom){
+					this.headerDom = $headerDom;
+					this.headerLi = $headerDom.children('li');
+					this.bodyLi = $bodyDom.children('li');
+					this.addEvent();
+				};
+				_Tab.prototype.addEvent = function(){
+					var that = this;
+					this.headerDom.on('click','li',function(){
+						var index = $(this).index();
+						//tab-header里的li被选中的highLight
+						that.highLight(index);
+						//内容区进行相应的切换
+						that.bodySwitch(index);
+					});
+				};
+				_Tab.prototype.highLight = function(index){
+					this.headerLi.eq(index).addClass('active')
+										   .siblings('.active')
+										   .removeClass('active');
+				};
+				_Tab.prototype.bodySwitch = function(index){
+					this.bodyLi.removeClass('active');
+					this.bodyLi.eq(index).addClass('active');
+				};
+				return {
+					init: function($tab){
+						$tab.each(function(){
+							var $headerDom = $(this).find('.tab-header'),
+								$bodyDom = $(this).find('.tab-body');
+							new _Tab($headerDom,$bodyDom);	
+						});
+					}
+				}
+			})();
+			Tab.init($('.tab'));
+		</script>
+	</body>
+</html>
